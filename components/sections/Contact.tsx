@@ -60,8 +60,8 @@ export default function Contact() {
       id="contact"
       aria-label="Contact Verdorian Technologies"
       style={{
-        paddingTop: '160px',
-        paddingBottom: '160px',
+        paddingTop: '200px',
+        paddingBottom: '200px',
         position: 'relative',
         overflow: 'hidden',
       }}
@@ -117,11 +117,11 @@ export default function Contact() {
             variants={FADE_UP}
             style={{
               fontFamily: 'var(--font-geist), sans-serif',
-              fontWeight: 800,
+              fontWeight: 700,
               fontSize: 'var(--t-h2)',
-              letterSpacing: '-0.02em',
-              textTransform: 'uppercase',
-              lineHeight: 1.05,
+              letterSpacing: 'var(--track-h2)',
+              lineHeight: 1.1,
+              textWrap: 'balance',
               margin: '24px 0 0',
             }}
           >
@@ -357,32 +357,36 @@ export default function Contact() {
                       aria-label="Send your message to Verdorian Technologies"
                       style={{
                         width: '100%',
-                        background: 'rgba(139, 92, 246, 0.12)',
-                        WebkitBackdropFilter: 'blur(12px) saturate(140%)',
-                        backdropFilter: 'blur(12px) saturate(140%)',
-                        color: 'var(--c-text-1)',
-                        borderRadius: 'var(--r-pill)',
-                        border: '1px solid rgba(139, 92, 246, 0.45)',
-                        boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.10), 0 4px 20px rgba(139,92,246,0.20)',
+                        background: 'linear-gradient(104deg, rgba(253,253,253,0.05) 5%, rgba(240,240,228,0.10) 100%)',
+                        WebkitBackdropFilter: 'blur(25px)',
+                        backdropFilter: 'blur(25px)',
+                        color: 'rgba(255,255,255,0.92)',
+                        borderRadius: '12px',
+                        border: '1.5px solid rgba(255,255,255,0.08)',
+                        boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.06), 0 1px 2px rgba(0,0,0,0.2)',
                         padding: '12px 28px',
                         minHeight: '48px',
                         fontFamily: 'var(--font-geist), sans-serif',
                         fontWeight: 500,
                         fontSize: '16px',
                         cursor: 'pointer',
-                        transition: 'all 0.3s var(--ease-expo)',
+                        transition: 'all 0.25s var(--ease-expo)',
                       }}
                       onMouseEnter={(e) => {
                         const el = e.currentTarget as HTMLButtonElement
-                        el.style.background = 'rgba(139, 92, 246, 0.22)'
-                        el.style.boxShadow = 'inset 0 1px 0 rgba(255,255,255,0.14), 0 6px 28px rgba(139,92,246,0.35)'
-                        el.style.transform = 'scale(1.02)'
+                        el.style.background = 'rgba(255, 255, 255, 0.92)'
+                        el.style.color = '#000000'
+                        el.style.borderColor = 'rgba(255,255,255,0.92)'
+                        el.style.boxShadow = '0 4px 16px rgba(255,255,255,0.15)'
+                        el.style.transform = 'translateY(-1px)'
                       }}
                       onMouseLeave={(e) => {
                         const el = e.currentTarget as HTMLButtonElement
-                        el.style.background = 'rgba(139, 92, 246, 0.12)'
-                        el.style.boxShadow = 'inset 0 1px 0 rgba(255,255,255,0.10), 0 4px 20px rgba(139,92,246,0.20)'
-                        el.style.transform = 'scale(1)'
+                        el.style.background = 'linear-gradient(104deg, rgba(253,253,253,0.05) 5%, rgba(240,240,228,0.10) 100%)'
+                        el.style.color = 'rgba(255,255,255,0.92)'
+                        el.style.borderColor = 'rgba(255,255,255,0.08)'
+                        el.style.boxShadow = 'inset 0 1px 0 rgba(255,255,255,0.06), 0 1px 2px rgba(0,0,0,0.2)'
+                        el.style.transform = 'translateY(0)'
                       }}
                     >
                       Send Message →

@@ -8,6 +8,7 @@ interface GlassCardProps {
   className?: string
   tilt?: boolean
   glow?: boolean
+  style?: React.CSSProperties
 }
 
 export function GlassCard({
@@ -15,6 +16,7 @@ export function GlassCard({
   className,
   tilt = true,
   glow = false,
+  style: externalStyle,
 }: GlassCardProps) {
   const cardRef = useRef<HTMLDivElement>(null)
   const [transform, setTransform] = useState('')
@@ -41,12 +43,12 @@ export function GlassCard({
       const cx = rect.width / 2
       const cy = rect.height / 2
 
-      // Max ±5deg
-      const rotateX = ((y - cy) / cy) * -5
-      const rotateY = ((x - cx) / cx) * 5
+      // Max ±3deg (subtler than before)
+      const rotateX = ((y - cy) / cy) * -3
+      const rotateY = ((x - cx) / cx) * 3
 
       setTransform(
-        `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`
+        `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-2px)`
       )
     },
     [tilt]
@@ -61,22 +63,33 @@ export function GlassCard({
     setTransform('')
   }, [])
 
+  const baseBackground = externalStyle?.background ?? 'var(--c-bg-card)'
+  const hoveredBackground = isHovered
+    ? (externalStyle?.background ?? 'var(--c-bg-elevated)')
+    : (externalStyle?.background ?? 'var(--c-bg-card)')
+
   const cardStyle: React.CSSProperties = {
-    background: 'var(--c-forge)',
-    border: '1px solid rgba(255,255,255,0.07)',
+    ...externalStyle,
+    background: isHovered && !externalStyle?.background
+      ? 'var(--c-bg-elevated)'
+      : (externalStyle?.background ?? 'var(--c-bg-card)'),
+    border: `1px solid ${isHovered ? 'var(--c-border-hover)' : 'var(--c-border)'}`,
     borderRadius: 'var(--r-lg)',
-    backdropFilter: 'blur(12px)',
-    WebkitBackdropFilter: 'blur(12px)',
-    boxShadow: isHovered && glow
-      ? 'var(--glow-card), var(--glow-plasma), inset 0 1px 0 rgba(255,255,255,0.06)'
-      : 'var(--glow-card), inset 0 1px 0 rgba(255,255,255,0.06)',
+    backdropFilter: 'none',
+    WebkitBackdropFilter: 'none',
+    boxShadow: 'none',
     overflow: 'hidden',
     position: 'relative',
-    transform: transform || undefined,
+    transform: transform || (isHovered && !tilt ? 'translateY(-2px)' : undefined),
     transition: transform
-      ? 'box-shadow 0.3s var(--ease-expo)'
-      : 'transform 0.5s var(--ease-back), box-shadow 0.3s var(--ease-expo)',
+      ? 'border-color 0.3s var(--ease-expo), background 0.3s var(--ease-expo)'
+      : 'transform 0.5s var(--ease-back), border-color 0.3s var(--ease-expo), background 0.3s var(--ease-expo)',
   }
+
+  // Suppress the unused variable warnings — these are consumed via isHovered state above
+  void baseBackground
+  void hoveredBackground
+  void glow
 
   return (
     <div
@@ -87,6 +100,21 @@ export function GlassCard({
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
+      {/* Top edge highlight — the premium detail */}
+      <span
+        aria-hidden="true"
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          height: '1px',
+          background: 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.10) 30%, rgba(255,255,255,0.10) 70%, transparent 100%)',
+          pointerEvents: 'none',
+          zIndex: 1,
+        }}
+      />
+
       {/* Gradient border overlay on hover */}
       <span
         aria-hidden="true"
@@ -101,28 +129,10 @@ export function GlassCard({
           WebkitMaskComposite: 'xor',
           maskComposite: 'exclude',
           pointerEvents: 'none',
-          opacity: isHovered ? 1 : 0,
+          opacity: isHovered ? 0.6 : 0,
           transition: 'opacity 0.3s var(--ease-expo)',
         }}
       />
-
-      {/* Holographic grid overlay on hover (when tilt enabled) */}
-      {tilt && (
-        <span
-          aria-hidden="true"
-          style={{
-            position: 'absolute',
-            inset: 0,
-            backgroundImage:
-              'repeating-linear-gradient(0deg, rgba(139,92,246,0.08) 0px, transparent 1px, transparent 20px), repeating-linear-gradient(90deg, rgba(139,92,246,0.08) 0px, transparent 1px, transparent 20px)',
-            backgroundSize: '20px 20px',
-            pointerEvents: 'none',
-            opacity: isHovered ? 1 : 0,
-            transition: 'opacity 0.3s var(--ease-expo)',
-            borderRadius: 'var(--r-lg)',
-          }}
-        />
-      )}
 
       {children}
     </div>

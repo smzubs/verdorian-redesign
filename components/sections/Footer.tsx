@@ -15,9 +15,9 @@ export default function Footer() {
     <footer
       aria-label="Site footer"
       style={{
-        paddingTop: '40px',
-        paddingBottom: '40px',
-        borderTop: '1px solid rgba(255,255,255,0.05)',
+        paddingTop: '32px',
+        paddingBottom: '48px',
+        borderTop: '1px solid var(--c-border)',
       }}
     >
       <style>{`
@@ -30,7 +30,7 @@ export default function Footer() {
           align-items: center;
           justify-content: space-between;
           flex-wrap: wrap;
-          gap: 32px;
+          gap: 48px;
         }
         @media (max-width: 640px) {
           .footer-inner {

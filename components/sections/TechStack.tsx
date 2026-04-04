@@ -95,8 +95,8 @@ export default function TechStack() {
       id="tech-stack"
       aria-label="Technology Stack"
       style={{
-        paddingTop: '96px',
-        paddingBottom: '96px',
+        paddingTop: '120px',
+        paddingBottom: '120px',
       }}
     >
       <motion.div
@@ -133,13 +133,13 @@ export default function TechStack() {
               fontWeight: 700,
               fontSize: 'var(--t-h2)',
               color: 'var(--c-text-1)',
-              letterSpacing: '-0.02em',
-              textTransform: 'uppercase',
+              letterSpacing: 'var(--track-h2)',
               margin: 0,
-              lineHeight: 1.05,
+              lineHeight: 1.1,
+              textWrap: 'balance',
             }}
           >
-            Built With Modern Tech
+            Built with modern tech
           </motion.h2>
           <motion.p
             variants={FADE_UP}
@@ -159,7 +159,7 @@ export default function TechStack() {
         <motion.div variants={FADE_UP} style={{ width: '100%' }} aria-hidden="true">
           <InfiniteMarquee
             items={marqueeItems}
-            speed="50s"
+            speed="90s"
             gap="16px"
           />
         </motion.div>

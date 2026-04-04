@@ -26,12 +26,12 @@ function LetterReveal({ text, baseDelay }: LetterRevealProps) {
       {text.split('').map((char, i) => (
         <motion.span
           key={i}
-          initial={{ opacity: 0, y: 20, filter: 'blur(8px)' }}
+          initial={{ opacity: 0, y: 16, filter: 'blur(6px)' }}
           animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
           transition={{
-            duration: 0.5,
-            delay: baseDelay + i * 0.025,
-            ease: [0.16, 1, 0.3, 1],
+            duration: 0.45,
+            delay: baseDelay + i * 0.022,
+            ease: [0.19, 1, 0.22, 1],
           }}
           style={{ display: 'inline-block', whiteSpace: 'pre' }}
         >
@@ -56,7 +56,12 @@ export default function Hero() {
         position: 'relative',
         overflow: 'hidden',
         minHeight: '100svh',
-        background: 'var(--c-abyss)',
+        background: `
+          radial-gradient(ellipse 60% 40% at 50% 0%, rgba(139,92,246,0.15) 0%, transparent 60%),
+          radial-gradient(ellipse 50% 35% at 80% 20%, rgba(34,211,238,0.08) 0%, transparent 50%),
+          radial-gradient(ellipse 40% 30% at 20% 60%, rgba(139,92,246,0.06) 0%, transparent 50%),
+          var(--c-bg-hero)
+        `,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -67,19 +72,7 @@ export default function Hero() {
         <ParticleCanvas />
       </div>
 
-      {/* Layer 1: Radial gradient overlay */}
-      <div
-        aria-hidden="true"
-        style={{
-          position: 'absolute',
-          inset: 0,
-          zIndex: 1,
-          background: 'var(--grad-hero)',
-          pointerEvents: 'none',
-        }}
-      />
-
-      {/* Layer 2: Floating orb 1 */}
+      {/* Layer 1: Animated gradient mesh orbs */}
       <div
         aria-hidden="true"
         className="hero-orb-1"
@@ -88,17 +81,15 @@ export default function Hero() {
           zIndex: 1,
           borderRadius: '9999px',
           background: 'var(--c-plasma)',
-          opacity: 0.08,
+          opacity: 0.07,
           filter: 'blur(120px)',
           top: '50%',
           left: '50%',
-          transform: 'translate(-50%, -50%)',
-          animation: 'heroOrbFloat1 8s ease-in-out infinite',
+          animation: 'heroOrbFloat1 20s ease-in-out infinite',
           pointerEvents: 'none',
         }}
       />
 
-      {/* Layer 3: Floating orb 2 */}
       <div
         aria-hidden="true"
         className="hero-orb-2"
@@ -107,11 +98,28 @@ export default function Hero() {
           zIndex: 1,
           borderRadius: '9999px',
           background: 'var(--c-arc)',
-          opacity: 0.06,
+          opacity: 0.05,
           filter: 'blur(100px)',
           top: '30%',
           right: '20%',
-          animation: 'heroOrbFloat2 12s ease-in-out infinite reverse',
+          animation: 'heroOrbFloat2 26s ease-in-out infinite reverse',
+          pointerEvents: 'none',
+        }}
+      />
+
+      <div
+        aria-hidden="true"
+        className="hero-orb-3"
+        style={{
+          position: 'absolute',
+          zIndex: 1,
+          borderRadius: '9999px',
+          background: 'var(--c-plasma)',
+          opacity: 0.04,
+          filter: 'blur(140px)',
+          bottom: '20%',
+          left: '15%',
+          animation: 'heroOrbFloat3 30s ease-in-out infinite',
           pointerEvents: 'none',
         }}
       />
@@ -120,10 +128,15 @@ export default function Hero() {
         .hero-orb-1 {
           width: 360px;
           height: 360px;
+          transform: translate(-50%, -50%);
         }
         .hero-orb-2 {
           width: 180px;
           height: 180px;
+        }
+        .hero-orb-3 {
+          width: 280px;
+          height: 280px;
         }
         @media (min-width: 768px) {
           .hero-orb-1 {
@@ -134,11 +147,15 @@ export default function Hero() {
             width: 300px;
             height: 300px;
           }
+          .hero-orb-3 {
+            width: 420px;
+            height: 420px;
+          }
         }
         /* Mobile: tighter letter-spacing, full-width CTA buttons */
         @media (max-width: 767px) {
           .hero-h1 {
-            letter-spacing: -0.01em !important;
+            letter-spacing: -0.02em !important;
           }
           .hero-cta-row {
             flex-direction: column !important;
@@ -150,12 +167,21 @@ export default function Hero() {
           }
         }
         @keyframes heroOrbFloat1 {
-          0%, 100% { transform: translate(-50%, calc(-50%)); }
-          50%       { transform: translate(-50%, calc(-50% - 20px)); }
+          0%   { transform: translate(-50%, -50%); }
+          33%  { transform: translate(calc(-50% + 30px), calc(-50% - 20px)); }
+          66%  { transform: translate(calc(-50% - 20px), calc(-50% + 15px)); }
+          100% { transform: translate(-50%, -50%); }
         }
         @keyframes heroOrbFloat2 {
-          0%, 100% { transform: translateY(0); }
-          50%       { transform: translateY(-20px); }
+          0%   { transform: translateY(0) translateX(0); }
+          40%  { transform: translateY(-24px) translateX(12px); }
+          70%  { transform: translateY(10px) translateX(-8px); }
+          100% { transform: translateY(0) translateX(0); }
+        }
+        @keyframes heroOrbFloat3 {
+          0%   { transform: translateY(0) translateX(0); }
+          50%  { transform: translateY(-18px) translateX(20px); }
+          100% { transform: translateY(0) translateX(0); }
         }
         @keyframes heroScrollBounce {
           0%, 100% { transform: translateY(0); opacity: 0.6; }
@@ -164,6 +190,7 @@ export default function Hero() {
         @media (prefers-reduced-motion: reduce) {
           @keyframes heroOrbFloat1 { 0%, 100% { transform: translate(-50%, -50%); } }
           @keyframes heroOrbFloat2 { 0%, 100% { transform: none; } }
+          @keyframes heroOrbFloat3 { 0%, 100% { transform: none; } }
           @keyframes heroScrollBounce { 0%, 100% { transform: none; } }
         }
       `}</style>
@@ -206,11 +233,11 @@ export default function Hero() {
             className="hero-h1"
             style={{
               fontFamily: 'var(--font-geist), sans-serif',
-              fontWeight: 800,
+              fontWeight: 700,
               fontSize: 'var(--t-hero)',
-              lineHeight: '0.95',
-              letterSpacing: '-0.02em',
-              textTransform: 'uppercase',
+              lineHeight: 1.05,
+              letterSpacing: 'var(--track-hero)',
+              textWrap: 'balance',
               margin: 0,
             }}
             aria-label="We don't consult. We create. Then we ship."
@@ -234,7 +261,7 @@ export default function Hero() {
                 color: 'var(--c-text-1)',
               }}
             >
-              <LetterReveal text="Then we ship." baseDelay={1.6} />
+              <LetterReveal text="Then we ship." baseDelay={1.55} />
             </span>
           </motion.h1>
 
@@ -261,7 +288,7 @@ export default function Hero() {
             className="hero-cta-row"
             style={{
               display: 'flex',
-              gap: '16px',
+              gap: '12px',
               justifyContent: 'center',
               flexWrap: 'wrap',
               width: '100%',
@@ -273,7 +300,7 @@ export default function Hero() {
               onClick={() => scrollToSection('products')}
               className="hero-cta-btn"
             >
-              Explore Our Work
+              Explore our work
             </GlowButton>
             <GlowButton
               variant="ghost"
@@ -281,7 +308,7 @@ export default function Hero() {
               onClick={() => scrollToSection('contact')}
               className="hero-cta-btn"
             >
-              Get in Touch
+              Get in touch
             </GlowButton>
           </motion.div>
         </motion.div>

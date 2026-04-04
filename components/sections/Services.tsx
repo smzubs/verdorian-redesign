@@ -36,9 +36,9 @@ export default function Services() {
       id="services"
       aria-label="Our Services"
       style={{
-        paddingTop: '128px',
-        paddingBottom: '128px',
-        background: 'var(--c-obsidian)',
+        paddingTop: '160px',
+        paddingBottom: '160px',
+        background: 'var(--c-bg-panel)',
       }}
     >
       <div
@@ -68,13 +68,13 @@ export default function Services() {
                 fontWeight: 700,
                 fontSize: 'var(--t-h2)',
                 color: 'var(--c-text-1)',
-                letterSpacing: '-0.02em',
-                textTransform: 'uppercase',
+                letterSpacing: 'var(--track-h2)',
                 margin: 0,
-                lineHeight: 1.05,
+                lineHeight: 1.1,
+                textWrap: 'balance',
               }}
             >
-              What We Do
+              What we do
             </motion.h2>
           </div>
 
@@ -104,7 +104,7 @@ export default function Services() {
                         overflow: 'hidden',
                       }}
                     >
-                      {/* Corner glow orb */}
+                      {/* Corner glow orb — subtle ambient */}
                       <div
                         aria-hidden="true"
                         style={{
@@ -115,21 +115,21 @@ export default function Services() {
                           height: '160px',
                           borderRadius: '9999px',
                           background: glowColor,
-                          opacity: 0.15,
+                          opacity: 0.10,
                           filter: 'blur(80px)',
                           pointerEvents: 'none',
                         }}
                       />
 
-                      {/* Icon — decorative, labelled by the adjacent h3 */}
+                      {/* Icon */}
                       <div
                         aria-hidden="true"
                         style={{
                           width: '56px',
                           height: '56px',
                           borderRadius: 'var(--r-md)',
-                          background: 'rgba(139,92,246,0.1)',
-                          border: '1px solid rgba(139,92,246,0.2)',
+                          background: 'rgba(255,255,255,0.05)',
+                          border: '1px solid rgba(255,255,255,0.08)',
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
@@ -152,7 +152,7 @@ export default function Services() {
                           fontWeight: 600,
                           fontSize: '20px',
                           color: 'var(--c-text-1)',
-                          letterSpacing: '-0.02em',
+                          letterSpacing: 'var(--track-h3)',
                           margin: '0 0 12px',
                         }}
                       >

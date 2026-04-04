@@ -33,6 +33,15 @@ const ICON_MAP: Record<string, TablerIcon> = {
   IconShield,
 }
 
+// Per-card atmospheric gradients — Raycast technique, positioned at 25-30% from top
+const CARD_GRADIENTS: Record<string, string> = {
+  VoicePencil:   'radial-gradient(94% 78% at 50% 29%, rgba(139,92,246,0.25), rgba(20,21,22,0.95))',
+  ChangeOrderAI: 'radial-gradient(90% 75% at 50% 25%, rgba(34,211,238,0.20), rgba(20,21,22,0.95))',
+  QRSafePro:     'radial-gradient(86% 70% at 50% 30%, rgba(16,185,129,0.25), rgba(20,21,22,0.95))',
+  WithinYouAI:   'radial-gradient(90% 75% at 50% 25%, rgba(99,102,241,0.20), rgba(20,21,22,0.95))',
+  PolicyPilot:   'radial-gradient(85% 70% at 50% 30%, rgba(245,158,11,0.18), rgba(20,21,22,0.95))',
+}
+
 // Desktop grid column/row spans per product
 const GRID_STYLES: Record<string, React.CSSProperties> = {
   VoicePencil:   { gridColumn: '1 / 9',  gridRow: '1 / 2' },
@@ -83,11 +92,11 @@ function CardContent({ product, isFeatured = false }: CardContentProps) {
             right: '20px',
             padding: '4px 12px',
             borderRadius: 'var(--r-pill)',
-            background: 'rgba(139,92,246,0.15)',
-            border: '1px solid rgba(139,92,246,0.3)',
+            background: 'rgba(139,92,246,0.12)',
+            border: '1px solid rgba(139,92,246,0.25)',
             fontFamily: 'monospace',
             fontSize: '10px',
-            fontWeight: 600,
+            fontWeight: 500,
             color: 'var(--c-plasma)',
             letterSpacing: '0.1em',
             textTransform: 'uppercase',
@@ -108,7 +117,7 @@ function CardContent({ product, isFeatured = false }: CardContentProps) {
             display: 'flex',
             alignItems: 'center',
             gap: '3px',
-            opacity: 0.2,
+            opacity: 0.18,
           }}
         >
           {[16, 28, 20, 36, 24, 40, 20, 32, 18, 28, 16, 24].map((h, i) => (
@@ -151,8 +160,8 @@ function CardContent({ product, isFeatured = false }: CardContentProps) {
               width: '48px',
               height: '48px',
               borderRadius: 'var(--r-md)',
-              background: 'rgba(139,92,246,0.12)',
-              border: '1px solid rgba(139,92,246,0.2)',
+              background: 'rgba(255,255,255,0.06)',
+              border: '1px solid rgba(255,255,255,0.08)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -188,7 +197,7 @@ function CardContent({ product, isFeatured = false }: CardContentProps) {
             fontWeight: 600,
             fontSize: '22px',
             color: 'var(--c-text-1)',
-            letterSpacing: '-0.02em',
+            letterSpacing: 'var(--track-h3)',
             margin: '0 0 8px',
           }}
         >
@@ -232,9 +241,9 @@ function CardContent({ product, isFeatured = false }: CardContentProps) {
               width: '36px',
               height: '36px',
               borderRadius: 'var(--r-pill)',
-              background: 'rgba(139,92,246,0.1)',
-              border: '1px solid rgba(139,92,246,0.2)',
-              color: 'var(--c-plasma)',
+              background: 'rgba(255,255,255,0.06)',
+              border: '1px solid rgba(255,255,255,0.08)',
+              color: 'var(--c-text-2)',
               opacity: 0,
               transition: 'opacity 0.2s var(--ease-expo), transform 0.2s var(--ease-expo)',
               transform: 'translateX(-6px)',
@@ -263,7 +272,7 @@ function GhostCard({ className }: { className?: string }) {
       style={{
         minHeight: '240px',
         borderRadius: 'var(--r-lg)',
-        border: '1px dashed rgba(255,255,255,0.1)',
+        border: '1px dashed rgba(255,255,255,0.07)',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -277,7 +286,7 @@ function GhostCard({ className }: { className?: string }) {
           width: '40px',
           height: '40px',
           borderRadius: 'var(--r-pill)',
-          border: '1px dashed rgba(255,255,255,0.15)',
+          border: '1px dashed rgba(255,255,255,0.10)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
@@ -304,8 +313,9 @@ function GhostCard({ className }: { className?: string }) {
 // ─── Compact card for tablet/mobile ──────────────────────────────────────────
 function CompactCard({ product, showTilt }: { product: Product; showTilt: boolean }) {
   const IconComponent = ICON_MAP[product.icon]
+  const cardGradient = CARD_GRADIENTS[product.name]
   return (
-    <GlassCard tilt={showTilt}>
+    <GlassCard tilt={showTilt} style={cardGradient ? { background: cardGradient } : undefined}>
       <div
         style={{
           padding: '24px',
@@ -322,8 +332,8 @@ function CompactCard({ product, showTilt }: { product: Product; showTilt: boolea
               width: '44px',
               height: '44px',
               borderRadius: 'var(--r-md)',
-              background: 'rgba(139,92,246,0.12)',
-              border: '1px solid rgba(139,92,246,0.2)',
+              background: 'rgba(255,255,255,0.06)',
+              border: '1px solid rgba(255,255,255,0.08)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -359,7 +369,7 @@ function CompactCard({ product, showTilt }: { product: Product; showTilt: boolea
                 fontSize: '18px',
                 color: 'var(--c-text-1)',
                 margin: 0,
-                letterSpacing: '-0.02em',
+                letterSpacing: 'var(--track-h3)',
               }}
             >
               {product.name}
@@ -393,8 +403,8 @@ export default function Products() {
       id="products"
       aria-label="Our Products"
       style={{
-        paddingTop: '128px',
-        paddingBottom: '128px',
+        paddingTop: '160px',
+        paddingBottom: '160px',
       }}
     >
       <div
@@ -424,13 +434,13 @@ export default function Products() {
                 fontWeight: 700,
                 fontSize: 'var(--t-h2)',
                 color: 'var(--c-text-1)',
-                letterSpacing: '-0.02em',
-                textTransform: 'uppercase',
+                letterSpacing: 'var(--track-h2)',
                 margin: 0,
-                lineHeight: 1.05,
+                lineHeight: 1.1,
+                textWrap: 'balance',
               }}
             >
-              What We&apos;re Building
+              What we&apos;re building
             </motion.h2>
           </div>
 
@@ -446,7 +456,7 @@ export default function Products() {
             >
               {/* Featured: VoicePencil col-span-8 */}
               <div style={{ ...GRID_STYLES[featured.name] }}>
-                <GlassCard tilt>
+                <GlassCard tilt style={{ background: CARD_GRADIENTS[featured.name] }}>
                   <CardContent product={featured} isFeatured />
                 </GlassCard>
               </div>
@@ -454,7 +464,7 @@ export default function Products() {
               {/* Rest of products */}
               {rest.map((product) => (
                 <div key={product.name} style={{ ...GRID_STYLES[product.name] }}>
-                  <GlassCard tilt>
+                  <GlassCard tilt style={{ background: CARD_GRADIENTS[product.name] }}>
                     <CardContent product={product} />
                   </GlassCard>
                 </div>

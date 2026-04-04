@@ -11,8 +11,8 @@ export default function About() {
       id="about"
       aria-label="About Verdorian Technologies"
       style={{
-        paddingTop: '128px',
-        paddingBottom: '128px',
+        paddingTop: '160px',
+        paddingBottom: '160px',
       }}
     >
       <div
@@ -45,9 +45,9 @@ export default function About() {
                 fontWeight: 700,
                 fontSize: 'var(--t-h2)',
                 color: 'var(--c-text-1)',
-                letterSpacing: '-0.02em',
-                textTransform: 'uppercase',
-                lineHeight: 1.05,
+                letterSpacing: 'var(--track-h2)',
+                lineHeight: 1.1,
+                textWrap: 'balance',
                 margin: 0,
               }}
             >

@@ -16,13 +16,43 @@ interface GlowButtonProps {
 }
 
 const sizeClasses: Record<Size, string> = {
-  sm: 'px-5 py-2 text-sm',
-  md: 'px-7 py-3 text-base',
-  lg: 'px-9 py-4 text-lg',
+  sm: 'px-4 py-2 text-sm',
+  md: 'px-5 py-2.5 text-sm',
+  lg: 'px-6 py-3 text-base',
 }
 
 const baseStyles =
-  'relative inline-flex items-center justify-center font-medium overflow-hidden select-none cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--c-plasma)]'
+  'relative inline-flex items-center justify-center select-none cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--c-plasma)]'
+
+const PRIMARY_INITIAL: React.CSSProperties = {
+  background: 'linear-gradient(104deg, rgba(253,253,253,0.05) 5%, rgba(240,240,228,0.10) 100%)',
+  WebkitBackdropFilter: 'blur(25px)',
+  backdropFilter: 'blur(25px)',
+  border: '1.5px solid rgba(255,255,255,0.08)',
+  borderRadius: '12px',
+  boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.06), 0 1px 2px rgba(0,0,0,0.2)',
+  color: 'rgba(255,255,255,0.92)',
+  backgroundOrigin: 'border-box',
+  fontWeight: 500,
+}
+
+const GHOST_INITIAL: React.CSSProperties = {
+  background: 'transparent',
+  border: '1.5px solid rgba(255,255,255,0.08)',
+  borderRadius: '12px',
+  color: 'rgba(255,255,255,0.56)',
+  boxShadow: 'none',
+  fontWeight: 500,
+}
+
+const OUTLINE_INITIAL: React.CSSProperties = {
+  background: 'transparent',
+  border: '1.5px solid rgba(139, 92, 246, 0.35)',
+  borderRadius: '12px',
+  color: 'var(--c-plasma)',
+  boxShadow: 'none',
+  fontWeight: 500,
+}
 
 export function GlowButton({
   variant = 'primary',
@@ -34,79 +64,61 @@ export function GlowButton({
 }: GlowButtonProps) {
   const variantStyle: React.CSSProperties =
     variant === 'primary'
-      ? {
-          background: 'rgba(139, 92, 246, 0.12)',
-          WebkitBackdropFilter: 'blur(12px) saturate(140%)',
-          backdropFilter: 'blur(12px) saturate(140%)',
-          border: '1px solid rgba(139, 92, 246, 0.45)',
-          boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.10), 0 4px 20px rgba(139,92,246,0.20)',
-          color: 'var(--c-text-1)',
-          borderRadius: 'var(--r-pill)',
-        }
+      ? PRIMARY_INITIAL
       : variant === 'ghost'
-        ? {
-            background: 'rgba(255, 255, 255, 0.06)',
-            WebkitBackdropFilter: 'blur(8px)',
-            backdropFilter: 'blur(8px)',
-            border: '1px solid rgba(255,255,255,0.10)',
-            boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.08)',
-            color: 'rgba(237, 237, 255, 0.80)',
-            borderRadius: 'var(--r-pill)',
-          }
-        : {
-            background: 'rgba(255, 255, 255, 0.04)',
-            WebkitBackdropFilter: 'blur(8px)',
-            backdropFilter: 'blur(8px)',
-            border: '1px solid rgba(139, 92, 246, 0.45)',
-            boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.06)',
-            color: 'var(--c-plasma)',
-            borderRadius: 'var(--r-pill)',
-          }
+        ? GHOST_INITIAL
+        : OUTLINE_INITIAL
 
   const handleMouseEnter = (e: React.MouseEvent<HTMLElement>) => {
     const el = e.currentTarget
     if (variant === 'primary') {
-      el.style.background = 'rgba(139, 92, 246, 0.22)'
-      el.style.boxShadow = 'inset 0 1px 0 rgba(255,255,255,0.14), 0 6px 28px rgba(139,92,246,0.35)'
-      el.style.transform = 'scale(1.02)'
+      el.style.background = 'rgba(255, 255, 255, 0.92)'
+      el.style.color = '#000000'
+      el.style.borderColor = 'rgba(255,255,255,0.92)'
+      el.style.boxShadow = '0 4px 16px rgba(255,255,255,0.15)'
+      el.style.transform = 'translateY(-1px)'
     } else if (variant === 'ghost') {
-      el.style.background = 'rgba(255, 255, 255, 0.10)'
-      el.style.borderColor = 'rgba(255,255,255,0.18)'
+      el.style.color = 'rgba(255,255,255,0.92)'
+      el.style.background = 'rgba(255,255,255,0.04)'
+      el.style.borderColor = 'rgba(255,255,255,0.15)'
     } else {
-      el.style.background = 'rgba(139, 92, 246, 0.12)'
-      el.style.borderColor = 'rgba(139, 92, 246, 0.65)'
+      el.style.background = 'rgba(139, 92, 246, 0.10)'
+      el.style.borderColor = 'rgba(139, 92, 246, 0.55)'
     }
   }
 
   const handleMouseLeave = (e: React.MouseEvent<HTMLElement>) => {
     const el = e.currentTarget
     if (variant === 'primary') {
-      el.style.background = 'rgba(139, 92, 246, 0.12)'
-      el.style.boxShadow = 'inset 0 1px 0 rgba(255,255,255,0.10), 0 4px 20px rgba(139,92,246,0.20)'
-      el.style.transform = 'scale(1)'
+      el.style.background = 'linear-gradient(104deg, rgba(253,253,253,0.05) 5%, rgba(240,240,228,0.10) 100%)'
+      el.style.color = 'rgba(255,255,255,0.92)'
+      el.style.borderColor = 'rgba(255,255,255,0.08)'
+      el.style.boxShadow = 'inset 0 1px 0 rgba(255,255,255,0.06), 0 1px 2px rgba(0,0,0,0.2)'
+      el.style.transform = 'translateY(0)'
     } else if (variant === 'ghost') {
-      el.style.background = 'rgba(255, 255, 255, 0.06)'
-      el.style.borderColor = 'rgba(255,255,255,0.10)'
+      el.style.color = 'rgba(255,255,255,0.56)'
+      el.style.background = 'transparent'
+      el.style.borderColor = 'rgba(255,255,255,0.08)'
     } else {
-      el.style.background = 'rgba(255, 255, 255, 0.04)'
-      el.style.borderColor = 'rgba(139, 92, 246, 0.45)'
+      el.style.background = 'transparent'
+      el.style.borderColor = 'rgba(139, 92, 246, 0.35)'
     }
   }
 
   const handleMouseDown = (e: React.MouseEvent<HTMLElement>) => {
-    e.currentTarget.style.transform = 'scale(0.97)'
+    e.currentTarget.style.transform = 'translateY(0) scale(0.98)'
   }
 
   const handleMouseUp = (e: React.MouseEvent<HTMLElement>) => {
     if (variant === 'primary') {
-      e.currentTarget.style.transform = 'scale(1.02)'
+      e.currentTarget.style.transform = 'translateY(-1px) scale(1)'
     } else {
-      e.currentTarget.style.transform = 'scale(1)'
+      e.currentTarget.style.transform = 'translateY(0) scale(1)'
     }
   }
 
   const transitionStyle: React.CSSProperties = {
-    transition: 'all 0.3s var(--ease-expo)',
+    transition: 'all 0.25s var(--ease-expo)',
     ...variantStyle,
   }
 
