@@ -17,19 +17,22 @@ export function LenisProvider({ children }: { children: React.ReactNode }) {
     })
     lenisRef.current = lenis
 
+    let rafId = 0
+
     function raf(time: number) {
       lenis.raf(time)
-      requestAnimationFrame(raf)
+      rafId = requestAnimationFrame(raf)
     }
-    const id = requestAnimationFrame(raf)
+    rafId = requestAnimationFrame(raf)
 
     // Expose for scroll-to-section
     ;(window as unknown as Record<string, unknown>).__lenis = lenis
 
     return () => {
-      cancelAnimationFrame(id)
+      cancelAnimationFrame(rafId)
       lenis.destroy()
       lenisRef.current = null
+      delete (window as unknown as Record<string, unknown>).__lenis
     }
   }, [])
 

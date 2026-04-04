@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#03030A"/>
+
+  <!-- Radial glow -->
+  <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+    <stop offset="0%" stop-color="#8B5CF6" stop-opacity="0.18"/>
+    <stop offset="100%" stop-color="#03030A" stop-opacity="0"/>
+  </radialGradient>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+
+  <!-- Border frame -->
+  <rect x="40" y="40" width="1120" height="550" rx="16" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+
+  <!-- Wordmark -->
+  <text
+    x="600"
+    y="280"
+    font-family="'Syne', 'Arial Black', sans-serif"
+    font-weight="800"
+    font-size="88"
+    fill="#EDEDFF"
+    text-anchor="middle"
+    letter-spacing="-2"
+  >VERDORIAN</text>
+
+  <!-- Subtitle -->
+  <text
+    x="600"
+    y="340"
+    font-family="'DM Sans', Arial, sans-serif"
+    font-weight="400"
+    font-size="22"
+    fill="#8A8AB0"
+    text-anchor="middle"
+    letter-spacing="8"
+  >TECHNOLOGIES</text>
+
+  <!-- Gradient bar under wordmark -->
+  <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="0%">
+    <stop offset="0%" stop-color="#8B5CF6"/>
+    <stop offset="100%" stop-color="#22D3EE"/>
+  </linearGradient>
+  <rect x="480" y="360" width="240" height="2" rx="1" fill="url(#grad)"/>
+
+  <!-- Tagline -->
+  <text
+    x="600"
+    y="420"
+    font-family="'DM Sans', Arial, sans-serif"
+    font-weight="400"
+    font-size="20"
+    fill="#45455A"
+    text-anchor="middle"
+  >Software Forged from Intelligence</text>
+
+  <!-- NOTE: Replace with a proper PNG export at 1200x630 before launch -->
+  <!-- Generate: screenshot this SVG in a browser or use a headless tool -->
+</svg>

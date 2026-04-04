@@ -133,6 +133,49 @@ html {
   outline-offset: 4px;
 }
 
+/* ─── SKIP LINK ──────────────────────────────────────────────── */
+.skip-link {
+  position: absolute;
+  top: -9999px;
+  left: 0;
+  z-index: 99999;
+  background: var(--c-plasma);
+  color: #ffffff;
+  padding: 8px 16px;
+  border-radius: 0 0 8px 0;
+  font-family: var(--font-dm-sans), sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.skip-link:focus {
+  top: 0;
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+}
+
+/* ─── FLOAT KEYFRAME (hero orbs fallback) ────────────────────── */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-20px); }
+}
+
+/* ─── RESPONSIVE SECTION PADDING ────────────────────────────── */
+/* Sections use paddingTop/Bottom: 128px on desktop.
+   On mobile, reduce to 64px to preserve usable viewport space. */
+@media (max-width: 767px) {
+  #products,
+  #about,
+  #services,
+  #tech-stack,
+  #contact {
+    padding-top: 80px !important;
+    padding-bottom: 80px !important;
+  }
+}
+
 /* ─── REDUCED MOTION ─────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   *,

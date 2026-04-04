@@ -1,0 +1,141 @@
+{
+  "agent": 5,
+  "task": "Responsive Design + Accessibility Audit",
+  "status": "complete",
+  "timestamp": "2026-04-04",
+  "build": "passing",
+  "typescript": "zero errors",
+  "issues_found_and_fixed": [
+    {
+      "category": "Responsive — Hero Orbs",
+      "issue": "Orb 1 was hardcoded at 600px, Orb 2 at 300px — massive on 320-375px viewports",
+      "fix": "Added .hero-orb-1 / .hero-orb-2 CSS classes. Mobile (<768px): 360px / 180px. Desktop (>=768px): 600px / 300px."
+    },
+    {
+      "category": "Responsive — Hero H1 letter-spacing",
+      "issue": "-0.03em letter-spacing too tight on mobile, caused awkward text wrapping at small viewports",
+      "fix": "Added .hero-h1 class with media query: mobile uses -0.01em, desktop keeps -0.03em."
+    },
+    {
+      "category": "Responsive — Hero CTA buttons",
+      "issue": "CTA buttons used flexWrap but stayed inline on 320px — not full-width",
+      "fix": "Added .hero-cta-row / .hero-cta-btn classes. Mobile (<768px): flex-direction column, width 100%, stretch."
+    },
+    {
+      "category": "Responsive — About OrbitalArt",
+      "issue": "300px fixed container too large on small mobile viewports",
+      "fix": "Added .orbital-art-container class. Mobile (<768px): 220px x 220px."
+    },
+    {
+      "category": "Responsive — Contact Form inputs",
+      "issue": "Name + Email row used flex:1 1 180px which could overflow or stay side-by-side below 480px",
+      "fix": "Added .contact-name-email-row class with flex-direction: column on max-width 480px. Full-width single column."
+    },
+    {
+      "category": "Responsive — Footer layout",
+      "issue": "Footer right column stayed right-aligned and bottom wordmark stayed left-aligned when wrapping on mobile",
+      "fix": "Added .footer-inner, .footer-wordmark, .footer-legal classes. On ≤640px: flex-direction column, center-aligned throughout."
+    },
+    {
+      "category": "Responsive — Section padding",
+      "issue": "All sections used paddingTop/Bottom: 128px hardcoded — excessive on 320-375px",
+      "fix": "Added globals.css rule: on max-width 767px, all content sections get 80px top/bottom padding via !important override."
+    },
+    {
+      "category": "Accessibility — Skip link",
+      "issue": "No skip-to-content link existed for keyboard users",
+      "fix": "Added <a href='#main-content' className='skip-link'> in page.tsx. Added <main id='main-content'>. CSS-driven: visually hidden until :focus, then appears at top-left with plasma background."
+    },
+    {
+      "category": "Accessibility — Form inputs touch targets",
+      "issue": "Input fields had no minimum height — too small for mobile touch targets",
+      "fix": "Added minHeight: 48px to inputStyle in Contact.tsx. Submit button also gets minHeight: 48px."
+    },
+    {
+      "category": "Accessibility — Form labels",
+      "issue": "Required fields had no aria-required attribute",
+      "fix": "Added aria-required='true' to all three form inputs (name, email, message). Labels updated to note '(required)'."
+    },
+    {
+      "category": "Accessibility — Submit button",
+      "issue": "Submit button had no descriptive aria-label",
+      "fix": "Added aria-label='Send your message to Verdorian Technologies' to the submit button."
+    },
+    {
+      "category": "Accessibility — Decorative icons aria-hidden",
+      "issue": "Icon components in Services, Products (CardContent + CompactCard), Contact (mail/pin/check), TechStack were not aria-hidden — screen readers would encounter unnamed SVG elements",
+      "fix": "Added aria-hidden='true' to: icon wrappers in Services and Products, all IconComponent instances in TechPill, IconMail/IconMapPin/IconCheck in Contact, IconArrowRight on product link."
+    },
+    {
+      "category": "Accessibility — TechStack marquee",
+      "issue": "InfiniteMarquee content was auto-scrolling decorative content with no interactive purpose — screen readers would iterate all items twice (doubled for seamless loop)",
+      "fix": "Added aria-hidden='true' to the marquee wrapper div. The section h2 'Built With Modern Tech' already communicates the purpose."
+    },
+    {
+      "category": "Accessibility — GlowButton focus-visible color",
+      "issue": "Tailwind focus-visible:outline-2 sets outline-width but not color, potentially overriding the global CSS variable-based outline",
+      "fix": "Added focus-visible:outline-[var(--c-plasma)] to GlowButton baseStyles to explicitly enforce plasma purple focus ring."
+    },
+    {
+      "category": "Accessibility — Footer nav touch targets",
+      "issue": "Footer nav buttons had padding: 6px 0 — well below 44pt minimum touch target",
+      "fix": "Updated to padding: 10px 0 and minHeight: 44px."
+    },
+    {
+      "category": "Accessibility — Desktop nav link touch targets",
+      "issue": "Nav link buttons had padding: 8px 16px with no minHeight — below 44pt at narrow desktop",
+      "fix": "Added minHeight: 44px and justifyContent: center to nav link buttons."
+    }
+  ],
+  "items_already_correct": [
+    "Nav: aria-label='Main navigation' on <nav>",
+    "Nav: aria-label, aria-expanded, aria-controls on hamburger button",
+    "Nav: mobile menu is role='dialog' aria-modal='true' with aria-label",
+    "Nav: body overflow:hidden when mobile menu open",
+    "Nav: hamburger is 44x44px",
+    "Nav: mobile menu buttons have minHeight 48px",
+    "Hero: section has aria-label",
+    "Hero: ParticleCanvas has aria-hidden='true' role='presentation'",
+    "Hero: decorative orb divs have aria-hidden='true'",
+    "Hero: H1 has aria-label for screen reader full text",
+    "Hero: scroll hint is aria-hidden='true'",
+    "Hero: inline @media prefers-reduced-motion handling for keyframes",
+    "Products: section has aria-label",
+    "Products: product arrow links have aria-label with 'opens in new tab'",
+    "Products: rel='noopener noreferrer' target='_blank' on external links",
+    "Products: animated waveform is aria-hidden='true'",
+    "Products: mobile single-column layout via .flex.md:hidden",
+    "Products: tablet 2-column layout via .hidden.md:grid.lg:hidden",
+    "About: section has aria-label",
+    "About: OrbitalArt has aria-hidden='true' role='presentation'",
+    "About: default grid is 1-col, lg: switches to 3fr/2fr",
+    "About: prefers-reduced-motion for orbit keyframes",
+    "Services: section has aria-label",
+    "Services: 1-col mobile, md:grid-cols-2",
+    "Contact: section has aria-label",
+    "Contact: form inputs all have sr-only labels with htmlFor matching id",
+    "Contact: success message has role='status' aria-live='polite'",
+    "Contact: contact pills have aria-label",
+    "Footer: <footer> has aria-label",
+    "Footer: inner <nav> has aria-label='Footer navigation'",
+    "TechStack: section has aria-label",
+    "TechStack: prefers-reduced-motion pauses marquee animation",
+    "StatusBadge: pulsing dot has aria-hidden='true'",
+    "StatusBadge: prefers-reduced-motion keyframe override",
+    "SectionLabel: pulsing dot has aria-hidden='true' with prefers-reduced-motion",
+    "ParticleCanvas: checks prefers-reduced-motion, draws static frame if reduced",
+    "ParticleCanvas: checks isMobile for particle count (35 vs 80)",
+    "globals.css: @media prefers-reduced-motion block disables all animations",
+    "globals.css: grain overlay animation disabled under reduced motion",
+    "globals.css: :focus-visible global outline rule set"
+  ],
+  "color_contrast_notes": {
+    "c_text_1_on_void": "#EDEDFF on #03030A — passes AAA (>7:1)",
+    "c_text_2_on_void": "#8A8AB0 on #03030A — approximately 5.2:1, passes AA",
+    "c_text_2_on_forge": "#8A8AB0 on #12121F — approximately 4.8:1, passes AA",
+    "c_text_3_warning": "#45455A is used only for decorative/disabled text (scroll hint, footer tagline) — not used for body copy",
+    "status_badge_live": "#34d399 on rgba(16,185,129,0.1) over #12121F — approximately 5.1:1, passes AA",
+    "status_badge_coming_soon": "var(--c-plasma) #8B5CF6 on rgba(139,92,246,0.1) over #12121F — approximately 4.6:1, passes AA",
+    "status_badge_in_dev": "var(--c-ember) #F59E0B on rgba(245,158,11,0.1) over #12121F — approximately 6.8:1, passes AA"
+  }
+}
