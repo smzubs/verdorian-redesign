@@ -82,10 +82,10 @@ export default function Hero() {
           borderRadius: '9999px',
           background: 'var(--c-plasma)',
           opacity: 0.07,
-          filter: 'blur(120px)',
+          filter: 'blur(160px)',
           top: '50%',
           left: '50%',
-          animation: 'heroOrbFloat1 20s ease-in-out infinite',
+          animation: 'heroOrbFloat1 30s ease-in-out infinite',
           pointerEvents: 'none',
         }}
       />
@@ -99,10 +99,10 @@ export default function Hero() {
           borderRadius: '9999px',
           background: 'var(--c-arc)',
           opacity: 0.05,
-          filter: 'blur(100px)',
+          filter: 'blur(140px)',
           top: '30%',
           right: '20%',
-          animation: 'heroOrbFloat2 26s ease-in-out infinite reverse',
+          animation: 'heroOrbFloat2 40s ease-in-out infinite reverse',
           pointerEvents: 'none',
         }}
       />
@@ -119,37 +119,37 @@ export default function Hero() {
           filter: 'blur(140px)',
           bottom: '20%',
           left: '15%',
-          animation: 'heroOrbFloat3 30s ease-in-out infinite',
+          animation: 'heroOrbFloat3 35s ease-in-out infinite',
           pointerEvents: 'none',
         }}
       />
 
       <style>{`
         .hero-orb-1 {
-          width: 360px;
-          height: 360px;
+          width: 440px;
+          height: 440px;
           transform: translate(-50%, -50%);
         }
         .hero-orb-2 {
-          width: 180px;
-          height: 180px;
+          width: 240px;
+          height: 240px;
         }
         .hero-orb-3 {
-          width: 280px;
-          height: 280px;
+          width: 340px;
+          height: 340px;
         }
         @media (min-width: 768px) {
           .hero-orb-1 {
-            width: 600px;
-            height: 600px;
+            width: 760px;
+            height: 760px;
           }
           .hero-orb-2 {
-            width: 300px;
-            height: 300px;
+            width: 380px;
+            height: 380px;
           }
           .hero-orb-3 {
-            width: 420px;
-            height: 420px;
+            width: 540px;
+            height: 540px;
           }
         }
         /* Mobile: tighter letter-spacing, full-width CTA buttons */
@@ -239,6 +239,7 @@ export default function Hero() {
               letterSpacing: 'var(--track-hero)',
               textWrap: 'balance',
               margin: 0,
+              textShadow: '0 0 60px rgba(139, 92, 246, 0.15), 0 0 120px rgba(139, 92, 246, 0.05)',
             }}
             aria-label="We don't consult. We create. Then we ship."
           >

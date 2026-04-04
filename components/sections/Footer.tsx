@@ -15,11 +15,12 @@ export default function Footer() {
     <footer
       aria-label="Site footer"
       style={{
-        paddingTop: '32px',
+        paddingTop: '0',
         paddingBottom: '48px',
-        borderTop: '1px solid var(--c-border)',
       }}
     >
+      {/* Shimmer line replaces border-top (Knight Electric pattern) */}
+      <div className="shimmer-line" style={{ marginBottom: '32px' }} />
       <style>{`
         .footer-inner {
           max-width: 80rem;

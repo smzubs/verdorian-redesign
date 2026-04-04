@@ -199,6 +199,46 @@ html {
   }
 }
 
+/* ─── SHIMMER ACCENT LINE ────────────────────────────────────── */
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+
+.shimmer-line {
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    transparent 35%,
+    rgba(139, 92, 246, 0.5) 50%,
+    transparent 65%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+/* ─── SECTION LABEL UNDERLINE ────────────────────────────────── */
+@keyframes underlineGrow {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+.section-label-underline {
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--c-plasma), transparent);
+  margin-top: 8px;
+  margin-left: auto;
+  margin-right: auto;
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: underlineGrow 0.8s cubic-bezier(0.19, 1, 0.22, 1) 0.3s forwards;
+}
+
 /* ─── REDUCED MOTION ─────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   *,

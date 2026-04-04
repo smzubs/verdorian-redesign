@@ -75,7 +75,7 @@ export function GlowButton({
       el.style.background = 'rgba(255, 255, 255, 0.92)'
       el.style.color = '#000000'
       el.style.borderColor = 'rgba(255,255,255,0.92)'
-      el.style.boxShadow = '0 4px 16px rgba(255,255,255,0.15)'
+      el.style.boxShadow = '0 8px 30px rgba(255, 255, 255, 0.2)'
       el.style.transform = 'translateY(-1px)'
     } else if (variant === 'ghost') {
       el.style.color = 'rgba(255,255,255,0.92)'
@@ -95,6 +95,7 @@ export function GlowButton({
       el.style.borderColor = 'rgba(255,255,255,0.08)'
       el.style.boxShadow = 'inset 0 1px 0 rgba(255,255,255,0.06), 0 1px 2px rgba(0,0,0,0.2)'
       el.style.transform = 'translateY(0)'
+
     } else if (variant === 'ghost') {
       el.style.color = 'rgba(255,255,255,0.56)'
       el.style.background = 'transparent'
