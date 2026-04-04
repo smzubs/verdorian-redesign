@@ -15,6 +15,7 @@ const NAV_LINKS = [
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [activeLink, setActiveLink] = useState<string | null>(null)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,16 +25,13 @@ export default function Nav() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // Prevent body scroll when mobile menu is open
   useEffect(() => {
     if (mobileOpen) {
       document.body.style.overflow = 'hidden'
     } else {
       document.body.style.overflow = ''
     }
-    return () => {
-      document.body.style.overflow = ''
-    }
+    return () => { document.body.style.overflow = '' }
   }, [mobileOpen])
 
   const handleNavLink = (id: string) => {
@@ -51,26 +49,30 @@ export default function Nav() {
           left: 0,
           right: 0,
           zIndex: 1000,
-          transition: 'background 0.4s var(--ease-expo), border-color 0.4s var(--ease-expo)',
-          background: scrolled
-            ? 'rgba(250, 247, 242, 0.90)'
-            : 'transparent',
-          backdropFilter: scrolled ? 'blur(20px) saturate(180%)' : 'none',
-          WebkitBackdropFilter: scrolled ? 'blur(20px) saturate(180%)' : 'none',
-          borderBottom: scrolled
-            ? '1px solid var(--c-border)'
-            : '1px solid transparent',
+          padding: '12px 24px',
+          transition: 'all 0.4s var(--ease-expo)',
         }}
       >
         <div
           style={{
-            maxWidth: '80rem',
+            maxWidth: '76rem',
             margin: '0 auto',
-            padding: '0 24px',
-            height: '64px',
+            height: '56px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
+            padding: '0 20px',
+            borderRadius: '16px',
+            background: scrolled
+              ? 'rgba(255, 255, 255, 0.72)'
+              : 'rgba(255, 255, 255, 0.45)',
+            backdropFilter: 'saturate(180%) blur(20px)',
+            WebkitBackdropFilter: 'saturate(180%) blur(20px)',
+            border: '1px solid rgba(255, 255, 255, 0.60)',
+            boxShadow: scrolled
+              ? '0 4px 24px rgba(139, 92, 246, 0.06), 0 1px 3px rgba(0, 0, 0, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.80)'
+              : '0 2px 12px rgba(0, 0, 0, 0.03), inset 0 1px 0 rgba(255, 255, 255, 0.90)',
+            transition: 'all 0.4s var(--ease-expo)',
           }}
         >
           {/* Left: Wordmark */}
@@ -86,14 +88,14 @@ export default function Nav() {
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'flex-start',
-              gap: '1px',
+              gap: '2px',
             }}
           >
             <span
               style={{
                 fontFamily: 'var(--font-geist), sans-serif',
                 fontWeight: 800,
-                fontSize: '16px',
+                fontSize: '15px',
                 color: 'var(--c-text-1)',
                 lineHeight: 1,
                 letterSpacing: '0.15em',
@@ -105,10 +107,10 @@ export default function Nav() {
             <span
               style={{
                 fontFamily: 'var(--font-geist), sans-serif',
-                fontWeight: 700,
-                fontSize: '8px',
-                color: 'var(--c-text-2)',
-                letterSpacing: '0.25em',
+                fontWeight: 600,
+                fontSize: '7px',
+                color: 'var(--c-text-3)',
+                letterSpacing: '0.30em',
                 textTransform: 'uppercase',
                 lineHeight: 1,
               }}
@@ -117,55 +119,54 @@ export default function Nav() {
             </span>
           </button>
 
-          {/* Center: Desktop nav links */}
-          <ul
-            role="list"
+          {/* Center: Frosted glass pill with nav tabs */}
+          <div
+            className="hidden md:flex"
             style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '4px',
-              listStyle: 'none',
-              margin: 0,
-              padding: 0,
+              gap: '2px',
+              padding: '4px',
+              borderRadius: '12px',
+              background: 'rgba(139, 92, 246, 0.04)',
+              border: '1px solid rgba(139, 92, 246, 0.08)',
             }}
-            className="hidden md:flex"
           >
             {NAV_LINKS.map((link) => (
-              <li key={link.id}>
-                <button
-                  type="button"
-                  onClick={() => scrollToSection(link.id)}
-                  aria-label={`Navigate to ${link.label} section`}
-                  style={{
-                    background: 'none',
-                    border: 'none',
-                    cursor: 'pointer',
-                    padding: '8px 16px',
-                    minHeight: '44px',
-                    fontFamily: 'var(--font-geist), sans-serif',
-                    fontWeight: 400,
-                    fontSize: '15px',
-                    color: 'var(--c-text-2)',
-                    transition: 'color 0.2s var(--ease-expo)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                  }}
-                  onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLButtonElement).style.color = 'var(--c-text-1)'
-                  }}
-                  onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLButtonElement).style.color = 'var(--c-text-2)'
-                  }}
-                >
-                  {link.label}
-                </button>
-              </li>
+              <button
+                key={link.id}
+                type="button"
+                onClick={() => scrollToSection(link.id)}
+                onMouseEnter={() => setActiveLink(link.id)}
+                onMouseLeave={() => setActiveLink(null)}
+                aria-label={`Navigate to ${link.label} section`}
+                style={{
+                  position: 'relative',
+                  background: activeLink === link.id
+                    ? 'rgba(139, 92, 246, 0.08)'
+                    : 'transparent',
+                  border: 'none',
+                  cursor: 'pointer',
+                  padding: '7px 16px',
+                  borderRadius: '8px',
+                  fontFamily: 'var(--font-geist), sans-serif',
+                  fontWeight: 500,
+                  fontSize: '13px',
+                  letterSpacing: '0.02em',
+                  color: activeLink === link.id
+                    ? 'var(--c-plasma)'
+                    : 'var(--c-text-2)',
+                  transition: 'all 0.2s var(--ease-expo)',
+                  whiteSpace: 'nowrap',
+                }}
+              >
+                {link.label}
+              </button>
             ))}
-          </ul>
+          </div>
 
           {/* Right: CTA + Hamburger */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
             <div className="hidden md:block">
               <GlowButton
                 variant="primary"
@@ -185,22 +186,22 @@ export default function Nav() {
               onClick={() => setMobileOpen((v) => !v)}
               className="flex md:hidden"
               style={{
-                background: 'none',
-                border: '1px solid var(--c-border)',
-                borderRadius: 'var(--r-sm)',
+                background: 'rgba(139, 92, 246, 0.06)',
+                border: '1px solid rgba(139, 92, 246, 0.12)',
+                borderRadius: '10px',
                 cursor: 'pointer',
-                width: '44px',
-                height: '44px',
+                width: '40px',
+                height: '40px',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 color: 'var(--c-text-1)',
-                transition: 'border-color 0.2s',
+                transition: 'all 0.2s',
               }}
             >
               <svg
-                width="20"
-                height="20"
+                width="18"
+                height="18"
                 viewBox="0 0 20 20"
                 fill="none"
                 aria-hidden="true"
@@ -237,7 +238,7 @@ export default function Nav() {
         </div>
       </nav>
 
-      {/* Mobile overlay menu — cream bg, dark text */}
+      {/* Mobile overlay — frosted cream glass */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
@@ -253,14 +254,14 @@ export default function Nav() {
               position: 'fixed',
               inset: 0,
               zIndex: 999,
-              background: 'rgba(250, 247, 242, 0.97)',
-              backdropFilter: 'blur(24px)',
-              WebkitBackdropFilter: 'blur(24px)',
+              background: 'rgba(250, 247, 242, 0.92)',
+              backdropFilter: 'saturate(180%) blur(30px)',
+              WebkitBackdropFilter: 'saturate(180%) blur(30px)',
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
               justifyContent: 'center',
-              gap: '8px',
+              gap: '4px',
             }}
           >
             {NAV_LINKS.map((link, i) => (
@@ -276,13 +277,14 @@ export default function Nav() {
                   background: 'none',
                   border: 'none',
                   cursor: 'pointer',
-                  minHeight: '48px',
-                  padding: '12px 32px',
+                  minHeight: '52px',
+                  padding: '12px 40px',
                   fontFamily: 'var(--font-geist), sans-serif',
-                  fontWeight: 600,
-                  fontSize: '28px',
+                  fontWeight: 700,
+                  fontSize: '24px',
                   color: 'var(--c-text-1)',
-                  letterSpacing: '-0.02em',
+                  letterSpacing: '0.06em',
+                  textTransform: 'uppercase',
                   transition: 'color 0.2s',
                 }}
                 onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.color = 'var(--c-plasma)' }}
@@ -297,11 +299,11 @@ export default function Nav() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3, delay: NAV_LINKS.length * 0.06 }}
-              style={{ marginTop: '16px' }}
+              style={{ marginTop: '24px' }}
             >
               <GlowButton
                 variant="primary"
-                size="md"
+                size="lg"
                 onClick={() => handleNavLink('contact')}
               >
                 Get started
