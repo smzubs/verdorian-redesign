@@ -36,7 +36,7 @@ function LetterReveal({ text, baseDelay, style }: LetterRevealProps) {
   )
 }
 
-// ─── Gradient Mesh Visual — richer, more saturated color blobs ───────────────
+// ─── Gradient Mesh Visual ─────────────────────────────────────────────────────
 function GradientMesh() {
   return (
     <div
@@ -49,7 +49,7 @@ function GradientMesh() {
         pointerEvents: 'none',
       }}
     >
-      {/* Blob 1 — vivid violet (larger, more visible) */}
+      {/* Blob 1 — vivid violet */}
       <div
         style={{
           position: 'absolute',
@@ -63,7 +63,7 @@ function GradientMesh() {
           animation: 'meshDrift1 20s ease-in-out infinite',
         }}
       />
-      {/* Blob 2 — hot pink (richness layer) */}
+      {/* Blob 2 — hot pink */}
       <div
         style={{
           position: 'absolute',
@@ -91,7 +91,7 @@ function GradientMesh() {
           animation: 'meshDrift3 22s ease-in-out infinite',
         }}
       />
-      {/* Blob 4 — warm orange/gold (richness) */}
+      {/* Blob 4 — warm gold */}
       <div
         style={{
           position: 'absolute',
@@ -105,6 +105,145 @@ function GradientMesh() {
           animation: 'meshDrift2 25s ease-in-out infinite',
         }}
       />
+
+      {/* ── Floating glass elements — desktop only, hidden on mobile ── */}
+
+      {/* Float 1 — code snippet */}
+      <motion.div
+        className="hero-float"
+        animate={{ y: [0, -12, 0], rotate: [-1, 1, -1] }}
+        transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+        style={{
+          position: 'absolute',
+          top: '15%',
+          right: '8%',
+          background: 'rgba(255,255,255,0.55)',
+          backdropFilter: 'blur(8px) saturate(160%)',
+          WebkitBackdropFilter: 'blur(8px) saturate(160%)',
+          border: '1px solid rgba(255,255,255,0.45)',
+          borderRadius: '14px',
+          padding: '14px 18px',
+          boxShadow: '0 8px 24px rgba(139,92,246,0.08), inset 0 1px 0 rgba(255,255,255,0.50)',
+          zIndex: 5,
+          fontSize: '12px',
+          fontFamily: 'var(--font-geist), monospace',
+          color: 'var(--c-text-2)',
+          whiteSpace: 'pre',
+          userSelect: 'none',
+        }}
+      >
+        <span style={{ color: 'var(--c-plasma)' }}>const</span>{' app = '}<span style={{ color: 'var(--c-plasma)' }}>build</span>()
+      </motion.div>
+
+      {/* Float 2 — live products badge */}
+      <motion.div
+        className="hero-float"
+        animate={{ y: [0, -8, 0], rotate: [1, -1, 1] }}
+        transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
+        style={{
+          position: 'absolute',
+          bottom: '25%',
+          right: '15%',
+          background: 'rgba(255,255,255,0.55)',
+          backdropFilter: 'blur(8px) saturate(160%)',
+          WebkitBackdropFilter: 'blur(8px) saturate(160%)',
+          border: '1px solid rgba(255,255,255,0.45)',
+          borderRadius: '14px',
+          padding: '12px 16px',
+          boxShadow: '0 8px 24px rgba(139,92,246,0.08), inset 0 1px 0 rgba(255,255,255,0.50)',
+          zIndex: 5,
+          display: 'flex',
+          alignItems: 'center',
+          gap: '8px',
+          userSelect: 'none',
+        }}
+      >
+        <div
+          style={{
+            width: '8px',
+            height: '8px',
+            borderRadius: '50%',
+            background: '#10B981',
+            boxShadow: '0 0 8px rgba(16,185,129,0.5)',
+            flexShrink: 0,
+          }}
+        />
+        <span style={{ fontSize: '12px', fontWeight: 600, color: 'var(--c-text-1)', whiteSpace: 'nowrap' }}>
+          5 products live
+        </span>
+      </motion.div>
+
+      {/* Float 3 — tech chips */}
+      <motion.div
+        className="hero-float"
+        animate={{ y: [0, -10, 0] }}
+        transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
+        style={{
+          position: 'absolute',
+          top: '55%',
+          right: '5%',
+          background: 'rgba(255,255,255,0.50)',
+          backdropFilter: 'blur(8px) saturate(160%)',
+          WebkitBackdropFilter: 'blur(8px) saturate(160%)',
+          border: '1px solid rgba(255,255,255,0.40)',
+          borderRadius: '14px',
+          padding: '10px 14px',
+          boxShadow: '0 6px 20px rgba(0,0,0,0.05), inset 0 1px 0 rgba(255,255,255,0.45)',
+          zIndex: 5,
+          display: 'flex',
+          gap: '6px',
+          userSelect: 'none',
+        }}
+      >
+        {['React', 'AI', 'Cloud'].map((t) => (
+          <span
+            key={t}
+            style={{
+              fontSize: '10px',
+              fontWeight: 600,
+              padding: '3px 8px',
+              borderRadius: '6px',
+              background: 'rgba(139,92,246,0.08)',
+              color: 'var(--c-plasma)',
+              border: '1px solid rgba(139,92,246,0.12)',
+              whiteSpace: 'nowrap',
+            }}
+          >
+            {t}
+          </span>
+        ))}
+      </motion.div>
+
+      {/* Float 4 — ship date */}
+      <motion.div
+        className="hero-float"
+        animate={{ y: [0, -6, 0], rotate: [-0.5, 0.5, -0.5] }}
+        transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
+        style={{
+          position: 'absolute',
+          top: '35%',
+          right: '2%',
+          background: 'rgba(255,255,255,0.52)',
+          backdropFilter: 'blur(8px) saturate(160%)',
+          WebkitBackdropFilter: 'blur(8px) saturate(160%)',
+          border: '1px solid rgba(255,255,255,0.42)',
+          borderRadius: '12px',
+          padding: '10px 14px',
+          boxShadow: '0 6px 20px rgba(139,92,246,0.06), inset 0 1px 0 rgba(255,255,255,0.45)',
+          zIndex: 5,
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '2px',
+          userSelect: 'none',
+        }}
+      >
+        <span style={{ fontSize: '10px', fontWeight: 700, color: 'var(--c-plasma)', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
+          Tennessee
+        </span>
+        <span style={{ fontSize: '10px', color: 'var(--c-text-3)', fontWeight: 500 }}>
+          LLC · 2026
+        </span>
+      </motion.div>
     </div>
   )
 }
@@ -133,8 +272,11 @@ export default function Hero() {
       }}
     >
       <style>{`
-        /* Mobile: reduce mesh intensity, stack layout */
+        /* Hide floating elements on mobile/tablet — they'd overlap text */
         @media (max-width: 1023px) {
+          .hero-float {
+            display: none !important;
+          }
           .hero-mesh {
             min-height: 300px !important;
             opacity: 0.7;
@@ -156,6 +298,9 @@ export default function Hero() {
           .hero-mesh div {
             animation: none !important;
           }
+          .hero-float {
+            animation: none !important;
+          }
         }
       `}</style>
 
@@ -173,12 +318,7 @@ export default function Hero() {
           paddingRight: '24px',
         }}
       >
-        <div
-          style={{
-            maxWidth: '80rem',
-            margin: '0 auto',
-          }}
-        >
+        <div style={{ maxWidth: '80rem', margin: '0 auto' }}>
           {/* Two-column grid: 55% text / 45% mesh */}
           <div
             style={{
@@ -202,7 +342,7 @@ export default function Hero() {
                 gap: '28px',
               }}
             >
-              {/* Eyebrow stat pill — iOS 26 glass */}
+              {/* Eyebrow stat pill */}
               <motion.div variants={FADE_UP}>
                 <span
                   style={{
@@ -237,7 +377,7 @@ export default function Hero() {
                 </span>
               </motion.div>
 
-              {/* H1 — ghost headline on cream bg */}
+              {/* H1 */}
               <motion.h1
                 variants={FADE_UP}
                 className="hero-h1"
@@ -252,15 +392,12 @@ export default function Hero() {
                 }}
                 aria-label="We don't consult. We create. Then we ship."
               >
-                {/* Line 1 — full dark */}
                 <span style={{ display: 'block', color: 'var(--c-text-1)' }}>
                   <LetterReveal text="We don't consult." baseDelay={0.4} />
                 </span>
-                {/* Line 2 — ghost 35% */}
                 <span style={{ display: 'block', color: 'var(--c-text-3)' }}>
                   <LetterReveal text="We create." baseDelay={1.0} />
                 </span>
-                {/* Line 3 — ghost 35% */}
                 <span style={{ display: 'block', color: 'var(--c-text-3)' }}>
                   <LetterReveal text="Then we ship." baseDelay={1.55} />
                 </span>
@@ -314,7 +451,7 @@ export default function Hero() {
               </motion.div>
             </motion.div>
 
-            {/* RIGHT COLUMN — gradient mesh */}
+            {/* RIGHT COLUMN — gradient mesh + floating elements */}
             <div
               className="hidden lg:block hero-mesh"
               style={{ position: 'relative' }}

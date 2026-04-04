@@ -5,7 +5,6 @@ import { motion } from 'framer-motion'
 import { SectionLabel } from '@/components/ui/SectionLabel'
 import { FADE_UP, STAGGER_CONTAINER } from '@/lib/motion'
 
-// Stat row data — Stripe-style: intentionally thin large numbers
 const STATS = [
   { value: '5', label: 'Products' },
   { value: '100%', label: 'Owner-Built' },
@@ -98,9 +97,8 @@ export default function About() {
             </p>
           </motion.div>
 
-          {/* Stat row — iOS 26 Glass mini cards */}
-          <motion.div
-            variants={FADE_UP}
+          {/* Stat row — spring pop on scroll entry */}
+          <div
             style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(2, 1fr)',
@@ -108,9 +106,17 @@ export default function About() {
             }}
             className="sm:grid-cols-4"
           >
-            {STATS.map((stat) => (
-              <div
+            {STATS.map((stat, index) => (
+              <motion.div
                 key={stat.label}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{
+                  duration: 0.6,
+                  delay: index * 0.08,
+                  ease: [0.19, 1, 0.22, 1],
+                }}
                 style={{
                   background: 'rgba(255, 255, 255, 0.45)',
                   backdropFilter: 'blur(6px) saturate(160%)',
@@ -145,7 +151,18 @@ export default function About() {
                     pointerEvents: 'none',
                   }}
                 />
-                <span
+
+                {/* Spring-pop number */}
+                <motion.span
+                  initial={{ opacity: 0, scale: 0.5 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{
+                    type: 'spring',
+                    stiffness: 200,
+                    damping: 15,
+                    delay: index * 0.15,
+                  }}
                   style={{
                     fontFamily: 'var(--font-geist), sans-serif',
                     fontWeight: 400,
@@ -155,10 +172,11 @@ export default function About() {
                     color: 'var(--c-text-1)',
                     position: 'relative',
                     zIndex: 1,
+                    display: 'block',
                   }}
                 >
                   {stat.value}
-                </span>
+                </motion.span>
                 <span
                   style={{
                     fontFamily: 'var(--font-dm-sans), sans-serif',
@@ -172,9 +190,9 @@ export default function About() {
                 >
                   {stat.label}
                 </span>
-              </div>
+              </motion.div>
             ))}
-          </motion.div>
+          </div>
         </motion.div>
       </div>
     </section>

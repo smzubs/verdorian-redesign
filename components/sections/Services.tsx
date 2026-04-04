@@ -10,7 +10,7 @@ import {
 } from '@tabler/icons-react'
 import { GlassCard } from '@/components/ui/GlassCard'
 import { SectionLabel } from '@/components/ui/SectionLabel'
-import { FADE_UP, STAGGER_CONTAINER } from '@/lib/motion'
+import { FADE_UP, STAGGER_CONTAINER, CARD_ENTRANCE } from '@/lib/motion'
 import { SERVICES } from '@/lib/utils'
 
 type TablerIcon = React.ComponentType<{ size?: number; stroke?: number; style?: React.CSSProperties }>
@@ -22,7 +22,6 @@ const ICON_MAP: Record<string, TablerIcon> = {
   IconCloud,
 }
 
-// Icon accent colors + glow per service
 const ICON_STYLES: Record<string, { bg: string; border: string; color: string; glow: string; orb: string }> = {
   IconDeviceMobile: {
     bg: 'rgba(139, 92, 246, 0.08)',
@@ -65,6 +64,25 @@ export default function Services() {
         background: 'var(--c-bg-base)',
       }}
     >
+      {/* Icon glow pulse keyframe — defined once at section level */}
+      <style>{`
+        @keyframes iconGlow {
+          0%, 100% { box-shadow: 0 0 15px rgba(139, 92, 246, 0.08); }
+          50%       { box-shadow: 0 0 28px rgba(139, 92, 246, 0.18); }
+        }
+        @keyframes iconGlowArc {
+          0%, 100% { box-shadow: 0 0 15px rgba(34, 211, 238, 0.08); }
+          50%       { box-shadow: 0 0 28px rgba(34, 211, 238, 0.18); }
+        }
+        @keyframes iconGlowAmber {
+          0%, 100% { box-shadow: 0 0 15px rgba(245, 158, 11, 0.08); }
+          50%       { box-shadow: 0 0 28px rgba(245, 158, 11, 0.18); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .service-icon { animation: none !important; }
+        }
+      `}</style>
+
       <div
         style={{
           maxWidth: '80rem',
@@ -105,7 +123,7 @@ export default function Services() {
             </motion.h2>
           </div>
 
-          {/* Services grid */}
+          {/* Services grid — 3D card entrance */}
           <div
             style={{
               display: 'grid',
@@ -118,8 +136,17 @@ export default function Services() {
               const IconComponent = ICON_MAP[service.icon]
               const iconStyle = ICON_STYLES[service.icon] ?? ICON_STYLES['IconDeviceMobile']!
 
+              // Pick glow animation based on color family
+              let glowAnimation = 'iconGlow 3s ease-in-out infinite'
+              if (service.icon === 'IconBrowser') glowAnimation = 'iconGlowArc 3s ease-in-out infinite'
+              if (service.icon === 'IconBrain') glowAnimation = 'iconGlowAmber 3s ease-in-out infinite'
+
               return (
-                <motion.div key={service.name} variants={FADE_UP} custom={i}>
+                <motion.div
+                  key={service.name}
+                  variants={CARD_ENTRANCE}
+                  custom={i}
+                >
                   <GlassCard tilt={false}>
                     <div
                       style={{
@@ -145,16 +172,20 @@ export default function Services() {
                         }}
                       />
 
-                      {/* Icon with glass glow effect */}
+                      {/* Icon with pulsing glow */}
                       <div
                         aria-hidden="true"
+                        className="service-icon"
                         style={{
                           width: '56px',
                           height: '56px',
                           borderRadius: 'var(--r-md)',
                           background: iconStyle.bg,
                           border: `1px solid ${iconStyle.border}`,
-                          boxShadow: `0 0 20px ${iconStyle.glow}`,
+                          // Base glow baked in; keyframe animates it
+                          boxShadow: `0 0 15px ${iconStyle.glow}`,
+                          animation: glowAnimation,
+                          animationDelay: `${i * 0.4}s`,
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
@@ -172,7 +203,6 @@ export default function Services() {
                         )}
                       </div>
 
-                      {/* Name */}
                       <h3
                         style={{
                           fontFamily: 'var(--font-geist), sans-serif',
@@ -186,7 +216,6 @@ export default function Services() {
                         {service.name}
                       </h3>
 
-                      {/* Description */}
                       <p
                         style={{
                           fontFamily: 'var(--font-dm-sans), sans-serif',

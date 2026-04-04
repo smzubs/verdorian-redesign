@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef, useCallback } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { GlowButton } from '@/components/ui/GlowButton'
 import { scrollToSection } from '@/lib/utils'
@@ -12,32 +12,60 @@ const NAV_LINKS = [
   { label: 'Contact', id: 'contact' },
 ]
 
+const SECTION_IDS = ['hero', 'products', 'services', 'about', 'contact']
+
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
-  const [activeLink, setActiveLink] = useState<string | null>(null)
+  const [activeSection, setActiveSection] = useState<string>('hero')
+  const [hoveredLink, setHoveredLink] = useState<string | null>(null)
+  const ticking = useRef(false)
 
+  // Scroll → compact pill
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 60)
+      if (!ticking.current) {
+        window.requestAnimationFrame(() => {
+          setScrolled(window.scrollY > 60)
+          ticking.current = false
+        })
+        ticking.current = true
+      }
     }
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  // Active section via IntersectionObserver
   useEffect(() => {
-    if (mobileOpen) {
-      document.body.style.overflow = 'hidden'
-    } else {
-      document.body.style.overflow = ''
-    }
+    const observers: IntersectionObserver[] = []
+
+    SECTION_IDS.forEach((id) => {
+      const el = document.getElementById(id)
+      if (!el) return
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) setActiveSection(id)
+        },
+        { threshold: 0.3, rootMargin: '-80px 0px -50% 0px' }
+      )
+      observer.observe(el)
+      observers.push(observer)
+    })
+
+    return () => observers.forEach((o) => o.disconnect())
+  }, [])
+
+  // Body scroll lock on mobile menu
+  useEffect(() => {
+    document.body.style.overflow = mobileOpen ? 'hidden' : ''
     return () => { document.body.style.overflow = '' }
   }, [mobileOpen])
 
-  const handleNavLink = (id: string) => {
+  const handleNavLink = useCallback((id: string) => {
     setMobileOpen(false)
     setTimeout(() => scrollToSection(id), 100)
-  }
+  }, [])
 
   return (
     <>
@@ -49,47 +77,40 @@ export default function Nav() {
           left: 0,
           right: 0,
           zIndex: 1000,
-          padding: '12px 24px',
-          transition: 'all 0.4s var(--ease-expo)',
+          // Padding shrinks when scrolled so the pill floats with breathing room
+          padding: scrolled ? '10px 24px' : '12px 24px',
+          transition: 'padding 0.4s var(--ease-expo)',
+          display: 'flex',
+          justifyContent: 'center',
         }}
       >
-        {/* iOS 26 Liquid Glass nav bar */}
-        <div
+        <motion.div
+          animate={{
+            maxWidth: scrolled ? '680px' : '1280px',
+            height: scrolled ? '48px' : '56px',
+            borderRadius: scrolled ? '980px' : '16px',
+            paddingLeft: scrolled ? '16px' : '20px',
+            paddingRight: scrolled ? '16px' : '20px',
+          }}
+          transition={{ type: 'spring', stiffness: 300, damping: 30 }}
           style={{
-            maxWidth: '76rem',
-            margin: '0 auto',
-            height: '56px',
+            width: '100%',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            padding: '0 20px',
-            borderRadius: '16px',
-            background: scrolled
-              ? 'rgba(255, 255, 255, 0.68)'
-              : 'rgba(255, 255, 255, 0.55)',
+            background: scrolled ? 'rgba(255,255,255,0.72)' : 'rgba(255,255,255,0.50)',
             backdropFilter: 'blur(20px) saturate(180%) brightness(106%)',
             WebkitBackdropFilter: 'blur(20px) saturate(180%) brightness(106%)',
-            border: '1px solid rgba(255, 255, 255, 0.50)',
+            border: '1px solid rgba(255,255,255,0.50)',
             boxShadow: scrolled
-              ? `
-                  0 6px 28px rgba(139, 92, 246, 0.08),
-                  0 1px 4px rgba(0, 0, 0, 0.04),
-                  inset 0 1px 0 rgba(255, 255, 255, 0.80),
-                  inset 0 -1px 0 rgba(0, 0, 0, 0.05)
-                `
-              : `
-                  0 4px 20px rgba(0, 0, 0, 0.06),
-                  0 1px 3px rgba(0, 0, 0, 0.03),
-                  inset 0 1px 0 rgba(255, 255, 255, 0.70),
-                  inset 0 -1px 0 rgba(0, 0, 0, 0.04)
-                `,
-            transition: 'all 0.4s var(--ease-expo)',
-            position: 'relative',
-            isolation: 'isolate',
+              ? '0 8px 32px rgba(139,92,246,0.10), 0 2px 6px rgba(0,0,0,0.04), inset 0 1px 0 rgba(255,255,255,0.80), inset 0 -1px 0 rgba(0,0,0,0.05)'
+              : '0 4px 20px rgba(0,0,0,0.04), 0 1px 3px rgba(0,0,0,0.02), inset 0 1px 0 rgba(255,255,255,0.75), inset 0 -1px 0 rgba(0,0,0,0.03)',
             overflow: 'hidden',
+            isolation: 'isolate',
+            position: 'relative',
           }}
         >
-          {/* Nav bar top highlight layer */}
+          {/* Top highlight shimmer */}
           <div
             aria-hidden="true"
             style={{
@@ -98,14 +119,13 @@ export default function Nav() {
               left: 0,
               right: 0,
               height: '50%',
-              borderRadius: '16px 16px 0 0',
               background: 'linear-gradient(180deg, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0) 100%)',
               pointerEvents: 'none',
               zIndex: 1,
             }}
           />
 
-          {/* Left: Wordmark */}
+          {/* LEFT: Wordmark — collapses to "V" badge when scrolled */}
           <button
             type="button"
             onClick={() => scrollToSection('hero')}
@@ -116,46 +136,86 @@ export default function Nav() {
               cursor: 'pointer',
               padding: 0,
               display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'flex-start',
-              gap: '2px',
+              alignItems: 'center',
+              gap: '8px',
               position: 'relative',
               zIndex: 2,
+              flexShrink: 0,
+              minWidth: scrolled ? '28px' : 'auto',
             }}
           >
-            <span
+            {/* V badge — shown when scrolled */}
+            <motion.span
+              animate={{ opacity: scrolled ? 1 : 0, scale: scrolled ? 1 : 0.6, width: scrolled ? '28px' : '0px' }}
+              transition={{ type: 'spring', stiffness: 400, damping: 30 }}
               style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                width: '28px',
+                height: '28px',
+                borderRadius: '8px',
+                background: 'rgba(139,92,246,0.10)',
+                border: '1px solid rgba(139,92,246,0.18)',
                 fontFamily: 'var(--font-geist), sans-serif',
                 fontWeight: 800,
-                fontSize: '15px',
-                color: 'var(--c-text-1)',
-                lineHeight: 1,
-                letterSpacing: '0.15em',
-                textTransform: 'uppercase',
+                fontSize: '13px',
+                color: 'var(--c-plasma)',
+                letterSpacing: '0.02em',
+                flexShrink: 0,
+                overflow: 'hidden',
               }}
             >
-              VERDORIAN
-            </span>
-            <span
+              V
+            </motion.span>
+
+            {/* Full wordmark — hidden when scrolled */}
+            <motion.div
+              animate={{ opacity: scrolled ? 0 : 1, width: scrolled ? '0px' : 'auto' }}
+              transition={{ type: 'spring', stiffness: 400, damping: 30 }}
               style={{
-                fontFamily: 'var(--font-geist), sans-serif',
-                fontWeight: 600,
-                fontSize: '7px',
-                color: 'var(--c-text-3)',
-                letterSpacing: '0.30em',
-                textTransform: 'uppercase',
-                lineHeight: 1,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'flex-start',
+                gap: '2px',
+                overflow: 'hidden',
               }}
             >
-              TECHNOLOGIES
-            </span>
+              <span
+                style={{
+                  fontFamily: 'var(--font-geist), sans-serif',
+                  fontWeight: 800,
+                  fontSize: '15px',
+                  color: 'var(--c-text-1)',
+                  lineHeight: 1,
+                  letterSpacing: '0.15em',
+                  textTransform: 'uppercase',
+                  whiteSpace: 'nowrap',
+                }}
+              >
+                VERDORIAN
+              </span>
+              <span
+                style={{
+                  fontFamily: 'var(--font-geist), sans-serif',
+                  fontWeight: 600,
+                  fontSize: '7px',
+                  color: 'var(--c-text-3)',
+                  letterSpacing: '0.30em',
+                  textTransform: 'uppercase',
+                  lineHeight: 1,
+                  whiteSpace: 'nowrap',
+                }}
+              >
+                TECHNOLOGIES
+              </span>
+            </motion.div>
           </button>
 
-          {/* Center: Glass tab pill with glassmorphic hover states */}
+          {/* CENTER: Nav tabs with sliding active indicator */}
           <div
             className="hidden md:flex"
             style={{
-              display: 'flex',
               alignItems: 'center',
               gap: '2px',
               padding: '4px',
@@ -166,45 +226,74 @@ export default function Nav() {
               zIndex: 2,
             }}
           >
-            {NAV_LINKS.map((link) => (
-              <button
-                key={link.id}
-                type="button"
-                onClick={() => scrollToSection(link.id)}
-                onMouseEnter={() => setActiveLink(link.id)}
-                onMouseLeave={() => setActiveLink(null)}
-                aria-label={`Navigate to ${link.label} section`}
-                style={{
-                  position: 'relative',
-                  background: activeLink === link.id
-                    ? 'rgba(139, 92, 246, 0.10)'
-                    : 'transparent',
-                  boxShadow: activeLink === link.id
-                    ? 'inset 0 1px 0 rgba(255,255,255,0.30), 0 1px 3px rgba(139,92,246,0.08)'
-                    : 'none',
-                  border: 'none',
-                  cursor: 'pointer',
-                  padding: '7px 16px',
-                  borderRadius: '8px',
-                  fontFamily: 'var(--font-geist), sans-serif',
-                  fontWeight: 500,
-                  fontSize: '13px',
-                  letterSpacing: '0.02em',
-                  color: activeLink === link.id
-                    ? 'var(--c-plasma)'
-                    : 'var(--c-text-2)',
-                  transition: 'all 0.2s var(--ease-expo)',
-                  whiteSpace: 'nowrap',
-                }}
-              >
-                {link.label}
-              </button>
-            ))}
+            {NAV_LINKS.map((link) => {
+              const isActive = activeSection === link.id
+              const isHovered = hoveredLink === link.id
+
+              return (
+                <button
+                  key={link.id}
+                  type="button"
+                  onClick={() => scrollToSection(link.id)}
+                  onMouseEnter={() => setHoveredLink(link.id)}
+                  onMouseLeave={() => setHoveredLink(null)}
+                  aria-label={`Navigate to ${link.label} section`}
+                  aria-current={isActive ? 'true' : undefined}
+                  style={{
+                    position: 'relative',
+                    background: (!isActive && isHovered) ? 'rgba(0,0,0,0.04)' : 'transparent',
+                    border: 'none',
+                    cursor: 'pointer',
+                    padding: '7px 16px',
+                    borderRadius: '8px',
+                    fontFamily: 'var(--font-geist), sans-serif',
+                    fontWeight: isActive ? 600 : 500,
+                    fontSize: '13px',
+                    letterSpacing: '0.02em',
+                    color: isActive ? 'var(--c-plasma)' : 'var(--c-text-2)',
+                    transition: 'color 0.2s var(--ease-expo), background 0.15s ease, font-weight 0.1s',
+                    whiteSpace: 'nowrap',
+                    zIndex: 1,
+                  }}
+                >
+                  {/* Sliding active pill indicator — layoutId magic */}
+                  {isActive && (
+                    <motion.div
+                      layoutId="activeTabIndicator"
+                      style={{
+                        position: 'absolute',
+                        inset: 0,
+                        borderRadius: '8px',
+                        background: 'rgba(139, 92, 246, 0.12)',
+                        border: '1px solid rgba(139, 92, 246, 0.20)',
+                        boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.30), 0 0 12px rgba(139,92,246,0.08)',
+                        zIndex: 0,
+                      }}
+                      transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                    />
+                  )}
+                  <span style={{ position: 'relative', zIndex: 2 }}>{link.label}</span>
+                </button>
+              )
+            })}
           </div>
 
-          {/* Right: CTA + Hamburger */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', position: 'relative', zIndex: 2 }}>
-            <div className="hidden md:block">
+          {/* RIGHT: CTA + hamburger */}
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '10px',
+              position: 'relative',
+              zIndex: 2,
+              flexShrink: 0,
+            }}
+          >
+            <motion.div
+              className="hidden md:block"
+              animate={{ scale: scrolled ? 0.9 : 1, opacity: scrolled ? 0.85 : 1 }}
+              transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+            >
               <GlowButton
                 variant="primary"
                 size="sm"
@@ -212,7 +301,7 @@ export default function Nav() {
               >
                 Get started
               </GlowButton>
-            </div>
+            </motion.div>
 
             {/* Hamburger — mobile only */}
             <button
@@ -272,7 +361,7 @@ export default function Nav() {
               </svg>
             </button>
           </div>
-        </div>
+        </motion.div>
       </nav>
 
       {/* Mobile overlay — frosted cream glass */}
@@ -291,7 +380,7 @@ export default function Nav() {
               position: 'fixed',
               inset: 0,
               zIndex: 999,
-              background: 'rgba(250, 247, 242, 0.88)',
+              background: 'rgba(250, 247, 242, 0.92)',
               backdropFilter: 'blur(30px) saturate(180%)',
               WebkitBackdropFilter: 'blur(30px) saturate(180%)',
               display: 'flex',
@@ -317,15 +406,20 @@ export default function Nav() {
                   minHeight: '52px',
                   padding: '12px 40px',
                   fontFamily: 'var(--font-geist), sans-serif',
-                  fontWeight: 700,
+                  fontWeight: 800,
                   fontSize: '24px',
-                  color: 'var(--c-text-1)',
-                  letterSpacing: '0.06em',
+                  color: activeSection === link.id ? 'var(--c-plasma)' : 'var(--c-text-1)',
+                  letterSpacing: '0.10em',
                   textTransform: 'uppercase',
                   transition: 'color 0.2s',
                 }}
-                onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.color = 'var(--c-plasma)' }}
-                onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.color = 'var(--c-text-1)' }}
+                onMouseEnter={(e) => {
+                  ;(e.currentTarget as HTMLButtonElement).style.color = 'var(--c-plasma)'
+                }}
+                onMouseLeave={(e) => {
+                  ;(e.currentTarget as HTMLButtonElement).style.color =
+                    activeSection === link.id ? 'var(--c-plasma)' : 'var(--c-text-1)'
+                }}
               >
                 {link.label}
               </motion.button>

@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useRef, useState, useCallback, useEffect } from 'react'
+import React, { useRef, useCallback, useEffect } from 'react'
 import { cn } from '@/lib/utils'
 
 interface GlassCardProps {
@@ -19,10 +19,9 @@ export function GlassCard({
   style: externalStyle,
 }: GlassCardProps) {
   const cardRef = useRef<HTMLDivElement>(null)
-  const [transform, setTransform] = useState('')
-  const [isHovered, setIsHovered] = useState(false)
   const isTouchRef = useRef(false)
   const reducedMotionRef = useRef(false)
+  const isHoveredRef = useRef(false)
 
   useEffect(() => {
     isTouchRef.current =
@@ -38,47 +37,46 @@ export function GlassCard({
       if (!tilt || isTouchRef.current || reducedMotionRef.current || !cardRef.current) return
 
       const rect = cardRef.current.getBoundingClientRect()
-      const x = e.clientX - rect.left
-      const y = e.clientY - rect.top
-      const cx = rect.width / 2
-      const cy = rect.height / 2
+      const x = (e.clientX - rect.left) / rect.width
+      const y = (e.clientY - rect.top) / rect.height
 
-      // Max ±3deg — subtle tilt
-      const rotateX = ((y - cy) / cy) * -3
-      const rotateY = ((x - cx) / cx) * 3
+      const rotateX = (y - 0.5) * -6   // ±3deg
+      const rotateY = (x - 0.5) * 6
 
-      setTransform(
-        `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-3px)`
-      )
+      // Direct DOM mutation — zero re-renders, 60fps
+      cardRef.current.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px) scale(1.015)`
     },
     [tilt]
   )
 
   const handleMouseEnter = useCallback(() => {
-    setIsHovered(true)
-    if (cardRef.current) {
-      cardRef.current.style.boxShadow = `
-        0 16px 48px rgba(139, 92, 246, 0.10),
-        0 4px 12px rgba(0, 0, 0, 0.08),
-        inset 0 1px 0 rgba(255, 255, 255, 0.70),
-        inset 0 -1px 0 rgba(0, 0, 0, 0.04)
-      `
-      cardRef.current.style.borderColor = 'rgba(255, 255, 255, 0.65)'
+    if (!cardRef.current) return
+    isHoveredRef.current = true
+    cardRef.current.style.boxShadow = `
+      0 20px 56px rgba(139, 92, 246, 0.12),
+      0 6px 16px rgba(0, 0, 0, 0.09),
+      inset 0 1px 0 rgba(255, 255, 255, 0.75),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.04)
+    `
+    cardRef.current.style.borderColor = 'rgba(255, 255, 255, 0.70)'
+    // Only translate if no tilt (tilt overrides transform on mousemove)
+    if (!tilt && !reducedMotionRef.current) {
+      cardRef.current.style.transform = 'translateY(-4px) scale(1.015)'
     }
-  }, [])
+  }, [tilt])
 
   const handleMouseLeave = useCallback(() => {
-    setIsHovered(false)
-    setTransform('')
-    if (cardRef.current) {
-      cardRef.current.style.boxShadow = `
-        0 6px 24px rgba(139, 92, 246, 0.06),
-        0 1px 4px rgba(0, 0, 0, 0.05),
-        inset 0 1px 0 rgba(255, 255, 255, 0.60),
-        inset 0 -1px 0 rgba(0, 0, 0, 0.04)
-      `
-      cardRef.current.style.borderColor = 'rgba(255, 255, 255, 0.50)'
-    }
+    if (!cardRef.current) return
+    isHoveredRef.current = false
+    // Clear transform — CSS transition handles the spring-back via ease-back
+    cardRef.current.style.transform = ''
+    cardRef.current.style.boxShadow = `
+      0 6px 24px rgba(139, 92, 246, 0.06),
+      0 1px 4px rgba(0, 0, 0, 0.05),
+      inset 0 1px 0 rgba(255, 255, 255, 0.60),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.04)
+    `
+    cardRef.current.style.borderColor = 'rgba(255, 255, 255, 0.50)'
   }, [])
 
   const cardStyle: React.CSSProperties = {
@@ -97,10 +95,15 @@ export function GlassCard({
     overflow: 'hidden',
     position: 'relative',
     isolation: 'isolate',
-    transform: transform || (isHovered && !tilt ? 'translateY(-3px)' : undefined),
-    transition: transform
-      ? 'border-color 0.3s var(--ease-expo), box-shadow 0.3s var(--ease-expo)'
-      : 'transform 0.4s var(--ease-expo), border-color 0.3s var(--ease-expo), box-shadow 0.4s var(--ease-expo)',
+    // GPU-composited — will-change keeps transform on compositor thread
+    willChange: 'transform',
+    // ease-back on transform = slight overshoot on hover entry, spring-back on leave
+    // ease-expo on shadow = smooth fade without bouncing
+    transition: [
+      'transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)',
+      'box-shadow 0.6s cubic-bezier(0.19, 1, 0.22, 1)',
+      'border-color 0.35s cubic-bezier(0.19, 1, 0.22, 1)',
+    ].join(', '),
   }
 
   return (
@@ -112,7 +115,7 @@ export function GlassCard({
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      {/* Highlight layer — top 40% catch light (::before equivalent) */}
+      {/* Highlight layer — top 40% catch light */}
       <div
         aria-hidden="true"
         style={{

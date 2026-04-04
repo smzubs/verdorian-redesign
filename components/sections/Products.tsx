@@ -14,7 +14,7 @@ import {
 import { GlassCard } from '@/components/ui/GlassCard'
 import { SectionLabel } from '@/components/ui/SectionLabel'
 import { StatusBadge } from '@/components/ui/StatusBadge'
-import { FADE_UP, STAGGER_CONTAINER } from '@/lib/motion'
+import { FADE_UP, STAGGER_CONTAINER, CARD_ENTRANCE } from '@/lib/motion'
 import { PRODUCTS } from '@/lib/utils'
 import type { Product } from '@/lib/utils'
 import { cn } from '@/lib/utils'
@@ -33,7 +33,6 @@ const ICON_MAP: Record<string, TablerIcon> = {
   IconShield,
 }
 
-// Per-card icon background tints
 const ICON_BG_COLORS: Record<string, { bg: string; border: string }> = {
   VoicePencil:   { bg: 'rgba(139, 92, 246, 0.08)',  border: 'rgba(139, 92, 246, 0.18)' },
   ChangeOrderAI: { bg: 'rgba(34, 211, 238, 0.08)',   border: 'rgba(34, 211, 238, 0.20)' },
@@ -42,7 +41,6 @@ const ICON_BG_COLORS: Record<string, { bg: string; border: string }> = {
   PolicyPilot:   { bg: 'rgba(245, 158, 11, 0.08)',   border: 'rgba(245, 158, 11, 0.20)' },
 }
 
-// Icon accent colors per product
 const ICON_COLORS: Record<string, string> = {
   VoicePencil:   'var(--c-plasma)',
   ChangeOrderAI: 'var(--c-arc)',
@@ -51,7 +49,6 @@ const ICON_COLORS: Record<string, string> = {
   PolicyPilot:   'var(--c-ember)',
 }
 
-// Per-product subtle glass tints — mixes with base glass for unique cards
 const CARD_TINTS: Record<string, string> = {
   VoicePencil:   'rgba(139, 92, 246, 0.06)',
   ChangeOrderAI: 'rgba(34, 211, 238, 0.05)',
@@ -60,7 +57,6 @@ const CARD_TINTS: Record<string, string> = {
   PolicyPilot:   'rgba(245, 158, 11, 0.05)',
 }
 
-// Desktop grid column/row spans per product
 const GRID_STYLES: Record<string, React.CSSProperties> = {
   VoicePencil:   { gridColumn: '1 / 9',  gridRow: '1 / 2' },
   ChangeOrderAI: { gridColumn: '9 / 13', gridRow: '1 / 2' },
@@ -170,15 +166,7 @@ function CardContent({ product, isFeatured = false }: CardContentProps) {
 
       {/* Top section */}
       <div>
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'flex-start',
-            gap: '12px',
-            marginBottom: '16px',
-          }}
-        >
-          {/* Icon with glass glow */}
+        <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px', marginBottom: '16px' }}>
           <div
             aria-hidden="true"
             style={{
@@ -195,11 +183,7 @@ function CardContent({ product, isFeatured = false }: CardContentProps) {
             }}
           >
             {IconComponent && (
-              <IconComponent
-                size={24}
-                stroke={1.5}
-                style={{ color: iconColor }}
-              />
+              <IconComponent size={24} stroke={1.5} style={{ color: iconColor }} />
             )}
           </div>
           <span
@@ -343,92 +327,94 @@ function GhostCard({ className }: { className?: string }) {
 }
 
 // ─── Compact card for tablet/mobile ──────────────────────────────────────────
-function CompactCard({ product, showTilt }: { product: Product; showTilt: boolean }) {
+function CompactCard({ product, showTilt, index }: { product: Product; showTilt: boolean; index: number }) {
   const IconComponent = ICON_MAP[product.icon]
   const iconStyle = ICON_BG_COLORS[product.name] ?? { bg: 'rgba(139,92,246,0.08)', border: 'rgba(139,92,246,0.18)' }
   const iconColor = ICON_COLORS[product.name] ?? 'var(--c-plasma)'
-  const cardTint = CARD_TINTS[product.name]
+  const _cardTint = CARD_TINTS[product.name]
 
   return (
-    <GlassCard tilt={showTilt} style={cardTint ? { background: `rgba(255,255,255,0.55)` } : undefined}>
-      <div
-        style={{
-          padding: '24px',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '14px',
-          opacity: product.status === 'in-development' ? 0.85 : 1,
-          position: 'relative',
-          zIndex: 2,
-        }}
-      >
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-          <div
-            aria-hidden="true"
-            style={{
-              width: '44px',
-              height: '44px',
-              borderRadius: 'var(--r-md)',
-              background: iconStyle.bg,
-              border: `1px solid ${iconStyle.border}`,
-              boxShadow: `0 0 20px ${iconStyle.bg.replace('0.08', '0.12')}`,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              flexShrink: 0,
-            }}
-          >
-            {IconComponent && (
-              <IconComponent
-                size={22}
-                stroke={1.5}
-                style={{ color: iconColor }}
-              />
-            )}
-          </div>
-          <div>
-            <span
-              style={{
-                fontFamily: 'var(--font-geist), sans-serif',
-                fontSize: '11px',
-                fontWeight: 700,
-                textTransform: 'uppercase',
-                letterSpacing: 'var(--track-eyebrow, 0.14em)',
-                color: 'var(--c-text-3)',
-                display: 'block',
-                marginBottom: '2px',
-              }}
-            >
-              {product.category}
-            </span>
-            <h3
-              style={{
-                fontFamily: 'var(--font-geist), sans-serif',
-                fontWeight: 600,
-                fontSize: '18px',
-                color: 'var(--c-text-1)',
-                margin: 0,
-                letterSpacing: 'var(--track-h3)',
-              }}
-            >
-              {product.name}
-            </h3>
-          </div>
-        </div>
-        <p
+    <motion.div
+      variants={CARD_ENTRANCE}
+      custom={index}
+      viewport={{ once: true, margin: '-40px' }}
+    >
+      <GlassCard tilt={showTilt} style={_cardTint ? { background: 'rgba(255,255,255,0.55)' } : undefined}>
+        <div
           style={{
-            fontSize: '14px',
-            color: 'var(--c-text-2)',
-            lineHeight: 1.5,
-            margin: 0,
-            fontFamily: 'var(--font-dm-sans), sans-serif',
+            padding: '24px',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '14px',
+            opacity: product.status === 'in-development' ? 0.85 : 1,
+            position: 'relative',
+            zIndex: 2,
           }}
         >
-          {product.tagline}
-        </p>
-        <StatusBadge status={product.status} />
-      </div>
-    </GlassCard>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <div
+              aria-hidden="true"
+              style={{
+                width: '44px',
+                height: '44px',
+                borderRadius: 'var(--r-md)',
+                background: iconStyle.bg,
+                border: `1px solid ${iconStyle.border}`,
+                boxShadow: `0 0 20px ${iconStyle.bg.replace('0.08', '0.12')}`,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                flexShrink: 0,
+              }}
+            >
+              {IconComponent && (
+                <IconComponent size={22} stroke={1.5} style={{ color: iconColor }} />
+              )}
+            </div>
+            <div>
+              <span
+                style={{
+                  fontFamily: 'var(--font-geist), sans-serif',
+                  fontSize: '11px',
+                  fontWeight: 700,
+                  textTransform: 'uppercase',
+                  letterSpacing: 'var(--track-eyebrow, 0.14em)',
+                  color: 'var(--c-text-3)',
+                  display: 'block',
+                  marginBottom: '2px',
+                }}
+              >
+                {product.category}
+              </span>
+              <h3
+                style={{
+                  fontFamily: 'var(--font-geist), sans-serif',
+                  fontWeight: 600,
+                  fontSize: '18px',
+                  color: 'var(--c-text-1)',
+                  margin: 0,
+                  letterSpacing: 'var(--track-h3)',
+                }}
+              >
+                {product.name}
+              </h3>
+            </div>
+          </div>
+          <p
+            style={{
+              fontSize: '14px',
+              color: 'var(--c-text-2)',
+              lineHeight: 1.5,
+              margin: 0,
+              fontFamily: 'var(--font-dm-sans), sans-serif',
+            }}
+          >
+            {product.tagline}
+          </p>
+          <StatusBadge status={product.status} />
+        </div>
+      </GlassCard>
+    </motion.div>
   )
 }
 
@@ -488,7 +474,7 @@ export default function Products() {
           </div>
 
           {/* Bento grid */}
-          <motion.div variants={FADE_UP}>
+          <div>
             {/* ── Desktop 12-col grid (lg+) ── */}
             <div
               className="hidden lg:grid"
@@ -497,56 +483,84 @@ export default function Products() {
                 gap: '16px',
               }}
             >
-              {/* Featured: VoicePencil col-span-8 — purple tint glass */}
-              <div style={{ ...GRID_STYLES[featured.name] }}>
-                <GlassCard tilt style={{ background: `rgba(255,255,255,0.52)` }}>
+              {/* Featured: VoicePencil col-span-8 with 3D entrance */}
+              <motion.div
+                style={{ ...GRID_STYLES[featured.name] }}
+                variants={CARD_ENTRANCE}
+                custom={0}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: '-60px' }}
+              >
+                <GlassCard tilt style={{ background: 'rgba(255,255,255,0.52)' }}>
                   <CardContent product={featured} isFeatured />
                 </GlassCard>
-              </div>
+              </motion.div>
 
-              {rest.map((product) => (
-                <div key={product.name} style={{ ...GRID_STYLES[product.name] }}>
+              {rest.map((product, i) => (
+                <motion.div
+                  key={product.name}
+                  style={{ ...GRID_STYLES[product.name] }}
+                  variants={CARD_ENTRANCE}
+                  custom={i + 1}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, margin: '-60px' }}
+                >
                   <GlassCard tilt style={{ background: 'rgba(255,255,255,0.52)' }}>
                     <CardContent product={product} />
                   </GlassCard>
-                </div>
+                </motion.div>
               ))}
 
-              {/* Ghost "more coming" card */}
-              <div
+              {/* Ghost card */}
+              <motion.div
                 style={{
                   gridColumn: '7 / 13',
                   gridRow: '3 / 4',
                   minHeight: '240px',
                 }}
+                variants={CARD_ENTRANCE}
+                custom={rest.length + 1}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: '-60px' }}
               >
                 <GhostCard />
-              </div>
+              </motion.div>
             </div>
 
             {/* ── Tablet 2-col grid (md, hidden on lg+) ── */}
-            <div
+            <motion.div
               className="hidden md:grid lg:hidden"
               style={{
                 gridTemplateColumns: 'repeat(2, 1fr)',
                 gap: '16px',
               }}
+              variants={STAGGER_CONTAINER}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: '-40px' }}
             >
-              {PRODUCTS.map((product) => (
-                <CompactCard key={product.name} product={product} showTilt />
+              {PRODUCTS.map((product, i) => (
+                <CompactCard key={product.name} product={product} showTilt index={i} />
               ))}
-            </div>
+            </motion.div>
 
             {/* ── Mobile 1-col (hidden on md+) ── */}
-            <div
+            <motion.div
               className="flex md:hidden flex-col"
               style={{ gap: '16px' }}
+              variants={STAGGER_CONTAINER}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: '-40px' }}
             >
-              {PRODUCTS.map((product) => (
-                <CompactCard key={product.name} product={product} showTilt={false} />
+              {PRODUCTS.map((product, i) => (
+                <CompactCard key={product.name} product={product} showTilt={false} index={i} />
               ))}
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
         </motion.div>
       </div>
     </section>

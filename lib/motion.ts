@@ -39,3 +39,20 @@ export const STAGGER_CONTAINER: Variants = {
     },
   },
 }
+
+// Card entrance: fade + lift + subtle 3D flip-in
+// rotateY -2 → 0 is barely perceptible but premium
+export const CARD_ENTRANCE: Variants = {
+  hidden: { opacity: 0, y: 30, scale: 0.95, rotateY: -2 },
+  visible: (i: number = 0) => ({
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    rotateY: 0,
+    transition: {
+      duration: 0.7,
+      delay: i * 0.1,
+      ease: [0.19, 1, 0.22, 1],
+    },
+  }),
+}
