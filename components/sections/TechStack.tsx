@@ -53,7 +53,7 @@ function TechPill({ name }: { name: string }) {
         alignItems: 'center',
         gap: '8px',
         background: 'var(--c-bg-card)',
-        border: '1px solid rgba(255,255,255,0.07)',
+        border: '1px solid var(--c-border)',
         borderRadius: 'var(--r-pill)',
         padding: '8px 16px',
         fontFamily: 'var(--font-dm-sans), sans-serif',
@@ -62,14 +62,19 @@ function TechPill({ name }: { name: string }) {
         letterSpacing: '0.05em',
         color: 'var(--c-text-1)',
         whiteSpace: 'nowrap',
-        transition: 'border-color 0.2s var(--ease-expo)',
+        boxShadow: 'var(--shadow-sm)',
+        transition: 'border-color 0.2s var(--ease-expo), background 0.2s var(--ease-expo)',
         cursor: 'default',
       }}
       onMouseEnter={(e) => {
-        (e.currentTarget as HTMLSpanElement).style.borderColor = 'var(--c-plasma)'
+        const el = e.currentTarget as HTMLSpanElement
+        el.style.borderColor = 'var(--c-border-hover)'
+        el.style.background = 'rgba(139, 92, 246, 0.04)'
       }}
       onMouseLeave={(e) => {
-        (e.currentTarget as HTMLSpanElement).style.borderColor = 'rgba(255,255,255,0.07)'
+        const el = e.currentTarget as HTMLSpanElement
+        el.style.borderColor = 'var(--c-border)'
+        el.style.background = 'var(--c-bg-card)'
       }}
     >
       {IconComponent && (
@@ -136,11 +141,10 @@ export default function TechStack() {
               letterSpacing: 'var(--track-h2)',
               margin: 0,
               lineHeight: 1.1,
+              color: 'var(--c-text-1)',
             }}
           >
-            <span style={{ display: 'block', color: 'rgba(255,255,255,0.92)' }}>
-              Built with modern tech
-            </span>
+            Built with modern tech
           </motion.h2>
           <motion.p
             variants={FADE_UP}
@@ -156,12 +160,13 @@ export default function TechStack() {
           </motion.p>
         </div>
 
-        {/* Marquee — decorative visual list, not keyboard-navigable */}
+        {/* Marquee — edge masks fade to section bg */}
         <motion.div variants={FADE_UP} style={{ width: '100%' }} aria-hidden="true">
           <InfiniteMarquee
             items={marqueeItems}
             speed="90s"
             gap="16px"
+            edgeColor="var(--c-bg-alt)"
           />
         </motion.div>
       </motion.div>

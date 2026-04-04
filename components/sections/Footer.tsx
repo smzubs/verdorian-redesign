@@ -15,8 +15,8 @@ export default function Footer() {
     <footer
       aria-label="Site footer"
       style={{
-        background: 'var(--c-bg-hero)',
-        borderTop: '1px solid rgba(255,255,255,0.06)',
+        background: '#1a1a2e',
+        borderTop: '1px solid rgba(255, 255, 255, 0.06)',
         paddingTop: '48px',
         paddingBottom: '48px',
       }}
@@ -56,7 +56,7 @@ export default function Footer() {
               fontFamily: 'var(--font-geist), sans-serif',
               fontWeight: 800,
               fontSize: '16px',
-              color: 'var(--c-text-1)',
+              color: 'rgba(255, 255, 255, 0.80)',
               letterSpacing: '0.15em',
               textTransform: 'uppercase',
             }}
@@ -67,7 +67,7 @@ export default function Footer() {
             style={{
               fontFamily: 'var(--font-dm-sans), sans-serif',
               fontSize: '13px',
-              color: 'var(--c-text-3)',
+              color: 'rgba(255, 255, 255, 0.40)',
               lineHeight: 1.5,
               maxWidth: '220px',
             }}
@@ -99,15 +99,15 @@ export default function Footer() {
                   minHeight: '44px',
                   fontFamily: 'var(--font-dm-sans), sans-serif',
                   fontSize: '14px',
-                  color: 'var(--c-text-2)',
+                  color: 'rgba(255, 255, 255, 0.45)',
                   transition: 'color 0.2s',
                   textAlign: 'left',
                 }}
                 onMouseEnter={(e) => {
-                  ;(e.currentTarget as HTMLButtonElement).style.color = 'var(--c-text-1)'
+                  ;(e.currentTarget as HTMLButtonElement).style.color = 'rgba(255, 255, 255, 0.80)'
                 }}
                 onMouseLeave={(e) => {
-                  ;(e.currentTarget as HTMLButtonElement).style.color = 'var(--c-text-2)'
+                  ;(e.currentTarget as HTMLButtonElement).style.color = 'rgba(255, 255, 255, 0.45)'
                 }}
               >
                 {link.label}
@@ -131,7 +131,7 @@ export default function Footer() {
             style={{
               fontFamily: 'var(--font-dm-sans), sans-serif',
               fontSize: '12px',
-              color: 'var(--c-text-3)',
+              color: 'rgba(255, 255, 255, 0.35)',
             }}
           >
             &copy; 2026 Verdorian Technologies LLC
@@ -142,20 +142,20 @@ export default function Footer() {
               style={{
                 fontFamily: 'var(--font-dm-sans), sans-serif',
                 fontSize: '12px',
-                color: 'var(--c-text-3)',
+                color: 'rgba(255, 255, 255, 0.35)',
                 textDecoration: 'none',
                 transition: 'color 0.2s',
               }}
               onMouseEnter={(e) => {
-                ;(e.currentTarget as HTMLAnchorElement).style.color = 'var(--c-text-2)'
+                ;(e.currentTarget as HTMLAnchorElement).style.color = 'rgba(255, 255, 255, 0.60)'
               }}
               onMouseLeave={(e) => {
-                ;(e.currentTarget as HTMLAnchorElement).style.color = 'var(--c-text-3)'
+                ;(e.currentTarget as HTMLAnchorElement).style.color = 'rgba(255, 255, 255, 0.35)'
               }}
             >
               Privacy Policy
             </a>
-            <span style={{ color: 'var(--c-text-3)', fontSize: '12px' }}>
+            <span style={{ color: 'rgba(255, 255, 255, 0.25)', fontSize: '12px' }}>
               ·
             </span>
             <a
@@ -163,15 +163,15 @@ export default function Footer() {
               style={{
                 fontFamily: 'var(--font-dm-sans), sans-serif',
                 fontSize: '12px',
-                color: 'var(--c-text-3)',
+                color: 'rgba(255, 255, 255, 0.35)',
                 textDecoration: 'none',
                 transition: 'color 0.2s',
               }}
               onMouseEnter={(e) => {
-                ;(e.currentTarget as HTMLAnchorElement).style.color = 'var(--c-text-2)'
+                ;(e.currentTarget as HTMLAnchorElement).style.color = 'rgba(255, 255, 255, 0.60)'
               }}
               onMouseLeave={(e) => {
-                ;(e.currentTarget as HTMLAnchorElement).style.color = 'var(--c-text-3)'
+                ;(e.currentTarget as HTMLAnchorElement).style.color = 'rgba(255, 255, 255, 0.35)'
               }}
             >
               Terms

@@ -28,10 +28,11 @@ export default function Contact() {
     setSubmitted(true)
   }
 
+  // Inputs: cream bg, warm border
   const inputStyle: React.CSSProperties = {
     width: '100%',
-    background: 'rgba(255,255,255,0.04)',
-    border: '1px solid rgba(255,255,255,0.08)',
+    background: 'var(--c-bg-base)',
+    border: '1px solid var(--c-border)',
     borderRadius: '12px',
     padding: '12px 16px',
     minHeight: '48px',
@@ -45,11 +46,11 @@ export default function Contact() {
 
   const handleInputFocus = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     e.currentTarget.style.borderColor = 'var(--c-plasma)'
-    e.currentTarget.style.boxShadow = '0 0 0 3px rgba(139,92,246,0.12)'
+    e.currentTarget.style.boxShadow = '0 0 0 3px rgba(139, 92, 246, 0.10)'
   }
 
   const handleInputBlur = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)'
+    e.currentTarget.style.borderColor = 'var(--c-border)'
     e.currentTarget.style.boxShadow = 'none'
   }
 
@@ -62,10 +63,10 @@ export default function Contact() {
         paddingBottom: '160px',
         position: 'relative',
         overflow: 'hidden',
-        background: 'linear-gradient(135deg, rgba(139,92,246,0.08) 0%, rgba(34,211,238,0.04) 100%), var(--c-bg-base)',
+        background: 'linear-gradient(135deg, rgba(139,92,246,0.04) 0%, rgba(34,211,238,0.02) 100%), var(--c-bg-alt)',
       }}
     >
-      {/* Background ambient glow */}
+      {/* Background ambient glow — very subtle on cream */}
       <div
         aria-hidden="true"
         style={{
@@ -74,7 +75,7 @@ export default function Contact() {
           height: '400px',
           borderRadius: '9999px',
           background: 'var(--c-plasma)',
-          opacity: 0.04,
+          opacity: 0.025,
           filter: 'blur(120px)',
           top: '50%',
           left: '50%',
@@ -123,10 +124,10 @@ export default function Contact() {
               margin: '24px 0 0',
             }}
           >
-            <span style={{ display: 'block', color: 'rgba(255,255,255,0.92)' }}>
+            <span style={{ display: 'block', color: 'var(--c-text-1)' }}>
               Let&apos;s build
             </span>
-            <span style={{ display: 'block', color: 'rgba(255,255,255,0.40)' }}>
+            <span style={{ display: 'block', color: 'var(--c-text-3)' }}>
               something great.
             </span>
           </motion.h2>
@@ -166,22 +167,23 @@ export default function Contact() {
                 gap: '8px',
                 padding: '10px 20px',
                 background: 'var(--c-bg-card)',
-                border: '1px solid rgba(255,255,255,0.08)',
+                border: '1px solid var(--c-border)',
                 borderRadius: 'var(--r-pill)',
                 fontFamily: 'var(--font-dm-sans), sans-serif',
                 fontSize: '14px',
                 color: 'var(--c-text-2)',
                 textDecoration: 'none',
+                boxShadow: 'var(--shadow-sm)',
                 transition: 'border-color 0.2s, color 0.2s',
               }}
               onMouseEnter={(e) => {
                 const el = e.currentTarget
-                el.style.borderColor = 'rgba(139,92,246,0.4)'
+                el.style.borderColor = 'var(--c-border-hover)'
                 el.style.color = 'var(--c-text-1)'
               }}
               onMouseLeave={(e) => {
                 const el = e.currentTarget
-                el.style.borderColor = 'rgba(255,255,255,0.08)'
+                el.style.borderColor = 'var(--c-border)'
                 el.style.color = 'var(--c-text-2)'
               }}
             >
@@ -196,11 +198,12 @@ export default function Contact() {
                 gap: '8px',
                 padding: '10px 20px',
                 background: 'var(--c-bg-card)',
-                border: '1px solid rgba(255,255,255,0.08)',
+                border: '1px solid var(--c-border)',
                 borderRadius: 'var(--r-pill)',
                 fontFamily: 'var(--font-dm-sans), sans-serif',
                 fontSize: '14px',
                 color: 'var(--c-text-2)',
+                boxShadow: 'var(--shadow-sm)',
               }}
             >
               <IconMapPin size={16} stroke={1.5} aria-hidden="true" style={{ color: 'var(--c-arc)', flexShrink: 0 }} />
@@ -208,7 +211,7 @@ export default function Contact() {
             </span>
           </motion.div>
 
-          {/* Contact form */}
+          {/* Contact form — white card */}
           <motion.div
             variants={FADE_UP}
             style={{
@@ -236,14 +239,14 @@ export default function Contact() {
                         width: '56px',
                         height: '56px',
                         borderRadius: '9999px',
-                        background: 'rgba(16,185,129,0.15)',
-                        border: '1px solid rgba(16,185,129,0.3)',
+                        background: 'rgba(16, 185, 129, 0.08)',
+                        border: '1px solid rgba(16, 185, 129, 0.25)',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
                       }}
                     >
-                      <IconCheck size={28} stroke={2} aria-hidden="true" style={{ color: '#34d399' }} />
+                      <IconCheck size={28} stroke={2} aria-hidden="true" style={{ color: '#059669' }} />
                     </div>
                     <div>
                       <p
@@ -365,7 +368,7 @@ export default function Contact() {
                         fontWeight: 600,
                         fontSize: '16px',
                         cursor: 'pointer',
-                        transition: 'background-color 150ms ease, transform 150ms ease',
+                        transition: 'background-color 150ms ease, box-shadow 150ms ease, transform 150ms ease',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
@@ -373,12 +376,14 @@ export default function Contact() {
                       }}
                       onMouseEnter={(e) => {
                         const el = e.currentTarget as HTMLButtonElement
-                        el.style.backgroundColor = '#7C4DFF'
+                        el.style.backgroundColor = 'var(--c-plasma-dark)'
+                        el.style.boxShadow = 'var(--shadow-button)'
                         el.style.transform = 'translateY(-1px)'
                       }}
                       onMouseLeave={(e) => {
                         const el = e.currentTarget as HTMLButtonElement
                         el.style.backgroundColor = 'var(--c-plasma)'
+                        el.style.boxShadow = 'none'
                         el.style.transform = 'translateY(0)'
                       }}
                       onMouseDown={(e) => {

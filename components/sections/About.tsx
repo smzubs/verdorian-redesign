@@ -60,10 +60,10 @@ export default function About() {
                 margin: 0,
               }}
             >
-              <span style={{ display: 'block', color: 'rgba(255,255,255,0.92)' }}>
+              <span style={{ display: 'block', color: 'var(--c-text-1)' }}>
                 Engineering tomorrow&apos;s
               </span>
-              <span style={{ display: 'block', color: 'rgba(255,255,255,0.40)' }}>
+              <span style={{ display: 'block', color: 'var(--c-text-3)' }}>
                 technology.
               </span>
             </h2>
@@ -115,6 +115,8 @@ export default function About() {
                   display: 'flex',
                   flexDirection: 'column',
                   gap: '8px',
+                  paddingLeft: '20px',
+                  borderLeft: '2px solid var(--c-plasma)',
                 }}
               >
                 <span
@@ -124,7 +126,7 @@ export default function About() {
                     fontSize: '48px',
                     lineHeight: 1,
                     letterSpacing: '-0.02em',
-                    color: 'rgba(255,255,255,0.92)',
+                    color: 'var(--c-text-1)',
                   }}
                 >
                   {stat.value}
@@ -134,7 +136,7 @@ export default function About() {
                     fontFamily: 'var(--font-dm-sans), sans-serif',
                     fontSize: '14px',
                     fontWeight: 400,
-                    color: 'var(--c-text-2)',
+                    color: 'var(--c-text-3)',
                     letterSpacing: '0.04em',
                   }}
                 >

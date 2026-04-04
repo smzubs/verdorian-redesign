@@ -33,13 +33,22 @@ const ICON_MAP: Record<string, TablerIcon> = {
   IconShield,
 }
 
-// Per-card atmospheric gradients
-const CARD_GRADIENTS: Record<string, string> = {
-  VoicePencil:   'radial-gradient(94% 78% at 50% 29%, rgba(139,92,246,0.25), rgba(20,21,22,0.95))',
-  ChangeOrderAI: 'radial-gradient(90% 75% at 50% 25%, rgba(34,211,238,0.20), rgba(20,21,22,0.95))',
-  QRSafePro:     'radial-gradient(86% 70% at 50% 30%, rgba(16,185,129,0.25), rgba(20,21,22,0.95))',
-  WithinYouAI:   'radial-gradient(90% 75% at 50% 25%, rgba(99,102,241,0.20), rgba(20,21,22,0.95))',
-  PolicyPilot:   'radial-gradient(85% 70% at 50% 30%, rgba(245,158,11,0.18), rgba(20,21,22,0.95))',
+// Per-card icon background tints — light fills on white cards
+const ICON_BG_COLORS: Record<string, { bg: string; border: string }> = {
+  VoicePencil:   { bg: 'rgba(139, 92, 246, 0.08)',  border: 'rgba(139, 92, 246, 0.18)' },
+  ChangeOrderAI: { bg: 'rgba(34, 211, 238, 0.08)',   border: 'rgba(34, 211, 238, 0.20)' },
+  QRSafePro:     { bg: 'rgba(16, 185, 129, 0.08)',   border: 'rgba(16, 185, 129, 0.20)' },
+  WithinYouAI:   { bg: 'rgba(99, 102, 241, 0.08)',   border: 'rgba(99, 102, 241, 0.18)' },
+  PolicyPilot:   { bg: 'rgba(245, 158, 11, 0.08)',   border: 'rgba(245, 158, 11, 0.20)' },
+}
+
+// Icon accent colors per product
+const ICON_COLORS: Record<string, string> = {
+  VoicePencil:   'var(--c-plasma)',
+  ChangeOrderAI: 'var(--c-arc)',
+  QRSafePro:     '#10b981',
+  WithinYouAI:   '#6366f1',
+  PolicyPilot:   'var(--c-ember)',
 }
 
 // Desktop grid column/row spans per product
@@ -67,6 +76,8 @@ interface CardContentProps {
 
 function CardContent({ product, isFeatured = false }: CardContentProps) {
   const IconComponent = ICON_MAP[product.icon]
+  const iconStyle = ICON_BG_COLORS[product.name] ?? { bg: 'rgba(139,92,246,0.08)', border: 'rgba(139,92,246,0.18)' }
+  const iconColor = ICON_COLORS[product.name] ?? 'var(--c-plasma)'
 
   return (
     <div
@@ -82,6 +93,28 @@ function CardContent({ product, isFeatured = false }: CardContentProps) {
         opacity: product.status === 'in-development' ? 0.85 : 1,
       }}
     >
+      {/* Card top accent line */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          height: '2px',
+          background: 'linear-gradient(90deg, var(--c-plasma), rgba(139,92,246,0.3), transparent)',
+          opacity: 0,
+          transition: 'opacity 0.3s var(--ease-expo)',
+        }}
+        className="card-top-accent"
+      />
+
+      <style>{`
+        .group:hover .card-top-accent {
+          opacity: 1 !important;
+        }
+      `}</style>
+
       {/* iOS pill badge for VoicePencil */}
       {isFeatured && (
         <div
@@ -92,8 +125,8 @@ function CardContent({ product, isFeatured = false }: CardContentProps) {
             right: '20px',
             padding: '4px 12px',
             borderRadius: 'var(--r-pill)',
-            background: 'rgba(139,92,246,0.12)',
-            border: '1px solid rgba(139,92,246,0.25)',
+            background: 'rgba(139,92,246,0.08)',
+            border: '1px solid rgba(139,92,246,0.20)',
             fontFamily: 'monospace',
             fontSize: '10px',
             fontWeight: 500,
@@ -117,7 +150,7 @@ function CardContent({ product, isFeatured = false }: CardContentProps) {
             display: 'flex',
             alignItems: 'center',
             gap: '3px',
-            opacity: 0.18,
+            opacity: 0.12,
           }}
         >
           {[16, 28, 20, 36, 24, 40, 20, 32, 18, 28, 16, 24].map((h, i) => (
@@ -160,8 +193,8 @@ function CardContent({ product, isFeatured = false }: CardContentProps) {
               width: '48px',
               height: '48px',
               borderRadius: 'var(--r-md)',
-              background: 'rgba(255,255,255,0.06)',
-              border: '1px solid rgba(255,255,255,0.08)',
+              background: iconStyle.bg,
+              border: `1px solid ${iconStyle.border}`,
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -172,7 +205,7 @@ function CardContent({ product, isFeatured = false }: CardContentProps) {
               <IconComponent
                 size={24}
                 stroke={1.5}
-                style={{ color: 'var(--c-plasma)' }}
+                style={{ color: iconColor }}
               />
             )}
           </div>
@@ -241,9 +274,9 @@ function CardContent({ product, isFeatured = false }: CardContentProps) {
               width: '36px',
               height: '36px',
               borderRadius: 'var(--r-pill)',
-              background: 'rgba(255,255,255,0.06)',
-              border: '1px solid rgba(255,255,255,0.08)',
-              color: 'var(--c-text-2)',
+              background: 'rgba(139,92,246,0.06)',
+              border: '1px solid rgba(139,92,246,0.15)',
+              color: 'var(--c-plasma)',
               opacity: 0,
               transition: 'opacity 0.2s var(--ease-expo), transform 0.2s var(--ease-expo)',
               transform: 'translateX(-6px)',
@@ -271,8 +304,8 @@ function GhostCard({ className }: { className?: string }) {
       className={cn(className)}
       style={{
         minHeight: '240px',
-        borderRadius: '16px',
-        border: '1px dashed rgba(255,255,255,0.07)',
+        borderRadius: '20px',
+        border: '1.5px dashed var(--c-border)',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -286,7 +319,7 @@ function GhostCard({ className }: { className?: string }) {
           width: '40px',
           height: '40px',
           borderRadius: 'var(--r-pill)',
-          border: '1px dashed rgba(255,255,255,0.10)',
+          border: '1.5px dashed var(--c-border)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
@@ -313,9 +346,11 @@ function GhostCard({ className }: { className?: string }) {
 // ─── Compact card for tablet/mobile ──────────────────────────────────────────
 function CompactCard({ product, showTilt }: { product: Product; showTilt: boolean }) {
   const IconComponent = ICON_MAP[product.icon]
-  const cardGradient = CARD_GRADIENTS[product.name]
+  const iconStyle = ICON_BG_COLORS[product.name] ?? { bg: 'rgba(139,92,246,0.08)', border: 'rgba(139,92,246,0.18)' }
+  const iconColor = ICON_COLORS[product.name] ?? 'var(--c-plasma)'
+
   return (
-    <GlassCard tilt={showTilt} style={cardGradient ? { background: cardGradient } : undefined}>
+    <GlassCard tilt={showTilt}>
       <div
         style={{
           padding: '24px',
@@ -325,6 +360,22 @@ function CompactCard({ product, showTilt }: { product: Product; showTilt: boolea
           opacity: product.status === 'in-development' ? 0.85 : 1,
         }}
       >
+        {/* Card top accent line */}
+        <div
+          aria-hidden="true"
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            height: '2px',
+            background: 'linear-gradient(90deg, var(--c-plasma), rgba(139,92,246,0.3), transparent)',
+            opacity: 0,
+            transition: 'opacity 0.3s var(--ease-expo)',
+          }}
+          className="card-top-accent"
+        />
+
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
           <div
             aria-hidden="true"
@@ -332,8 +383,8 @@ function CompactCard({ product, showTilt }: { product: Product; showTilt: boolea
               width: '44px',
               height: '44px',
               borderRadius: 'var(--r-md)',
-              background: 'rgba(255,255,255,0.06)',
-              border: '1px solid rgba(255,255,255,0.08)',
+              background: iconStyle.bg,
+              border: `1px solid ${iconStyle.border}`,
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -344,7 +395,7 @@ function CompactCard({ product, showTilt }: { product: Product; showTilt: boolea
               <IconComponent
                 size={22}
                 stroke={1.5}
-                style={{ color: 'var(--c-plasma)' }}
+                style={{ color: iconColor }}
               />
             )}
           </div>
@@ -440,10 +491,10 @@ export default function Products() {
                 lineHeight: 1.1,
               }}
             >
-              <span style={{ display: 'block', color: 'rgba(255,255,255,0.92)' }}>
+              <span style={{ display: 'block', color: 'var(--c-text-1)' }}>
                 What we&apos;re
               </span>
-              <span style={{ display: 'block', color: 'rgba(255,255,255,0.40)' }}>
+              <span style={{ display: 'block', color: 'var(--c-text-3)' }}>
                 building.
               </span>
             </motion.h2>
@@ -461,14 +512,14 @@ export default function Products() {
             >
               {/* Featured: VoicePencil col-span-8 */}
               <div style={{ ...GRID_STYLES[featured.name] }}>
-                <GlassCard tilt style={{ background: CARD_GRADIENTS[featured.name] }}>
+                <GlassCard tilt>
                   <CardContent product={featured} isFeatured />
                 </GlassCard>
               </div>
 
               {rest.map((product) => (
                 <div key={product.name} style={{ ...GRID_STYLES[product.name] }}>
-                  <GlassCard tilt style={{ background: CARD_GRADIENTS[product.name] }}>
+                  <GlassCard tilt>
                     <CardContent product={product} />
                   </GlassCard>
                 </div>

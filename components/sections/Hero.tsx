@@ -1,18 +1,11 @@
 'use client'
 
 import React from 'react'
-import dynamic from 'next/dynamic'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { GlowButton } from '@/components/ui/GlowButton'
 import { SectionLabel } from '@/components/ui/SectionLabel'
 import { FADE_UP, STAGGER_CONTAINER } from '@/lib/motion'
 import { scrollToSection } from '@/lib/utils'
-
-// Keep the import but don't render — mesh replaces particles
-const _ParticleCanvas = dynamic(
-  () => import('@/components/ui/ParticleCanvas').then((m) => m.ParticleCanvas),
-  { ssr: false }
-)
 
 // ─── Letter-by-letter reveal ─────────────────────────────────────────────────
 interface LetterRevealProps {
@@ -43,7 +36,7 @@ function LetterReveal({ text, baseDelay, style }: LetterRevealProps) {
   )
 }
 
-// ─── Gradient Mesh Visual (right column) ─────────────────────────────────────
+// ─── Gradient Mesh Visual (right column) — reduced opacity for light bg ──────
 function GradientMesh() {
   return (
     <div
@@ -56,14 +49,14 @@ function GradientMesh() {
         pointerEvents: 'none',
       }}
     >
-      {/* Blob 1 — hot pink */}
+      {/* Blob 1 — hot pink, lower opacity for light bg */}
       <div
         style={{
           position: 'absolute',
           width: '400px',
           height: '400px',
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(248,87,166,0.4) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(248,87,166,0.22) 0%, transparent 70%)',
           top: '10%',
           right: '5%',
           filter: 'blur(60px)',
@@ -77,7 +70,7 @@ function GradientMesh() {
           width: '350px',
           height: '350px',
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(139,92,246,0.5) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(139,92,246,0.25) 0%, transparent 70%)',
           top: '30%',
           right: '20%',
           filter: 'blur(50px)',
@@ -91,7 +84,7 @@ function GradientMesh() {
           width: '300px',
           height: '300px',
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(34,211,238,0.35) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(34,211,238,0.20) 0%, transparent 70%)',
           bottom: '15%',
           right: '10%',
           filter: 'blur(55px)',
@@ -105,7 +98,7 @@ function GradientMesh() {
           width: '250px',
           height: '250px',
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(255,107,53,0.3) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(255,107,53,0.18) 0%, transparent 70%)',
           top: '5%',
           right: '35%',
           filter: 'blur(45px)',
@@ -205,7 +198,7 @@ export default function Hero() {
                 gap: '28px',
               }}
             >
-              {/* Eyebrow stat pill */}
+              {/* Eyebrow stat pill — cream bg with subtle border */}
               <motion.div variants={FADE_UP}>
                 <span
                   style={{
@@ -214,8 +207,8 @@ export default function Hero() {
                     gap: '8px',
                     padding: '6px 14px',
                     borderRadius: '9999px',
-                    border: '1px solid rgba(255,255,255,0.10)',
-                    background: 'rgba(255,255,255,0.04)',
+                    border: '1px solid var(--c-border)',
+                    background: 'var(--c-bg-card)',
                     fontFamily: 'var(--font-geist), sans-serif',
                     fontSize: '13px',
                     fontWeight: 500,
@@ -237,7 +230,7 @@ export default function Hero() {
                 </span>
               </motion.div>
 
-              {/* H1 — ghost headline */}
+              {/* H1 — ghost headline on cream bg */}
               <motion.h1
                 variants={FADE_UP}
                 className="hero-h1"
@@ -252,16 +245,16 @@ export default function Hero() {
                 }}
                 aria-label="We don't consult. We create. Then we ship."
               >
-                {/* Line 1 — full opacity */}
-                <span style={{ display: 'block', color: 'rgba(255,255,255,0.92)' }}>
+                {/* Line 1 — full dark */}
+                <span style={{ display: 'block', color: 'var(--c-text-1)' }}>
                   <LetterReveal text="We don't consult." baseDelay={0.4} />
                 </span>
-                {/* Line 2 — ghost 40% */}
-                <span style={{ display: 'block', color: 'rgba(255,255,255,0.40)' }}>
+                {/* Line 2 — ghost 35% */}
+                <span style={{ display: 'block', color: 'var(--c-text-3)' }}>
                   <LetterReveal text="We create." baseDelay={1.0} />
                 </span>
-                {/* Line 3 — ghost 40% */}
-                <span style={{ display: 'block', color: 'rgba(255,255,255,0.40)' }}>
+                {/* Line 3 — ghost 35% */}
+                <span style={{ display: 'block', color: 'var(--c-text-3)' }}>
                   <LetterReveal text="Then we ship." baseDelay={1.55} />
                 </span>
               </motion.h1>
@@ -273,7 +266,7 @@ export default function Hero() {
                   fontFamily: 'var(--font-dm-sans), sans-serif',
                   fontWeight: 400,
                   fontSize: '18px',
-                  color: 'rgba(255,255,255,0.56)',
+                  color: 'var(--c-text-2)',
                   maxWidth: '480px',
                   lineHeight: 1.6,
                   textAlign: 'left',

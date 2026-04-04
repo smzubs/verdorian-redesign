@@ -1,56 +1,57 @@
 @import "tailwindcss";
 
-/* ─── DESIGN SYSTEM: VOID FORGE (Stripe-adapted) ────────────────── */
+/* ─── DESIGN SYSTEM: PREMIUM LIGHT CREAM + PURPLE ───────────────── */
 :root {
-  /* Backgrounds — alternating rhythm like Stripe */
-  --c-bg-base:    #08090a;   /* page base */
-  --c-bg-hero:    #010102;   /* hero — darkest, bookend */
-  --c-bg-alt:     #0c0d14;   /* blue-tinted dark — alternates with base */
-  --c-bg-panel:   #0c0d14;   /* alias for alt */
-  --c-bg-card:    #141516;   /* card surface */
-  --c-bg-elevated:#191a1b;   /* card hover */
+  /* ── Backgrounds ── */
+  --c-bg-base:     #FAF7F2;    /* warm cream — primary bg */
+  --c-bg-hero:     #F5F0E8;    /* warm cream darker — hero */
+  --c-bg-alt:      #F0EBE1;    /* cream warm — alternating sections */
+  --c-bg-card:     #FFFFFF;    /* pure white cards — float above cream */
+  --c-bg-elevated: #FFFFFF;    /* elevated state (shadow does the work) */
+  --c-bg-dark:     #1a1a2e;    /* dark footer bookend */
 
   /* Keep old names as aliases for backward compat */
-  --c-abyss:    var(--c-bg-hero);
+  --c-abyss:    var(--c-bg-dark);
   --c-void:     var(--c-bg-base);
-  --c-obsidian: var(--c-bg-panel);
+  --c-obsidian: var(--c-bg-alt);
   --c-forge:    var(--c-bg-card);
   --c-rim:      var(--c-bg-elevated);
 
-  /* Accents */
-  --c-plasma:   #8B5CF6;
-  --c-arc:      #22D3EE;
-  --c-ember:    #F59E0B;
+  /* ── Brand Accent ── */
+  --c-plasma:       #8B5CF6;   /* primary purple */
+  --c-plasma-dark:  #7C4DFF;   /* hover purple */
+  --c-plasma-light: #A78BFA;   /* light purple for subtle fills */
+  --c-arc:          #22D3EE;   /* secondary cyan */
+  --c-ember:        #F59E0B;   /* amber for live/in-development badges */
 
-  /* Ghost surface */
-  --c-ghost:    rgba(255, 255, 255, 0.06);
+  /* ── Text (dark on light) ── */
+  --c-text-1:   #1a1a2e;                    /* primary — near black with blue tint */
+  --c-text-2:   rgba(26, 26, 46, 0.55);     /* body text */
+  --c-text-3:   rgba(26, 26, 46, 0.35);     /* muted/meta */
 
-  /* Text — opacity-based system */
-  --c-text-1:   rgba(255, 255, 255, 0.92);
-  --c-text-2:   rgba(255, 255, 255, 0.56);
-  --c-text-3:   rgba(255, 255, 255, 0.30);
+  /* ── Borders ── */
+  --c-border:       #E8E3DA;                    /* warm cream border */
+  --c-border-hover: rgba(139, 92, 246, 0.25);   /* purple tint on hover */
 
-  /* Borders */
-  --c-border:       rgba(255, 255, 255, 0.06);
-  --c-border-hover: rgba(255, 255, 255, 0.10);
+  /* ── Ghost surface ── */
+  --c-ghost: rgba(139, 92, 246, 0.04);
 
-  /* Stripe's blue-tinted directional double shadow */
-  --shadow-card:       0 13px 27px -5px rgba(50, 50, 93, 0.15),
-                       0 8px 16px -8px rgba(0, 0, 0, 0.20);
-  --shadow-card-hover: 0 20px 40px -8px rgba(50, 50, 93, 0.25),
-                       0 12px 24px -12px rgba(0, 0, 0, 0.30);
+  /* ── Shadows — purple-tinted ── */
+  --shadow-sm:         0 1px 2px rgba(139, 92, 246, 0.04);
+  --shadow-card:       0 4px 24px rgba(139, 92, 246, 0.06);
+  --shadow-card-hover: 0 20px 60px rgba(139, 92, 246, 0.12);
+  --shadow-button:     0 8px 30px rgba(139, 92, 246, 0.25);
 
-  /* Legacy glow shadows */
+  /* Legacy aliases */
   --glow-plasma: 0 0 0 1px rgba(139, 92, 246, 0.3), 0 4px 24px rgba(139, 92, 246, 0.1);
   --glow-arc:    0 0 0 1px rgba(34, 211, 238, 0.3), 0 4px 24px rgba(34, 211, 238, 0.1);
   --glow-card:   none;
 
-  /* Gradients */
-  --grad-border: linear-gradient(135deg, var(--c-plasma), var(--c-arc));
+  /* ── Gradients ── */
   --grad-text:   linear-gradient(120deg, var(--c-plasma) 0%, var(--c-arc) 100%);
-  --grad-hero:   radial-gradient(ellipse 60% 40% at 50% 0%, rgba(139, 92, 246, 0.15) 0%, transparent 60%), radial-gradient(ellipse 80% 50% at 80% 20%, rgba(34, 211, 238, 0.08) 0%, transparent 50%);
+  --grad-border: linear-gradient(135deg, var(--c-plasma), var(--c-arc));
 
-  /* Typography tracking */
+  /* ── Typography tracking ── */
   --track-hero:     -0.02em;
   --track-display:  -0.015em;
   --track-h2:       -0.01em;
@@ -60,7 +61,7 @@
   --track-sublabel:  0.06em;
   --track-eyebrow:   0.14em;
 
-  /* Spacing (8pt grid) */
+  /* ── Spacing (8pt grid) ── */
   --sp-1: 8px;
   --sp-2: 16px;
   --sp-3: 24px;
@@ -70,18 +71,18 @@
   --sp-12: 96px;
   --sp-16: 128px;
 
-  /* Radius */
+  /* ── Radius ── */
   --r-sm: 8px;
   --r-md: 16px;
   --r-lg: 24px;
   --r-pill: 9999px;
 
-  /* Easing */
+  /* ── Easing ── */
   --ease-expo: cubic-bezier(0.19, 1, 0.22, 1);
   --ease-back: cubic-bezier(0.34, 1.56, 0.64, 1);
   --ease-silk: cubic-bezier(0.25, 0.46, 0.45, 0.94);
 
-  /* Typography scale */
+  /* ── Typography scale ── */
   --t-hero:    clamp(48px, 6.5vw, 88px);
   --t-h2:      clamp(36px, 5vw, 72px);
   --t-h3:      clamp(20px, 2.5vw, 28px);
@@ -115,14 +116,15 @@ body {
   min-height: 100svh;
 }
 
-/* ─── GRAIN OVERLAY ──────────────────────────────────────────── */
+/* ─── GRAIN OVERLAY — mix-blend-mode: overlay for light theme ─── */
 body::after {
   content: '';
   position: fixed;
   inset: 0;
   z-index: 9999;
   pointer-events: none;
-  opacity: 0.035;
+  opacity: 0.018;
+  mix-blend-mode: overlay;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
   background-size: 200px 200px;
   animation: grainShift 0.5s steps(2) infinite;
@@ -134,10 +136,10 @@ body::after {
   100% { transform: translate(1%, 2%); }
 }
 
-/* ─── SCROLLBAR ──────────────────────────────────────────────── */
+/* ─── SCROLLBAR — purple on cream ───────────────────────────── */
 html {
   scrollbar-width: thin;
-  scrollbar-color: var(--c-plasma) transparent;
+  scrollbar-color: rgba(139, 92, 246, 0.3) transparent;
 }
 
 ::-webkit-scrollbar {
@@ -149,13 +151,13 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--c-plasma);
+  background: rgba(139, 92, 246, 0.3);
   border-radius: var(--r-pill);
 }
 
-/* ─── SELECTION ──────────────────────────────────────────────── */
+/* ─── SELECTION — purple tint ────────────────────────────────── */
 ::selection {
-  background: rgba(139, 92, 246, 0.4);
+  background: rgba(139, 92, 246, 0.15);
   color: var(--c-text-1);
 }
 
@@ -175,7 +177,7 @@ html {
   color: #ffffff;
   padding: 8px 16px;
   border-radius: 0 0 8px 0;
-  font-family: var(--font-dm-sans), sans-serif;
+  font-family: var(--font-geist), sans-serif;
   font-weight: 500;
   font-size: 14px;
   text-decoration: none;
@@ -215,6 +217,24 @@ html {
 @keyframes meshDrift4 {
   0%, 100% { transform: translate(0, 0); }
   50%       { transform: translate(-20px, -15px); }
+}
+
+/* ─── AMBIENT ORB KEYFRAMES ──────────────────────────────────── */
+@keyframes orbDrift1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%       { transform: translate(-30px, 20px) scale(1.05); }
+  66%       { transform: translate(20px, -15px) scale(0.97); }
+}
+
+@keyframes orbDrift2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%       { transform: translate(35px, -25px) scale(1.08); }
+}
+
+@keyframes orbDrift3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  40%       { transform: translate(-20px, 30px) scale(0.95); }
+  80%       { transform: translate(15px, -20px) scale(1.03); }
 }
 
 /* ─── RESPONSIVE SECTION PADDING ────────────────────────────── */

@@ -8,6 +8,8 @@ interface InfiniteMarqueeProps {
   speed?: string
   gap?: string
   className?: string
+  /** CSS color value to fade edges to — defaults to var(--c-bg-alt) for TechStack */
+  edgeColor?: string
 }
 
 export function InfiniteMarquee({
@@ -15,11 +17,12 @@ export function InfiniteMarquee({
   speed = '60s',
   gap = '40px',
   className,
+  edgeColor = 'var(--c-bg-alt)',
 }: InfiniteMarqueeProps) {
   const id = useId()
   const animationId = `marquee-${id.replace(/:/g, '')}`
 
-  // Duplicate items for seamless loop — use half/index composite key to avoid duplicates
+  // Duplicate items for seamless loop
   const firstHalf = items.map((item, i) => ({ item, key: `a-${i}` }))
   const secondHalf = items.map((item, i) => ({ item, key: `b-${i}` }))
   const doubled = [...firstHalf, ...secondHalf]
@@ -28,10 +31,8 @@ export function InfiniteMarquee({
     <div
       className={cn('relative overflow-hidden', className)}
       style={{
-        maskImage:
-          'linear-gradient(to right, transparent, var(--c-void) 10%, var(--c-void) 90%, transparent)',
-        WebkitMaskImage:
-          'linear-gradient(to right, transparent, var(--c-void) 10%, var(--c-void) 90%, transparent)',
+        maskImage: `linear-gradient(to right, transparent, ${edgeColor} 10%, ${edgeColor} 90%, transparent)`,
+        WebkitMaskImage: `linear-gradient(to right, transparent, ${edgeColor} 10%, ${edgeColor} 90%, transparent)`,
       }}
     >
       <style>{`

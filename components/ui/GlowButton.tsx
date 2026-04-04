@@ -21,6 +21,7 @@ const SIZE_STYLES: Record<Size, React.CSSProperties> = {
   lg: { padding: '12px 24px', fontSize: '16px' },
 }
 
+// Primary: solid purple on cream
 const PRIMARY_BASE: React.CSSProperties = {
   backgroundColor: 'var(--c-plasma)',
   color: '#ffffff',
@@ -28,7 +29,7 @@ const PRIMARY_BASE: React.CSSProperties = {
   borderRadius: '20px',
   fontWeight: 600,
   boxShadow: 'none',
-  transition: 'background-color 150ms ease, transform 150ms ease',
+  transition: 'background-color 150ms ease, box-shadow 150ms ease, transform 150ms ease',
   display: 'inline-flex',
   alignItems: 'center',
   cursor: 'pointer',
@@ -36,10 +37,11 @@ const PRIMARY_BASE: React.CSSProperties = {
   whiteSpace: 'nowrap',
 }
 
+// Ghost: dark border on cream bg
 const GHOST_BASE: React.CSSProperties = {
   background: 'transparent',
-  color: 'rgba(255,255,255,0.85)',
-  border: '1.5px solid rgba(255,255,255,0.30)',
+  color: 'var(--c-text-1)',
+  border: '1.5px solid rgba(26, 26, 46, 0.20)',
   borderRadius: '20px',
   fontWeight: 600,
   boxShadow: 'none',
@@ -84,7 +86,6 @@ export function GlowButton({
   onClick,
   className,
 }: GlowButtonProps) {
-  // We animate the arrow container span on hover, not the SVG directly
   const arrowSpanRef = useRef<HTMLSpanElement>(null)
 
   const baseStyle: React.CSSProperties =
@@ -95,14 +96,15 @@ export function GlowButton({
   const handleMouseEnter = (e: React.MouseEvent<HTMLElement>) => {
     const el = e.currentTarget
     if (variant === 'primary') {
-      el.style.backgroundColor = '#7C4DFF'
+      el.style.backgroundColor = 'var(--c-plasma-dark)'
+      el.style.boxShadow = 'var(--shadow-button)'
       el.style.transform = 'translateY(-1px)'
       if (arrowSpanRef.current) {
         arrowSpanRef.current.style.transform = 'translateX(2px)'
       }
     } else {
-      el.style.borderColor = 'rgba(255,255,255,0.70)'
-      el.style.color = '#ffffff'
+      el.style.borderColor = 'rgba(26, 26, 46, 0.45)'
+      el.style.color = 'var(--c-text-1)'
     }
   }
 
@@ -110,13 +112,14 @@ export function GlowButton({
     const el = e.currentTarget
     if (variant === 'primary') {
       el.style.backgroundColor = 'var(--c-plasma)'
+      el.style.boxShadow = 'none'
       el.style.transform = 'translateY(0)'
       if (arrowSpanRef.current) {
         arrowSpanRef.current.style.transform = 'translateX(0)'
       }
     } else {
-      el.style.borderColor = 'rgba(255,255,255,0.30)'
-      el.style.color = 'rgba(255,255,255,0.85)'
+      el.style.borderColor = 'rgba(26, 26, 46, 0.20)'
+      el.style.color = 'var(--c-text-1)'
       el.style.transform = 'translateY(0)'
     }
   }

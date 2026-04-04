@@ -22,12 +22,32 @@ const ICON_MAP: Record<string, TablerIcon> = {
   IconCloud,
 }
 
-// Ambient glow color per service icon
-const GLOW_COLORS: Record<string, string> = {
-  IconDeviceMobile: 'var(--c-plasma)',
-  IconBrowser: 'var(--c-arc)',
-  IconBrain: 'var(--c-ember)',
-  IconCloud: 'var(--c-plasma)',
+// Icon accent colors per service — purple-family for light theme
+const ICON_STYLES: Record<string, { bg: string; border: string; color: string; orb: string }> = {
+  IconDeviceMobile: {
+    bg: 'rgba(139, 92, 246, 0.08)',
+    border: 'rgba(139, 92, 246, 0.18)',
+    color: 'var(--c-plasma)',
+    orb: 'rgba(139, 92, 246, 0.05)',
+  },
+  IconBrowser: {
+    bg: 'rgba(34, 211, 238, 0.08)',
+    border: 'rgba(34, 211, 238, 0.20)',
+    color: 'var(--c-arc)',
+    orb: 'rgba(34, 211, 238, 0.05)',
+  },
+  IconBrain: {
+    bg: 'rgba(245, 158, 11, 0.08)',
+    border: 'rgba(245, 158, 11, 0.20)',
+    color: 'var(--c-ember)',
+    orb: 'rgba(245, 158, 11, 0.05)',
+  },
+  IconCloud: {
+    bg: 'rgba(139, 92, 246, 0.08)',
+    border: 'rgba(139, 92, 246, 0.18)',
+    color: 'var(--c-plasma)',
+    orb: 'rgba(139, 92, 246, 0.05)',
+  },
 }
 
 export default function Services() {
@@ -72,10 +92,10 @@ export default function Services() {
                 lineHeight: 1.1,
               }}
             >
-              <span style={{ display: 'block', color: 'rgba(255,255,255,0.92)' }}>
+              <span style={{ display: 'block', color: 'var(--c-text-1)' }}>
                 What we
               </span>
-              <span style={{ display: 'block', color: 'rgba(255,255,255,0.40)' }}>
+              <span style={{ display: 'block', color: 'var(--c-text-3)' }}>
                 do.
               </span>
             </motion.h2>
@@ -92,7 +112,7 @@ export default function Services() {
           >
             {SERVICES.map((service, i) => {
               const IconComponent = ICON_MAP[service.icon]
-              const glowColor = GLOW_COLORS[service.icon] ?? 'var(--c-plasma)'
+              const iconStyle = ICON_STYLES[service.icon] ?? ICON_STYLES['IconDeviceMobile']!
 
               return (
                 <motion.div key={service.name} variants={FADE_UP} custom={i}>
@@ -104,7 +124,7 @@ export default function Services() {
                         overflow: 'hidden',
                       }}
                     >
-                      {/* Corner glow orb — subtle ambient */}
+                      {/* Corner glow orb — very subtle purple tint for light theme */}
                       <div
                         aria-hidden="true"
                         style={{
@@ -114,8 +134,7 @@ export default function Services() {
                           width: '160px',
                           height: '160px',
                           borderRadius: '9999px',
-                          background: glowColor,
-                          opacity: 0.10,
+                          background: iconStyle.orb,
                           filter: 'blur(80px)',
                           pointerEvents: 'none',
                         }}
@@ -128,8 +147,8 @@ export default function Services() {
                           width: '56px',
                           height: '56px',
                           borderRadius: 'var(--r-md)',
-                          background: 'rgba(255,255,255,0.05)',
-                          border: '1px solid rgba(255,255,255,0.08)',
+                          background: iconStyle.bg,
+                          border: `1px solid ${iconStyle.border}`,
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
@@ -140,7 +159,7 @@ export default function Services() {
                           <IconComponent
                             size={28}
                             stroke={1.5}
-                            style={{ color: 'var(--c-plasma)' }}
+                            style={{ color: iconStyle.color }}
                           />
                         )}
                       </div>

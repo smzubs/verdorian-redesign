@@ -58,7 +58,7 @@ export function GlassCard({
     setIsHovered(true)
     if (cardRef.current) {
       cardRef.current.style.boxShadow = 'var(--shadow-card-hover)'
-      cardRef.current.style.borderColor = 'rgba(255,255,255,0.10)'
+      cardRef.current.style.borderColor = 'var(--c-border-hover)'
     }
   }, [])
 
@@ -67,15 +67,15 @@ export function GlassCard({
     setTransform('')
     if (cardRef.current) {
       cardRef.current.style.boxShadow = 'var(--shadow-card)'
-      cardRef.current.style.borderColor = 'rgba(255,255,255,0.06)'
+      cardRef.current.style.borderColor = 'var(--c-border)'
     }
   }, [])
 
   const cardStyle: React.CSSProperties = {
     ...externalStyle,
     background: externalStyle?.background ?? 'var(--c-bg-card)',
-    border: '1px solid rgba(255,255,255,0.06)',
-    borderRadius: '16px',
+    border: '1px solid var(--c-border)',
+    borderRadius: '20px',
     boxShadow: 'var(--shadow-card)',
     overflow: 'hidden',
     position: 'relative',

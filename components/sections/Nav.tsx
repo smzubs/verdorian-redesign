@@ -53,12 +53,12 @@ export default function Nav() {
           zIndex: 1000,
           transition: 'background 0.4s var(--ease-expo), border-color 0.4s var(--ease-expo)',
           background: scrolled
-            ? 'rgba(8, 9, 10, 0.85)'
+            ? 'rgba(250, 247, 242, 0.90)'
             : 'transparent',
-          backdropFilter: scrolled ? 'blur(12px)' : 'none',
-          WebkitBackdropFilter: scrolled ? 'blur(12px)' : 'none',
+          backdropFilter: scrolled ? 'blur(20px) saturate(180%)' : 'none',
+          WebkitBackdropFilter: scrolled ? 'blur(20px) saturate(180%)' : 'none',
           borderBottom: scrolled
-            ? '1px solid rgba(255,255,255,0.06)'
+            ? '1px solid var(--c-border)'
             : '1px solid transparent',
         }}
       >
@@ -186,7 +186,7 @@ export default function Nav() {
               className="flex md:hidden"
               style={{
                 background: 'none',
-                border: '1px solid rgba(255,255,255,0.1)',
+                border: '1px solid var(--c-border)',
                 borderRadius: 'var(--r-sm)',
                 cursor: 'pointer',
                 width: '44px',
@@ -237,7 +237,7 @@ export default function Nav() {
         </div>
       </nav>
 
-      {/* Mobile overlay menu */}
+      {/* Mobile overlay menu — cream bg, dark text */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
@@ -253,7 +253,7 @@ export default function Nav() {
               position: 'fixed',
               inset: 0,
               zIndex: 999,
-              background: 'rgba(8,9,10,0.97)',
+              background: 'rgba(250, 247, 242, 0.97)',
               backdropFilter: 'blur(24px)',
               WebkitBackdropFilter: 'blur(24px)',
               display: 'flex',
