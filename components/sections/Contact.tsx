@@ -4,8 +4,6 @@ import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import { IconMail, IconMapPin, IconCheck } from '@tabler/icons-react'
 import { GlassCard } from '@/components/ui/GlassCard'
-import { GlowButton } from '@/components/ui/GlowButton'
-import { GradientText } from '@/components/ui/GradientText'
 import { SectionLabel } from '@/components/ui/SectionLabel'
 import { FADE_UP, STAGGER_CONTAINER } from '@/lib/motion'
 
@@ -34,7 +32,7 @@ export default function Contact() {
     width: '100%',
     background: 'rgba(255,255,255,0.04)',
     border: '1px solid rgba(255,255,255,0.08)',
-    borderRadius: 'var(--r-md)',
+    borderRadius: '12px',
     padding: '12px 16px',
     minHeight: '48px',
     fontFamily: 'var(--font-dm-sans), sans-serif',
@@ -47,7 +45,7 @@ export default function Contact() {
 
   const handleInputFocus = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     e.currentTarget.style.borderColor = 'var(--c-plasma)'
-    e.currentTarget.style.boxShadow = '0 0 0 3px rgba(139,92,246,0.15)'
+    e.currentTarget.style.boxShadow = '0 0 0 3px rgba(139,92,246,0.12)'
   }
 
   const handleInputBlur = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -60,23 +58,24 @@ export default function Contact() {
       id="contact"
       aria-label="Contact Verdorian Technologies"
       style={{
-        paddingTop: '200px',
-        paddingBottom: '200px',
+        paddingTop: '160px',
+        paddingBottom: '160px',
         position: 'relative',
         overflow: 'hidden',
+        background: 'linear-gradient(135deg, rgba(139,92,246,0.08) 0%, rgba(34,211,238,0.04) 100%), var(--c-bg-base)',
       }}
     >
-      {/* Background arc glow */}
+      {/* Background ambient glow */}
       <div
         aria-hidden="true"
         style={{
           position: 'absolute',
-          width: '500px',
-          height: '500px',
+          width: '600px',
+          height: '400px',
           borderRadius: '9999px',
-          background: 'var(--c-arc)',
-          opacity: 0.08,
-          filter: 'blur(160px)',
+          background: 'var(--c-plasma)',
+          opacity: 0.04,
+          filter: 'blur(120px)',
           top: '50%',
           left: '50%',
           transform: 'translate(-50%, -50%)',
@@ -112,7 +111,7 @@ export default function Contact() {
             <SectionLabel>LET&apos;S BUILD TOGETHER</SectionLabel>
           </motion.div>
 
-          {/* H2 */}
+          {/* H2 — ghost headline */}
           <motion.h2
             variants={FADE_UP}
             style={{
@@ -121,15 +120,14 @@ export default function Contact() {
               fontSize: 'var(--t-h2)',
               letterSpacing: 'var(--track-h2)',
               lineHeight: 1.1,
-              textWrap: 'balance',
               margin: '24px 0 0',
             }}
           >
-            <span style={{ display: 'block', color: 'var(--c-text-1)' }}>
-              Let&apos;s Build
+            <span style={{ display: 'block', color: 'rgba(255,255,255,0.92)' }}>
+              Let&apos;s build
             </span>
-            <span style={{ display: 'block' }}>
-              <GradientText as="span">Something Great.</GradientText>
+            <span style={{ display: 'block', color: 'rgba(255,255,255,0.40)' }}>
+              something great.
             </span>
           </motion.h2>
 
@@ -167,7 +165,7 @@ export default function Contact() {
                 alignItems: 'center',
                 gap: '8px',
                 padding: '10px 20px',
-                background: 'var(--c-forge)',
+                background: 'var(--c-bg-card)',
                 border: '1px solid rgba(255,255,255,0.08)',
                 borderRadius: 'var(--r-pill)',
                 fontFamily: 'var(--font-dm-sans), sans-serif',
@@ -197,7 +195,7 @@ export default function Contact() {
                 alignItems: 'center',
                 gap: '8px',
                 padding: '10px 20px',
-                background: 'var(--c-forge)',
+                background: 'var(--c-bg-card)',
                 border: '1px solid rgba(255,255,255,0.08)',
                 borderRadius: 'var(--r-pill)',
                 fontFamily: 'var(--font-dm-sans), sans-serif',
@@ -273,7 +271,7 @@ export default function Contact() {
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit} noValidate>
-                    {/* Row 1: Name + Email — stacks vertically on mobile */}
+                    {/* Row 1: Name + Email */}
                     <div className="contact-name-email-row">
                       <div style={{ flex: '1 1 180px', minWidth: 0 }}>
                         <label htmlFor="contact-name" className="sr-only">
@@ -351,45 +349,49 @@ export default function Contact() {
                       />
                     </div>
 
-                    {/* Row 3: Submit */}
+                    {/* Row 3: Submit — solid purple pill */}
                     <button
                       type="submit"
                       aria-label="Send your message to Verdorian Technologies"
                       style={{
                         width: '100%',
-                        background: 'linear-gradient(104deg, rgba(253,253,253,0.05) 5%, rgba(240,240,228,0.10) 100%)',
-                        WebkitBackdropFilter: 'blur(25px)',
-                        backdropFilter: 'blur(25px)',
-                        color: 'rgba(255,255,255,0.92)',
-                        borderRadius: '12px',
-                        border: '1.5px solid rgba(255,255,255,0.08)',
-                        boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.06), 0 1px 2px rgba(0,0,0,0.2)',
-                        padding: '12px 28px',
+                        backgroundColor: 'var(--c-plasma)',
+                        color: '#ffffff',
+                        border: 'none',
+                        borderRadius: '20px',
+                        padding: '12px 24px',
                         minHeight: '48px',
                         fontFamily: 'var(--font-geist), sans-serif',
-                        fontWeight: 500,
+                        fontWeight: 600,
                         fontSize: '16px',
                         cursor: 'pointer',
-                        transition: 'all 0.25s var(--ease-expo)',
+                        transition: 'background-color 150ms ease, transform 150ms ease',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        gap: '6px',
                       }}
                       onMouseEnter={(e) => {
                         const el = e.currentTarget as HTMLButtonElement
-                        el.style.background = 'rgba(255, 255, 255, 0.92)'
-                        el.style.color = '#000000'
-                        el.style.borderColor = 'rgba(255,255,255,0.92)'
-                        el.style.boxShadow = '0 4px 16px rgba(255,255,255,0.15)'
+                        el.style.backgroundColor = '#7C4DFF'
                         el.style.transform = 'translateY(-1px)'
                       }}
                       onMouseLeave={(e) => {
                         const el = e.currentTarget as HTMLButtonElement
-                        el.style.background = 'linear-gradient(104deg, rgba(253,253,253,0.05) 5%, rgba(240,240,228,0.10) 100%)'
-                        el.style.color = 'rgba(255,255,255,0.92)'
-                        el.style.borderColor = 'rgba(255,255,255,0.08)'
-                        el.style.boxShadow = 'inset 0 1px 0 rgba(255,255,255,0.06), 0 1px 2px rgba(0,0,0,0.2)'
+                        el.style.backgroundColor = 'var(--c-plasma)'
                         el.style.transform = 'translateY(0)'
                       }}
+                      onMouseDown={(e) => {
+                        (e.currentTarget as HTMLButtonElement).style.transform = 'translateY(0) scale(0.98)'
+                      }}
+                      onMouseUp={(e) => {
+                        (e.currentTarget as HTMLButtonElement).style.transform = 'translateY(-1px) scale(1)'
+                      }}
                     >
-                      Send Message →
+                      Send Message
+                      <svg width="6" height="10" viewBox="0 0 6 10" fill="none" aria-hidden="true">
+                        <path d="M1 1l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
                     </button>
                   </form>
                 )}

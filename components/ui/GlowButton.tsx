@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useRef } from 'react'
 import { cn } from '@/lib/utils'
 
 type Variant = 'primary' | 'ghost' | 'outline'
@@ -15,43 +15,65 @@ interface GlowButtonProps {
   className?: string
 }
 
-const sizeClasses: Record<Size, string> = {
-  sm: 'px-4 py-2 text-sm',
-  md: 'px-5 py-2.5 text-sm',
-  lg: 'px-6 py-3 text-base',
+const SIZE_STYLES: Record<Size, React.CSSProperties> = {
+  sm: { padding: '8px 16px', fontSize: '14px' },
+  md: { padding: '10px 20px', fontSize: '16px' },
+  lg: { padding: '12px 24px', fontSize: '16px' },
 }
 
-const baseStyles =
-  'relative inline-flex items-center justify-center select-none cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--c-plasma)]'
-
-const PRIMARY_INITIAL: React.CSSProperties = {
-  background: 'linear-gradient(104deg, rgba(253,253,253,0.05) 5%, rgba(240,240,228,0.10) 100%)',
-  WebkitBackdropFilter: 'blur(25px)',
-  backdropFilter: 'blur(25px)',
-  border: '1.5px solid rgba(255,255,255,0.08)',
-  borderRadius: '12px',
-  boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.06), 0 1px 2px rgba(0,0,0,0.2)',
-  color: 'rgba(255,255,255,0.92)',
-  backgroundOrigin: 'border-box',
-  fontWeight: 500,
-}
-
-const GHOST_INITIAL: React.CSSProperties = {
-  background: 'transparent',
-  border: '1.5px solid rgba(255,255,255,0.08)',
-  borderRadius: '12px',
-  color: 'rgba(255,255,255,0.56)',
+const PRIMARY_BASE: React.CSSProperties = {
+  backgroundColor: 'var(--c-plasma)',
+  color: '#ffffff',
+  border: 'none',
+  borderRadius: '20px',
+  fontWeight: 600,
   boxShadow: 'none',
-  fontWeight: 500,
+  transition: 'background-color 150ms ease, transform 150ms ease',
+  display: 'inline-flex',
+  alignItems: 'center',
+  cursor: 'pointer',
+  textDecoration: 'none',
+  whiteSpace: 'nowrap',
 }
 
-const OUTLINE_INITIAL: React.CSSProperties = {
+const GHOST_BASE: React.CSSProperties = {
   background: 'transparent',
-  border: '1.5px solid rgba(139, 92, 246, 0.35)',
-  borderRadius: '12px',
-  color: 'var(--c-plasma)',
+  color: 'rgba(255,255,255,0.85)',
+  border: '1.5px solid rgba(255,255,255,0.30)',
+  borderRadius: '20px',
+  fontWeight: 600,
   boxShadow: 'none',
-  fontWeight: 500,
+  transition: 'border-color 150ms ease, color 150ms ease, transform 150ms ease',
+  display: 'inline-flex',
+  alignItems: 'center',
+  cursor: 'pointer',
+  textDecoration: 'none',
+  whiteSpace: 'nowrap',
+}
+
+const baseClass =
+  'select-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--c-plasma)]'
+
+// Arrow SVG — animated via ref on the parent span
+function ArrowSvg() {
+  return (
+    <svg
+      width="6"
+      height="10"
+      viewBox="0 0 6 10"
+      fill="none"
+      aria-hidden="true"
+      style={{ flexShrink: 0 }}
+    >
+      <path
+        d="M1 1l4 4-4 4"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  )
 }
 
 export function GlowButton({
@@ -62,47 +84,40 @@ export function GlowButton({
   onClick,
   className,
 }: GlowButtonProps) {
-  const variantStyle: React.CSSProperties =
+  // We animate the arrow container span on hover, not the SVG directly
+  const arrowSpanRef = useRef<HTMLSpanElement>(null)
+
+  const baseStyle: React.CSSProperties =
     variant === 'primary'
-      ? PRIMARY_INITIAL
-      : variant === 'ghost'
-        ? GHOST_INITIAL
-        : OUTLINE_INITIAL
+      ? { ...PRIMARY_BASE, ...SIZE_STYLES[size] }
+      : { ...GHOST_BASE, ...SIZE_STYLES[size] }
 
   const handleMouseEnter = (e: React.MouseEvent<HTMLElement>) => {
     const el = e.currentTarget
     if (variant === 'primary') {
-      el.style.background = 'rgba(255, 255, 255, 0.92)'
-      el.style.color = '#000000'
-      el.style.borderColor = 'rgba(255,255,255,0.92)'
-      el.style.boxShadow = '0 8px 30px rgba(255, 255, 255, 0.2)'
+      el.style.backgroundColor = '#7C4DFF'
       el.style.transform = 'translateY(-1px)'
-    } else if (variant === 'ghost') {
-      el.style.color = 'rgba(255,255,255,0.92)'
-      el.style.background = 'rgba(255,255,255,0.04)'
-      el.style.borderColor = 'rgba(255,255,255,0.15)'
+      if (arrowSpanRef.current) {
+        arrowSpanRef.current.style.transform = 'translateX(2px)'
+      }
     } else {
-      el.style.background = 'rgba(139, 92, 246, 0.10)'
-      el.style.borderColor = 'rgba(139, 92, 246, 0.55)'
+      el.style.borderColor = 'rgba(255,255,255,0.70)'
+      el.style.color = '#ffffff'
     }
   }
 
   const handleMouseLeave = (e: React.MouseEvent<HTMLElement>) => {
     const el = e.currentTarget
     if (variant === 'primary') {
-      el.style.background = 'linear-gradient(104deg, rgba(253,253,253,0.05) 5%, rgba(240,240,228,0.10) 100%)'
-      el.style.color = 'rgba(255,255,255,0.92)'
-      el.style.borderColor = 'rgba(255,255,255,0.08)'
-      el.style.boxShadow = 'inset 0 1px 0 rgba(255,255,255,0.06), 0 1px 2px rgba(0,0,0,0.2)'
+      el.style.backgroundColor = 'var(--c-plasma)'
       el.style.transform = 'translateY(0)'
-
-    } else if (variant === 'ghost') {
-      el.style.color = 'rgba(255,255,255,0.56)'
-      el.style.background = 'transparent'
-      el.style.borderColor = 'rgba(255,255,255,0.08)'
+      if (arrowSpanRef.current) {
+        arrowSpanRef.current.style.transform = 'translateX(0)'
+      }
     } else {
-      el.style.background = 'transparent'
-      el.style.borderColor = 'rgba(139, 92, 246, 0.35)'
+      el.style.borderColor = 'rgba(255,255,255,0.30)'
+      el.style.color = 'rgba(255,255,255,0.85)'
+      el.style.transform = 'translateY(0)'
     }
   }
 
@@ -118,14 +133,29 @@ export function GlowButton({
     }
   }
 
-  const transitionStyle: React.CSSProperties = {
-    transition: 'all 0.25s var(--ease-expo)',
-    ...variantStyle,
-  }
+  const content = (
+    <>
+      {children}
+      {variant === 'primary' && (
+        <span
+          ref={arrowSpanRef}
+          aria-hidden="true"
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            marginLeft: '6px',
+            transition: 'transform 150ms ease',
+          }}
+        >
+          <ArrowSvg />
+        </span>
+      )}
+    </>
+  )
 
   const sharedProps = {
-    className: cn(baseStyles, sizeClasses[size], className),
-    style: transitionStyle,
+    className: cn(baseClass, className),
+    style: baseStyle,
     onMouseEnter: handleMouseEnter,
     onMouseLeave: handleMouseLeave,
     onMouseDown: handleMouseDown,
@@ -135,14 +165,14 @@ export function GlowButton({
   if (href) {
     return (
       <a href={href} {...sharedProps}>
-        {children}
+        {content}
       </a>
     )
   }
 
   return (
     <button type="button" onClick={onClick} {...sharedProps}>
-      {children}
+      {content}
     </button>
   )
 }

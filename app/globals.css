@@ -1,13 +1,14 @@
 @import "tailwindcss";
 
-/* ─── DESIGN SYSTEM: VOID FORGE ─────────────────────────────── */
+/* ─── DESIGN SYSTEM: VOID FORGE (Stripe-adapted) ────────────────── */
 :root {
-  /* Backgrounds — Linear-inspired elevation layers */
-  --c-bg-base:    #08090a;   /* page base — near-invisible blue-black */
-  --c-bg-hero:    #010102;   /* hero — almost pure black for depth */
-  --c-bg-panel:   #0f1011;   /* section alternate bg */
+  /* Backgrounds — alternating rhythm like Stripe */
+  --c-bg-base:    #08090a;   /* page base */
+  --c-bg-hero:    #010102;   /* hero — darkest, bookend */
+  --c-bg-alt:     #0c0d14;   /* blue-tinted dark — alternates with base */
+  --c-bg-panel:   #0c0d14;   /* alias for alt */
   --c-bg-card:    #141516;   /* card surface */
-  --c-bg-elevated:#191a1b;   /* card hover / elevated */
+  --c-bg-elevated:#191a1b;   /* card hover */
 
   /* Keep old names as aliases for backward compat */
   --c-abyss:    var(--c-bg-hero);
@@ -16,42 +17,48 @@
   --c-forge:    var(--c-bg-card);
   --c-rim:      var(--c-bg-elevated);
 
-  /* Accents — keep */
+  /* Accents */
   --c-plasma:   #8B5CF6;
   --c-arc:      #22D3EE;
   --c-ember:    #F59E0B;
 
-  /* Ghost surface — bumped for glass to read */
+  /* Ghost surface */
   --c-ghost:    rgba(255, 255, 255, 0.06);
 
-  /* Text — opacity-based system (never pure white) */
-  --c-text-1:   rgba(255, 255, 255, 0.92);   /* primary — warm, not harsh */
-  --c-text-2:   rgba(255, 255, 255, 0.56);   /* body / secondary */
-  --c-text-3:   rgba(255, 255, 255, 0.30);   /* muted / meta / disabled */
+  /* Text — opacity-based system */
+  --c-text-1:   rgba(255, 255, 255, 0.92);
+  --c-text-2:   rgba(255, 255, 255, 0.56);
+  --c-text-3:   rgba(255, 255, 255, 0.30);
 
-  /* Borders — barely visible, felt not seen */
+  /* Borders */
   --c-border:       rgba(255, 255, 255, 0.06);
   --c-border-hover: rgba(255, 255, 255, 0.10);
 
-  /* Glow shadows — subtle, not heavy */
+  /* Stripe's blue-tinted directional double shadow */
+  --shadow-card:       0 13px 27px -5px rgba(50, 50, 93, 0.15),
+                       0 8px 16px -8px rgba(0, 0, 0, 0.20);
+  --shadow-card-hover: 0 20px 40px -8px rgba(50, 50, 93, 0.25),
+                       0 12px 24px -12px rgba(0, 0, 0, 0.30);
+
+  /* Legacy glow shadows */
   --glow-plasma: 0 0 0 1px rgba(139, 92, 246, 0.3), 0 4px 24px rgba(139, 92, 246, 0.1);
   --glow-arc:    0 0 0 1px rgba(34, 211, 238, 0.3), 0 4px 24px rgba(34, 211, 238, 0.1);
-  --glow-card:   none;  /* Linear approach: NO shadows on cards in dark mode */
+  --glow-card:   none;
 
   /* Gradients */
   --grad-border: linear-gradient(135deg, var(--c-plasma), var(--c-arc));
   --grad-text:   linear-gradient(120deg, var(--c-plasma) 0%, var(--c-arc) 100%);
   --grad-hero:   radial-gradient(ellipse 60% 40% at 50% 0%, rgba(139, 92, 246, 0.15) 0%, transparent 60%), radial-gradient(ellipse 80% 50% at 80% 20%, rgba(34, 211, 238, 0.08) 0%, transparent 50%);
 
-  /* Typography tracking — VoicePencil premium pattern */
-  --track-hero:     -0.02em;    /* hero display: slightly tight */
-  --track-display:  -0.015em;   /* large headings */
-  --track-h2:       -0.01em;    /* section headings */
-  --track-h3:        0em;       /* sub-headings */
-  --track-body:      0em;       /* body text */
-  --track-label:     0.19em;    /* section labels — signature wide-track */
-  --track-sublabel:  0.06em;    /* sub-labels */
-  --track-eyebrow:   0.14em;    /* category/eyebrow labels */
+  /* Typography tracking */
+  --track-hero:     -0.02em;
+  --track-display:  -0.015em;
+  --track-h2:       -0.01em;
+  --track-h3:        0em;
+  --track-body:      0em;
+  --track-label:     0.19em;
+  --track-sublabel:  0.06em;
+  --track-eyebrow:   0.14em;
 
   /* Spacing (8pt grid) */
   --sp-1: 8px;
@@ -69,7 +76,7 @@
   --r-lg: 24px;
   --r-pill: 9999px;
 
-  /* Easing — Linear's production values */
+  /* Easing */
   --ease-expo: cubic-bezier(0.19, 1, 0.22, 1);
   --ease-back: cubic-bezier(0.34, 1.56, 0.64, 1);
   --ease-silk: cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -96,7 +103,7 @@
 html {
   background: var(--c-bg-base);
   color: var(--c-text-1);
-  scroll-behavior: auto; /* Lenis handles smooth scroll */
+  scroll-behavior: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -181,10 +188,33 @@ html {
   outline-offset: 2px;
 }
 
-/* ─── FLOAT KEYFRAME (hero orbs fallback) ────────────────────── */
+/* ─── FLOAT KEYFRAME ─────────────────────────────────────────── */
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
   50%       { transform: translateY(-20px); }
+}
+
+/* ─── GRADIENT MESH DRIFT KEYFRAMES (Hero) ───────────────────── */
+@keyframes meshDrift1 {
+  0%, 100% { transform: translate(0, 0); }
+  33%       { transform: translate(-20px, 15px); }
+  66%       { transform: translate(15px, -10px); }
+}
+
+@keyframes meshDrift2 {
+  0%, 100% { transform: translate(0, 0); }
+  50%       { transform: translate(25px, -20px); }
+}
+
+@keyframes meshDrift3 {
+  0%, 100% { transform: translate(0, 0); }
+  40%       { transform: translate(-15px, 20px); }
+  80%       { transform: translate(10px, -15px); }
+}
+
+@keyframes meshDrift4 {
+  0%, 100% { transform: translate(0, 0); }
+  50%       { transform: translate(-20px, -15px); }
 }
 
 /* ─── RESPONSIVE SECTION PADDING ────────────────────────────── */
@@ -197,46 +227,6 @@ html {
     padding-top: 100px !important;
     padding-bottom: 100px !important;
   }
-}
-
-/* ─── SHIMMER ACCENT LINE ────────────────────────────────────── */
-@keyframes shimmer {
-  0%   { background-position: -200% center; }
-  100% { background-position:  200% center; }
-}
-
-.shimmer-line {
-  height: 1px;
-  width: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    transparent 35%,
-    rgba(139, 92, 246, 0.5) 50%,
-    transparent 65%,
-    transparent 100%
-  );
-  background-size: 200% 100%;
-  animation: shimmer 3s ease-in-out infinite;
-}
-
-/* ─── SECTION LABEL UNDERLINE ────────────────────────────────── */
-@keyframes underlineGrow {
-  from { transform: scaleX(0); }
-  to   { transform: scaleX(1); }
-}
-
-.section-label-underline {
-  display: block;
-  width: 40px;
-  height: 1px;
-  background: linear-gradient(90deg, var(--c-plasma), transparent);
-  margin-top: 8px;
-  margin-left: auto;
-  margin-right: auto;
-  transform: scaleX(0);
-  transform-origin: left;
-  animation: underlineGrow 0.8s cubic-bezier(0.19, 1, 0.22, 1) 0.3s forwards;
 }
 
 /* ─── REDUCED MOTION ─────────────────────────────────────────── */

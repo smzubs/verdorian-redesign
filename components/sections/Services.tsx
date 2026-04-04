@@ -22,7 +22,7 @@ const ICON_MAP: Record<string, TablerIcon> = {
   IconCloud,
 }
 
-// Glow color per service icon
+// Ambient glow color per service icon
 const GLOW_COLORS: Record<string, string> = {
   IconDeviceMobile: 'var(--c-plasma)',
   IconBrowser: 'var(--c-arc)',
@@ -38,7 +38,7 @@ export default function Services() {
       style={{
         paddingTop: '160px',
         paddingBottom: '160px',
-        background: 'var(--c-bg-panel)',
+        background: 'var(--c-bg-base)',
       }}
     >
       <div
@@ -57,8 +57,8 @@ export default function Services() {
           style={{ display: 'flex', flexDirection: 'column', gap: '48px' }}
         >
           {/* Header */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', textAlign: 'center' }}>
-            <motion.div variants={FADE_UP} style={{ display: 'flex', justifyContent: 'center' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+            <motion.div variants={FADE_UP}>
               <SectionLabel>SERVICES</SectionLabel>
             </motion.div>
             <motion.h2
@@ -67,14 +67,17 @@ export default function Services() {
                 fontFamily: 'var(--font-geist), sans-serif',
                 fontWeight: 700,
                 fontSize: 'var(--t-h2)',
-                color: 'var(--c-text-1)',
                 letterSpacing: 'var(--track-h2)',
                 margin: 0,
                 lineHeight: 1.1,
-                textWrap: 'balance',
               }}
             >
-              What we do
+              <span style={{ display: 'block', color: 'rgba(255,255,255,0.92)' }}>
+                What we
+              </span>
+              <span style={{ display: 'block', color: 'rgba(255,255,255,0.40)' }}>
+                do.
+              </span>
             </motion.h2>
           </div>
 
@@ -84,9 +87,6 @@ export default function Services() {
               display: 'grid',
               gridTemplateColumns: 'repeat(1, 1fr)',
               gap: '16px',
-              maxWidth: '64rem',
-              margin: '0 auto',
-              width: '100%',
             }}
             className="md:grid-cols-2"
           >

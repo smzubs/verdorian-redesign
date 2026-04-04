@@ -18,7 +18,7 @@ export default function Nav() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 80)
+      setScrolled(window.scrollY > 60)
     }
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
@@ -52,10 +52,14 @@ export default function Nav() {
           right: 0,
           zIndex: 1000,
           transition: 'background 0.4s var(--ease-expo), border-color 0.4s var(--ease-expo)',
-          background: scrolled ? 'rgba(8, 9, 10, 0.85)' : 'rgba(8, 9, 10, 0.60)',
-          backdropFilter: 'saturate(180%) blur(20px)',
-          WebkitBackdropFilter: 'saturate(180%) blur(20px)',
-          borderBottom: scrolled ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(255,255,255,0.04)',
+          background: scrolled
+            ? 'rgba(8, 9, 10, 0.85)'
+            : 'transparent',
+          backdropFilter: scrolled ? 'blur(12px)' : 'none',
+          WebkitBackdropFilter: scrolled ? 'blur(12px)' : 'none',
+          borderBottom: scrolled
+            ? '1px solid rgba(255,255,255,0.06)'
+            : '1px solid transparent',
         }}
       >
         <div
@@ -63,7 +67,7 @@ export default function Nav() {
             maxWidth: '80rem',
             margin: '0 auto',
             padding: '0 24px',
-            height: '48px',
+            height: '64px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
@@ -119,7 +123,7 @@ export default function Nav() {
             style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '8px',
+              gap: '4px',
               listStyle: 'none',
               margin: 0,
               padding: 0,
@@ -133,52 +137,28 @@ export default function Nav() {
                   onClick={() => scrollToSection(link.id)}
                   aria-label={`Navigate to ${link.label} section`}
                   style={{
-                    position: 'relative',
                     background: 'none',
                     border: 'none',
                     cursor: 'pointer',
                     padding: '8px 16px',
                     minHeight: '44px',
-                    fontFamily: 'var(--font-dm-sans, sans-serif)',
+                    fontFamily: 'var(--font-geist), sans-serif',
                     fontWeight: 400,
-                    fontSize: '14px',
+                    fontSize: '15px',
                     color: 'var(--c-text-2)',
                     transition: 'color 0.2s var(--ease-expo)',
                     display: 'flex',
-                    flexDirection: 'column',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    gap: 0,
                   }}
                   onMouseEnter={(e) => {
-                    const el = e.currentTarget
-                    el.style.color = 'var(--c-text-1)'
-                    const underline = el.querySelector('.nav-underline') as HTMLElement | null
-                    if (underline) underline.style.transform = 'scaleX(1)'
+                    (e.currentTarget as HTMLButtonElement).style.color = 'var(--c-text-1)'
                   }}
                   onMouseLeave={(e) => {
-                    const el = e.currentTarget
-                    el.style.color = 'var(--c-text-2)'
-                    const underline = el.querySelector('.nav-underline') as HTMLElement | null
-                    if (underline) underline.style.transform = 'scaleX(0)'
+                    (e.currentTarget as HTMLButtonElement).style.color = 'var(--c-text-2)'
                   }}
                 >
                   {link.label}
-                  <span
-                    className="nav-underline"
-                    aria-hidden="true"
-                    style={{
-                      position: 'absolute',
-                      bottom: '4px',
-                      left: '16px',
-                      right: '16px',
-                      height: '1px',
-                      background: 'var(--grad-border)',
-                      transform: 'scaleX(0)',
-                      transformOrigin: 'left center',
-                      transition: 'transform 0.25s var(--ease-expo)',
-                    }}
-                  />
                 </button>
               </li>
             ))}
@@ -192,7 +172,7 @@ export default function Nav() {
                 size="sm"
                 onClick={() => scrollToSection('contact')}
               >
-                Get in Touch
+                Get started
               </GlowButton>
             </div>
 
@@ -273,7 +253,7 @@ export default function Nav() {
               position: 'fixed',
               inset: 0,
               zIndex: 999,
-              background: 'rgba(8,9,10,0.95)',
+              background: 'rgba(8,9,10,0.97)',
               backdropFilter: 'blur(24px)',
               WebkitBackdropFilter: 'blur(24px)',
               display: 'flex',
@@ -324,7 +304,7 @@ export default function Nav() {
                 size="md"
                 onClick={() => handleNavLink('contact')}
               >
-                Get in Touch
+                Get started
               </GlowButton>
             </motion.div>
           </motion.div>

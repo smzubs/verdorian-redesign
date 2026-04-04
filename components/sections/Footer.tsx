@@ -15,12 +15,12 @@ export default function Footer() {
     <footer
       aria-label="Site footer"
       style={{
-        paddingTop: '0',
+        background: 'var(--c-bg-hero)',
+        borderTop: '1px solid rgba(255,255,255,0.06)',
+        paddingTop: '48px',
         paddingBottom: '48px',
       }}
     >
-      {/* Shimmer line replaces border-top (Knight Electric pattern) */}
-      <div className="shimmer-line" style={{ marginBottom: '32px' }} />
       <style>{`
         .footer-inner {
           max-width: 80rem;
@@ -31,7 +31,7 @@ export default function Footer() {
           align-items: center;
           justify-content: space-between;
           flex-wrap: wrap;
-          gap: 48px;
+          gap: 32px;
         }
         @media (max-width: 640px) {
           .footer-inner {
@@ -104,12 +104,10 @@ export default function Footer() {
                   textAlign: 'left',
                 }}
                 onMouseEnter={(e) => {
-                  ;(e.currentTarget as HTMLButtonElement).style.color =
-                    'var(--c-text-1)'
+                  ;(e.currentTarget as HTMLButtonElement).style.color = 'var(--c-text-1)'
                 }}
                 onMouseLeave={(e) => {
-                  ;(e.currentTarget as HTMLButtonElement).style.color =
-                    'var(--c-text-2)'
+                  ;(e.currentTarget as HTMLButtonElement).style.color = 'var(--c-text-2)'
                 }}
               >
                 {link.label}
@@ -149,12 +147,10 @@ export default function Footer() {
                 transition: 'color 0.2s',
               }}
               onMouseEnter={(e) => {
-                ;(e.currentTarget as HTMLAnchorElement).style.color =
-                  'var(--c-text-2)'
+                ;(e.currentTarget as HTMLAnchorElement).style.color = 'var(--c-text-2)'
               }}
               onMouseLeave={(e) => {
-                ;(e.currentTarget as HTMLAnchorElement).style.color =
-                  'var(--c-text-3)'
+                ;(e.currentTarget as HTMLAnchorElement).style.color = 'var(--c-text-3)'
               }}
             >
               Privacy Policy
@@ -172,12 +168,10 @@ export default function Footer() {
                 transition: 'color 0.2s',
               }}
               onMouseEnter={(e) => {
-                ;(e.currentTarget as HTMLAnchorElement).style.color =
-                  'var(--c-text-2)'
+                ;(e.currentTarget as HTMLAnchorElement).style.color = 'var(--c-text-2)'
               }}
               onMouseLeave={(e) => {
-                ;(e.currentTarget as HTMLAnchorElement).style.color =
-                  'var(--c-text-3)'
+                ;(e.currentTarget as HTMLAnchorElement).style.color = 'var(--c-text-3)'
               }}
             >
               Terms

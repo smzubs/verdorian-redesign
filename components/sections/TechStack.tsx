@@ -25,7 +25,6 @@ import { TECH_STACK } from '@/lib/utils'
 
 type TablerIcon = React.ComponentType<{ size?: number; stroke?: number; style?: React.CSSProperties }>
 
-// Map tech names to tabler icons
 const TECH_ICON_MAP: Record<string, TablerIcon> = {
   'React Native': IconBrandReact,
   'Next.js': IconBrandNextjs,
@@ -53,7 +52,7 @@ function TechPill({ name }: { name: string }) {
         display: 'inline-flex',
         alignItems: 'center',
         gap: '8px',
-        background: 'var(--c-forge)',
+        background: 'var(--c-bg-card)',
         border: '1px solid rgba(255,255,255,0.07)',
         borderRadius: 'var(--r-pill)',
         padding: '8px 16px',
@@ -98,6 +97,7 @@ export default function TechStack() {
       style={{
         paddingTop: '120px',
         paddingBottom: '120px',
+        background: 'var(--c-bg-alt)',
       }}
     >
       <motion.div
@@ -133,14 +133,14 @@ export default function TechStack() {
               fontFamily: 'var(--font-geist), sans-serif',
               fontWeight: 700,
               fontSize: 'var(--t-h2)',
-              color: 'var(--c-text-1)',
               letterSpacing: 'var(--track-h2)',
               margin: 0,
               lineHeight: 1.1,
-              textWrap: 'balance',
             }}
           >
-            Built with modern tech
+            <span style={{ display: 'block', color: 'rgba(255,255,255,0.92)' }}>
+              Built with modern tech
+            </span>
           </motion.h2>
           <motion.p
             variants={FADE_UP}

@@ -33,7 +33,7 @@ const ICON_MAP: Record<string, TablerIcon> = {
   IconShield,
 }
 
-// Per-card atmospheric gradients — Raycast technique, positioned at 25-30% from top
+// Per-card atmospheric gradients
 const CARD_GRADIENTS: Record<string, string> = {
   VoicePencil:   'radial-gradient(94% 78% at 50% 29%, rgba(139,92,246,0.25), rgba(20,21,22,0.95))',
   ChangeOrderAI: 'radial-gradient(90% 75% at 50% 25%, rgba(34,211,238,0.20), rgba(20,21,22,0.95))',
@@ -271,7 +271,7 @@ function GhostCard({ className }: { className?: string }) {
       className={cn(className)}
       style={{
         minHeight: '240px',
-        borderRadius: 'var(--r-lg)',
+        borderRadius: '16px',
         border: '1px dashed rgba(255,255,255,0.07)',
         display: 'flex',
         flexDirection: 'column',
@@ -406,6 +406,7 @@ export default function Products() {
       style={{
         paddingTop: '160px',
         paddingBottom: '160px',
+        background: 'var(--c-bg-base)',
       }}
     >
       <div
@@ -434,14 +435,17 @@ export default function Products() {
                 fontFamily: 'var(--font-geist), sans-serif',
                 fontWeight: 700,
                 fontSize: 'var(--t-h2)',
-                color: 'var(--c-text-1)',
                 letterSpacing: 'var(--track-h2)',
                 margin: 0,
                 lineHeight: 1.1,
-                textWrap: 'balance',
               }}
             >
-              What we&apos;re building
+              <span style={{ display: 'block', color: 'rgba(255,255,255,0.92)' }}>
+                What we&apos;re
+              </span>
+              <span style={{ display: 'block', color: 'rgba(255,255,255,0.40)' }}>
+                building.
+              </span>
             </motion.h2>
           </div>
 
@@ -462,7 +466,6 @@ export default function Products() {
                 </GlassCard>
               </div>
 
-              {/* Rest of products */}
               {rest.map((product) => (
                 <div key={product.name} style={{ ...GRID_STYLES[product.name] }}>
                   <GlassCard tilt style={{ background: CARD_GRADIENTS[product.name] }}>
@@ -471,7 +474,7 @@ export default function Products() {
                 </div>
               ))}
 
-              {/* Ghost "more coming" card — col 7-12, row 3 */}
+              {/* Ghost "more coming" card */}
               <div
                 style={{
                   gridColumn: '7 / 13',

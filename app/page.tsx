@@ -17,15 +17,10 @@ export default function Home() {
       <main id="main-content">
         <Nav />
         <Hero />
-        <div className="shimmer-line" />
         <Products />
-        <div className="shimmer-line" />
         <About />
-        <div className="shimmer-line" />
         <Services />
-        <div className="shimmer-line" />
         <TechStack />
-        <div className="shimmer-line" />
         <Contact />
         <Footer />
       </main>
