@@ -178,11 +178,11 @@ function CardContent({ product, isFeatured = false }: CardContentProps) {
           </div>
           <span
             style={{
-              fontFamily: 'monospace',
+              fontFamily: 'var(--font-geist), sans-serif',
               fontSize: '11px',
-              fontWeight: 500,
+              fontWeight: 700,
               textTransform: 'uppercase',
-              letterSpacing: '0.15em',
+              letterSpacing: 'var(--track-eyebrow, 0.14em)',
               color: 'var(--c-text-3)',
               paddingTop: '4px',
             }}
@@ -351,10 +351,11 @@ function CompactCard({ product, showTilt }: { product: Product; showTilt: boolea
           <div>
             <span
               style={{
-                fontFamily: 'monospace',
-                fontSize: '10px',
+                fontFamily: 'var(--font-geist), sans-serif',
+                fontSize: '11px',
+                fontWeight: 700,
                 textTransform: 'uppercase',
-                letterSpacing: '0.15em',
+                letterSpacing: 'var(--track-eyebrow, 0.14em)',
                 color: 'var(--c-text-3)',
                 display: 'block',
                 marginBottom: '2px',

@@ -18,11 +18,11 @@ export function SectionLabel({ children, className }: SectionLabelProps) {
         borderRadius: 'var(--r-pill)',
         border: '1px solid rgba(139,92,246,0.3)',
         background: 'rgba(139,92,246,0.08)',
-        fontFamily: 'var(--font-jetbrains, monospace)',
-        fontSize: 'var(--t-label, 11px)',
-        fontWeight: 500,
+        fontFamily: 'var(--font-geist), sans-serif',
+        fontSize: '13px',
+        fontWeight: 800,
         textTransform: 'uppercase',
-        letterSpacing: '0.2em',
+        letterSpacing: 'var(--track-label, 0.19em)',
         color: 'var(--c-plasma)',
       }}
     >

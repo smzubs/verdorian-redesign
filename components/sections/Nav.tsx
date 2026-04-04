@@ -88,19 +88,21 @@ export default function Nav() {
             <span
               style={{
                 fontFamily: 'var(--font-geist), sans-serif',
-                fontWeight: 700,
-                fontSize: '20px',
+                fontWeight: 800,
+                fontSize: '16px',
                 color: 'var(--c-text-1)',
                 lineHeight: 1,
-                letterSpacing: '-0.02em',
+                letterSpacing: '0.15em',
+                textTransform: 'uppercase',
               }}
             >
               VERDORIAN
             </span>
             <span
               style={{
-                fontFamily: 'monospace',
-                fontSize: '9px',
+                fontFamily: 'var(--font-geist), sans-serif',
+                fontWeight: 700,
+                fontSize: '8px',
                 color: 'var(--c-text-2)',
                 letterSpacing: '0.25em',
                 textTransform: 'uppercase',

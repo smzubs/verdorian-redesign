@@ -93,9 +93,11 @@ export function AnimatedCounter({
     return (
       <span
         ref={containerRef}
-        className={cn('font-mono', className)}
+        className={cn(className)}
         style={{
-          fontFamily: 'var(--font-jetbrains, monospace)',
+          fontFamily: 'var(--font-geist), sans-serif',
+          fontWeight: 800,
+          letterSpacing: '-0.023em',
           animation: 'counterFadeIn 0.6s var(--ease-expo, ease) forwards',
         }}
       >
@@ -119,9 +121,11 @@ export function AnimatedCounter({
   return (
     <span
       ref={containerRef}
-      className={cn('font-mono', className)}
+      className={cn(className)}
       style={{
-        fontFamily: 'var(--font-jetbrains, monospace)',
+        fontFamily: 'var(--font-geist), sans-serif',
+        fontWeight: 800,
+        letterSpacing: '-0.023em',
       }}
       aria-label={`${target}${suffix}`}
     >

@@ -43,14 +43,15 @@
   --grad-text:   linear-gradient(120deg, var(--c-plasma) 0%, var(--c-arc) 100%);
   --grad-hero:   radial-gradient(ellipse 60% 40% at 50% 0%, rgba(139, 92, 246, 0.15) 0%, transparent 60%), radial-gradient(ellipse 80% 50% at 80% 20%, rgba(34, 211, 238, 0.08) 0%, transparent 50%);
 
-  /* Typography tracking — ALL negative except eyebrows */
-  --track-hero:    -0.03em;
-  --track-display: -0.025em;
-  --track-h2:      -0.02em;
-  --track-h3:      -0.015em;
-  --track-body:     0em;
-  --track-label:    0.02em;
-  --track-eyebrow:  0.12em;
+  /* Typography tracking — VoicePencil premium pattern */
+  --track-hero:     -0.02em;    /* hero display: slightly tight */
+  --track-display:  -0.015em;   /* large headings */
+  --track-h2:       -0.01em;    /* section headings */
+  --track-h3:        0em;       /* sub-headings */
+  --track-body:      0em;       /* body text */
+  --track-label:     0.19em;    /* section labels — signature wide-track */
+  --track-sublabel:  0.06em;    /* sub-labels */
+  --track-eyebrow:   0.14em;    /* category/eyebrow labels */
 
   /* Spacing (8pt grid) */
   --sp-1: 8px;

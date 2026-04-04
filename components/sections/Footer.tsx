@@ -53,10 +53,11 @@ export default function Footer() {
           <span
             style={{
               fontFamily: 'var(--font-geist), sans-serif',
-              fontWeight: 700,
-              fontSize: '18px',
+              fontWeight: 800,
+              fontSize: '16px',
               color: 'var(--c-text-1)',
-              letterSpacing: '-0.02em',
+              letterSpacing: '0.15em',
+              textTransform: 'uppercase',
             }}
           >
             VERDORIAN
