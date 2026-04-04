@@ -76,13 +76,20 @@ export default function Footer() {
           </span>
         </div>
 
-        {/* Center: Nav links */}
+        {/* Center: Nav links — glass-on-dark treatment */}
         <nav aria-label="Footer navigation">
           <div
             style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(2, auto)',
-              gap: '4px 24px',
+              gap: '4px 8px',
+              background: 'rgba(255, 255, 255, 0.04)',
+              backdropFilter: 'blur(8px) saturate(160%)',
+              WebkitBackdropFilter: 'blur(8px) saturate(160%)',
+              border: '1px solid rgba(255, 255, 255, 0.08)',
+              borderRadius: '14px',
+              padding: '8px',
+              boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.06)',
             }}
           >
             {NAV_LINKS.map((link) => (
@@ -95,19 +102,24 @@ export default function Footer() {
                   background: 'none',
                   border: 'none',
                   cursor: 'pointer',
-                  padding: '10px 0',
+                  padding: '10px 16px',
                   minHeight: '44px',
+                  borderRadius: '8px',
                   fontFamily: 'var(--font-dm-sans), sans-serif',
                   fontSize: '14px',
                   color: 'rgba(255, 255, 255, 0.45)',
-                  transition: 'color 0.2s',
+                  transition: 'color 0.2s, background 0.2s',
                   textAlign: 'left',
                 }}
                 onMouseEnter={(e) => {
-                  ;(e.currentTarget as HTMLButtonElement).style.color = 'rgba(255, 255, 255, 0.80)'
+                  const el = e.currentTarget as HTMLButtonElement
+                  el.style.color = 'rgba(255, 255, 255, 0.80)'
+                  el.style.background = 'rgba(255, 255, 255, 0.06)'
                 }}
                 onMouseLeave={(e) => {
-                  ;(e.currentTarget as HTMLButtonElement).style.color = 'rgba(255, 255, 255, 0.45)'
+                  const el = e.currentTarget as HTMLButtonElement
+                  el.style.color = 'rgba(255, 255, 255, 0.45)'
+                  el.style.background = 'none'
                 }}
               >
                 {link.label}

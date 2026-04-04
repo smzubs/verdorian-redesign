@@ -53,6 +53,7 @@ export default function Nav() {
           transition: 'all 0.4s var(--ease-expo)',
         }}
       >
+        {/* iOS 26 Liquid Glass nav bar */}
         <div
           style={{
             maxWidth: '76rem',
@@ -64,17 +65,46 @@ export default function Nav() {
             padding: '0 20px',
             borderRadius: '16px',
             background: scrolled
-              ? 'rgba(255, 255, 255, 0.72)'
-              : 'rgba(255, 255, 255, 0.45)',
-            backdropFilter: 'saturate(180%) blur(20px)',
-            WebkitBackdropFilter: 'saturate(180%) blur(20px)',
-            border: '1px solid rgba(255, 255, 255, 0.60)',
+              ? 'rgba(255, 255, 255, 0.68)'
+              : 'rgba(255, 255, 255, 0.55)',
+            backdropFilter: 'blur(20px) saturate(180%) brightness(106%)',
+            WebkitBackdropFilter: 'blur(20px) saturate(180%) brightness(106%)',
+            border: '1px solid rgba(255, 255, 255, 0.50)',
             boxShadow: scrolled
-              ? '0 4px 24px rgba(139, 92, 246, 0.06), 0 1px 3px rgba(0, 0, 0, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.80)'
-              : '0 2px 12px rgba(0, 0, 0, 0.03), inset 0 1px 0 rgba(255, 255, 255, 0.90)',
+              ? `
+                  0 6px 28px rgba(139, 92, 246, 0.08),
+                  0 1px 4px rgba(0, 0, 0, 0.04),
+                  inset 0 1px 0 rgba(255, 255, 255, 0.80),
+                  inset 0 -1px 0 rgba(0, 0, 0, 0.05)
+                `
+              : `
+                  0 4px 20px rgba(0, 0, 0, 0.06),
+                  0 1px 3px rgba(0, 0, 0, 0.03),
+                  inset 0 1px 0 rgba(255, 255, 255, 0.70),
+                  inset 0 -1px 0 rgba(0, 0, 0, 0.04)
+                `,
             transition: 'all 0.4s var(--ease-expo)',
+            position: 'relative',
+            isolation: 'isolate',
+            overflow: 'hidden',
           }}
         >
+          {/* Nav bar top highlight layer */}
+          <div
+            aria-hidden="true"
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              right: 0,
+              height: '50%',
+              borderRadius: '16px 16px 0 0',
+              background: 'linear-gradient(180deg, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0) 100%)',
+              pointerEvents: 'none',
+              zIndex: 1,
+            }}
+          />
+
           {/* Left: Wordmark */}
           <button
             type="button"
@@ -89,6 +119,8 @@ export default function Nav() {
               flexDirection: 'column',
               alignItems: 'flex-start',
               gap: '2px',
+              position: 'relative',
+              zIndex: 2,
             }}
           >
             <span
@@ -119,7 +151,7 @@ export default function Nav() {
             </span>
           </button>
 
-          {/* Center: Frosted glass pill with nav tabs */}
+          {/* Center: Glass tab pill with glassmorphic hover states */}
           <div
             className="hidden md:flex"
             style={{
@@ -130,6 +162,8 @@ export default function Nav() {
               borderRadius: '12px',
               background: 'rgba(139, 92, 246, 0.04)',
               border: '1px solid rgba(139, 92, 246, 0.08)',
+              position: 'relative',
+              zIndex: 2,
             }}
           >
             {NAV_LINKS.map((link) => (
@@ -143,8 +177,11 @@ export default function Nav() {
                 style={{
                   position: 'relative',
                   background: activeLink === link.id
-                    ? 'rgba(139, 92, 246, 0.08)'
+                    ? 'rgba(139, 92, 246, 0.10)'
                     : 'transparent',
+                  boxShadow: activeLink === link.id
+                    ? 'inset 0 1px 0 rgba(255,255,255,0.30), 0 1px 3px rgba(139,92,246,0.08)'
+                    : 'none',
                   border: 'none',
                   cursor: 'pointer',
                   padding: '7px 16px',
@@ -166,7 +203,7 @@ export default function Nav() {
           </div>
 
           {/* Right: CTA + Hamburger */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', position: 'relative', zIndex: 2 }}>
             <div className="hidden md:block">
               <GlowButton
                 variant="primary"
@@ -254,9 +291,9 @@ export default function Nav() {
               position: 'fixed',
               inset: 0,
               zIndex: 999,
-              background: 'rgba(250, 247, 242, 0.92)',
-              backdropFilter: 'saturate(180%) blur(30px)',
-              WebkitBackdropFilter: 'saturate(180%) blur(30px)',
+              background: 'rgba(250, 247, 242, 0.88)',
+              backdropFilter: 'blur(30px) saturate(180%)',
+              WebkitBackdropFilter: 'blur(30px) saturate(180%)',
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',

@@ -22,30 +22,34 @@ const ICON_MAP: Record<string, TablerIcon> = {
   IconCloud,
 }
 
-// Icon accent colors per service — purple-family for light theme
-const ICON_STYLES: Record<string, { bg: string; border: string; color: string; orb: string }> = {
+// Icon accent colors + glow per service
+const ICON_STYLES: Record<string, { bg: string; border: string; color: string; glow: string; orb: string }> = {
   IconDeviceMobile: {
     bg: 'rgba(139, 92, 246, 0.08)',
     border: 'rgba(139, 92, 246, 0.18)',
     color: 'var(--c-plasma)',
+    glow: 'rgba(139, 92, 246, 0.12)',
     orb: 'rgba(139, 92, 246, 0.05)',
   },
   IconBrowser: {
     bg: 'rgba(34, 211, 238, 0.08)',
     border: 'rgba(34, 211, 238, 0.20)',
     color: 'var(--c-arc)',
+    glow: 'rgba(34, 211, 238, 0.12)',
     orb: 'rgba(34, 211, 238, 0.05)',
   },
   IconBrain: {
     bg: 'rgba(245, 158, 11, 0.08)',
     border: 'rgba(245, 158, 11, 0.20)',
     color: 'var(--c-ember)',
+    glow: 'rgba(245, 158, 11, 0.12)',
     orb: 'rgba(245, 158, 11, 0.05)',
   },
   IconCloud: {
     bg: 'rgba(139, 92, 246, 0.08)',
     border: 'rgba(139, 92, 246, 0.18)',
     color: 'var(--c-plasma)',
+    glow: 'rgba(139, 92, 246, 0.12)',
     orb: 'rgba(139, 92, 246, 0.05)',
   },
 }
@@ -122,9 +126,10 @@ export default function Services() {
                         padding: '32px',
                         position: 'relative',
                         overflow: 'hidden',
+                        zIndex: 2,
                       }}
                     >
-                      {/* Corner glow orb — very subtle purple tint for light theme */}
+                      {/* Corner glow orb */}
                       <div
                         aria-hidden="true"
                         style={{
@@ -140,7 +145,7 @@ export default function Services() {
                         }}
                       />
 
-                      {/* Icon */}
+                      {/* Icon with glass glow effect */}
                       <div
                         aria-hidden="true"
                         style={{
@@ -149,10 +154,13 @@ export default function Services() {
                           borderRadius: 'var(--r-md)',
                           background: iconStyle.bg,
                           border: `1px solid ${iconStyle.border}`,
+                          boxShadow: `0 0 20px ${iconStyle.glow}`,
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
                           marginBottom: '20px',
+                          position: 'relative',
+                          zIndex: 1,
                         }}
                       >
                         {IconComponent && (

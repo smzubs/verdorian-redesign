@@ -33,7 +33,7 @@ const ICON_MAP: Record<string, TablerIcon> = {
   IconShield,
 }
 
-// Per-card icon background tints — light fills on white cards
+// Per-card icon background tints
 const ICON_BG_COLORS: Record<string, { bg: string; border: string }> = {
   VoicePencil:   { bg: 'rgba(139, 92, 246, 0.08)',  border: 'rgba(139, 92, 246, 0.18)' },
   ChangeOrderAI: { bg: 'rgba(34, 211, 238, 0.08)',   border: 'rgba(34, 211, 238, 0.20)' },
@@ -49,6 +49,15 @@ const ICON_COLORS: Record<string, string> = {
   QRSafePro:     '#10b981',
   WithinYouAI:   '#6366f1',
   PolicyPilot:   'var(--c-ember)',
+}
+
+// Per-product subtle glass tints — mixes with base glass for unique cards
+const CARD_TINTS: Record<string, string> = {
+  VoicePencil:   'rgba(139, 92, 246, 0.06)',
+  ChangeOrderAI: 'rgba(34, 211, 238, 0.05)',
+  QRSafePro:     'rgba(16, 185, 129, 0.06)',
+  WithinYouAI:   'rgba(99, 102, 241, 0.05)',
+  PolicyPilot:   'rgba(245, 158, 11, 0.05)',
 }
 
 // Desktop grid column/row spans per product
@@ -91,30 +100,9 @@ function CardContent({ product, isFeatured = false }: CardContentProps) {
         position: 'relative',
         overflow: 'hidden',
         opacity: product.status === 'in-development' ? 0.85 : 1,
+        zIndex: 2,
       }}
     >
-      {/* Card top accent line */}
-      <div
-        aria-hidden="true"
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          height: '2px',
-          background: 'linear-gradient(90deg, var(--c-plasma), rgba(139,92,246,0.3), transparent)',
-          opacity: 0,
-          transition: 'opacity 0.3s var(--ease-expo)',
-        }}
-        className="card-top-accent"
-      />
-
-      <style>{`
-        .group:hover .card-top-accent {
-          opacity: 1 !important;
-        }
-      `}</style>
-
       {/* iOS pill badge for VoicePencil */}
       {isFeatured && (
         <div
@@ -125,8 +113,11 @@ function CardContent({ product, isFeatured = false }: CardContentProps) {
             right: '20px',
             padding: '4px 12px',
             borderRadius: 'var(--r-pill)',
-            background: 'rgba(139,92,246,0.08)',
+            background: 'rgba(139,92,246,0.10)',
+            backdropFilter: 'blur(4px)',
+            WebkitBackdropFilter: 'blur(4px)',
             border: '1px solid rgba(139,92,246,0.20)',
+            boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.20)',
             fontFamily: 'monospace',
             fontSize: '10px',
             fontWeight: 500,
@@ -187,6 +178,7 @@ function CardContent({ product, isFeatured = false }: CardContentProps) {
             marginBottom: '16px',
           }}
         >
+          {/* Icon with glass glow */}
           <div
             aria-hidden="true"
             style={{
@@ -195,6 +187,7 @@ function CardContent({ product, isFeatured = false }: CardContentProps) {
               borderRadius: 'var(--r-md)',
               background: iconStyle.bg,
               border: `1px solid ${iconStyle.border}`,
+              boxShadow: `0 0 20px ${iconStyle.bg.replace('0.08', '0.12')}`,
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -274,8 +267,11 @@ function CardContent({ product, isFeatured = false }: CardContentProps) {
               width: '36px',
               height: '36px',
               borderRadius: 'var(--r-pill)',
-              background: 'rgba(139,92,246,0.06)',
+              background: 'rgba(139,92,246,0.08)',
+              backdropFilter: 'blur(4px)',
+              WebkitBackdropFilter: 'blur(4px)',
               border: '1px solid rgba(139,92,246,0.15)',
+              boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.20)',
               color: 'var(--c-plasma)',
               opacity: 0,
               transition: 'opacity 0.2s var(--ease-expo), transform 0.2s var(--ease-expo)',
@@ -305,7 +301,10 @@ function GhostCard({ className }: { className?: string }) {
       style={{
         minHeight: '240px',
         borderRadius: '20px',
-        border: '1.5px dashed var(--c-border)',
+        border: '1.5px dashed rgba(139, 92, 246, 0.18)',
+        background: 'rgba(255, 255, 255, 0.25)',
+        backdropFilter: 'blur(4px)',
+        WebkitBackdropFilter: 'blur(4px)',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -319,7 +318,7 @@ function GhostCard({ className }: { className?: string }) {
           width: '40px',
           height: '40px',
           borderRadius: 'var(--r-pill)',
-          border: '1.5px dashed var(--c-border)',
+          border: '1.5px dashed rgba(139, 92, 246, 0.20)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
@@ -348,9 +347,10 @@ function CompactCard({ product, showTilt }: { product: Product; showTilt: boolea
   const IconComponent = ICON_MAP[product.icon]
   const iconStyle = ICON_BG_COLORS[product.name] ?? { bg: 'rgba(139,92,246,0.08)', border: 'rgba(139,92,246,0.18)' }
   const iconColor = ICON_COLORS[product.name] ?? 'var(--c-plasma)'
+  const cardTint = CARD_TINTS[product.name]
 
   return (
-    <GlassCard tilt={showTilt}>
+    <GlassCard tilt={showTilt} style={cardTint ? { background: `rgba(255,255,255,0.55)` } : undefined}>
       <div
         style={{
           padding: '24px',
@@ -358,24 +358,10 @@ function CompactCard({ product, showTilt }: { product: Product; showTilt: boolea
           flexDirection: 'column',
           gap: '14px',
           opacity: product.status === 'in-development' ? 0.85 : 1,
+          position: 'relative',
+          zIndex: 2,
         }}
       >
-        {/* Card top accent line */}
-        <div
-          aria-hidden="true"
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            height: '2px',
-            background: 'linear-gradient(90deg, var(--c-plasma), rgba(139,92,246,0.3), transparent)',
-            opacity: 0,
-            transition: 'opacity 0.3s var(--ease-expo)',
-          }}
-          className="card-top-accent"
-        />
-
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
           <div
             aria-hidden="true"
@@ -385,6 +371,7 @@ function CompactCard({ product, showTilt }: { product: Product; showTilt: boolea
               borderRadius: 'var(--r-md)',
               background: iconStyle.bg,
               border: `1px solid ${iconStyle.border}`,
+              boxShadow: `0 0 20px ${iconStyle.bg.replace('0.08', '0.12')}`,
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -510,16 +497,16 @@ export default function Products() {
                 gap: '16px',
               }}
             >
-              {/* Featured: VoicePencil col-span-8 */}
+              {/* Featured: VoicePencil col-span-8 — purple tint glass */}
               <div style={{ ...GRID_STYLES[featured.name] }}>
-                <GlassCard tilt>
+                <GlassCard tilt style={{ background: `rgba(255,255,255,0.52)` }}>
                   <CardContent product={featured} isFeatured />
                 </GlassCard>
               </div>
 
               {rest.map((product) => (
                 <div key={product.name} style={{ ...GRID_STYLES[product.name] }}>
-                  <GlassCard tilt>
+                  <GlassCard tilt style={{ background: 'rgba(255,255,255,0.52)' }}>
                     <CardContent product={product} />
                   </GlassCard>
                 </div>

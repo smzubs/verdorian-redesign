@@ -52,29 +52,43 @@ function TechPill({ name }: { name: string }) {
         display: 'inline-flex',
         alignItems: 'center',
         gap: '8px',
-        background: 'var(--c-bg-card)',
-        border: '1px solid var(--c-border)',
-        borderRadius: 'var(--r-pill)',
+        background: 'rgba(255, 255, 255, 0.45)',
+        backdropFilter: 'blur(4px) saturate(160%)',
+        WebkitBackdropFilter: 'blur(4px) saturate(160%)',
+        border: '1px solid rgba(255, 255, 255, 0.40)',
+        borderRadius: '980px',
         padding: '8px 16px',
+        boxShadow: `
+          inset 0 1px 0 rgba(255, 255, 255, 0.40),
+          0 1px 3px rgba(0, 0, 0, 0.04)
+        `,
         fontFamily: 'var(--font-dm-sans), sans-serif',
         fontWeight: 600,
         fontSize: '13px',
         letterSpacing: '0.05em',
         color: 'var(--c-text-1)',
         whiteSpace: 'nowrap',
-        boxShadow: 'var(--shadow-sm)',
-        transition: 'border-color 0.2s var(--ease-expo), background 0.2s var(--ease-expo)',
+        transition: 'border-color 0.2s var(--ease-expo), background 0.2s var(--ease-expo), box-shadow 0.2s var(--ease-expo)',
         cursor: 'default',
       }}
       onMouseEnter={(e) => {
         const el = e.currentTarget as HTMLSpanElement
-        el.style.borderColor = 'var(--c-border-hover)'
-        el.style.background = 'rgba(139, 92, 246, 0.04)'
+        el.style.borderColor = 'rgba(139, 92, 246, 0.30)'
+        el.style.background = 'rgba(255, 255, 255, 0.65)'
+        el.style.boxShadow = `
+          inset 0 1px 0 rgba(255, 255, 255, 0.50),
+          0 2px 8px rgba(139, 92, 246, 0.08),
+          0 1px 3px rgba(0, 0, 0, 0.06)
+        `
       }}
       onMouseLeave={(e) => {
         const el = e.currentTarget as HTMLSpanElement
-        el.style.borderColor = 'var(--c-border)'
-        el.style.background = 'var(--c-bg-card)'
+        el.style.borderColor = 'rgba(255, 255, 255, 0.40)'
+        el.style.background = 'rgba(255, 255, 255, 0.45)'
+        el.style.boxShadow = `
+          inset 0 1px 0 rgba(255, 255, 255, 0.40),
+          0 1px 3px rgba(0, 0, 0, 0.04)
+        `
       }}
     >
       {IconComponent && (

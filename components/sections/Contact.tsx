@@ -28,11 +28,13 @@ export default function Contact() {
     setSubmitted(true)
   }
 
-  // Inputs: cream bg, warm border
+  // Glass inputs
   const inputStyle: React.CSSProperties = {
     width: '100%',
-    background: 'var(--c-bg-base)',
-    border: '1px solid var(--c-border)',
+    background: 'rgba(255, 255, 255, 0.40)',
+    backdropFilter: 'blur(4px)',
+    WebkitBackdropFilter: 'blur(4px)',
+    border: '1px solid rgba(255, 255, 255, 0.30)',
     borderRadius: '12px',
     padding: '12px 16px',
     minHeight: '48px',
@@ -45,12 +47,12 @@ export default function Contact() {
   }
 
   const handleInputFocus = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    e.currentTarget.style.borderColor = 'var(--c-plasma)'
-    e.currentTarget.style.boxShadow = '0 0 0 3px rgba(139, 92, 246, 0.10)'
+    e.currentTarget.style.borderColor = 'rgba(139, 92, 246, 0.40)'
+    e.currentTarget.style.boxShadow = '0 0 0 3px rgba(139, 92, 246, 0.08), inset 0 1px 0 rgba(255,255,255,0.30)'
   }
 
   const handleInputBlur = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    e.currentTarget.style.borderColor = 'var(--c-border)'
+    e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.30)'
     e.currentTarget.style.boxShadow = 'none'
   }
 
@@ -66,7 +68,7 @@ export default function Contact() {
         background: 'linear-gradient(135deg, rgba(139,92,246,0.04) 0%, rgba(34,211,238,0.02) 100%), var(--c-bg-alt)',
       }}
     >
-      {/* Background ambient glow — very subtle on cream */}
+      {/* Background ambient glow */}
       <div
         aria-hidden="true"
         style={{
@@ -112,7 +114,7 @@ export default function Contact() {
             <SectionLabel>LET&apos;S BUILD TOGETHER</SectionLabel>
           </motion.div>
 
-          {/* H2 — ghost headline */}
+          {/* H2 */}
           <motion.h2
             variants={FADE_UP}
             style={{
@@ -147,7 +149,7 @@ export default function Contact() {
             Have a project in mind? Let&apos;s talk about making it real.
           </motion.p>
 
-          {/* Contact pills */}
+          {/* Contact pills — glass on cream */}
           <motion.div
             variants={FADE_UP}
             style={{
@@ -166,25 +168,29 @@ export default function Contact() {
                 alignItems: 'center',
                 gap: '8px',
                 padding: '10px 20px',
-                background: 'var(--c-bg-card)',
-                border: '1px solid var(--c-border)',
+                background: 'rgba(255, 255, 255, 0.55)',
+                backdropFilter: 'blur(8px) saturate(160%)',
+                WebkitBackdropFilter: 'blur(8px) saturate(160%)',
+                border: '1px solid rgba(255, 255, 255, 0.45)',
                 borderRadius: 'var(--r-pill)',
+                boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.40), 0 2px 8px rgba(0,0,0,0.04)',
                 fontFamily: 'var(--font-dm-sans), sans-serif',
                 fontSize: '14px',
                 color: 'var(--c-text-2)',
                 textDecoration: 'none',
-                boxShadow: 'var(--shadow-sm)',
-                transition: 'border-color 0.2s, color 0.2s',
+                transition: 'border-color 0.2s, color 0.2s, box-shadow 0.2s',
               }}
               onMouseEnter={(e) => {
                 const el = e.currentTarget
-                el.style.borderColor = 'var(--c-border-hover)'
+                el.style.borderColor = 'rgba(139, 92, 246, 0.30)'
                 el.style.color = 'var(--c-text-1)'
+                el.style.boxShadow = 'inset 0 1px 0 rgba(255,255,255,0.50), 0 4px 16px rgba(139,92,246,0.08)'
               }}
               onMouseLeave={(e) => {
                 const el = e.currentTarget
-                el.style.borderColor = 'var(--c-border)'
+                el.style.borderColor = 'rgba(255, 255, 255, 0.45)'
                 el.style.color = 'var(--c-text-2)'
+                el.style.boxShadow = 'inset 0 1px 0 rgba(255,255,255,0.40), 0 2px 8px rgba(0,0,0,0.04)'
               }}
             >
               <IconMail size={16} stroke={1.5} aria-hidden="true" style={{ color: 'var(--c-plasma)', flexShrink: 0 }} />
@@ -197,13 +203,15 @@ export default function Contact() {
                 alignItems: 'center',
                 gap: '8px',
                 padding: '10px 20px',
-                background: 'var(--c-bg-card)',
-                border: '1px solid var(--c-border)',
+                background: 'rgba(255, 255, 255, 0.55)',
+                backdropFilter: 'blur(8px) saturate(160%)',
+                WebkitBackdropFilter: 'blur(8px) saturate(160%)',
+                border: '1px solid rgba(255, 255, 255, 0.45)',
                 borderRadius: 'var(--r-pill)',
+                boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.40), 0 2px 8px rgba(0,0,0,0.04)',
                 fontFamily: 'var(--font-dm-sans), sans-serif',
                 fontSize: '14px',
                 color: 'var(--c-text-2)',
-                boxShadow: 'var(--shadow-sm)',
               }}
             >
               <IconMapPin size={16} stroke={1.5} aria-hidden="true" style={{ color: 'var(--c-arc)', flexShrink: 0 }} />
@@ -211,7 +219,7 @@ export default function Contact() {
             </span>
           </motion.div>
 
-          {/* Contact form — white card */}
+          {/* Contact form — prominent glass panel */}
           <motion.div
             variants={FADE_UP}
             style={{
@@ -220,8 +228,42 @@ export default function Contact() {
               marginTop: '48px',
             }}
           >
-            <GlassCard tilt={false}>
-              <div style={{ padding: '32px' }}>
+            {/* Override GlassCard with stronger glass spec for the form */}
+            <div
+              style={{
+                background: 'rgba(255, 255, 255, 0.60)',
+                backdropFilter: 'blur(12px) saturate(180%)',
+                WebkitBackdropFilter: 'blur(12px) saturate(180%)',
+                border: '1px solid rgba(255, 255, 255, 0.55)',
+                borderRadius: '24px',
+                boxShadow: `
+                  0 8px 32px rgba(139, 92, 246, 0.08),
+                  0 2px 8px rgba(0, 0, 0, 0.04),
+                  inset 0 1px 0 rgba(255, 255, 255, 0.60),
+                  inset 0 -1px 0 rgba(0, 0, 0, 0.03)
+                `,
+                position: 'relative',
+                isolation: 'isolate',
+                overflow: 'hidden',
+              }}
+            >
+              {/* Top highlight */}
+              <div
+                aria-hidden="true"
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  height: '35%',
+                  borderRadius: '24px 24px 0 0',
+                  background: 'linear-gradient(180deg, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0) 100%)',
+                  pointerEvents: 'none',
+                  zIndex: 1,
+                }}
+              />
+
+              <div style={{ padding: '32px', position: 'relative', zIndex: 2 }}>
                 {submitted ? (
                   <div
                     role="status"
@@ -239,8 +281,11 @@ export default function Contact() {
                         width: '56px',
                         height: '56px',
                         borderRadius: '9999px',
-                        background: 'rgba(16, 185, 129, 0.08)',
+                        background: 'rgba(16, 185, 129, 0.10)',
+                        backdropFilter: 'blur(4px)',
+                        WebkitBackdropFilter: 'blur(4px)',
                         border: '1px solid rgba(16, 185, 129, 0.25)',
+                        boxShadow: '0 0 20px rgba(16, 185, 129, 0.12)',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
@@ -352,56 +397,94 @@ export default function Contact() {
                       />
                     </div>
 
-                    {/* Row 3: Submit — solid purple pill */}
+                    {/* Row 3: Submit — iOS 26 glass pill button */}
                     <button
                       type="submit"
                       aria-label="Send your message to Verdorian Technologies"
                       style={{
                         width: '100%',
-                        backgroundColor: 'var(--c-plasma)',
-                        color: '#ffffff',
-                        border: 'none',
-                        borderRadius: '20px',
-                        padding: '12px 24px',
+                        position: 'relative',
+                        background: 'rgba(139, 92, 246, 0.88)',
+                        backdropFilter: 'blur(2px) saturate(180%) brightness(108%)',
+                        WebkitBackdropFilter: 'blur(2px) saturate(180%) brightness(108%)',
+                        border: '1px solid rgba(255, 255, 255, 0.25)',
+                        borderRadius: '980px',
+                        color: 'rgba(255, 255, 255, 0.95)',
+                        boxShadow: `
+                          0 2px 8px rgba(139, 92, 246, 0.30),
+                          0 1px 2px rgba(0, 0, 0, 0.10),
+                          inset 0 1px 0 rgba(255, 255, 255, 0.25),
+                          inset 0 -1px 0 rgba(0, 0, 0, 0.15)
+                        `,
+                        padding: '13px 28px',
                         minHeight: '48px',
                         fontFamily: 'var(--font-geist), sans-serif',
                         fontWeight: 600,
                         fontSize: '16px',
                         cursor: 'pointer',
-                        transition: 'background-color 150ms ease, box-shadow 150ms ease, transform 150ms ease',
+                        transition: 'transform 200ms var(--ease-expo), box-shadow 200ms var(--ease-expo), background 200ms var(--ease-expo)',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
                         gap: '6px',
+                        overflow: 'hidden',
+                        isolation: 'isolate',
                       }}
                       onMouseEnter={(e) => {
                         const el = e.currentTarget as HTMLButtonElement
-                        el.style.backgroundColor = 'var(--c-plasma-dark)'
-                        el.style.boxShadow = 'var(--shadow-button)'
-                        el.style.transform = 'translateY(-1px)'
+                        el.style.background = 'rgba(139, 92, 246, 0.98)'
+                        el.style.transform = 'scale(1.02)'
+                        el.style.boxShadow = `
+                          0 6px 20px rgba(139, 92, 246, 0.40),
+                          0 2px 4px rgba(0, 0, 0, 0.12),
+                          inset 0 1px 0 rgba(255, 255, 255, 0.30),
+                          inset 0 -1px 0 rgba(0, 0, 0, 0.18)
+                        `
                       }}
                       onMouseLeave={(e) => {
                         const el = e.currentTarget as HTMLButtonElement
-                        el.style.backgroundColor = 'var(--c-plasma)'
-                        el.style.boxShadow = 'none'
-                        el.style.transform = 'translateY(0)'
+                        el.style.background = 'rgba(139, 92, 246, 0.88)'
+                        el.style.transform = 'scale(1)'
+                        el.style.boxShadow = `
+                          0 2px 8px rgba(139, 92, 246, 0.30),
+                          0 1px 2px rgba(0, 0, 0, 0.10),
+                          inset 0 1px 0 rgba(255, 255, 255, 0.25),
+                          inset 0 -1px 0 rgba(0, 0, 0, 0.15)
+                        `
                       }}
                       onMouseDown={(e) => {
-                        (e.currentTarget as HTMLButtonElement).style.transform = 'translateY(0) scale(0.98)'
+                        (e.currentTarget as HTMLButtonElement).style.transform = 'scale(0.98)'
                       }}
                       onMouseUp={(e) => {
-                        (e.currentTarget as HTMLButtonElement).style.transform = 'translateY(-1px) scale(1)'
+                        (e.currentTarget as HTMLButtonElement).style.transform = 'scale(1.02)'
                       }}
                     >
-                      Send Message
-                      <svg width="6" height="10" viewBox="0 0 6 10" fill="none" aria-hidden="true">
-                        <path d="M1 1l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                      </svg>
+                      {/* Button highlight layer */}
+                      <span
+                        aria-hidden="true"
+                        style={{
+                          position: 'absolute',
+                          top: 0,
+                          left: 0,
+                          right: 0,
+                          height: '50%',
+                          borderRadius: '980px 980px 0 0',
+                          background: 'linear-gradient(180deg, rgba(255,255,255,0.28) 0%, rgba(255,255,255,0) 100%)',
+                          pointerEvents: 'none',
+                          zIndex: 1,
+                        }}
+                      />
+                      <span style={{ position: 'relative', zIndex: 2, display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+                        Send Message
+                        <svg width="6" height="10" viewBox="0 0 6 10" fill="none" aria-hidden="true">
+                          <path d="M1 1l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                      </span>
                     </button>
                   </form>
                 )}
               </div>
-            </GlassCard>
+            </div>
           </motion.div>
         </motion.div>
       </div>

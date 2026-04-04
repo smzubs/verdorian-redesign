@@ -10,7 +10,7 @@ interface StatusBadgeProps {
 const statusConfig = {
   live: {
     label: 'Live',
-    bg: 'rgba(16, 185, 129, 0.08)',
+    bg: 'rgba(16, 185, 129, 0.10)',
     border: 'rgba(16, 185, 129, 0.30)',
     color: '#059669',
     dot: true,
@@ -18,7 +18,7 @@ const statusConfig = {
   },
   'coming-soon': {
     label: 'Coming Soon',
-    bg: 'rgba(139, 92, 246, 0.08)',
+    bg: 'rgba(139, 92, 246, 0.10)',
     border: 'rgba(139, 92, 246, 0.30)',
     color: 'var(--c-plasma)',
     dot: false,
@@ -26,7 +26,7 @@ const statusConfig = {
   },
   'in-development': {
     label: 'In Development',
-    bg: 'rgba(245, 158, 11, 0.08)',
+    bg: 'rgba(245, 158, 11, 0.10)',
     border: 'rgba(245, 158, 11, 0.30)',
     color: '#d97706',
     dot: false,
@@ -48,6 +48,9 @@ export function StatusBadge({ status, className }: StatusBadgeProps) {
         borderRadius: 'var(--r-pill)',
         border: `1px solid ${config.border}`,
         background: config.bg,
+        backdropFilter: 'blur(4px) saturate(160%)',
+        WebkitBackdropFilter: 'blur(4px) saturate(160%)',
+        boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.20)',
         fontFamily: 'var(--font-geist), sans-serif',
         fontSize: '10px',
         fontWeight: 700,

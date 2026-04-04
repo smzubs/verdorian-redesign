@@ -98,13 +98,13 @@ export default function About() {
             </p>
           </motion.div>
 
-          {/* Stat row — Stripe-style large thin numbers */}
+          {/* Stat row — iOS 26 Glass mini cards */}
           <motion.div
             variants={FADE_UP}
             style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(2, 1fr)',
-              gap: '48px 32px',
+              gap: '16px',
             }}
             className="sm:grid-cols-4"
           >
@@ -112,13 +112,39 @@ export default function About() {
               <div
                 key={stat.label}
                 style={{
+                  background: 'rgba(255, 255, 255, 0.45)',
+                  backdropFilter: 'blur(6px) saturate(160%)',
+                  WebkitBackdropFilter: 'blur(6px) saturate(160%)',
+                  border: '1px solid rgba(255, 255, 255, 0.40)',
+                  borderRadius: '16px',
+                  padding: '24px',
+                  boxShadow: `
+                    inset 0 1px 0 rgba(255,255,255,0.40),
+                    0 2px 8px rgba(0,0,0,0.03)
+                  `,
+                  textAlign: 'center',
                   display: 'flex',
                   flexDirection: 'column',
                   gap: '8px',
-                  paddingLeft: '20px',
-                  borderLeft: '2px solid var(--c-plasma)',
+                  position: 'relative',
+                  isolation: 'isolate',
+                  overflow: 'hidden',
                 }}
               >
+                {/* Top highlight */}
+                <div
+                  aria-hidden="true"
+                  style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    height: '40%',
+                    borderRadius: '16px 16px 0 0',
+                    background: 'linear-gradient(180deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0) 100%)',
+                    pointerEvents: 'none',
+                  }}
+                />
                 <span
                   style={{
                     fontFamily: 'var(--font-geist), sans-serif',
@@ -127,6 +153,8 @@ export default function About() {
                     lineHeight: 1,
                     letterSpacing: '-0.02em',
                     color: 'var(--c-text-1)',
+                    position: 'relative',
+                    zIndex: 1,
                   }}
                 >
                   {stat.value}
@@ -138,6 +166,8 @@ export default function About() {
                     fontWeight: 400,
                     color: 'var(--c-text-3)',
                     letterSpacing: '0.04em',
+                    position: 'relative',
+                    zIndex: 1,
                   }}
                 >
                   {stat.label}

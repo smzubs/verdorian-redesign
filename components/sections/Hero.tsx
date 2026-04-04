@@ -36,7 +36,7 @@ function LetterReveal({ text, baseDelay, style }: LetterRevealProps) {
   )
 }
 
-// ─── Gradient Mesh Visual (right column) — reduced opacity for light bg ──────
+// ─── Gradient Mesh Visual — richer, more saturated color blobs ───────────────
 function GradientMesh() {
   return (
     <div
@@ -49,60 +49,60 @@ function GradientMesh() {
         pointerEvents: 'none',
       }}
     >
-      {/* Blob 1 — hot pink, lower opacity for light bg */}
+      {/* Blob 1 — vivid violet (larger, more visible) */}
       <div
         style={{
           position: 'absolute',
-          width: '400px',
-          height: '400px',
+          width: '500px',
+          height: '500px',
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(248,87,166,0.22) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(139,92,246,0.35) 0%, transparent 70%)',
           top: '10%',
           right: '5%',
           filter: 'blur(60px)',
           animation: 'meshDrift1 20s ease-in-out infinite',
         }}
       />
-      {/* Blob 2 — violet */}
+      {/* Blob 2 — hot pink (richness layer) */}
       <div
         style={{
           position: 'absolute',
-          width: '350px',
-          height: '350px',
+          width: '400px',
+          height: '400px',
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(139,92,246,0.25) 0%, transparent 70%)',
-          top: '30%',
-          right: '20%',
+          background: 'radial-gradient(circle, rgba(236,72,153,0.25) 0%, transparent 70%)',
+          top: '5%',
+          right: '35%',
           filter: 'blur(50px)',
-          animation: 'meshDrift2 25s ease-in-out infinite',
+          animation: 'meshDrift4 18s ease-in-out infinite',
         }}
       />
       {/* Blob 3 — cyan */}
       <div
         style={{
           position: 'absolute',
-          width: '300px',
-          height: '300px',
+          width: '400px',
+          height: '400px',
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(34,211,238,0.20) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(34,211,238,0.28) 0%, transparent 70%)',
           bottom: '15%',
           right: '10%',
           filter: 'blur(55px)',
           animation: 'meshDrift3 22s ease-in-out infinite',
         }}
       />
-      {/* Blob 4 — warm orange */}
+      {/* Blob 4 — warm orange/gold (richness) */}
       <div
         style={{
           position: 'absolute',
-          width: '250px',
-          height: '250px',
+          width: '350px',
+          height: '350px',
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(255,107,53,0.18) 0%, transparent 70%)',
-          top: '5%',
-          right: '35%',
+          background: 'radial-gradient(circle, rgba(245,158,11,0.20) 0%, transparent 70%)',
+          top: '30%',
+          right: '20%',
           filter: 'blur(45px)',
-          animation: 'meshDrift4 18s ease-in-out infinite',
+          animation: 'meshDrift2 25s ease-in-out infinite',
         }}
       />
     </div>
@@ -123,7 +123,11 @@ export default function Hero() {
         position: 'relative',
         overflow: 'hidden',
         minHeight: '100svh',
-        background: 'var(--c-bg-hero)',
+        background: `
+          radial-gradient(ellipse 80% 50% at 40% 30%, rgba(139,92,246,0.06) 0%, transparent 60%),
+          radial-gradient(ellipse 60% 40% at 70% 70%, rgba(236,72,153,0.04) 0%, transparent 50%),
+          var(--c-bg-hero)
+        `,
         display: 'flex',
         alignItems: 'center',
       }}
@@ -198,7 +202,7 @@ export default function Hero() {
                 gap: '28px',
               }}
             >
-              {/* Eyebrow stat pill — cream bg with subtle border */}
+              {/* Eyebrow stat pill — iOS 26 glass */}
               <motion.div variants={FADE_UP}>
                 <span
                   style={{
@@ -207,8 +211,11 @@ export default function Hero() {
                     gap: '8px',
                     padding: '6px 14px',
                     borderRadius: '9999px',
-                    border: '1px solid var(--c-border)',
-                    background: 'var(--c-bg-card)',
+                    background: 'rgba(255, 255, 255, 0.55)',
+                    backdropFilter: 'blur(8px) saturate(160%)',
+                    WebkitBackdropFilter: 'blur(8px) saturate(160%)',
+                    border: '1px solid rgba(255, 255, 255, 0.50)',
+                    boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.40), 0 2px 8px rgba(0,0,0,0.04)',
                     fontFamily: 'var(--font-geist), sans-serif',
                     fontSize: '13px',
                     fontWeight: 500,
