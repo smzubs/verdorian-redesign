@@ -106,123 +106,149 @@ function GradientMesh() {
         }}
       />
 
-      {/* ── Floating glass elements — desktop only, hidden on mobile ── */}
+      {/* ── Creative floating elements — showcase dev skills ── */}
 
-      {/* Float 1 — code snippet */}
+      {/* Float 1 — Animated terminal/IDE window */}
       <motion.div
         className="hero-float"
-        animate={{ y: [0, -12, 0], rotate: [-1, 1, -1] }}
-        transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+        animate={{ y: [0, -14, 0], rotate: [-1.5, 1, -1.5] }}
+        transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
         style={{
           position: 'absolute',
-          top: '15%',
-          right: '8%',
-          background: 'rgba(255,255,255,0.55)',
-          backdropFilter: 'blur(8px) saturate(160%)',
-          WebkitBackdropFilter: 'blur(8px) saturate(160%)',
-          border: '1px solid rgba(255,255,255,0.45)',
-          borderRadius: '14px',
-          padding: '14px 18px',
-          boxShadow: '0 8px 24px rgba(139,92,246,0.08), inset 0 1px 0 rgba(255,255,255,0.50)',
+          top: '10%',
+          right: '5%',
+          background: 'rgba(20,20,35,0.92)',
+          backdropFilter: 'blur(12px)',
+          WebkitBackdropFilter: 'blur(12px)',
+          border: '1px solid rgba(255,255,255,0.10)',
+          borderRadius: '12px',
+          padding: '0',
+          boxShadow: '0 12px 40px rgba(0,0,0,0.20), inset 0 1px 0 rgba(255,255,255,0.06)',
           zIndex: 5,
-          fontSize: '12px',
-          fontFamily: 'var(--font-geist), monospace',
-          color: 'var(--c-text-2)',
-          whiteSpace: 'pre',
+          width: '220px',
+          overflow: 'hidden',
           userSelect: 'none',
         }}
       >
-        <span style={{ color: 'var(--c-plasma)' }}>const</span>{' app = '}<span style={{ color: 'var(--c-plasma)' }}>build</span>()
+        {/* Title bar */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '6px', padding: '8px 12px', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
+          <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#FF5F57' }} />
+          <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#FEBC2E' }} />
+          <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#28C840' }} />
+          <span style={{ fontSize: '9px', color: 'rgba(255,255,255,0.30)', marginLeft: '6px', fontFamily: 'var(--font-jetbrains), monospace' }}>app.tsx</span>
+        </div>
+        {/* Code lines */}
+        <div style={{ padding: '10px 12px', fontFamily: 'var(--font-jetbrains), monospace', fontSize: '10px', lineHeight: 1.7 }}>
+          <div><span style={{ color: '#C792EA' }}>import</span><span style={{ color: '#A6ACCD' }}> {'{ AI }'} </span><span style={{ color: '#C792EA' }}>from</span><span style={{ color: '#C3E88D' }}> &apos;brain&apos;</span></div>
+          <div><span style={{ color: '#C792EA' }}>import</span><span style={{ color: '#A6ACCD' }}> {'{ Ship }'} </span><span style={{ color: '#C792EA' }}>from</span><span style={{ color: '#C3E88D' }}> &apos;fast&apos;</span></div>
+          <div style={{ marginTop: '4px' }}><span style={{ color: '#82AAFF' }}>export</span> <span style={{ color: '#FFCB6B' }}>default</span> <span style={{ color: '#82AAFF' }}>function</span> <span style={{ color: '#A6ACCD' }}>() {'{'}</span></div>
+          <motion.div
+            animate={{ opacity: [0.3, 1, 0.3] }}
+            transition={{ duration: 1.2, repeat: Infinity }}
+            style={{ color: '#89DDFF', paddingLeft: '12px' }}
+          >
+            return &lt;<span style={{ color: '#F07178' }}>Magic</span> /&gt;
+          </motion.div>
+          <div><span style={{ color: '#A6ACCD' }}>{'}'}</span></div>
+        </div>
       </motion.div>
 
-      {/* Float 2 — live products badge */}
+      {/* Float 2 — Phone mockup with app UI */}
       <motion.div
         className="hero-float"
-        animate={{ y: [0, -8, 0], rotate: [1, -1, 1] }}
-        transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
+        animate={{ y: [0, -10, 0], rotate: [2, -1, 2] }}
+        transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
         style={{
           position: 'absolute',
-          bottom: '25%',
-          right: '15%',
+          bottom: '18%',
+          right: '8%',
+          background: 'rgba(255,255,255,0.60)',
+          backdropFilter: 'blur(10px) saturate(180%)',
+          WebkitBackdropFilter: 'blur(10px) saturate(180%)',
+          border: '1px solid rgba(255,255,255,0.50)',
+          borderRadius: '24px',
+          padding: '8px',
+          boxShadow: '0 16px 48px rgba(139,92,246,0.12), inset 0 1px 0 rgba(255,255,255,0.60)',
+          zIndex: 5,
+          width: '120px',
+          userSelect: 'none',
+        }}
+      >
+        {/* Phone screen */}
+        <div style={{ background: 'rgba(20,20,35,0.90)', borderRadius: '18px', padding: '12px 10px', minHeight: '160px' }}>
+          {/* Status bar */}
+          <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '8px', color: 'rgba(255,255,255,0.5)', marginBottom: '10px' }}>
+            <span>9:41</span>
+            <div style={{ display: 'flex', gap: '3px' }}>
+              <div style={{ width: '12px', height: '6px', borderRadius: '2px', border: '1px solid rgba(255,255,255,0.4)' }}>
+                <div style={{ width: '8px', height: '100%', borderRadius: '1px', background: '#10B981' }} />
+              </div>
+            </div>
+          </div>
+          {/* Mini card inside phone */}
+          <div style={{ background: 'rgba(139,92,246,0.15)', borderRadius: '10px', padding: '8px', marginBottom: '6px' }}>
+            <div style={{ width: '60%', height: '4px', borderRadius: '2px', background: 'rgba(255,255,255,0.30)', marginBottom: '4px' }} />
+            <div style={{ width: '80%', height: '3px', borderRadius: '2px', background: 'rgba(255,255,255,0.15)' }} />
+          </div>
+          <div style={{ background: 'rgba(34,211,238,0.12)', borderRadius: '10px', padding: '8px', marginBottom: '6px' }}>
+            <div style={{ width: '50%', height: '4px', borderRadius: '2px', background: 'rgba(255,255,255,0.25)', marginBottom: '4px' }} />
+            <div style={{ width: '70%', height: '3px', borderRadius: '2px', background: 'rgba(255,255,255,0.12)' }} />
+          </div>
+          {/* Mini record button */}
+          <motion.div
+            animate={{ scale: [1, 1.15, 1] }}
+            transition={{ duration: 2, repeat: Infinity }}
+            style={{ width: '28px', height: '28px', borderRadius: '50%', background: 'linear-gradient(135deg, #8B5CF6, #22D3EE)', margin: '8px auto 0', boxShadow: '0 0 12px rgba(139,92,246,0.4)' }}
+          />
+        </div>
+      </motion.div>
+
+      {/* Float 3 — Deployment pipeline */}
+      <motion.div
+        className="hero-float"
+        animate={{ y: [0, -8, 0] }}
+        transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
+        style={{
+          position: 'absolute',
+          top: '50%',
+          right: '2%',
           background: 'rgba(255,255,255,0.55)',
           backdropFilter: 'blur(8px) saturate(160%)',
           WebkitBackdropFilter: 'blur(8px) saturate(160%)',
           border: '1px solid rgba(255,255,255,0.45)',
           borderRadius: '14px',
           padding: '12px 16px',
-          boxShadow: '0 8px 24px rgba(139,92,246,0.08), inset 0 1px 0 rgba(255,255,255,0.50)',
+          boxShadow: '0 8px 24px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.50)',
           zIndex: 5,
-          display: 'flex',
-          alignItems: 'center',
-          gap: '8px',
           userSelect: 'none',
         }}
       >
-        <div
-          style={{
-            width: '8px',
-            height: '8px',
-            borderRadius: '50%',
-            background: '#10B981',
-            boxShadow: '0 0 8px rgba(16,185,129,0.5)',
-            flexShrink: 0,
-          }}
-        />
-        <span style={{ fontSize: '12px', fontWeight: 600, color: 'var(--c-text-1)', whiteSpace: 'nowrap' }}>
-          5 products live
-        </span>
+        <div style={{ fontSize: '9px', fontWeight: 700, color: 'var(--c-text-3)', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '8px' }}>DEPLOY PIPELINE</div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+          {['Build', 'Test', 'Ship'].map((step, i) => (
+            <React.Fragment key={step}>
+              <motion.div
+                animate={{ scale: [1, 1.2, 1], background: ['rgba(16,185,129,0.15)', 'rgba(16,185,129,0.40)', 'rgba(16,185,129,0.15)'] }}
+                transition={{ duration: 1.5, repeat: Infinity, delay: i * 0.5 }}
+                style={{ padding: '3px 8px', borderRadius: '6px', fontSize: '9px', fontWeight: 600, color: '#059669', border: '1px solid rgba(16,185,129,0.20)' }}
+              >
+                {step}
+              </motion.div>
+              {i < 2 && <span style={{ color: 'var(--c-text-3)', fontSize: '10px' }}>→</span>}
+            </React.Fragment>
+          ))}
+        </div>
       </motion.div>
 
-      {/* Float 3 — tech chips */}
-      <motion.div
-        className="hero-float"
-        animate={{ y: [0, -10, 0] }}
-        transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
-        style={{
-          position: 'absolute',
-          top: '55%',
-          right: '5%',
-          background: 'rgba(255,255,255,0.50)',
-          backdropFilter: 'blur(8px) saturate(160%)',
-          WebkitBackdropFilter: 'blur(8px) saturate(160%)',
-          border: '1px solid rgba(255,255,255,0.40)',
-          borderRadius: '14px',
-          padding: '10px 14px',
-          boxShadow: '0 6px 20px rgba(0,0,0,0.05), inset 0 1px 0 rgba(255,255,255,0.45)',
-          zIndex: 5,
-          display: 'flex',
-          gap: '6px',
-          userSelect: 'none',
-        }}
-      >
-        {['React', 'AI', 'Cloud'].map((t) => (
-          <span
-            key={t}
-            style={{
-              fontSize: '10px',
-              fontWeight: 600,
-              padding: '3px 8px',
-              borderRadius: '6px',
-              background: 'rgba(139,92,246,0.08)',
-              color: 'var(--c-plasma)',
-              border: '1px solid rgba(139,92,246,0.12)',
-              whiteSpace: 'nowrap',
-            }}
-          >
-            {t}
-          </span>
-        ))}
-      </motion.div>
-
-      {/* Float 4 — ship date */}
+      {/* Float 4 — Live activity pulse */}
       <motion.div
         className="hero-float"
         animate={{ y: [0, -6, 0], rotate: [-0.5, 0.5, -0.5] }}
-        transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
+        transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
         style={{
           position: 'absolute',
-          top: '35%',
-          right: '2%',
+          top: '28%',
+          right: '32%',
           background: 'rgba(255,255,255,0.52)',
           backdropFilter: 'blur(8px) saturate(160%)',
           WebkitBackdropFilter: 'blur(8px) saturate(160%)',
@@ -232,17 +258,17 @@ function GradientMesh() {
           boxShadow: '0 6px 20px rgba(139,92,246,0.06), inset 0 1px 0 rgba(255,255,255,0.45)',
           zIndex: 5,
           display: 'flex',
-          flexDirection: 'column',
-          gap: '2px',
+          alignItems: 'center',
+          gap: '8px',
           userSelect: 'none',
         }}
       >
-        <span style={{ fontSize: '10px', fontWeight: 700, color: 'var(--c-plasma)', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
-          Tennessee
-        </span>
-        <span style={{ fontSize: '10px', color: 'var(--c-text-3)', fontWeight: 500 }}>
-          LLC · 2026
-        </span>
+        <motion.div
+          animate={{ scale: [1, 1.4, 1], opacity: [1, 0.5, 1] }}
+          transition={{ duration: 2, repeat: Infinity }}
+          style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#10B981', boxShadow: '0 0 10px rgba(16,185,129,0.6)' }}
+        />
+        <span style={{ fontSize: '11px', fontWeight: 600, color: 'var(--c-text-1)' }}>Shipping daily</span>
       </motion.div>
     </div>
   )

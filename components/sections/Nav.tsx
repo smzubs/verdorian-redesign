@@ -300,7 +300,7 @@ export default function Nav() {
                 shimmer
                 onClick={() => scrollToSection('contact')}
               >
-                Get a Quote
+                LETS TALK!
               </GlowButton>
             </motion.div>
 

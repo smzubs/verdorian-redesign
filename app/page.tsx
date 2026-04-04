@@ -1,6 +1,7 @@
 import Nav from '@/components/sections/Nav'
 import Hero from '@/components/sections/Hero'
 import Products from '@/components/sections/Products'
+import Capabilities from '@/components/sections/Capabilities'
 import About from '@/components/sections/About'
 import Services from '@/components/sections/Services'
 import TechStack from '@/components/sections/TechStack'
@@ -10,7 +11,6 @@ import Footer from '@/components/sections/Footer'
 export default function Home() {
   return (
     <>
-      {/* Skip to main content — keyboard accessibility, CSS-driven visibility */}
       <a href="#main-content" className="skip-link">
         Skip to main content
       </a>
@@ -18,6 +18,7 @@ export default function Home() {
         <Nav />
         <Hero />
         <Products />
+        <Capabilities />
         <About />
         <Services />
         <TechStack />
