@@ -4,7 +4,7 @@ import React, { useRef } from 'react'
 import { motion } from 'framer-motion'
 import { cn } from '@/lib/utils'
 
-type Variant = 'primary' | 'ghost' | 'outline' | 'gold' | 'emerald'
+type Variant = 'primary' | 'ghost' | 'outline' | 'blue' | 'emerald'
 type Size = 'sm' | 'md' | 'lg'
 
 interface GlowButtonProps {
@@ -23,15 +23,15 @@ const SIZE_STYLES: Record<Size, React.CSSProperties> = {
   lg: { padding: '14px 32px', fontSize: '15px' },
 }
 
-// ── Knight Electric Gold CTA ─────────────────────────────────────────────────
-const GOLD_BASE: React.CSSProperties = {
+// ── Facebook Blue CTA ────────────────────────────────────────────────────────
+const BLUE_BASE: React.CSSProperties = {
   position: 'relative',
-  background: '#D4A843',
-  border: 'none',
-  borderRadius: '12px',
-  color: '#142F16',
-  boxShadow: '0 2px 8px rgba(212, 168, 67, 0.20), inset 0 1px 0 rgba(255,255,255,0.25)',
-  fontWeight: 700,
+  background: '#1877F2',
+  border: '1px solid rgba(255,255,255,0.15)',
+  borderRadius: '980px',
+  color: '#ffffff',
+  boxShadow: '0 2px 8px rgba(24,119,242,0.25), inset 0 1px 0 rgba(255,255,255,0.20), inset 0 -1px 0 rgba(0,0,0,0.10)',
+  fontWeight: 600,
   overflow: 'hidden',
   isolation: 'isolate',
   display: 'inline-flex',
@@ -39,9 +39,7 @@ const GOLD_BASE: React.CSSProperties = {
   cursor: 'pointer',
   textDecoration: 'none',
   whiteSpace: 'nowrap',
-  letterSpacing: '0.06em',
-  textTransform: 'uppercase' as const,
-  transition: 'transform 200ms var(--ease-expo), box-shadow 300ms var(--ease-expo)',
+  transition: 'transform 300ms cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 300ms cubic-bezier(0.19, 1, 0.22, 1)',
 }
 
 // ── Emerald / Success CTA ────────────────────────────────────────────────────
@@ -141,7 +139,7 @@ function ArrowSvg() {
 
 function getVariantBase(variant: Variant): React.CSSProperties {
   switch (variant) {
-    case 'gold': return GOLD_BASE
+    case 'blue': return BLUE_BASE
     case 'emerald': return EMERALD_BASE
     case 'ghost': return GHOST_BASE
     case 'outline': return OUTLINE_BASE
@@ -170,9 +168,10 @@ export function GlowButton({
         el.style.transform = 'scale(1.03)'
         el.style.boxShadow = '0 6px 20px rgba(139,92,246,0.40), 0 2px 4px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,0.30), inset 0 -1px 0 rgba(0,0,0,0.18)'
         break
-      case 'gold':
-        el.style.transform = 'translateY(-1px)'
-        el.style.boxShadow = '0 8px 30px rgba(212,168,67,0.35), inset 0 1px 0 rgba(255,255,255,0.30)'
+      case 'blue':
+        el.style.background = '#1565D8'
+        el.style.transform = 'translateY(-2px) scale(1.02)'
+        el.style.boxShadow = '0 8px 30px rgba(24,119,242,0.35), inset 0 1px 0 rgba(255,255,255,0.25)'
         break
       case 'emerald':
         el.style.transform = 'translateY(-1px) scale(1.02)'
@@ -212,8 +211,8 @@ export function GlowButton({
     e.currentTarget.style.transform = ''
   }
 
-  const showHighlight = variant === 'primary' || variant === 'emerald'
-  const showArrow = variant === 'primary' || variant === 'gold' || variant === 'emerald'
+  const showHighlight = variant === 'primary' || variant === 'emerald' || variant === 'blue'
+  const showArrow = variant === 'primary' || variant === 'blue' || variant === 'emerald'
   const highlightAlpha = variant === 'primary' ? '0.28' : '0.20'
 
   const content = (
@@ -228,7 +227,7 @@ export function GlowButton({
         }} />
       )}
 
-      {/* Animated shimmer sweep (Knight Electric pattern) */}
+      {/* Animated shimmer sweep */}
       {shimmer && (
         <motion.span
           aria-hidden="true"

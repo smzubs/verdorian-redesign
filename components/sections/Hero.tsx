@@ -91,14 +91,14 @@ function GradientMesh() {
           animation: 'meshDrift3 22s ease-in-out infinite',
         }}
       />
-      {/* Blob 4 — warm gold */}
+      {/* Blob 4 — Facebook blue */}
       <div
         style={{
           position: 'absolute',
           width: '350px',
           height: '350px',
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(245,158,11,0.20) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(24,119,242,0.20) 0%, transparent 70%)',
           top: '30%',
           right: '20%',
           filter: 'blur(45px)',
@@ -377,11 +377,11 @@ export default function Hero() {
                     gap: '8px',
                     padding: '6px 14px',
                     borderRadius: '9999px',
-                    background: 'rgba(255, 255, 255, 0.55)',
-                    backdropFilter: 'blur(8px) saturate(160%)',
-                    WebkitBackdropFilter: 'blur(8px) saturate(160%)',
-                    border: '1px solid rgba(255, 255, 255, 0.50)',
-                    boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.40), 0 2px 8px rgba(0,0,0,0.04)',
+                    background: 'rgba(255, 255, 255, 0.60)',
+                    backdropFilter: 'blur(12px) saturate(180%)',
+                    WebkitBackdropFilter: 'blur(12px) saturate(180%)',
+                    border: '1px solid rgba(255, 255, 255, 0.55)',
+                    boxShadow: '0 4px 16px rgba(24,119,242,0.06), inset 0 1px 0 rgba(255,255,255,0.60)',
                     fontFamily: 'var(--font-geist), sans-serif',
                     fontSize: '13px',
                     fontWeight: 500,

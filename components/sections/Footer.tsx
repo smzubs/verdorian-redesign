@@ -5,8 +5,7 @@ import { scrollToSection } from '@/lib/utils'
 
 const NAV_LINKS = [
   { label: 'Products', id: 'products' },
-  { label: 'Services', id: 'services' },
-  { label: 'About', id: 'about' },
+  { label: 'Capabilities', id: 'capabilities' },
   { label: 'Contact', id: 'contact' },
 ]
 
@@ -69,10 +68,10 @@ export default function Footer() {
               fontSize: '13px',
               color: 'rgba(255, 255, 255, 0.40)',
               lineHeight: 1.5,
-              maxWidth: '220px',
+              maxWidth: '240px',
             }}
           >
-            Building the future of software from Clarksville, TN
+            Indie software studio. Mobile apps, AI tools, and SaaS — built and shipped by one team. Clarksville, TN.
           </span>
         </div>
 

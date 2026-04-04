@@ -22,7 +22,9 @@
   --c-plasma-dark:  #7C4DFF;   /* hover purple */
   --c-plasma-light: #A78BFA;   /* light purple for subtle fills */
   --c-arc:          #22D3EE;   /* secondary cyan */
-  --c-ember:        #F59E0B;   /* amber for live/in-development badges */
+  --c-blue:         #1877F2;   /* Facebook Blue — CTA primary */
+  --c-blue-dark:    #1565D8;   /* hover state */
+  --c-blue-light:   #4A9AF5;   /* subtle fills */
 
   /* ── Text (dark on light) ── */
   --c-text-1:   #1a1a2e;                    /* primary — near black with blue tint */
@@ -278,9 +280,7 @@ html {
 /* ─── RESPONSIVE SECTION PADDING ────────────────────────────── */
 @media (max-width: 767px) {
   #products,
-  #about,
-  #services,
-  #tech-stack,
+  #capabilities,
   #contact {
     padding-top: 100px !important;
     padding-bottom: 100px !important;

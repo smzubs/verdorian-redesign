@@ -50,8 +50,8 @@ const CAPABILITIES = [
         <line x1="26" y1="16" x2="30" y2="16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
       </svg>
     ),
-    color: '#F59E0B',
-    glow: 'rgba(245,158,11,0.15)',
+    color: '#1877F2',
+    glow: 'rgba(24,119,242,0.15)',
     metrics: ['OpenAI', 'Claude AI', 'Edge Functions'],
   },
   {
@@ -73,6 +73,8 @@ const CAPABILITIES = [
 export default function Capabilities() {
   return (
     <section
+      id="capabilities"
+      aria-label="Capabilities"
       style={{
         padding: '120px 0',
         background: 'var(--c-bg-alt)',
@@ -206,8 +208,8 @@ export default function Capabilities() {
                   width: '52px',
                   height: '52px',
                   borderRadius: '14px',
-                  background: `rgba(${cap.color === '#8B5CF6' ? '139,92,246' : cap.color === '#22D3EE' ? '34,211,238' : cap.color === '#F59E0B' ? '245,158,11' : '16,185,129'},0.10)`,
-                  border: `1px solid rgba(${cap.color === '#8B5CF6' ? '139,92,246' : cap.color === '#22D3EE' ? '34,211,238' : cap.color === '#F59E0B' ? '245,158,11' : '16,185,129'},0.20)`,
+                  background: `rgba(${cap.color === '#8B5CF6' ? '139,92,246' : cap.color === '#22D3EE' ? '34,211,238' : cap.color === '#1877F2' ? '24,119,242' : '16,185,129'},0.10)`,
+                  border: `1px solid rgba(${cap.color === '#8B5CF6' ? '139,92,246' : cap.color === '#22D3EE' ? '34,211,238' : cap.color === '#1877F2' ? '24,119,242' : '16,185,129'},0.20)`,
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',

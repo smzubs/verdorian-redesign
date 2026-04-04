@@ -1,97 +1,46 @@
 'use client'
 
-import React, { useState } from 'react'
+import React from 'react'
 import { motion } from 'framer-motion'
-import { IconMail, IconMapPin, IconCheck } from '@tabler/icons-react'
-import { GlassCard } from '@/components/ui/GlassCard'
+import { GlowButton } from '@/components/ui/GlowButton'
 import { SectionLabel } from '@/components/ui/SectionLabel'
 import { FADE_UP, STAGGER_CONTAINER } from '@/lib/motion'
 
-interface FormState {
-  name: string
-  email: string
-  message: string
-}
-
 export default function Contact() {
-  const [form, setForm] = useState<FormState>({ name: '', email: '', message: '' })
-  const [submitted, setSubmitted] = useState(false)
-
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }))
-  }
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    setSubmitted(true)
-  }
-
-  // Glass inputs
-  const inputStyle: React.CSSProperties = {
-    width: '100%',
-    background: 'rgba(255, 255, 255, 0.40)',
-    backdropFilter: 'blur(4px)',
-    WebkitBackdropFilter: 'blur(4px)',
-    border: '1px solid rgba(255, 255, 255, 0.30)',
-    borderRadius: '12px',
-    padding: '12px 16px',
-    minHeight: '48px',
-    fontFamily: 'var(--font-dm-sans), sans-serif',
-    fontSize: '15px',
-    color: 'var(--c-text-1)',
-    outline: 'none',
-    transition: 'border-color 0.2s, box-shadow 0.2s',
-    boxSizing: 'border-box',
-  }
-
-  const handleInputFocus = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    e.currentTarget.style.borderColor = 'rgba(139, 92, 246, 0.40)'
-    e.currentTarget.style.boxShadow = '0 0 0 3px rgba(139, 92, 246, 0.08), inset 0 1px 0 rgba(255,255,255,0.30)'
-  }
-
-  const handleInputBlur = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.30)'
-    e.currentTarget.style.boxShadow = 'none'
-  }
-
   return (
     <section
       id="contact"
       aria-label="Contact Verdorian Technologies"
       style={{
-        paddingTop: '160px',
-        paddingBottom: '160px',
+        padding: '160px 0',
+        background: 'var(--c-bg-alt)',
         position: 'relative',
         overflow: 'hidden',
-        background: 'linear-gradient(135deg, rgba(139,92,246,0.04) 0%, rgba(34,211,238,0.02) 100%), var(--c-bg-alt)',
       }}
     >
-      {/* Background ambient glow */}
+      {/* Background blue glow */}
       <div
         aria-hidden="true"
         style={{
           position: 'absolute',
-          width: '600px',
-          height: '400px',
-          borderRadius: '9999px',
-          background: 'var(--c-plasma)',
-          opacity: 0.025,
-          filter: 'blur(120px)',
           top: '50%',
           left: '50%',
           transform: 'translate(-50%, -50%)',
+          width: '500px',
+          height: '300px',
+          borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(24,119,242,0.08) 0%, transparent 70%)',
+          filter: 'blur(60px)',
           pointerEvents: 'none',
         }}
       />
 
       <div
         style={{
-          maxWidth: '80rem',
+          maxWidth: '700px',
           margin: '0 auto',
-          paddingLeft: '24px',
-          paddingRight: '24px',
+          padding: '0 24px',
+          textAlign: 'center',
           position: 'relative',
           zIndex: 1,
         }}
@@ -101,20 +50,12 @@ export default function Contact() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-80px' }}
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            textAlign: 'center',
-            gap: '0',
-          }}
+          style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0' }}
         >
-          {/* Label */}
           <motion.div variants={FADE_UP}>
-            <SectionLabel>LET&apos;S BUILD TOGETHER</SectionLabel>
+            <SectionLabel>LETS BUILD</SectionLabel>
           </motion.div>
 
-          {/* H2 */}
           <motion.h2
             variants={FADE_UP}
             style={{
@@ -126,353 +67,96 @@ export default function Contact() {
               margin: '24px 0 0',
             }}
           >
-            <span style={{ display: 'block', color: 'var(--c-text-1)' }}>
-              Let&apos;s build
-            </span>
-            <span style={{ display: 'block', color: 'var(--c-text-3)' }}>
-              something great.
-            </span>
+            <span style={{ display: 'block', color: 'var(--c-text-1)' }}>Ready to build</span>
+            <span style={{ display: 'block', color: 'var(--c-text-3)' }}>something great?</span>
           </motion.h2>
 
-          {/* Subtitle */}
-          <motion.p
-            variants={FADE_UP}
-            style={{
-              fontFamily: 'var(--font-dm-sans), sans-serif',
-              fontSize: '18px',
-              color: 'var(--c-text-2)',
-              marginTop: '16px',
-              lineHeight: 1.6,
-              maxWidth: '480px',
-            }}
-          >
-            Have a project in mind? Let&apos;s talk about making it real.
-          </motion.p>
-
-          {/* Contact pills — glass on cream */}
-          <motion.div
-            variants={FADE_UP}
-            style={{
-              display: 'flex',
-              gap: '12px',
-              justifyContent: 'center',
-              flexWrap: 'wrap',
-              marginTop: '32px',
-            }}
-          >
-            <a
-              href="mailto:sm@verdorian.com"
-              aria-label="Email us at sm@verdorian.com"
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '8px',
-                padding: '10px 20px',
-                background: 'rgba(255, 255, 255, 0.55)',
-                backdropFilter: 'blur(8px) saturate(160%)',
-                WebkitBackdropFilter: 'blur(8px) saturate(160%)',
-                border: '1px solid rgba(255, 255, 255, 0.45)',
-                borderRadius: 'var(--r-pill)',
-                boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.40), 0 2px 8px rgba(0,0,0,0.04)',
-                fontFamily: 'var(--font-dm-sans), sans-serif',
-                fontSize: '14px',
-                color: 'var(--c-text-2)',
-                textDecoration: 'none',
-                transition: 'border-color 0.2s, color 0.2s, box-shadow 0.2s',
-              }}
-              onMouseEnter={(e) => {
-                const el = e.currentTarget
-                el.style.borderColor = 'rgba(139, 92, 246, 0.30)'
-                el.style.color = 'var(--c-text-1)'
-                el.style.boxShadow = 'inset 0 1px 0 rgba(255,255,255,0.50), 0 4px 16px rgba(139,92,246,0.08)'
-              }}
-              onMouseLeave={(e) => {
-                const el = e.currentTarget
-                el.style.borderColor = 'rgba(255, 255, 255, 0.45)'
-                el.style.color = 'var(--c-text-2)'
-                el.style.boxShadow = 'inset 0 1px 0 rgba(255,255,255,0.40), 0 2px 8px rgba(0,0,0,0.04)'
-              }}
-            >
-              <IconMail size={16} stroke={1.5} aria-hidden="true" style={{ color: 'var(--c-plasma)', flexShrink: 0 }} />
-              sm@verdorian.com
-            </a>
-
-            <span
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '8px',
-                padding: '10px 20px',
-                background: 'rgba(255, 255, 255, 0.55)',
-                backdropFilter: 'blur(8px) saturate(160%)',
-                WebkitBackdropFilter: 'blur(8px) saturate(160%)',
-                border: '1px solid rgba(255, 255, 255, 0.45)',
-                borderRadius: 'var(--r-pill)',
-                boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.40), 0 2px 8px rgba(0,0,0,0.04)',
-                fontFamily: 'var(--font-dm-sans), sans-serif',
-                fontSize: '14px',
-                color: 'var(--c-text-2)',
-              }}
-            >
-              <IconMapPin size={16} stroke={1.5} aria-hidden="true" style={{ color: 'var(--c-arc)', flexShrink: 0 }} />
-              Clarksville, TN
-            </span>
-          </motion.div>
-
-          {/* Contact form — prominent glass panel */}
+          {/* Glass CTA card */}
           <motion.div
             variants={FADE_UP}
             style={{
               width: '100%',
-              maxWidth: '560px',
-              marginTop: '48px',
+              background: 'rgba(255,255,255,0.55)',
+              backdropFilter: 'blur(12px) saturate(180%)',
+              WebkitBackdropFilter: 'blur(12px) saturate(180%)',
+              border: '1px solid rgba(255,255,255,0.50)',
+              borderRadius: '24px',
+              padding: '40px',
+              marginTop: '40px',
+              boxShadow: '0 8px 32px rgba(24,119,242,0.06), inset 0 1px 0 rgba(255,255,255,0.60)',
+              position: 'relative',
+              isolation: 'isolate',
+              overflow: 'hidden',
             }}
           >
-            {/* Override GlassCard with stronger glass spec for the form */}
+            {/* Top catch light */}
             <div
+              aria-hidden="true"
               style={{
-                background: 'rgba(255, 255, 255, 0.60)',
-                backdropFilter: 'blur(12px) saturate(180%)',
-                WebkitBackdropFilter: 'blur(12px) saturate(180%)',
-                border: '1px solid rgba(255, 255, 255, 0.55)',
-                borderRadius: '24px',
-                boxShadow: `
-                  0 8px 32px rgba(139, 92, 246, 0.08),
-                  0 2px 8px rgba(0, 0, 0, 0.04),
-                  inset 0 1px 0 rgba(255, 255, 255, 0.60),
-                  inset 0 -1px 0 rgba(0, 0, 0, 0.03)
-                `,
-                position: 'relative',
-                isolation: 'isolate',
-                overflow: 'hidden',
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                right: 0,
+                height: '40%',
+                borderRadius: '24px 24px 0 0',
+                background: 'linear-gradient(180deg, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0) 100%)',
+                pointerEvents: 'none',
+                zIndex: 1,
               }}
-            >
-              {/* Top highlight */}
-              <div
-                aria-hidden="true"
+            />
+
+            <div style={{ position: 'relative', zIndex: 2 }}>
+              <p
                 style={{
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  height: '35%',
-                  borderRadius: '24px 24px 0 0',
-                  background: 'linear-gradient(180deg, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0) 100%)',
-                  pointerEvents: 'none',
-                  zIndex: 1,
+                  fontFamily: 'var(--font-dm-sans), sans-serif',
+                  color: 'var(--c-text-2)',
+                  marginBottom: '28px',
+                  fontSize: '16px',
+                  lineHeight: 1.6,
+                  margin: '0 0 28px',
                 }}
-              />
+              >
+                From mobile apps to enterprise SaaS — let&apos;s talk about your next project.
+              </p>
 
-              <div style={{ padding: '32px', position: 'relative', zIndex: 2 }}>
-                {submitted ? (
-                  <div
-                    role="status"
-                    aria-live="polite"
-                    style={{
-                      display: 'flex',
-                      flexDirection: 'column',
-                      alignItems: 'center',
-                      gap: '16px',
-                      padding: '32px 0',
-                    }}
-                  >
-                    <div
-                      style={{
-                        width: '56px',
-                        height: '56px',
-                        borderRadius: '9999px',
-                        background: 'rgba(16, 185, 129, 0.10)',
-                        backdropFilter: 'blur(4px)',
-                        WebkitBackdropFilter: 'blur(4px)',
-                        border: '1px solid rgba(16, 185, 129, 0.25)',
-                        boxShadow: '0 0 20px rgba(16, 185, 129, 0.12)',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                      }}
-                    >
-                      <IconCheck size={28} stroke={2} aria-hidden="true" style={{ color: '#059669' }} />
-                    </div>
-                    <div>
-                      <p
-                        style={{
-                          fontFamily: 'var(--font-geist), sans-serif',
-                          fontWeight: 600,
-                          fontSize: '18px',
-                          color: 'var(--c-text-1)',
-                          margin: '0 0 8px',
-                        }}
-                      >
-                        Message sent!
-                      </p>
-                      <p
-                        style={{
-                          fontFamily: 'var(--font-dm-sans), sans-serif',
-                          fontSize: '14px',
-                          color: 'var(--c-text-2)',
-                          margin: 0,
-                        }}
-                      >
-                        We&apos;ll be in touch soon.
-                      </p>
-                    </div>
-                  </div>
-                ) : (
-                  <form onSubmit={handleSubmit} noValidate>
-                    {/* Row 1: Name + Email */}
-                    <div className="contact-name-email-row">
-                      <div style={{ flex: '1 1 180px', minWidth: 0 }}>
-                        <label htmlFor="contact-name" className="sr-only">
-                          Your name (required)
-                        </label>
-                        <input
-                          id="contact-name"
-                          type="text"
-                          name="name"
-                          placeholder="Your name"
-                          autoComplete="name"
-                          required
-                          aria-required="true"
-                          value={form.name}
-                          onChange={handleChange}
-                          onFocus={handleInputFocus}
-                          onBlur={handleInputBlur}
-                          style={inputStyle}
-                        />
-                      </div>
-                      <div style={{ flex: '1 1 180px', minWidth: 0 }}>
-                        <label htmlFor="contact-email" className="sr-only">
-                          Email address (required)
-                        </label>
-                        <input
-                          id="contact-email"
-                          type="email"
-                          name="email"
-                          placeholder="Email address"
-                          autoComplete="email"
-                          required
-                          aria-required="true"
-                          value={form.email}
-                          onChange={handleChange}
-                          onFocus={handleInputFocus}
-                          onBlur={handleInputBlur}
-                          style={inputStyle}
-                        />
-                      </div>
-                      <style>{`
-                        .contact-name-email-row {
-                          display: flex;
-                          gap: 16px;
-                          margin-bottom: 16px;
-                        }
-                        @media (max-width: 480px) {
-                          .contact-name-email-row {
-                            flex-direction: column;
-                          }
-                        }
-                      `}</style>
-                    </div>
-
-                    {/* Row 2: Message */}
-                    <div style={{ marginBottom: '20px' }}>
-                      <label htmlFor="contact-message" className="sr-only">
-                        Your message
-                      </label>
-                      <textarea
-                        id="contact-message"
-                        name="message"
-                        placeholder="Tell us about your project..."
-                        rows={5}
-                        required
-                        aria-required="true"
-                        value={form.message}
-                        onChange={handleChange}
-                        onFocus={handleInputFocus}
-                        onBlur={handleInputBlur}
-                        style={{
-                          ...inputStyle,
-                          resize: 'vertical',
-                          minHeight: '120px',
-                        }}
-                      />
-                    </div>
-
-                    {/* Row 3: Submit — iOS 26 glass pill button */}
-                    <button
-                      type="submit"
-                      aria-label="Send your message to Verdorian Technologies"
-                      style={{
-                        width: '100%',
-                        position: 'relative',
-                        background: 'linear-gradient(135deg, #059669 0%, #10B981 100%)',
-                        border: '1px solid rgba(255, 255, 255, 0.15)',
-                        borderRadius: '980px',
-                        color: '#ffffff',
-                        boxShadow: '0 2px 8px rgba(16,185,129,0.30), inset 0 1px 0 rgba(255,255,255,0.20), inset 0 -1px 0 rgba(0,0,0,0.10)',
-                        padding: '13px 28px',
-                        minHeight: '48px',
-                        fontFamily: 'var(--font-geist), sans-serif',
-                        fontWeight: 600,
-                        fontSize: '16px',
-                        cursor: 'pointer',
-                        transition: 'transform 200ms var(--ease-expo), box-shadow 200ms var(--ease-expo), background 200ms var(--ease-expo)',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        gap: '6px',
-                        overflow: 'hidden',
-                        isolation: 'isolate',
-                      }}
-                      onMouseEnter={(e) => {
-                        const el = e.currentTarget as HTMLButtonElement
-                        el.style.background = 'linear-gradient(135deg, #047857 0%, #059669 100%)'
-                        el.style.transform = 'translateY(-1px) scale(1.02)'
-                        el.style.boxShadow = '0 8px 30px rgba(16,185,129,0.35), inset 0 1px 0 rgba(255,255,255,0.25), inset 0 -1px 0 rgba(0,0,0,0.12)'
-                      }}
-                      onMouseLeave={(e) => {
-                        const el = e.currentTarget as HTMLButtonElement
-                        el.style.background = 'linear-gradient(135deg, #059669 0%, #10B981 100%)'
-                        el.style.transform = ''
-                        el.style.boxShadow = '0 2px 8px rgba(16,185,129,0.30), inset 0 1px 0 rgba(255,255,255,0.20), inset 0 -1px 0 rgba(0,0,0,0.10)'
-                      }}
-                      onMouseDown={(e) => {
-                        (e.currentTarget as HTMLButtonElement).style.transform = 'scale(0.97)'
-                      }}
-                      onMouseUp={(e) => {
-                        (e.currentTarget as HTMLButtonElement).style.transform = 'translateY(-1px) scale(1.02)'
-                      }}
-                    >
-                      {/* Shimmer sweep */}
-                      <span
-                        aria-hidden="true"
-                        style={{
-                          position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 1,
-                          background: 'linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.15) 50%, transparent 60%)',
-                          animation: 'shimmerSweep 3s ease-in-out infinite 2.5s',
-                        }}
-                      />
-                      {/* Highlight */}
-                      <span
-                        aria-hidden="true"
-                        style={{
-                          position: 'absolute', top: 0, left: 0, right: 0, height: '50%',
-                          borderRadius: '980px 980px 0 0',
-                          background: 'linear-gradient(180deg, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0) 100%)',
-                          pointerEvents: 'none', zIndex: 1,
-                        }}
-                      />
-                      <span style={{ position: 'relative', zIndex: 2, display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
-                        Send Message
-                        <svg width="7" height="11" viewBox="0 0 7 11" fill="none" aria-hidden="true">
-                          <path d="M1.5 1.5l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                      </span>
-                    </button>
-                  </form>
-                )}
+              <div
+                style={{
+                  display: 'flex',
+                  gap: '12px',
+                  justifyContent: 'center',
+                  flexWrap: 'wrap',
+                }}
+              >
+                <GlowButton
+                  variant="blue"
+                  size="lg"
+                  shimmer
+                  href="mailto:sm@verdorian.com"
+                >
+                  LETS TALK!
+                </GlowButton>
+                <GlowButton
+                  variant="ghost"
+                  size="lg"
+                  href="mailto:sm@verdorian.com"
+                >
+                  sm@verdorian.com
+                </GlowButton>
               </div>
             </div>
           </motion.div>
+
+          <motion.p
+            variants={FADE_UP}
+            style={{
+              marginTop: '24px',
+              fontSize: '13px',
+              color: 'var(--c-text-3)',
+              fontFamily: 'var(--font-dm-sans), sans-serif',
+            }}
+          >
+            Clarksville, Tennessee &middot; Verdorian Technologies LLC
+          </motion.p>
         </motion.div>
       </div>
     </section>

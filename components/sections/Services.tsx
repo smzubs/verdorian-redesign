@@ -38,11 +38,11 @@ const ICON_STYLES: Record<string, { bg: string; border: string; color: string; g
     orb: 'rgba(34, 211, 238, 0.05)',
   },
   IconBrain: {
-    bg: 'rgba(245, 158, 11, 0.08)',
-    border: 'rgba(245, 158, 11, 0.20)',
-    color: 'var(--c-ember)',
-    glow: 'rgba(245, 158, 11, 0.12)',
-    orb: 'rgba(245, 158, 11, 0.05)',
+    bg: 'rgba(24, 119, 242, 0.08)',
+    border: 'rgba(24, 119, 242, 0.20)',
+    color: 'var(--c-blue)',
+    glow: 'rgba(24, 119, 242, 0.12)',
+    orb: 'rgba(24, 119, 242, 0.05)',
   },
   IconCloud: {
     bg: 'rgba(139, 92, 246, 0.08)',
@@ -74,9 +74,9 @@ export default function Services() {
           0%, 100% { box-shadow: 0 0 15px rgba(34, 211, 238, 0.08); }
           50%       { box-shadow: 0 0 28px rgba(34, 211, 238, 0.18); }
         }
-        @keyframes iconGlowAmber {
-          0%, 100% { box-shadow: 0 0 15px rgba(245, 158, 11, 0.08); }
-          50%       { box-shadow: 0 0 28px rgba(245, 158, 11, 0.18); }
+        @keyframes iconGlowBlue {
+          0%, 100% { box-shadow: 0 0 15px rgba(24, 119, 242, 0.08); }
+          50%       { box-shadow: 0 0 28px rgba(24, 119, 242, 0.18); }
         }
         @media (prefers-reduced-motion: reduce) {
           .service-icon { animation: none !important; }
@@ -139,7 +139,7 @@ export default function Services() {
               // Pick glow animation based on color family
               let glowAnimation = 'iconGlow 3s ease-in-out infinite'
               if (service.icon === 'IconBrowser') glowAnimation = 'iconGlowArc 3s ease-in-out infinite'
-              if (service.icon === 'IconBrain') glowAnimation = 'iconGlowAmber 3s ease-in-out infinite'
+              if (service.icon === 'IconBrain') glowAnimation = 'iconGlowBlue 3s ease-in-out infinite'
 
               return (
                 <motion.div

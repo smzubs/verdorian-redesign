@@ -26,9 +26,9 @@ const statusConfig = {
   },
   'in-development': {
     label: 'In Development',
-    bg: 'rgba(245, 158, 11, 0.10)',
-    border: 'rgba(245, 158, 11, 0.30)',
-    color: '#d97706',
+    bg: 'rgba(24, 119, 242, 0.08)',
+    border: 'rgba(24, 119, 242, 0.25)',
+    color: '#1877F2',
     dot: false,
     dotColor: '',
   },

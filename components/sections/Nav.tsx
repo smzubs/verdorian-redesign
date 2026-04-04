@@ -7,12 +7,11 @@ import { scrollToSection } from '@/lib/utils'
 
 const NAV_LINKS = [
   { label: 'Products', id: 'products' },
-  { label: 'Services', id: 'services' },
-  { label: 'About', id: 'about' },
+  { label: 'Capabilities', id: 'capabilities' },
   { label: 'Contact', id: 'contact' },
 ]
 
-const SECTION_IDS = ['hero', 'products', 'services', 'about', 'contact']
+const SECTION_IDS = ['hero', 'products', 'capabilities', 'contact']
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false)
@@ -295,7 +294,7 @@ export default function Nav() {
               transition={{ type: 'spring', stiffness: 400, damping: 30 }}
             >
               <GlowButton
-                variant="gold"
+                variant="blue"
                 size="sm"
                 shimmer
                 onClick={() => scrollToSection('contact')}

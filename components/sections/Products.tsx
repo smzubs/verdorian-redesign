@@ -38,7 +38,7 @@ const ICON_BG_COLORS: Record<string, { bg: string; border: string }> = {
   ChangeOrderAI: { bg: 'rgba(34, 211, 238, 0.08)',   border: 'rgba(34, 211, 238, 0.20)' },
   QRSafePro:     { bg: 'rgba(16, 185, 129, 0.08)',   border: 'rgba(16, 185, 129, 0.20)' },
   WithinYouAI:   { bg: 'rgba(99, 102, 241, 0.08)',   border: 'rgba(99, 102, 241, 0.18)' },
-  PolicyPilot:   { bg: 'rgba(245, 158, 11, 0.08)',   border: 'rgba(245, 158, 11, 0.20)' },
+  PolicyPilot:   { bg: 'rgba(24, 119, 242, 0.08)',    border: 'rgba(24, 119, 242, 0.20)' },
 }
 
 const ICON_COLORS: Record<string, string> = {
@@ -46,7 +46,7 @@ const ICON_COLORS: Record<string, string> = {
   ChangeOrderAI: 'var(--c-arc)',
   QRSafePro:     '#10b981',
   WithinYouAI:   '#6366f1',
-  PolicyPilot:   'var(--c-ember)',
+  PolicyPilot:   'var(--c-blue)',
 }
 
 const CARD_TINTS: Record<string, string> = {
@@ -54,7 +54,7 @@ const CARD_TINTS: Record<string, string> = {
   ChangeOrderAI: 'rgba(34, 211, 238, 0.05)',
   QRSafePro:     'rgba(16, 185, 129, 0.06)',
   WithinYouAI:   'rgba(99, 102, 241, 0.05)',
-  PolicyPilot:   'rgba(245, 158, 11, 0.05)',
+  PolicyPilot:   'rgba(24, 119, 242, 0.05)',
 }
 
 const GRID_STYLES: Record<string, React.CSSProperties> = {
