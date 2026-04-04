@@ -64,11 +64,12 @@ export default function Services() {
             <motion.h2
               variants={FADE_UP}
               style={{
-                fontFamily: 'var(--font-syne), sans-serif',
+                fontFamily: 'var(--font-geist), sans-serif',
                 fontWeight: 700,
                 fontSize: 'var(--t-h2)',
                 color: 'var(--c-text-1)',
-                letterSpacing: '-0.03em',
+                letterSpacing: '-0.02em',
+                textTransform: 'uppercase',
                 margin: 0,
                 lineHeight: 1.05,
               }}
@@ -147,7 +148,7 @@ export default function Services() {
                       {/* Name */}
                       <h3
                         style={{
-                          fontFamily: 'var(--font-syne), sans-serif',
+                          fontFamily: 'var(--font-geist), sans-serif',
                           fontWeight: 600,
                           fontSize: '20px',
                           color: 'var(--c-text-1)',

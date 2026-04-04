@@ -205,11 +205,12 @@ export default function Hero() {
             variants={FADE_UP}
             className="hero-h1"
             style={{
-              fontFamily: 'var(--font-syne), sans-serif',
+              fontFamily: 'var(--font-geist), sans-serif',
               fontWeight: 800,
               fontSize: 'var(--t-hero)',
               lineHeight: '0.95',
-              letterSpacing: '-0.03em',
+              letterSpacing: '-0.02em',
+              textTransform: 'uppercase',
               margin: 0,
             }}
             aria-label="We don't consult. We create. Then we ship."

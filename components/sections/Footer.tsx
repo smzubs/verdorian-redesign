@@ -52,7 +52,7 @@ export default function Footer() {
         <div className="footer-wordmark" style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
           <span
             style={{
-              fontFamily: 'var(--font-syne), sans-serif',
+              fontFamily: 'var(--font-geist), sans-serif',
               fontWeight: 700,
               fontSize: '18px',
               color: 'var(--c-text-1)',

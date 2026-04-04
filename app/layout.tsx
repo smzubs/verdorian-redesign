@@ -1,12 +1,12 @@
 import type { Metadata, Viewport } from 'next'
-import { Syne, DM_Sans, JetBrains_Mono } from 'next/font/google'
+import { Geist, DM_Sans, JetBrains_Mono } from 'next/font/google'
 import { LenisProvider } from '@/lib/lenis-provider'
 import './globals.css'
 
-const syne = Syne({
+const geist = Geist({
   subsets: ['latin'],
-  weight: ['400', '600', '700', '800'],
-  variable: '--font-syne',
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-geist',
   display: 'swap',
 })
 
@@ -68,10 +68,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="en"
-      className={`${syne.variable} ${dmSans.variable} ${jetbrainsMono.variable}`}
+      className={`${geist.variable} ${dmSans.variable} ${jetbrainsMono.variable}`}
       suppressHydrationWarning
     >
-      <body className="font-[family-name:var(--font-dm-sans)]">
+      <body className="font-[family-name:var(--font-geist)]">
         <LenisProvider>{children}</LenisProvider>
       </body>
     </html>

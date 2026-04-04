@@ -116,10 +116,11 @@ export default function Contact() {
           <motion.h2
             variants={FADE_UP}
             style={{
-              fontFamily: 'var(--font-syne), sans-serif',
+              fontFamily: 'var(--font-geist), sans-serif',
               fontWeight: 800,
               fontSize: 'var(--t-h2)',
-              letterSpacing: '-0.03em',
+              letterSpacing: '-0.02em',
+              textTransform: 'uppercase',
               lineHeight: 1.05,
               margin: '24px 0 0',
             }}
@@ -249,7 +250,7 @@ export default function Contact() {
                     <div>
                       <p
                         style={{
-                          fontFamily: 'var(--font-syne), sans-serif',
+                          fontFamily: 'var(--font-geist), sans-serif',
                           fontWeight: 600,
                           fontSize: '18px',
                           color: 'var(--c-text-1)',
@@ -356,25 +357,32 @@ export default function Contact() {
                       aria-label="Send your message to Verdorian Technologies"
                       style={{
                         width: '100%',
-                        background: 'linear-gradient(135deg, var(--c-plasma), var(--c-arc))',
-                        color: '#ffffff',
+                        background: 'rgba(139, 92, 246, 0.12)',
+                        WebkitBackdropFilter: 'blur(12px) saturate(140%)',
+                        backdropFilter: 'blur(12px) saturate(140%)',
+                        color: 'var(--c-text-1)',
                         borderRadius: 'var(--r-pill)',
-                        border: 'none',
+                        border: '1px solid rgba(139, 92, 246, 0.45)',
+                        boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.10), 0 4px 20px rgba(139,92,246,0.20)',
                         padding: '12px 28px',
                         minHeight: '48px',
-                        fontFamily: 'var(--font-dm-sans), sans-serif',
+                        fontFamily: 'var(--font-geist), sans-serif',
                         fontWeight: 500,
                         fontSize: '16px',
                         cursor: 'pointer',
-                        transition: 'transform 0.3s var(--ease-expo), box-shadow 0.3s var(--ease-expo)',
+                        transition: 'all 0.3s var(--ease-expo)',
                       }}
                       onMouseEnter={(e) => {
-                        ;(e.currentTarget as HTMLButtonElement).style.transform = 'scale(1.02)'
-                        ;(e.currentTarget as HTMLButtonElement).style.boxShadow = 'var(--glow-plasma)'
+                        const el = e.currentTarget as HTMLButtonElement
+                        el.style.background = 'rgba(139, 92, 246, 0.22)'
+                        el.style.boxShadow = 'inset 0 1px 0 rgba(255,255,255,0.14), 0 6px 28px rgba(139,92,246,0.35)'
+                        el.style.transform = 'scale(1.02)'
                       }}
                       onMouseLeave={(e) => {
-                        ;(e.currentTarget as HTMLButtonElement).style.transform = 'scale(1)'
-                        ;(e.currentTarget as HTMLButtonElement).style.boxShadow = 'none'
+                        const el = e.currentTarget as HTMLButtonElement
+                        el.style.background = 'rgba(139, 92, 246, 0.12)'
+                        el.style.boxShadow = 'inset 0 1px 0 rgba(255,255,255,0.10), 0 4px 20px rgba(139,92,246,0.20)'
+                        el.style.transform = 'scale(1)'
                       }}
                     >
                       Send Message →

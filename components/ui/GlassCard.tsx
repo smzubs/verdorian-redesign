@@ -68,8 +68,8 @@ export function GlassCard({
     backdropFilter: 'blur(12px)',
     WebkitBackdropFilter: 'blur(12px)',
     boxShadow: isHovered && glow
-      ? 'var(--glow-card), var(--glow-plasma)'
-      : 'var(--glow-card)',
+      ? 'var(--glow-card), var(--glow-plasma), inset 0 1px 0 rgba(255,255,255,0.06)'
+      : 'var(--glow-card), inset 0 1px 0 rgba(255,255,255,0.06)',
     overflow: 'hidden',
     position: 'relative',
     transform: transform || undefined,

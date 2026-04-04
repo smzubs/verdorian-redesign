@@ -41,11 +41,12 @@ export default function About() {
 
             <h2
               style={{
-                fontFamily: 'var(--font-syne), sans-serif',
+                fontFamily: 'var(--font-geist), sans-serif',
                 fontWeight: 700,
                 fontSize: 'var(--t-h2)',
                 color: 'var(--c-text-1)',
-                letterSpacing: '-0.03em',
+                letterSpacing: '-0.02em',
+                textTransform: 'uppercase',
                 lineHeight: 1.05,
                 margin: 0,
               }}
@@ -90,7 +91,7 @@ export default function About() {
               >
                 <span
                   style={{
-                    fontFamily: 'var(--font-syne), sans-serif',
+                    fontFamily: 'var(--font-geist), sans-serif',
                     fontWeight: 600,
                     fontSize: '16px',
                     color: 'var(--c-text-1)',
@@ -121,7 +122,7 @@ export default function About() {
               >
                 <span
                   style={{
-                    fontFamily: 'var(--font-syne), sans-serif',
+                    fontFamily: 'var(--font-geist), sans-serif',
                     fontWeight: 600,
                     fontSize: '16px',
                     color: 'var(--c-text-1)',

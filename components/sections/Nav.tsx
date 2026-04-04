@@ -51,11 +51,11 @@ export default function Nav() {
           left: 0,
           right: 0,
           zIndex: 1000,
-          transition: 'background 0.4s var(--ease-expo), border-color 0.4s var(--ease-expo), backdrop-filter 0.4s var(--ease-expo)',
-          background: scrolled ? 'rgba(3,3,10,0.85)' : 'transparent',
-          backdropFilter: scrolled ? 'blur(24px) saturate(180%)' : 'none',
-          WebkitBackdropFilter: scrolled ? 'blur(24px) saturate(180%)' : 'none',
-          borderBottom: scrolled ? '1px solid rgba(255,255,255,0.06)' : '1px solid transparent',
+          transition: 'background 0.4s var(--ease-expo), border-color 0.4s var(--ease-expo)',
+          background: scrolled ? 'rgba(3, 3, 10, 0.82)' : 'rgba(3, 3, 10, 0.65)',
+          backdropFilter: 'saturate(180%) blur(20px)',
+          WebkitBackdropFilter: 'saturate(180%) blur(20px)',
+          borderBottom: scrolled ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(255,255,255,0.04)',
         }}
       >
         <div
@@ -63,7 +63,7 @@ export default function Nav() {
             maxWidth: '80rem',
             margin: '0 auto',
             padding: '0 24px',
-            height: '72px',
+            height: '56px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
@@ -87,7 +87,7 @@ export default function Nav() {
           >
             <span
               style={{
-                fontFamily: 'var(--font-syne), sans-serif',
+                fontFamily: 'var(--font-geist), sans-serif',
                 fontWeight: 700,
                 fontSize: '20px',
                 color: 'var(--c-text-1)',
@@ -296,7 +296,7 @@ export default function Nav() {
                   cursor: 'pointer',
                   minHeight: '48px',
                   padding: '12px 32px',
-                  fontFamily: 'var(--font-syne), sans-serif',
+                  fontFamily: 'var(--font-geist), sans-serif',
                   fontWeight: 600,
                   fontSize: '28px',
                   color: 'var(--c-text-1)',

@@ -13,12 +13,12 @@
   --c-plasma:   #8B5CF6;
   --c-arc:      #22D3EE;
   --c-ember:    #F59E0B;
-  --c-ghost:    rgba(255, 255, 255, 0.04);
+  --c-ghost:    rgba(255, 255, 255, 0.06);
 
   /* Text */
   --c-text-1:   #EDEDFF;
-  --c-text-2:   #8A8AB0;
-  --c-text-3:   #45455A;
+  --c-text-2:   #9494B8;
+  --c-text-3:   #50506E;
 
   /* Glow shadows */
   --glow-plasma: 0 0 30px rgba(139, 92, 246, 0.45), 0 0 80px rgba(139, 92, 246, 0.15);
