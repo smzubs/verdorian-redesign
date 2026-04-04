@@ -295,11 +295,12 @@ export default function Nav() {
               transition={{ type: 'spring', stiffness: 400, damping: 30 }}
             >
               <GlowButton
-                variant="primary"
+                variant="gold"
                 size="sm"
+                shimmer
                 onClick={() => scrollToSection('contact')}
               >
-                Get started
+                Get a Quote
               </GlowButton>
             </motion.div>
 
@@ -433,11 +434,12 @@ export default function Nav() {
               style={{ marginTop: '24px' }}
             >
               <GlowButton
-                variant="primary"
+                variant="emerald"
                 size="lg"
+                shimmer
                 onClick={() => handleNavLink('contact')}
               >
-                Get started
+                Start a Project
               </GlowButton>
             </motion.div>
           </motion.div>

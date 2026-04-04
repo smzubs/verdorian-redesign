@@ -433,20 +433,21 @@ export default function Hero() {
                 }}
               >
                 <GlowButton
-                  variant="primary"
+                  variant="emerald"
                   size="lg"
+                  shimmer
                   onClick={() => scrollToSection('products')}
                   className="hero-cta-btn"
                 >
                   Explore our work
                 </GlowButton>
                 <GlowButton
-                  variant="ghost"
+                  variant="outline"
                   size="lg"
                   onClick={() => scrollToSection('contact')}
                   className="hero-cta-btn"
                 >
-                  Contact us
+                  Get in touch
                 </GlowButton>
               </motion.div>
             </motion.div>

@@ -404,18 +404,11 @@ export default function Contact() {
                       style={{
                         width: '100%',
                         position: 'relative',
-                        background: 'rgba(139, 92, 246, 0.88)',
-                        backdropFilter: 'blur(2px) saturate(180%) brightness(108%)',
-                        WebkitBackdropFilter: 'blur(2px) saturate(180%) brightness(108%)',
-                        border: '1px solid rgba(255, 255, 255, 0.25)',
+                        background: 'linear-gradient(135deg, #059669 0%, #10B981 100%)',
+                        border: '1px solid rgba(255, 255, 255, 0.15)',
                         borderRadius: '980px',
-                        color: 'rgba(255, 255, 255, 0.95)',
-                        boxShadow: `
-                          0 2px 8px rgba(139, 92, 246, 0.30),
-                          0 1px 2px rgba(0, 0, 0, 0.10),
-                          inset 0 1px 0 rgba(255, 255, 255, 0.25),
-                          inset 0 -1px 0 rgba(0, 0, 0, 0.15)
-                        `,
+                        color: '#ffffff',
+                        boxShadow: '0 2px 8px rgba(16,185,129,0.30), inset 0 1px 0 rgba(255,255,255,0.20), inset 0 -1px 0 rgba(0,0,0,0.10)',
                         padding: '13px 28px',
                         minHeight: '48px',
                         fontFamily: 'var(--font-geist), sans-serif',
@@ -432,52 +425,46 @@ export default function Contact() {
                       }}
                       onMouseEnter={(e) => {
                         const el = e.currentTarget as HTMLButtonElement
-                        el.style.background = 'rgba(139, 92, 246, 0.98)'
-                        el.style.transform = 'scale(1.02)'
-                        el.style.boxShadow = `
-                          0 6px 20px rgba(139, 92, 246, 0.40),
-                          0 2px 4px rgba(0, 0, 0, 0.12),
-                          inset 0 1px 0 rgba(255, 255, 255, 0.30),
-                          inset 0 -1px 0 rgba(0, 0, 0, 0.18)
-                        `
+                        el.style.background = 'linear-gradient(135deg, #047857 0%, #059669 100%)'
+                        el.style.transform = 'translateY(-1px) scale(1.02)'
+                        el.style.boxShadow = '0 8px 30px rgba(16,185,129,0.35), inset 0 1px 0 rgba(255,255,255,0.25), inset 0 -1px 0 rgba(0,0,0,0.12)'
                       }}
                       onMouseLeave={(e) => {
                         const el = e.currentTarget as HTMLButtonElement
-                        el.style.background = 'rgba(139, 92, 246, 0.88)'
-                        el.style.transform = 'scale(1)'
-                        el.style.boxShadow = `
-                          0 2px 8px rgba(139, 92, 246, 0.30),
-                          0 1px 2px rgba(0, 0, 0, 0.10),
-                          inset 0 1px 0 rgba(255, 255, 255, 0.25),
-                          inset 0 -1px 0 rgba(0, 0, 0, 0.15)
-                        `
+                        el.style.background = 'linear-gradient(135deg, #059669 0%, #10B981 100%)'
+                        el.style.transform = ''
+                        el.style.boxShadow = '0 2px 8px rgba(16,185,129,0.30), inset 0 1px 0 rgba(255,255,255,0.20), inset 0 -1px 0 rgba(0,0,0,0.10)'
                       }}
                       onMouseDown={(e) => {
-                        (e.currentTarget as HTMLButtonElement).style.transform = 'scale(0.98)'
+                        (e.currentTarget as HTMLButtonElement).style.transform = 'scale(0.97)'
                       }}
                       onMouseUp={(e) => {
-                        (e.currentTarget as HTMLButtonElement).style.transform = 'scale(1.02)'
+                        (e.currentTarget as HTMLButtonElement).style.transform = 'translateY(-1px) scale(1.02)'
                       }}
                     >
-                      {/* Button highlight layer */}
+                      {/* Shimmer sweep */}
                       <span
                         aria-hidden="true"
                         style={{
-                          position: 'absolute',
-                          top: 0,
-                          left: 0,
-                          right: 0,
-                          height: '50%',
-                          borderRadius: '980px 980px 0 0',
-                          background: 'linear-gradient(180deg, rgba(255,255,255,0.28) 0%, rgba(255,255,255,0) 100%)',
-                          pointerEvents: 'none',
-                          zIndex: 1,
+                          position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 1,
+                          background: 'linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.15) 50%, transparent 60%)',
+                          animation: 'shimmerSweep 3s ease-in-out infinite 2.5s',
                         }}
                       />
-                      <span style={{ position: 'relative', zIndex: 2, display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+                      {/* Highlight */}
+                      <span
+                        aria-hidden="true"
+                        style={{
+                          position: 'absolute', top: 0, left: 0, right: 0, height: '50%',
+                          borderRadius: '980px 980px 0 0',
+                          background: 'linear-gradient(180deg, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0) 100%)',
+                          pointerEvents: 'none', zIndex: 1,
+                        }}
+                      />
+                      <span style={{ position: 'relative', zIndex: 2, display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
                         Send Message
-                        <svg width="6" height="10" viewBox="0 0 6 10" fill="none" aria-hidden="true">
-                          <path d="M1 1l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                        <svg width="7" height="11" viewBox="0 0 7 11" fill="none" aria-hidden="true">
+                          <path d="M1.5 1.5l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                       </span>
                     </button>
