@@ -160,22 +160,22 @@ export default function Nav() {
           >
             {/* V badge — shown when scrolled */}
             <motion.span
-              animate={{ opacity: scrolled ? 1 : 0, scale: scrolled ? 1 : 0.6, width: scrolled ? '28px' : '0px' }}
+              animate={{ opacity: scrolled ? 1 : 0, scale: scrolled ? 1 : 0.6, width: scrolled ? '32px' : '0px' }}
               transition={{ type: 'spring', stiffness: 400, damping: 30 }}
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                width: '28px',
-                height: '28px',
+                width: '32px',
+                height: '32px',
                 borderRadius: '8px',
                 background: 'rgba(139,92,246,0.10)',
                 border: '1px solid rgba(139,92,246,0.18)',
-                fontFamily: 'var(--font-geist), sans-serif',
-                fontWeight: 800,
-                fontSize: '13px',
+                fontFamily: 'var(--font-display), serif',
+                fontWeight: 700,
+                fontSize: '14px',
                 color: 'var(--c-gold)',
-                letterSpacing: '0.02em',
+                letterSpacing: '0.01em',
                 flexShrink: 0,
                 overflow: 'hidden',
               }}
