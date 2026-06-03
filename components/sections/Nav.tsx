@@ -6,14 +6,14 @@ import { GlowButton } from '@/components/ui/GlowButton'
 import { scrollToSection } from '@/lib/utils'
 
 const NAV_LINKS = [
-  { label: 'Work', id: 'products' },
   { label: 'Services', id: 'services' },
+  { label: 'Work', id: 'products' },
   { label: 'How We Build', id: 'how-i-build' },
   { label: 'About', id: 'about' },
   { label: 'Contact', id: 'contact' },
 ]
 
-const SECTION_IDS = ['hero', 'products', 'services', 'how-i-build', 'about', 'contact']
+const SECTION_IDS = ['hero', 'services', 'how-i-build', 'products', 'about', 'contact']
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false)

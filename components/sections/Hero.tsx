@@ -57,7 +57,7 @@ export default function Hero() {
       }}
     >
       <style>{`
-        /* Responsive for new clean glass accent hero */
+        /* Responsive for new clean glass accent hero — ultra mobile friendly 375px */
         @media (max-width: 1023px) {
           .hero-cta-row {
             flex-direction: column !important;
@@ -66,6 +66,34 @@ export default function Hero() {
           .hero-cta-btn {
             width: 100% !important;
             justify-content: center !important;
+          }
+        }
+        @media (max-width: 767px) {
+          .hero-content {
+            padding-top: 72px !important;
+            padding-bottom: 48px !important;
+            padding-left: 20px !important;
+            padding-right: 20px !important;
+          }
+        }
+        @media (max-width: 390px) {
+          .hero-content {
+            padding-top: 64px !important;
+            padding-bottom: 40px !important;
+            padding-left: 16px !important;
+            padding-right: 16px !important;
+          }
+          .hero-cta-btn {
+            font-size: 14px !important;
+            padding-top: 12px !important;
+            padding-bottom: 12px !important;
+          }
+          .hero-subtitle {
+            max-width: 100% !important;
+            font-size: 16px !important;
+          }
+          .hero-grid {
+            gap: 40px !important;
           }
         }
         @media (prefers-reduced-motion: reduce) {
@@ -77,14 +105,15 @@ export default function Hero() {
 
       {/* Scroll-linked fade wrapper */}
       <motion.div
+        className="hero-content"
         style={{
           opacity: heroOpacity,
           y: heroY,
           position: 'relative',
           zIndex: 10,
           width: '100%',
-          paddingTop: '128px',
-          paddingBottom: '80px',
+          paddingTop: '80px',
+          paddingBottom: '60px',
           paddingLeft: '24px',
           paddingRight: '24px',
         }}
@@ -98,7 +127,7 @@ export default function Hero() {
               gap: '64px',
               alignItems: 'center',
             }}
-            className="lg:grid-cols-[55fr_45fr]"
+            className="hero-grid lg:grid-cols-[55fr_45fr]"
           >
             {/* LEFT COLUMN — text */}
             <motion.div
@@ -177,6 +206,7 @@ export default function Hero() {
               {/* Subtitle - new pitch */}
               <motion.p
                 variants={FADE_UP}
+                className="hero-subtitle"
                 style={{
                   fontFamily: 'var(--font-dm-sans), sans-serif',
                   fontWeight: 400,

@@ -18,6 +18,14 @@ export default function Contact() {
         overflow: 'hidden',
       }}
     >
+      <style>{`
+        @media (max-width: 767px) { .contact-container { padding: 0 20px !important; } }
+        @media (max-width: 390px) {
+          .contact-container { padding: 0 16px !important; }
+          .contact-glass-card { padding: 28px !important; margin-top: 32px !important; border-radius: 22px !important; }
+          .contact-glass-card > div > div[style*="flex"] { flex-direction: column !important; gap: 10px !important; }
+        }
+      `}</style>
       {/* Background blue glow */}
       <div
         aria-hidden="true"
@@ -36,6 +44,7 @@ export default function Contact() {
       />
 
       <div
+        className="contact-container"
         style={{
           maxWidth: '700px',
           margin: '0 auto',
@@ -88,6 +97,7 @@ export default function Contact() {
               isolation: 'isolate',
               overflow: 'hidden',
             }}
+            className="contact-glass-card"
           >
             {/* Top catch light */}
             <div

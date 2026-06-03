@@ -40,7 +40,15 @@ export default function HowIBuild() {
         background: 'var(--c-bg-alt)',
       }}
     >
+      <style>{`
+        @media (max-width: 767px) { .how-container { padding-left: 20px !important; padding-right: 20px !important; } }
+        @media (max-width: 390px) {
+          .how-container { padding-left: 16px !important; padding-right: 16px !important; }
+          .how-principle-card { padding: 20px !important; border-radius: 18px !important; }
+        }
+      `}</style>
       <div
+        className="how-container"
         style={{
           maxWidth: '80rem',
           margin: '0 auto',
@@ -98,6 +106,7 @@ export default function HowIBuild() {
                   custom={i}
                 >
                   <div
+                    className="how-principle-card"
                     style={{
                       background: 'var(--glass-fill-elevated)',
                       backdropFilter: 'blur(20px) saturate(1.3)',

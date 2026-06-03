@@ -23,7 +23,17 @@ export default function Services() {
         background: 'var(--c-bg-base)',
       }}
     >
+      <style>{`
+        @media (max-width: 767px) {
+          .services-container { padding-left: 20px !important; padding-right: 20px !important; }
+        }
+        @media (max-width: 390px) {
+          .services-container { padding-left: 16px !important; padding-right: 16px !important; }
+          .service-card-inner { padding: 20px !important; }
+        }
+      `}</style>
       <div
+        className="services-container"
         style={{
           maxWidth: '80rem',
           margin: '0 auto',
@@ -83,8 +93,8 @@ export default function Services() {
                 >
                   <GlassCard tilt={false} style={{ background: 'var(--c-bg-card)', height: '100%' }}>
                     <div
+                      className="service-card-inner p-5 md:p-7"
                       style={{
-                        padding: '28px',
                         display: 'flex',
                         flexDirection: 'column',
                         height: '100%',

@@ -22,7 +22,19 @@ export default function About() {
         background: 'var(--c-bg-alt)',
       }}
     >
+      <style>{`
+        @media (max-width: 767px) {
+          .about-stats-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 12px !important; }
+          .about-container { padding-left: 20px !important; padding-right: 20px !important; }
+        }
+        @media (max-width: 390px) {
+          .about-stats-grid { grid-template-columns: 1fr !important; gap: 12px !important; }
+          .about-stat-value { font-size: 36px !important; }
+          .about-container { padding-left: 16px !important; padding-right: 16px !important; }
+        }
+      `}</style>
       <div
+        className="about-container"
         style={{
           maxWidth: '80rem',
           margin: '0 auto',
@@ -105,12 +117,12 @@ export default function About() {
 
           {/* Stat row — spring pop on scroll entry */}
           <div
+            className="about-stats-grid"
             style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(2, 1fr)',
               gap: '16px',
             }}
-            className="sm:grid-cols-3"
           >
             {STATS.map((stat, index) => (
               <motion.div
@@ -166,6 +178,7 @@ export default function About() {
                     damping: 15,
                     delay: index * 0.15,
                   }}
+                  className="about-stat-value"
                   style={{
                     fontFamily: 'var(--font-display), serif',
                     fontWeight: 400,

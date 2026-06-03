@@ -16,9 +16,10 @@ export default function Home() {
       <main id="main-content">
         <Nav />
         <Hero />
-        <Products />
+        {/* SERVICES moved/prioritized as primary offer/hook immediately after Hero for clear value path + scannability (premium pattern: promise then concrete offering) */}
         <Services />
         <HowIBuild />
+        <Products />
         <About />
         <Contact />
         <Footer />

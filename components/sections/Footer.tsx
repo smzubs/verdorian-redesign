@@ -4,8 +4,10 @@ import React from 'react'
 import { scrollToSection } from '@/lib/utils'
 
 const NAV_LINKS = [
-  { label: 'Products', id: 'products' },
-  { label: 'Capabilities', id: 'capabilities' },
+  { label: 'Services', id: 'services' },
+  { label: 'Work', id: 'products' },
+  { label: 'How We Build', id: 'how-i-build' },
+  { label: 'About', id: 'about' },
   { label: 'Contact', id: 'contact' },
 ]
 
@@ -14,10 +16,10 @@ export default function Footer() {
     <footer
       aria-label="Site footer"
       style={{
-        background: '#1a1a2e',
-        borderTop: '1px solid rgba(255, 255, 255, 0.06)',
-        paddingTop: '48px',
-        paddingBottom: '48px',
+        background: 'var(--c-bg-dark)',
+        borderTop: '1px solid rgba(255, 255, 255, 0.08)',
+        paddingTop: '40px',
+        paddingBottom: '40px',
       }}
     >
       <style>{`
@@ -37,6 +39,8 @@ export default function Footer() {
             flex-direction: column;
             align-items: center;
             text-align: center;
+            padding-left: 20px !important;
+            padding-right: 20px !important;
           }
           .footer-wordmark {
             align-items: center !important;
@@ -44,6 +48,13 @@ export default function Footer() {
           .footer-legal {
             align-items: center !important;
             text-align: center !important;
+          }
+        }
+        @media (max-width: 390px) {
+          .footer-inner {
+            padding-left: 16px !important;
+            padding-right: 16px !important;
+            gap: 24px !important;
           }
         }
       `}</style>

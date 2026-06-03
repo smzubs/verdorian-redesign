@@ -80,7 +80,7 @@ function CardContent({ product, isFeatured = false }: CardContentProps) {
   return (
     <div
       style={{
-        padding: '28px',
+        padding: '20px',
         height: '100%',
         minHeight: MIN_HEIGHTS[product.name] ?? '240px',
         display: 'flex',
@@ -287,7 +287,7 @@ function GhostCard({ className }: { className?: string }) {
         alignItems: 'center',
         justifyContent: 'center',
         gap: '12px',
-        padding: '28px',
+        padding: '20px',
       }}
     >
       <div
@@ -334,8 +334,9 @@ function CompactCard({ product, showTilt, index }: { product: Product; showTilt:
     >
       <GlassCard tilt={showTilt} style={_cardTint ? { background: 'rgba(255,255,255,0.55)' } : undefined}>
         <div
+          className="product-compact-inner"
           style={{
-            padding: '24px',
+            padding: '18px',
             display: 'flex',
             flexDirection: 'column',
             gap: '14px',
@@ -426,7 +427,17 @@ export default function Products() {
         background: 'var(--c-bg-base)',
       }}
     >
+      <style>{`
+        @media (max-width: 767px) {
+          .products-container { padding-left: 20px !important; padding-right: 20px !important; }
+        }
+        @media (max-width: 390px) {
+          .products-container { padding-left: 16px !important; padding-right: 16px !important; }
+          .product-compact-inner { padding: 16px !important; gap: 12px !important; }
+        }
+      `}</style>
       <div
+        className="products-container"
         style={{
           maxWidth: '80rem',
           margin: '0 auto',
