@@ -6,7 +6,6 @@ import {
   IconMicrophone,
   IconFileText,
   IconQrcode,
-  IconCompass,
   IconShield,
   IconArrowRight,
   IconPlus,
@@ -29,7 +28,6 @@ const ICON_MAP: Record<string, TablerIcon> = {
   IconMicrophone,
   IconFileText,
   IconQrcode,
-  IconCompass,
   IconShield,
 }
 
@@ -37,7 +35,6 @@ const ICON_BG_COLORS: Record<string, { bg: string; border: string }> = {
   VoicePencil:   { bg: 'rgba(139, 92, 246, 0.08)',  border: 'rgba(139, 92, 246, 0.18)' },
   ChangeOrderAI: { bg: 'rgba(34, 211, 238, 0.08)',   border: 'rgba(34, 211, 238, 0.20)' },
   QRSafePro:     { bg: 'rgba(16, 185, 129, 0.08)',   border: 'rgba(16, 185, 129, 0.20)' },
-  WithinYouAI:   { bg: 'rgba(99, 102, 241, 0.08)',   border: 'rgba(99, 102, 241, 0.18)' },
   PolicyPilot:   { bg: 'rgba(24, 119, 242, 0.08)',    border: 'rgba(24, 119, 242, 0.20)' },
 }
 
@@ -45,7 +42,6 @@ const ICON_COLORS: Record<string, string> = {
   VoicePencil:   'var(--c-plasma)',
   ChangeOrderAI: 'var(--c-arc)',
   QRSafePro:     '#10b981',
-  WithinYouAI:   '#6366f1',
   PolicyPilot:   'var(--c-blue)',
 }
 
@@ -53,24 +49,21 @@ const CARD_TINTS: Record<string, string> = {
   VoicePencil:   'rgba(139, 92, 246, 0.06)',
   ChangeOrderAI: 'rgba(34, 211, 238, 0.05)',
   QRSafePro:     'rgba(16, 185, 129, 0.06)',
-  WithinYouAI:   'rgba(99, 102, 241, 0.05)',
   PolicyPilot:   'rgba(24, 119, 242, 0.05)',
 }
 
 const GRID_STYLES: Record<string, React.CSSProperties> = {
   VoicePencil:   { gridColumn: '1 / 9',  gridRow: '1 / 2' },
   ChangeOrderAI: { gridColumn: '9 / 13', gridRow: '1 / 2' },
-  QRSafePro:     { gridColumn: '1 / 6',  gridRow: '2 / 3' },
-  WithinYouAI:   { gridColumn: '6 / 13', gridRow: '2 / 3' },
-  PolicyPilot:   { gridColumn: '1 / 7',  gridRow: '3 / 4' },
+  QRSafePro:     { gridColumn: '1 / 7',  gridRow: '2 / 3' },
+  PolicyPilot:   { gridColumn: '7 / 13', gridRow: '2 / 3' },
 }
 
 const MIN_HEIGHTS: Record<string, string> = {
   VoicePencil:   '380px',
   ChangeOrderAI: '280px',
   QRSafePro:     '280px',
-  WithinYouAI:   '280px',
-  PolicyPilot:   '240px',
+  PolicyPilot:   '280px',
 }
 
 // ─── Shared card inner content ────────────────────────────────────────────────
@@ -283,12 +276,12 @@ function GhostCard({ className }: { className?: string }) {
     <div
       className={cn(className)}
       style={{
-        minHeight: '240px',
+        minHeight: '200px',
         borderRadius: '20px',
-        border: '1.5px dashed rgba(139, 92, 246, 0.18)',
-        background: 'rgba(255, 255, 255, 0.25)',
-        backdropFilter: 'blur(4px)',
-        WebkitBackdropFilter: 'blur(4px)',
+        border: '1.5px dashed rgba(201, 162, 62, 0.25)',
+        background: 'var(--glass-fill)',
+        backdropFilter: 'blur(8px) saturate(1.2)',
+        WebkitBackdropFilter: 'blur(8px) saturate(1.2)',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -302,7 +295,7 @@ function GhostCard({ className }: { className?: string }) {
           width: '40px',
           height: '40px',
           borderRadius: 'var(--r-pill)',
-          border: '1.5px dashed rgba(139, 92, 246, 0.20)',
+          border: '1.5px dashed rgba(201, 162, 62, 0.25)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
@@ -513,12 +506,12 @@ export default function Products() {
                 </motion.div>
               ))}
 
-              {/* Ghost card */}
+              {/* Ghost card — "more in the forge" */}
               <motion.div
                 style={{
-                  gridColumn: '7 / 13',
+                  gridColumn: '1 / 13',
                   gridRow: '3 / 4',
-                  minHeight: '240px',
+                  minHeight: '200px',
                 }}
                 variants={CARD_ENTRANCE}
                 custom={rest.length + 1}

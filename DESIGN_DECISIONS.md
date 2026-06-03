@@ -34,7 +34,7 @@ Tilt is desktop-only — touch devices get standard tap interactions.
 
 The product grid uses intentionally asymmetric column spans:
 - Row 1: 8 + 4 (VoicePencil featured, ChangeOrderAI compact)
-- Row 2: 5 + 7 (QRSafePro + WithinYouAI — breaking the 4/4/4 pattern)
+- Row 2: QRSafePro + PolicyPilot (clean 4-item bento after WithinYouAI removal)
 - Row 3: 6 + 6 (PolicyPilot + ghost card)
 
 Uniform grids (4/4/4) read as templates. The asymmetry signals intentional design decisions and creates visual rhythm that keeps the eye moving. Each row has different proportions, preventing the section from feeling repetitive.

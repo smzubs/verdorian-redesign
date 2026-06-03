@@ -39,14 +39,7 @@ export const PRODUCTS: Product[] = [
     icon: 'IconQrcode',
     category: 'Web Platform',
   },
-  {
-    name: 'WithinYouAI',
-    tagline: 'AI career discovery platform',
-    status: 'live',
-    href: 'https://withinyou.ai',
-    icon: 'IconCompass',
-    category: 'Web Platform',
-  },
+
   {
     name: 'PolicyPilot',
     tagline: 'Insurance agency management platform',
