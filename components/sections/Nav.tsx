@@ -90,8 +90,8 @@ export default function Nav() {
           left: 0,
           right: 0,
           zIndex: 1000,
-          // Padding shrinks when scrolled so the pill floats with breathing room
-          padding: scrolled ? '10px 24px' : '12px 24px',
+          // Padding shrinks when scrolled so the pill floats with breathing room — bigger, bolder base for premium wow
+          padding: scrolled ? '12px 28px' : '16px 28px',
           transition: 'padding 0.4s var(--ease-expo)',
           display: 'flex',
           justifyContent: 'center',
@@ -100,11 +100,11 @@ export default function Nav() {
       >
         <motion.div
           animate={{
-            maxWidth: scrolled ? '680px' : '1280px',
-            height: scrolled ? '48px' : '56px',
-            borderRadius: scrolled ? '980px' : '16px',
-            paddingLeft: scrolled ? '16px' : '20px',
-            paddingRight: scrolled ? '16px' : '20px',
+            maxWidth: scrolled ? '720px' : '1400px',
+            height: scrolled ? '52px' : '64px',
+            borderRadius: scrolled ? '980px' : '20px',
+            paddingLeft: scrolled ? '18px' : '24px',
+            paddingRight: scrolled ? '18px' : '24px',
           }}
           transition={{ type: 'spring', stiffness: 300, damping: 30 }}
           style={{
@@ -113,12 +113,12 @@ export default function Nav() {
             alignItems: 'center',
             justifyContent: 'space-between',
             background: scrolled ? 'var(--glass-fill-elevated)' : 'var(--glass-fill)',
-            backdropFilter: scrolled ? 'blur(18px) saturate(1.32)' : 'blur(22px) saturate(1.3)',
-            WebkitBackdropFilter: scrolled ? 'blur(18px) saturate(1.32)' : 'blur(22px) saturate(1.3)',
+            backdropFilter: scrolled ? 'blur(20px) saturate(1.35)' : 'blur(26px) saturate(1.4)',
+            WebkitBackdropFilter: scrolled ? 'blur(20px) saturate(1.35)' : 'blur(26px) saturate(1.4)',
             border: '1px solid var(--glass-border)',
             boxShadow: scrolled
-              ? '0 8px 28px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.18)'
-              : '0 6px 24px rgba(0,0,0,0.05), inset 0 1px 0 rgba(255,255,255,0.14)',
+              ? '0 12px 40px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04), inset 0 1px 0 rgba(255,255,255,0.22)'
+              : '0 20px 56px rgba(0,0,0,0.10), 0 6px 16px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.20), inset 0 -1px 0 rgba(0,0,0,0.04)',
             overflow: 'hidden',
             isolation: 'isolate',
             position: 'relative',
@@ -132,8 +132,8 @@ export default function Nav() {
               top: 0,
               left: 0,
               right: 0,
-              height: '50%',
-              background: 'linear-gradient(180deg, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0) 100%)',
+              height: '55%',
+              background: 'linear-gradient(180deg, rgba(255,255,255,0.28) 0%, rgba(255,255,255,0) 100%)',
               pointerEvents: 'none',
               zIndex: 1,
             }}
@@ -198,11 +198,11 @@ export default function Nav() {
               <span
                 style={{
                   fontFamily: 'var(--font-display), serif',
-                  fontWeight: 600,
-                  fontSize: '15px',
+                  fontWeight: 700,
+                  fontSize: '18px',
                   color: 'var(--c-text-1)',
                   lineHeight: 1,
-                  letterSpacing: '0.12em',
+                  letterSpacing: '0.08em',
                   textTransform: 'uppercase',
                   whiteSpace: 'nowrap',
                 }}
@@ -212,10 +212,10 @@ export default function Nav() {
               <span
                 style={{
                   fontFamily: 'var(--font-body), system-ui, sans-serif',
-                  fontWeight: 500,
-                  fontSize: '7px',
+                  fontWeight: 600,
+                  fontSize: '9px',
                   color: 'var(--c-text-3)',
-                  letterSpacing: '0.22em',
+                  letterSpacing: '0.18em',
                   textTransform: 'uppercase',
                   lineHeight: 1,
                   whiteSpace: 'nowrap',
@@ -231,11 +231,11 @@ export default function Nav() {
             className="hidden md:flex"
             style={{
               alignItems: 'center',
-              gap: '2px',
+              gap: '4px',
               padding: '4px',
-              borderRadius: '12px',
-              background: 'rgba(139, 92, 246, 0.04)',
-              border: '1px solid rgba(139, 92, 246, 0.08)',
+              borderRadius: '14px',
+              background: 'var(--glass-fill)',
+              border: '1px solid var(--glass-border)',
               position: 'relative',
               zIndex: 2,
             }}
@@ -255,16 +255,16 @@ export default function Nav() {
                   aria-current={isActive ? 'true' : undefined}
                   style={{
                     position: 'relative',
-                    background: (!isActive && isHovered) ? 'rgba(0,0,0,0.04)' : 'transparent',
+                    background: (!isActive && isHovered) ? 'rgba(0,0,0,0.03)' : 'transparent',
                     border: 'none',
                     cursor: 'pointer',
-                    padding: '7px 16px',
-                    borderRadius: '8px',
-                    fontFamily: 'var(--font-geist), sans-serif',
-                    fontWeight: isActive ? 600 : 500,
-                    fontSize: '13px',
-                    letterSpacing: '0.02em',
-                    color: isActive ? 'var(--c-gold)' : 'var(--c-text-2)',
+                    padding: '9px 18px',
+                    borderRadius: '10px',
+                    fontFamily: 'var(--font-body), system-ui, sans-serif',
+                    fontWeight: isActive ? 700 : 600,
+                    fontSize: '15px',
+                    letterSpacing: '0.01em',
+                    color: isActive ? 'var(--c-gold)' : 'var(--c-text-1)',
                     transition: 'color 0.2s var(--ease-expo), background 0.15s ease, font-weight 0.1s',
                     whiteSpace: 'nowrap',
                     zIndex: 1,
@@ -277,10 +277,10 @@ export default function Nav() {
                       style={{
                         position: 'absolute',
                         inset: 0,
-                        borderRadius: '8px',
-                        background: 'rgba(139, 92, 246, 0.12)',
-                        border: '1px solid rgba(139, 92, 246, 0.20)',
-                        boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.30), 0 0 12px rgba(139,92,246,0.08)',
+                        borderRadius: '10px',
+                        background: 'var(--glass-fill-elevated)',
+                        border: '1px solid var(--glass-border-gold)',
+                        boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.35), 0 0 16px rgba(180,138,64,0.10)',
                         zIndex: 0,
                       }}
                       transition={{ type: 'spring', stiffness: 400, damping: 30 }}
@@ -310,7 +310,7 @@ export default function Nav() {
             >
               <GlowButton
                 variant="blue"
-                size="sm"
+                size="md"
                 shimmer
                 onClick={() => scrollToSection('contact')}
               >
@@ -327,17 +327,18 @@ export default function Nav() {
               onClick={() => setMobileOpen((v) => !v)}
               className="flex md:hidden"
               style={{
-                background: 'rgba(139, 92, 246, 0.06)',
-                border: '1px solid rgba(139, 92, 246, 0.12)',
-                borderRadius: '10px',
+                background: 'var(--glass-fill)',
+                border: '1px solid var(--glass-border)',
+                borderRadius: '12px',
                 cursor: 'pointer',
-                width: '40px',
-                height: '40px',
+                width: '44px',
+                height: '44px',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 color: 'var(--c-text-1)',
-                transition: 'all 0.2s',
+                transition: 'all 0.2s var(--ease-expo)',
+                boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.12)',
               }}
             >
               <svg
@@ -420,8 +421,8 @@ export default function Nav() {
                   cursor: 'pointer',
                   minHeight: '52px',
                   padding: '12px 40px',
-                  fontFamily: 'var(--font-geist), sans-serif',
-                  fontWeight: 800,
+                  fontFamily: 'var(--font-display), serif',
+                  fontWeight: 700,
                   fontSize: '24px',
                   color: activeSection === link.id ? 'var(--c-gold)' : 'var(--c-text-1)',
                   letterSpacing: '0.10em',
@@ -448,12 +449,12 @@ export default function Nav() {
               style={{ marginTop: '24px' }}
             >
               <GlowButton
-                variant="emerald"
+                variant="blue"
                 size="lg"
                 shimmer
                 onClick={() => handleNavLink('contact')}
               >
-                Start a Project
+                LETS TALK!
               </GlowButton>
             </motion.div>
           </motion.div>
