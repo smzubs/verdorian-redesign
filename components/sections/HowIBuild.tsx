@@ -10,22 +10,22 @@ const PRINCIPLES = [
   {
     icon: IconBrain,
     title: 'AI as force multiplier',
-    desc: 'We use Claude, custom agents, and rapid iteration to ship what used to take months. AI handles the boilerplate and first drafts so we can focus on the hard parts that actually matter in the field.',
+    desc: 'We use Claude, custom agents, and rapid iteration to ship what used to take months. AI handles the boilerplate and first drafts so we can focus on the hard parts that actually matter in operations and automation.',
   },
   {
     icon: IconShield,
     title: 'Domain moat that matters',
-    desc: '7 years in field operations, safety, and compliance means we catch what the models miss — regulatory edge cases, crew realities, and the difference between "compliant on paper" and "actually safe and usable in the field." Our moat is real experience, not theory.',
+    desc: '7 years in operations, compliance, and real-world automation means we catch what the models miss — regulatory edge cases, operational realities, and the difference between "compliant on paper" and "actually reliable in practice." Our moat is real experience across industries, not theory.',
   },
   {
     icon: IconRocket,
     title: 'Ship fast, validate faster',
-    desc: 'Prototypes in days, real field testing immediately. We iterate with the people who will actually use the tool until it fits their workflow like it was always there. No hand-off — we stay until it ships right.',
+    desc: 'Prototypes in days, real-world testing immediately. We iterate with the teams who will actually use the tools until they fit their workflow like they were always there. No hand-off — we stay until it ships right.',
   },
   {
     icon: IconUsers,
     title: "Built by someone who's been there",
-    desc: 'Every system starts from a painful problem we have lived. No consulting fluff — just production tools we would have wanted on the jobs we did. We ship what we know works.',
+    desc: 'Every system starts from painful problems we have lived in real operations. No consulting fluff — just production automation we would have wanted for the workflows we did. We ship what we know works across businesses.',
   },
 ]
 

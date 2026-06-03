@@ -71,10 +71,10 @@ export default function About() {
               }}
             >
               <span style={{ display: 'block', color: 'var(--c-text-1)' }}>
-                From the field to
+                From real operations to
               </span>
               <span style={{ display: 'block', color: 'var(--c-text-3)' }}>
-                the systems that protect it.
+                the automation that powers them.
               </span>
             </h2>
 
@@ -87,7 +87,7 @@ export default function About() {
                 margin: 0,
               }}
             >
-              For seven years we have lived the work — field operations, safety, and compliance on active sites. We know the inspections, the forms, the signatures, and the real risk when records are missing or slow.
+              For seven years we have lived the work — real-world operations, compliance, and automation across industries. We know the inspections, the documentation, the approvals, and the real risk when processes are manual or slow.
             </p>
 
             <p
@@ -99,7 +99,7 @@ export default function About() {
                 margin: 0,
               }}
             >
-              We saw the same pattern on every site: crews running on paper, near-misses unreported because the process was too slow, and teams carrying real operational and compliance risk with almost no modern systems.
+              We saw the same pattern across businesses: teams running on paper and spreadsheets, errors and delays because the process was too slow, and organizations carrying real operational and compliance risk with almost no modern automation.
             </p>
 
             <p
@@ -111,7 +111,7 @@ export default function About() {
                 margin: 0,
               }}
             >
-              Now we build AI systems that automate exactly those workflows — inspections, documentation, planning, and compliance records — so teams doing the real work can focus on the work, not the binders. We ship with confidence because we have been the ones who needed these tools.
+              Now we build AI systems that automate exactly those workflows — inspections, documentation, planning, approvals, and compliance — so teams doing the real work can focus on the work, not the manual drudgery. We ship with confidence because we have been the ones who needed these tools. We focus on web platforms and software automation, with iOS apps where they fit.
             </p>
           </motion.div>
 

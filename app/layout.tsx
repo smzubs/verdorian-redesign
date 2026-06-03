@@ -48,38 +48,42 @@ const splineMono = Spline_Sans_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'Verdorian Technologies | Production AI Systems for Field Teams',
+  title: 'Verdorian Technologies | AI Automation for Businesses',
   description:
-    'We design, build, and ship production AI systems that automate inspections, compliance, and field workflows for contractors and teams. Construction safety and OSHA expertise is our moat — we turn real operational pain into tools crews actually rely on.',
+    'We design, build, and ship production AI automation for businesses of all sizes—from small teams and manufacturing to corporate operations and construction. We focus on web platforms, software, and iOS apps that teams actually use. Deep expertise in operations and compliance is our moat.',
   keywords: [
     'Verdorian Technologies',
-    'AI systems for field teams',
-    'construction safety automation',
-    'OSHA compliance tools',
+    'AI automation for businesses',
+    'workflow automation',
+    'business process automation',
+    'small business automation',
+    'manufacturing automation',
+    'corporate automation',
     'AI workflow implementation',
-    'mobile apps for contractors',
+    'web apps and iOS automation',
     'QRSafePro',
     'ChangeOrderAI',
     'PolicyPilot',
+    'VoicePencil',
     'Clarksville Tennessee',
     'indie software studio',
   ],
   authors: [{ name: 'Verdorian Technologies' }],
   openGraph: {
-    title: 'Verdorian Technologies | Production AI Systems for Field Teams',
+    title: 'Verdorian Technologies | AI Automation for Businesses',
     description:
-      'We build and ship AI systems for inspections, workflows, and compliance that field teams actually use. Deep construction safety moat. Based in Clarksville, TN.',
+      'We build and ship AI automation for businesses of all sizes. Web platforms, software, and iOS apps that teams actually use. Operations and compliance expertise as our moat. Based in Clarksville, TN.',
     url: 'https://verdorian.com',
     siteName: 'Verdorian Technologies',
-    images: [{ url: '/og-image.svg', width: 1200, height: 630, alt: 'Verdorian Technologies — Production AI Systems for Field Teams' }],
+    images: [{ url: '/og-image.svg', width: 1200, height: 630, alt: 'Verdorian Technologies — AI Automation for Businesses' }],
     locale: 'en_US',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Verdorian Technologies | Production AI Systems for Field Teams',
+    title: 'Verdorian Technologies | AI Automation for Businesses',
     description:
-      'We build and ship AI systems for inspections, workflows, and compliance that field teams actually use. Construction safety moat.',
+      'We build and ship AI automation for businesses of all sizes. Web platforms, software, and iOS apps that teams actually use. Operations and compliance expertise as our moat.',
     images: ['/og-image.svg'],
   },
   metadataBase: new URL('https://verdorian.com'),

@@ -190,16 +190,16 @@ export default function Hero() {
                   margin: 0,
                   textAlign: 'left',
                 }}
-                aria-label="AI workflows that actually work in the field."
+                aria-label="AI automation that teams actually use in their operations."
               >
                 <span style={{ display: 'block', color: 'var(--c-text-1)' }}>
-                  <LetterReveal text="AI workflows that" baseDelay={0.35} />
+                  <LetterReveal text="AI automation that" baseDelay={0.35} />
                 </span>
                 <span style={{ display: 'block', color: 'var(--c-text-3)' }}>
-                  <LetterReveal text="actually work" baseDelay={0.95} />
+                  <LetterReveal text="teams actually use" baseDelay={0.95} />
                 </span>
                 <span style={{ display: 'block', color: 'var(--c-text-1)' }}>
-                  <LetterReveal text="in the field." baseDelay={1.48} />
+                  <LetterReveal text="in their operations." baseDelay={1.48} />
                 </span>
               </motion.h1>
 
@@ -218,7 +218,7 @@ export default function Hero() {
                   margin: 0,
                 }}
               >
-                With 7 years in field operations, safety, and compliance, we design, build, and ship AI systems that automate inspections and workflows teams actually use.
+                With 7 years helping businesses automate real-world operations and compliance, we design, build, and ship AI systems that teams actually use. We focus on web platforms, software automation, and iOS apps.
               </motion.p>
 
               {/* Dual CTAs - updated for two audiences */}
@@ -280,7 +280,7 @@ export default function Hero() {
                       marginBottom: '14px',
                     }}
                   >
-                    PRODUCTION SYSTEMS
+                    PRODUCTION AUTOMATION
                   </div>
                   <div
                     style={{
@@ -291,7 +291,18 @@ export default function Hero() {
                       fontStyle: 'italic',
                     }}
                   >
-                    We build what crews<br />actually use in the field.
+                    We build automation that businesses<br />actually use in their operations.
+                  </div>
+                  <div
+                    style={{
+                      marginTop: '12px',
+                      fontSize: '11px',
+                      color: 'var(--c-gold)',
+                      letterSpacing: '0.12em',
+                      textTransform: 'uppercase',
+                    }}
+                  >
+                    Web • Software • iOS Apps
                   </div>
                 </div>
               </div>
