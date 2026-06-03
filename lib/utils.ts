@@ -70,7 +70,7 @@ export const SERVICES: Service[] = [
     tier: 'Audit',
     price: '$497',
     name: 'AI Automation Audit',
-    description: 'I review your current paper, spreadsheet, or manual workflows — with special focus on inspections, compliance, and field documentation. We identify the highest-ROI automation opportunities and deliver a clear, prioritized plan with exact effort estimates.',
+    description: 'We review your current paper, spreadsheet, or manual workflows — with special focus on inspections, compliance, and field documentation. We identify the highest-ROI automation opportunities and deliver a clear, prioritized plan with exact effort estimates.',
     outcomes: [
       'Stop losing hours to paper forms and audit panic',
       'Prioritized roadmap tailored to your crew and jobs',
