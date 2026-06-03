@@ -425,7 +425,7 @@ export default function Hero() {
                   margin: 0,
                 }}
               >
-                With 7 years in construction safety and OSHA compliance, I design, build, and ship AI systems that automate inspections and workflows contractors actually use.
+                With 7 years in field operations, safety, and compliance, we design, build, and ship AI systems that automate inspections and workflows teams actually use.
               </motion.p>
 
               {/* Dual CTAs - updated for two audiences */}
