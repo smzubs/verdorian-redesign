@@ -10,8 +10,8 @@ import { IconBrain, IconShield, IconRocket, IconUsers } from '@tabler/icons-reac
 const PRINCIPLES = [
   {
     icon: IconBrain,
-    title: 'ai as force multiplier',
-    desc: 'Frontier ai agents and the latest generative technologies act as a genuine force multiplier. They compress months of foundational work into days — generating structure, code, and documentation at machine speed — while we apply deep operational expertise to the decisions that make automation reliable in real operations.',
+    title: 'Ai as force multiplier',
+    desc: 'Frontier Ai agents and the latest generative technologies act as a genuine force multiplier. They compress months of foundational work into days — generating structure, code, and documentation at machine speed — while we apply deep operational expertise to the decisions that make automation reliable in real operations.',
   },
   {
     icon: IconShield,
@@ -85,7 +85,7 @@ export default function HowIBuild() {
                 How we actually build
               </span>
               <span style={{ display: 'block', color: 'var(--c-text-3)' }}>
-                with ai.
+                with Ai.
               </span>
             </motion.h2>
           </div>

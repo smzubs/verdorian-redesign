@@ -31,18 +31,22 @@ export default function Services() {
           .services-container { padding-left: 16px !important; padding-right: 16px !important; }
           .service-card-inner { padding: 20px !important; }
         }
-        /* Premium ambient breathe + hover intensify for Services cards (world-class subtle life, no jank) */
+        /* Premium golden ambient light for stacked super-premium cards — rich, soft, expensive glow */
         .service-ambient {
-          animation: ambientBreathe 6.5s ease-in-out infinite alternate;
-          opacity: 0.85;
+          animation: ambientBreathe 7s ease-in-out infinite alternate;
+          opacity: 0.9;
         }
         .group:hover .service-ambient {
           opacity: 1;
-          filter: blur(42px);
+          filter: blur(52px);
+        }
+        .service-golden-ambient {
+          /* Extra premium golden diffusion */
+          box-shadow: 0 0 120px rgba(180,138,64,0.08);
         }
         @keyframes ambientBreathe {
-          0% { transform: scale(0.94); opacity: 0.78; }
-          100% { transform: scale(1.06); opacity: 0.95; }
+          0% { transform: scale(0.92); opacity: 0.82; }
+          100% { transform: scale(1.08); opacity: 0.98; }
         }
         @media (prefers-reduced-motion: reduce) {
           .service-ambient { animation: none !important; }
@@ -89,9 +93,13 @@ export default function Services() {
             </motion.h2>
           </div>
 
-          {/* Three tiers - glass cards */}
+          {/* Three tiers - stacked vertically, one full card after another for no cutoff and full visibility */}
           <div
-            className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8"
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '40px',
+            }}
           >
             {SERVICES.map((service, i) => {
               const IconComponent = i === 0 ? IconClipboardList : i === 1 ? IconTools : IconCalendar
@@ -101,13 +109,13 @@ export default function Services() {
                   key={service.tier}
                   variants={CARD_ENTRANCE}
                   custom={i}
-                  whileHover={{ scale: 1.015, y: -4 }}
-                  transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                  whileHover={{ scale: 1.012, y: -6 }}
+                  transition={{ type: 'spring', stiffness: 280, damping: 18 }}
                   className="group"
                 >
                   <GlassCard tilt={false} style={{ height: '100%' }}>
                     <div
-                      className="service-card-inner p-6 md:p-8"
+                      className="service-card-inner p-8 md:p-10"
                       style={{
                         display: 'flex',
                         flexDirection: 'column',
@@ -115,25 +123,26 @@ export default function Services() {
                         position: 'relative',
                       }}
                     >
-                      {/* Ambient premium colored light per tier — gold for audit, sage for build, blue for care. Breathes for expensive depth. Intensifies on hover. */}
+                      {/* Premium golden ambient light — rich, soft, expensive glow for super premium stacked cards. Stronger gold base + tier tint. Breathes + intensifies. */}
                       <div
                         aria-hidden="true"
-                        className="service-ambient"
+                        className="service-ambient service-golden-ambient"
                         style={{
                           position: 'absolute',
-                          top: '-80px',
-                          right: '-70px',
-                          width: '260px',
-                          height: '260px',
-                          background: i === 0 
-                            ? 'radial-gradient(circle, rgba(180,138,64,0.13) 0%, transparent 68%)' 
-                            : i === 1 
-                            ? 'radial-gradient(circle, rgba(105,115,90,0.10) 0%, transparent 68%)' 
-                            : 'radial-gradient(circle, rgba(24,119,242,0.08) 0%, transparent 68%)',
-                          filter: 'blur(48px)',
+                          top: '-120px',
+                          right: '-100px',
+                          width: '340px',
+                          height: '340px',
+                          background: 
+                            i === 0 
+                              ? 'radial-gradient(circle, rgba(180,138,64,0.18) 0%, transparent 65%)' 
+                              : i === 1 
+                              ? 'radial-gradient(circle, rgba(180,138,64,0.12) 0%, rgba(105,115,90,0.06) 40%, transparent 68%)' 
+                              : 'radial-gradient(circle, rgba(180,138,64,0.10) 0%, rgba(24,119,242,0.04) 40%, transparent 68%)',
+                          filter: 'blur(60px)',
                           pointerEvents: 'none',
                           zIndex: 0,
-                          transition: 'opacity 0.4s var(--ease-expo)',
+                          transition: 'opacity 0.4s var(--ease-expo), filter 0.4s var(--ease-expo)',
                         }}
                       />
                       {/* Tier badge + price */}
@@ -156,7 +165,7 @@ export default function Services() {
                         <span
                           style={{
                             fontFamily: 'var(--font-display), serif',
-                            fontSize: '18px',
+                            fontSize: '22px',
                             fontWeight: 700,
                             color: 'var(--c-text-1)',
                             lineHeight: 1,

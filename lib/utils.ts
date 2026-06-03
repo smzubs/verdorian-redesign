@@ -26,7 +26,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     name: 'ChangeOrderAI',
-    tagline: 'ai docs and automation for project teams and operations',
+    tagline: 'Ai docs and automation for project teams and operations',
     status: 'in-development',
     icon: 'IconFileText',
     category: 'Enterprise SaaS',
@@ -62,7 +62,7 @@ export const SERVICES: Service[] = [
   {
     tier: 'Audit',
     price: '$497',
-    name: 'ai Automation Audit',
+    name: 'Ai Automation Audit',
     description: 'We review your current paper, spreadsheet, or manual workflows — with special focus on inspections, compliance, documentation, and repetitive processes. We identify the highest-ROI automation opportunities and deliver a clear, prioritized plan with exact effort estimates. We build for web platforms, software, and iOS apps.',
     outcomes: [
       'Stop losing hours to manual work and audit panic',

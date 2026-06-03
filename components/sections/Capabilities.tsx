@@ -38,7 +38,7 @@ const CAPABILITIES = [
     metrics: ['Next.js 15', 'TypeScript', 'Vercel'],
   },
   {
-    title: 'ai Integration',
+    title: 'Ai Integration',
     subtitle: 'Intelligence Layer',
     icon: (
       <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
