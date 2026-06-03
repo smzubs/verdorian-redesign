@@ -90,18 +90,40 @@ export default function Services() {
                   key={service.tier}
                   variants={CARD_ENTRANCE}
                   custom={i}
+                  whileHover={{ scale: 1.015, y: -4 }}
+                  transition={{ type: 'spring', stiffness: 300, damping: 20 }}
                 >
-                  <GlassCard tilt={false} style={{ background: 'var(--c-bg-card)', height: '100%' }}>
+                  <GlassCard tilt={false} style={{ height: '100%' }}>
                     <div
                       className="service-card-inner p-5 md:p-7"
                       style={{
                         display: 'flex',
                         flexDirection: 'column',
                         height: '100%',
+                        position: 'relative',
                       }}
                     >
+                      {/* Ambient premium light per tier for depth and wow */}
+                      <div
+                        aria-hidden="true"
+                        style={{
+                          position: 'absolute',
+                          top: '-60px',
+                          right: '-60px',
+                          width: '220px',
+                          height: '220px',
+                          background: i === 0 
+                            ? 'radial-gradient(circle, rgba(180,138,64,0.10) 0%, transparent 70%)' 
+                            : i === 1 
+                            ? 'radial-gradient(circle, rgba(105,115,90,0.08) 0%, transparent 70%)' 
+                            : 'radial-gradient(circle, rgba(24,119,242,0.06) 0%, transparent 70%)',
+                          filter: 'blur(50px)',
+                          pointerEvents: 'none',
+                          zIndex: 0,
+                        }}
+                      />
                       {/* Tier badge + price */}
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '16px' }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '16px', gap: '12px' }}>
                         <span
                           style={{
                             fontSize: '11px',
@@ -112,6 +134,7 @@ export default function Services() {
                             background: 'rgba(176,136,60,0.08)',
                             padding: '4px 10px',
                             borderRadius: '9999px',
+                            flexShrink: 0,
                           }}
                         >
                           {service.tier}
@@ -119,10 +142,12 @@ export default function Services() {
                         <span
                           style={{
                             fontFamily: 'var(--font-display), serif',
-                            fontSize: '22px',
+                            fontSize: '18px',
                             fontWeight: 700,
                             color: 'var(--c-text-1)',
                             lineHeight: 1,
+                            textAlign: 'right',
+                            whiteSpace: 'nowrap',
                           }}
                         >
                           {service.price}

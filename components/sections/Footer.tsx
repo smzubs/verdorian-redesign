@@ -82,7 +82,7 @@ export default function Footer() {
               maxWidth: '240px',
             }}
           >
-            Indie software studio. Mobile apps, AI tools, and SaaS — built and shipped by one team. Clarksville, TN.
+            Indie software studio. Web platforms, software automation, and iOS apps — built and shipped by one team.
           </span>
         </div>
 

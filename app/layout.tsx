@@ -65,14 +65,14 @@ export const metadata: Metadata = {
     'ChangeOrderAI',
     'PolicyPilot',
     'VoicePencil',
-    'Clarksville Tennessee',
+
     'indie software studio',
   ],
   authors: [{ name: 'Verdorian Technologies' }],
   openGraph: {
     title: 'Verdorian Technologies | AI Automation for Businesses',
     description:
-      'We build and ship AI automation for businesses of all sizes. Web platforms, software, and iOS apps that teams actually use. Operations and compliance expertise as our moat. Based in Clarksville, TN.',
+      'We build and ship AI automation for businesses of all sizes. Web platforms, software, and iOS apps that teams actually use. Operations and compliance expertise as our moat.',
     url: 'https://verdorian.com',
     siteName: 'Verdorian Technologies',
     images: [{ url: '/og-image.svg', width: 1200, height: 630, alt: 'Verdorian Technologies — AI Automation for Businesses' }],

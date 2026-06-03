@@ -165,7 +165,7 @@ export default function Contact() {
               fontFamily: 'var(--font-dm-sans), sans-serif',
             }}
           >
-            Clarksville, Tennessee &middot; Verdorian Technologies LLC
+            Verdorian Technologies LLC
           </motion.p>
         </motion.div>
       </div>

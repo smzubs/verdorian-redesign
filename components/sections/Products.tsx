@@ -331,8 +331,10 @@ function CompactCard({ product, showTilt, index }: { product: Product; showTilt:
       variants={CARD_ENTRANCE}
       custom={index}
       viewport={{ once: true, margin: '-40px' }}
+      whileHover={{ scale: 1.015, y: -2 }}
+      transition={{ type: 'spring', stiffness: 300, damping: 20 }}
     >
-      <GlassCard tilt={showTilt} style={_cardTint ? { background: 'rgba(255,255,255,0.55)' } : undefined}>
+      <GlassCard tilt={showTilt}>
         <div
           className="product-compact-inner"
           style={{
@@ -495,6 +497,8 @@ export default function Products() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: '-60px' }}
+                whileHover={{ scale: 1.01, y: -3 }}
+                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
               >
                 <GlassCard tilt style={{ background: 'rgba(255,255,255,0.52)' }}>
                   <CardContent product={featured} isFeatured />
@@ -510,8 +514,10 @@ export default function Products() {
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: true, margin: '-60px' }}
+                  whileHover={{ scale: 1.01, y: -3 }}
+                  transition={{ type: 'spring', stiffness: 300, damping: 20 }}
                 >
-                  <GlassCard tilt style={{ background: 'rgba(255,255,255,0.52)' }}>
+                  <GlassCard tilt>
                     <CardContent product={product} />
                   </GlassCard>
                 </motion.div>
