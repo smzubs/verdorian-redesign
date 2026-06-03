@@ -105,7 +105,7 @@ export default function About() {
                 margin: 0,
               }}
             >
-              Now we build AI systems that automate exactly those workflows — inspections, documentation, planning, approvals, and compliance — so teams doing the real work can focus on the work, not the manual drudgery. We ship with confidence because we have been the ones who needed these tools. We focus on web platforms and software automation, with iOS apps where they fit.
+              Now we build ai systems that automate exactly those workflows — inspections, documentation, planning, approvals, and compliance — so teams doing the real work can focus on the work, not the manual drudgery. We ship with confidence because we have been the ones who needed these tools. We focus on web platforms and software automation, with iOS apps where they fit.
             </p>
           </motion.div>
         </motion.div>

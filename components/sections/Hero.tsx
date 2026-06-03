@@ -173,7 +173,7 @@ export default function Hero() {
                       flexShrink: 0,
                     }}
                   />
-                  AI Workflow Implementation Specialist
+                  ai Workflow Implementation Specialist
                 </span>
               </motion.div>
 
@@ -190,10 +190,10 @@ export default function Hero() {
                   margin: 0,
                   textAlign: 'left',
                 }}
-                aria-label="AI automation that teams actually use in their operations."
+                aria-label="ai automation that teams actually use in their operations."
               >
                 <span style={{ display: 'block', color: 'var(--c-text-1)' }}>
-                  <LetterReveal text="AI automation that" baseDelay={0.35} />
+                  <LetterReveal text="ai automation that" baseDelay={0.35} />
                 </span>
                 <span style={{ display: 'block', color: 'var(--c-text-3)' }}>
                   <LetterReveal text="teams actually use" baseDelay={0.95} />
@@ -218,7 +218,7 @@ export default function Hero() {
                   margin: 0,
                 }}
               >
-                With 7 years helping businesses automate real-world operations and compliance, we design, build, and ship AI systems that teams actually use. We focus on web platforms, software automation, and iOS apps.
+                With 7 years helping businesses automate real-world operations and compliance, we design, build, and ship ai systems that teams actually use. We focus on web platforms, software automation, and iOS apps.
               </motion.p>
 
               {/* Dual CTAs - updated for two audiences */}

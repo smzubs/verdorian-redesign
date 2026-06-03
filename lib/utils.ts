@@ -19,14 +19,14 @@ export interface Product {
 export const PRODUCTS: Product[] = [
   {
     name: 'VoicePencil',
-    tagline: 'Your voice, supercharged with AI',
+    tagline: 'Your voice, supercharged with ai',
     status: 'coming-soon',
     icon: 'IconMicrophone',
     category: 'Mobile App',
   },
   {
     name: 'ChangeOrderAI',
-    tagline: 'AI docs and automation for project teams and operations',
+    tagline: 'ai docs and automation for project teams and operations',
     status: 'in-development',
     icon: 'IconFileText',
     category: 'Enterprise SaaS',
@@ -62,7 +62,7 @@ export const SERVICES: Service[] = [
   {
     tier: 'Audit',
     price: '$497',
-    name: 'AI Automation Audit',
+    name: 'ai Automation Audit',
     description: 'We review your current paper, spreadsheet, or manual workflows — with special focus on inspections, compliance, documentation, and repetitive processes. We identify the highest-ROI automation opportunities and deliver a clear, prioritized plan with exact effort estimates. We build for web platforms, software, and iOS apps.',
     outcomes: [
       'Stop losing hours to manual work and audit panic',
@@ -107,7 +107,7 @@ export const TECH_STACK = [
   'Vercel',
   'Python',
   'OpenAI',
-  'Claude AI',
+  'Frontier Models',
   'PostgreSQL',
   'Tailwind CSS',
   'GitHub',

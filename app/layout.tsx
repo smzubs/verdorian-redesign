@@ -48,18 +48,18 @@ const splineMono = Spline_Sans_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'Verdorian Technologies | AI Automation for Businesses',
+  title: 'Verdorian Technologies | ai Automation for Businesses',
   description:
-    'We design, build, and ship production AI automation for businesses of all sizes—from small teams and manufacturing to corporate operations and construction. We focus on web platforms, software, and iOS apps that teams actually use. Deep expertise in operations and compliance is our moat.',
+    'We design, build, and ship production ai automation for businesses of all sizes—from small teams and manufacturing to corporate operations and construction. We focus on web platforms, software, and iOS apps that teams actually use. Deep expertise in operations and compliance is our moat.',
   keywords: [
     'Verdorian Technologies',
-    'AI automation for businesses',
+    'ai automation for businesses',
     'workflow automation',
     'business process automation',
     'small business automation',
     'manufacturing automation',
     'corporate automation',
-    'AI workflow implementation',
+    'ai workflow implementation',
     'web apps and iOS automation',
     'QRSafePro',
     'ChangeOrderAI',
@@ -70,20 +70,20 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: 'Verdorian Technologies' }],
   openGraph: {
-    title: 'Verdorian Technologies | AI Automation for Businesses',
+    title: 'Verdorian Technologies | ai Automation for Businesses',
     description:
-      'We build and ship AI automation for businesses of all sizes. Web platforms, software, and iOS apps that teams actually use. Operations and compliance expertise as our moat.',
+      'We build and ship ai automation for businesses of all sizes. Web platforms, software, and iOS apps that teams actually use. Operations and compliance expertise as our moat.',
     url: 'https://verdorian.com',
     siteName: 'Verdorian Technologies',
-    images: [{ url: '/og-image.svg', width: 1200, height: 630, alt: 'Verdorian Technologies — AI Automation for Businesses' }],
+    images: [{ url: '/og-image.svg', width: 1200, height: 630, alt: 'Verdorian Technologies — ai Automation for Businesses' }],
     locale: 'en_US',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Verdorian Technologies | AI Automation for Businesses',
+    title: 'Verdorian Technologies | ai Automation for Businesses',
     description:
-      'We build and ship AI automation for businesses of all sizes. Web platforms, software, and iOS apps that teams actually use. Operations and compliance expertise as our moat.',
+      'We build and ship ai automation for businesses of all sizes. Web platforms, software, and iOS apps that teams actually use. Operations and compliance expertise as our moat.',
     images: ['/og-image.svg'],
   },
   metadataBase: new URL('https://verdorian.com'),

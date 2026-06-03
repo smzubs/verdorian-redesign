@@ -38,7 +38,7 @@ const CAPABILITIES = [
     metrics: ['Next.js 15', 'TypeScript', 'Vercel'],
   },
   {
-    title: 'AI Integration',
+    title: 'ai Integration',
     subtitle: 'Intelligence Layer',
     icon: (
       <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
@@ -52,7 +52,7 @@ const CAPABILITIES = [
     ),
     color: '#1877F2',
     glow: 'rgba(24,119,242,0.15)',
-    metrics: ['OpenAI', 'Claude AI', 'Edge Functions'],
+    metrics: ['Frontier Models', 'Edge Functions', 'Custom Agents'],
   },
   {
     title: 'Cloud & DevOps',

@@ -35,7 +35,7 @@ const TECH_ICON_MAP: Record<string, TablerIcon> = {
   'Vercel': IconBrandVercel,
   'Python': IconBrandPython,
   'OpenAI': IconBrandOpenai,
-  'Claude AI': IconSparkles,
+  'Frontier Models': IconSparkles,
   'PostgreSQL': IconDatabase,
   'Tailwind CSS': IconBrandTailwind,
   'GitHub': IconBrandGithub,
