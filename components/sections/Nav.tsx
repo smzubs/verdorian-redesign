@@ -70,6 +70,18 @@ export default function Nav() {
 
   return (
     <>
+      <style>{`
+        @media (max-width: 390px) {
+          .nav-root { padding-left: 16px !important; padding-right: 16px !important; }
+        }
+        @media (max-width: 390px) {
+          #mobile-menu button {
+            font-size: 20px !important;
+            padding: 10px 24px !important;
+            min-height: 48px !important;
+          }
+        }
+      `}</style>
       <nav
         aria-label="Main navigation"
         style={{
@@ -84,6 +96,7 @@ export default function Nav() {
           display: 'flex',
           justifyContent: 'center',
         }}
+        className="nav-root"
       >
         <motion.div
           animate={{
@@ -382,7 +395,7 @@ export default function Nav() {
               position: 'fixed',
               inset: 0,
               zIndex: 999,
-              background: 'rgba(250, 247, 242, 0.92)',
+              background: 'rgba(248, 245, 237, 0.94)',
               backdropFilter: 'blur(30px) saturate(180%)',
               WebkitBackdropFilter: 'blur(30px) saturate(180%)',
               display: 'flex',
