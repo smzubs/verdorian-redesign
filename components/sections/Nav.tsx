@@ -7,8 +7,8 @@ import { scrollToSection } from '@/lib/utils'
 
 const NAV_LINKS = [
   { label: 'Services', id: 'services' },
-  { label: 'Work', id: 'products' },
   { label: 'How We Build', id: 'how-i-build' },
+  { label: 'Work', id: 'products' },
   { label: 'About', id: 'about' },
   { label: 'Contact', id: 'contact' },
 ]

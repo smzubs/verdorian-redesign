@@ -24,8 +24,8 @@ export default function Home() {
 
         {/* SERVICES higher as primary offer/hook (best marketing: clear value + pricing right after promise). Then proof (Products), mechanism (How), authority (About), action. */}
         <Services />
-        <Products />
         <HowIBuild />
+        <Products />
         <About />
         <Contact />
         <Footer />
