@@ -12,7 +12,7 @@ export default function Contact() {
       id="contact"
       aria-label="Contact Verdorian Technologies"
       style={{
-        padding: '160px 0',
+        padding: '132px 0',
         background: 'var(--c-bg-alt)',
         position: 'relative',
         overflow: 'hidden',
@@ -59,11 +59,11 @@ export default function Contact() {
           <motion.h2
             variants={FADE_UP}
             style={{
-              fontFamily: 'var(--font-geist), sans-serif',
-              fontWeight: 700,
+              fontFamily: 'var(--font-display), serif',
+              fontWeight: 600,
               fontSize: 'var(--t-h2)',
               letterSpacing: 'var(--track-h2)',
-              lineHeight: 1.1,
+              lineHeight: 1.05,
               margin: '24px 0 0',
             }}
           >
@@ -76,14 +76,14 @@ export default function Contact() {
             variants={FADE_UP}
             style={{
               width: '100%',
-              background: 'rgba(255,255,255,0.55)',
-              backdropFilter: 'blur(12px) saturate(180%)',
-              WebkitBackdropFilter: 'blur(12px) saturate(180%)',
-              border: '1px solid rgba(255,255,255,0.50)',
-              borderRadius: '24px',
+              background: 'var(--glass-fill-elevated)',
+              backdropFilter: 'blur(22px) saturate(1.3)',
+              WebkitBackdropFilter: 'blur(22px) saturate(1.3)',
+              border: '1px solid var(--glass-border)',
+              borderRadius: '26px',
               padding: '40px',
               marginTop: '40px',
-              boxShadow: '0 8px 32px rgba(24,119,242,0.06), inset 0 1px 0 rgba(255,255,255,0.60)',
+              boxShadow: '0 14px 48px rgba(0,0,0,0.07), inset 0 1px 0 rgba(255,255,255,0.16)',
               position: 'relative',
               isolation: 'isolate',
               overflow: 'hidden',

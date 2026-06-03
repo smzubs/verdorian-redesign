@@ -82,16 +82,16 @@ const PRIMARY_BASE: React.CSSProperties = {
   transition: 'transform 200ms var(--ease-expo), box-shadow 200ms var(--ease-expo), background 200ms var(--ease-expo)',
 }
 
-// ── Ghost — glass border ─────────────────────────────────────────────────────
+// ── Ghost — true Liquid Glass (cream, gold hairline, confident) ───────────────
 const GHOST_BASE: React.CSSProperties = {
   position: 'relative',
-  background: 'rgba(139, 92, 246, 0.04)',
-  backdropFilter: 'blur(4px) saturate(160%)',
-  WebkitBackdropFilter: 'blur(4px) saturate(160%)',
-  border: '1.5px solid rgba(139, 92, 246, 0.20)',
-  borderRadius: '12px',
-  color: 'var(--c-plasma)',
-  boxShadow: '0 1px 4px rgba(0,0,0,0.04), inset 0 1px 0 rgba(255,255,255,0.12)',
+  background: 'var(--glass-fill)',
+  backdropFilter: 'blur(14px) saturate(1.28)',
+  WebkitBackdropFilter: 'blur(14px) saturate(1.28)',
+  border: '1px solid var(--glass-border)',
+  borderRadius: '9999px',
+  color: 'var(--c-text-1)',
+  boxShadow: '0 2px 8px rgba(0,0,0,0.04), inset 0 1px 0 rgba(255,255,255,0.12)',
   fontWeight: 600,
   overflow: 'hidden',
   isolation: 'isolate',
@@ -100,19 +100,19 @@ const GHOST_BASE: React.CSSProperties = {
   cursor: 'pointer',
   textDecoration: 'none',
   whiteSpace: 'nowrap',
-  transition: 'transform 200ms var(--ease-expo), box-shadow 300ms var(--ease-expo), background 200ms ease, border-color 200ms ease',
+  transition: 'transform 0.35s var(--ease-silk), box-shadow 0.35s var(--ease-expo), background 0.25s var(--ease-expo), border-color 0.25s var(--ease-expo)',
 }
 
-// ── Outline — premium glass border with shimmer sweep ────────────────────────
+// ── Outline — premium frosted glass with gold underline accent ───────────────
 const OUTLINE_BASE: React.CSSProperties = {
   position: 'relative',
-  background: 'rgba(139, 92, 246, 0.04)',
-  backdropFilter: 'blur(4px) saturate(160%)',
-  WebkitBackdropFilter: 'blur(4px) saturate(160%)',
-  border: '1.5px solid rgba(139, 92, 246, 0.25)',
+  background: 'var(--glass-fill)',
+  backdropFilter: 'blur(12px) saturate(1.26)',
+  WebkitBackdropFilter: 'blur(12px) saturate(1.26)',
+  border: '1px solid var(--glass-border)',
   borderRadius: '14px',
   color: 'var(--c-text-1)',
-  boxShadow: '0 0 20px rgba(139,92,246,0.06), inset 0 1px 0 rgba(255,255,255,0.10)',
+  boxShadow: '0 1px 6px rgba(0,0,0,0.03), inset 0 1px 0 rgba(255,255,255,0.10)',
   fontWeight: 600,
   overflow: 'hidden',
   isolation: 'isolate',
@@ -121,13 +121,13 @@ const OUTLINE_BASE: React.CSSProperties = {
   cursor: 'pointer',
   textDecoration: 'none',
   whiteSpace: 'nowrap',
-  letterSpacing: '0.08em',
+  letterSpacing: '0.06em',
   textTransform: 'uppercase' as const,
-  transition: 'transform 200ms var(--ease-expo), box-shadow 300ms var(--ease-expo), background 200ms ease, border-color 200ms ease',
+  transition: 'transform 0.35s var(--ease-silk), box-shadow 0.35s var(--ease-expo), background 0.25s var(--ease-expo), border-color 0.25s var(--ease-expo)',
 }
 
 const baseClass =
-  'select-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--c-plasma)]'
+  'select-none focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[var(--c-gold)]'
 
 function ArrowSvg() {
   return (
@@ -178,14 +178,14 @@ export function GlowButton({
         el.style.boxShadow = '0 8px 30px rgba(16,185,129,0.35), inset 0 1px 0 rgba(255,255,255,0.25), inset 0 -1px 0 rgba(0,0,0,0.12)'
         break
       case 'ghost':
-        el.style.background = 'rgba(139,92,246,0.08)'
-        el.style.borderColor = 'rgba(139,92,246,0.35)'
-        el.style.boxShadow = '0 0 20px rgba(139,92,246,0.10), inset 0 1px 0 rgba(255,255,255,0.18)'
+        el.style.background = 'var(--glass-fill-elevated)'
+        el.style.borderColor = 'var(--glass-border-gold)'
+        el.style.boxShadow = '0 6px 18px rgba(0,0,0,0.07), inset 0 1px 0 rgba(255,255,255,0.18)'
         break
       case 'outline':
-        el.style.background = 'rgba(139,92,246,0.08)'
-        el.style.borderColor = 'rgba(139,92,246,0.45)'
-        el.style.boxShadow = '0 0 30px rgba(139,92,246,0.12), inset 0 1px 0 rgba(255,255,255,0.15)'
+        el.style.background = 'var(--glass-fill-elevated)'
+        el.style.borderColor = 'var(--glass-border-gold)'
+        el.style.boxShadow = '0 6px 18px rgba(0,0,0,0.07), inset 0 1px 0 rgba(255,255,255,0.15)'
         break
     }
     if (arrowRef.current) arrowRef.current.style.transform = 'translateX(3px)'

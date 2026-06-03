@@ -6,12 +6,14 @@ import { GlowButton } from '@/components/ui/GlowButton'
 import { scrollToSection } from '@/lib/utils'
 
 const NAV_LINKS = [
-  { label: 'Products', id: 'products' },
-  { label: 'Capabilities', id: 'capabilities' },
+  { label: 'Work', id: 'products' },
+  { label: 'Services', id: 'services' },
+  { label: 'How We Build', id: 'how-i-build' },
+  { label: 'About', id: 'about' },
   { label: 'Contact', id: 'contact' },
 ]
 
-const SECTION_IDS = ['hero', 'products', 'capabilities', 'contact']
+const SECTION_IDS = ['hero', 'products', 'services', 'how-i-build', 'about', 'contact']
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false)
@@ -97,13 +99,13 @@ export default function Nav() {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            background: scrolled ? 'rgba(255,255,255,0.72)' : 'rgba(255,255,255,0.50)',
-            backdropFilter: 'blur(20px) saturate(180%) brightness(106%)',
-            WebkitBackdropFilter: 'blur(20px) saturate(180%) brightness(106%)',
-            border: '1px solid rgba(255,255,255,0.50)',
+            background: scrolled ? 'var(--glass-fill-elevated)' : 'var(--glass-fill)',
+            backdropFilter: scrolled ? 'blur(18px) saturate(1.32)' : 'blur(22px) saturate(1.3)',
+            WebkitBackdropFilter: scrolled ? 'blur(18px) saturate(1.32)' : 'blur(22px) saturate(1.3)',
+            border: '1px solid var(--glass-border)',
             boxShadow: scrolled
-              ? '0 8px 32px rgba(139,92,246,0.10), 0 2px 6px rgba(0,0,0,0.04), inset 0 1px 0 rgba(255,255,255,0.80), inset 0 -1px 0 rgba(0,0,0,0.05)'
-              : '0 4px 20px rgba(0,0,0,0.04), 0 1px 3px rgba(0,0,0,0.02), inset 0 1px 0 rgba(255,255,255,0.75), inset 0 -1px 0 rgba(0,0,0,0.03)',
+              ? '0 8px 28px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.18)'
+              : '0 6px 24px rgba(0,0,0,0.05), inset 0 1px 0 rgba(255,255,255,0.14)',
             overflow: 'hidden',
             isolation: 'isolate',
             position: 'relative',
@@ -159,7 +161,7 @@ export default function Nav() {
                 fontFamily: 'var(--font-geist), sans-serif',
                 fontWeight: 800,
                 fontSize: '13px',
-                color: 'var(--c-plasma)',
+                color: 'var(--c-gold)',
                 letterSpacing: '0.02em',
                 flexShrink: 0,
                 overflow: 'hidden',
@@ -182,12 +184,12 @@ export default function Nav() {
             >
               <span
                 style={{
-                  fontFamily: 'var(--font-geist), sans-serif',
-                  fontWeight: 800,
+                  fontFamily: 'var(--font-display), serif',
+                  fontWeight: 600,
                   fontSize: '15px',
                   color: 'var(--c-text-1)',
                   lineHeight: 1,
-                  letterSpacing: '0.15em',
+                  letterSpacing: '0.12em',
                   textTransform: 'uppercase',
                   whiteSpace: 'nowrap',
                 }}
@@ -196,11 +198,11 @@ export default function Nav() {
               </span>
               <span
                 style={{
-                  fontFamily: 'var(--font-geist), sans-serif',
-                  fontWeight: 600,
+                  fontFamily: 'var(--font-body), system-ui, sans-serif',
+                  fontWeight: 500,
                   fontSize: '7px',
                   color: 'var(--c-text-3)',
-                  letterSpacing: '0.30em',
+                  letterSpacing: '0.22em',
                   textTransform: 'uppercase',
                   lineHeight: 1,
                   whiteSpace: 'nowrap',
@@ -249,7 +251,7 @@ export default function Nav() {
                     fontWeight: isActive ? 600 : 500,
                     fontSize: '13px',
                     letterSpacing: '0.02em',
-                    color: isActive ? 'var(--c-plasma)' : 'var(--c-text-2)',
+                    color: isActive ? 'var(--c-gold)' : 'var(--c-text-2)',
                     transition: 'color 0.2s var(--ease-expo), background 0.15s ease, font-weight 0.1s',
                     whiteSpace: 'nowrap',
                     zIndex: 1,
@@ -408,17 +410,17 @@ export default function Nav() {
                   fontFamily: 'var(--font-geist), sans-serif',
                   fontWeight: 800,
                   fontSize: '24px',
-                  color: activeSection === link.id ? 'var(--c-plasma)' : 'var(--c-text-1)',
+                  color: activeSection === link.id ? 'var(--c-gold)' : 'var(--c-text-1)',
                   letterSpacing: '0.10em',
                   textTransform: 'uppercase',
                   transition: 'color 0.2s',
                 }}
                 onMouseEnter={(e) => {
-                  ;(e.currentTarget as HTMLButtonElement).style.color = 'var(--c-plasma)'
+                  ;(e.currentTarget as HTMLButtonElement).style.color = 'var(--c-gold)'
                 }}
                 onMouseLeave={(e) => {
                   ;(e.currentTarget as HTMLButtonElement).style.color =
-                    activeSection === link.id ? 'var(--c-plasma)' : 'var(--c-text-1)'
+                    activeSection === link.id ? 'var(--c-gold)' : 'var(--c-text-1)'
                 }}
               >
                 {link.label}

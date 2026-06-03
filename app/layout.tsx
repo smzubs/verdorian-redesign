@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { Geist, DM_Sans, JetBrains_Mono } from 'next/font/google'
+import { Geist, DM_Sans, JetBrains_Mono, Fraunces, Outfit, Spline_Sans_Mono } from 'next/font/google'
 import { LenisProvider } from '@/lib/lenis-provider'
 import './globals.css'
 
@@ -24,43 +24,68 @@ const jetbrainsMono = JetBrains_Mono({
   display: 'swap',
 })
 
+// Super premium fonts
+const fraunces = Fraunces({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  style: ['normal', 'italic'],
+  variable: '--font-fraunces',
+  display: 'swap',
+})
+
+const outfit = Outfit({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700'],
+  variable: '--font-outfit',
+  display: 'swap',
+})
+
+const splineMono = Spline_Sans_Mono({
+  subsets: ['latin'],
+  weight: ['400', '500'],
+  variable: '--font-spline-mono',
+  display: 'swap',
+})
+
 export const metadata: Metadata = {
-  title: 'Verdorian Technologies — Software Forged from Intelligence',
+  title: 'SM Zobayer | AI Workflow Implementation Specialist',
   description:
-    'Indie software studio building intelligent mobile apps, AI-powered tools, and SaaS platforms. Based in Clarksville, Tennessee.',
+    'AI Workflow Implementation Specialist with 7 years construction safety & OSHA experience. I build and ship AI systems that automate inspections and compliance for small contractors.',
   keywords: [
+    'SM Zobayer',
+    'AI Workflow Implementation Specialist',
+    'construction safety',
+    'OSHA compliance',
+    'AI automation',
+    'field workflows',
+    'inspections',
+    'QRSafePro',
     'Verdorian Technologies',
-    'software studio',
-    'mobile apps',
-    'AI',
-    'SaaS',
-    'Next.js',
-    'React Native',
     'Clarksville Tennessee',
   ],
-  authors: [{ name: 'Verdorian Technologies LLC' }],
+  authors: [{ name: 'SM Zobayer' }],
   openGraph: {
-    title: 'Verdorian Technologies — Software Forged from Intelligence',
+    title: 'SM Zobayer | AI Workflow Implementation Specialist',
     description:
-      'Indie software studio building intelligent mobile apps, AI-powered tools, and SaaS platforms.',
+      '7 years construction safety & OSHA experience. I build and ship AI systems that automate inspections and compliance for small contractors.',
     url: 'https://verdorian.com',
-    siteName: 'Verdorian Technologies',
-    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Verdorian Technologies' }],
+    siteName: 'SM Zobayer',
+    images: [{ url: '/og-image.svg', width: 1200, height: 630, alt: 'SM Zobayer — AI Workflow Implementation Specialist' }],
     locale: 'en_US',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Verdorian Technologies — Software Forged from Intelligence',
+    title: 'SM Zobayer | AI Workflow Implementation Specialist',
     description:
-      'Indie software studio building intelligent mobile apps, AI-powered tools, and SaaS platforms.',
-    images: ['/og-image.png'],
+      '7 years construction safety & OSHA experience. I build and ship AI systems that automate inspections and compliance for small contractors.',
+    images: ['/og-image.svg'],
   },
   metadataBase: new URL('https://verdorian.com'),
 }
 
 export const viewport: Viewport = {
-  themeColor: '#FAF7F2',
+  themeColor: '#F5F0E8',
   colorScheme: 'light',
 }
 
@@ -68,10 +93,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="en"
-      className={`${geist.variable} ${dmSans.variable} ${jetbrainsMono.variable}`}
+      className={`${geist.variable} ${dmSans.variable} ${jetbrainsMono.variable} ${fraunces.variable} ${outfit.variable} ${splineMono.variable}`}
       suppressHydrationWarning
     >
-      <body className="font-[family-name:var(--font-geist)]">
+      <body className="font-[family-name:var(--font-body)]">
         <LenisProvider>{children}</LenisProvider>
       </body>
     </html>

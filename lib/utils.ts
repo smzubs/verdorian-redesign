@@ -57,35 +57,50 @@ export const PRODUCTS: Product[] = [
 ]
 
 export interface Service {
+  tier: string
+  price: string
   name: string
   description: string
+  outcomes: string[]
   icon: string
 }
 
 export const SERVICES: Service[] = [
   {
-    name: 'Mobile App Development',
-    description:
-      'Native and cross-platform mobile apps built with React Native and Expo. From concept to App Store.',
-    icon: 'IconDeviceMobile',
+    tier: 'Audit',
+    price: '$497',
+    name: 'AI Automation Audit',
+    description: 'I review your current paper, spreadsheet, or manual workflows — with special focus on inspections, compliance, and field documentation. We identify the highest-ROI automation opportunities and deliver a clear, prioritized plan with exact effort estimates.',
+    outcomes: [
+      'Stop losing hours to paper forms and audit panic',
+      'Prioritized roadmap tailored to your crew and jobs',
+      'Clear ROI and timeline before any build begins',
+    ],
+    icon: 'IconSearch',
   },
   {
-    name: 'Web Applications',
-    description:
-      'Full-stack web platforms powered by Next.js, TypeScript, and modern cloud infrastructure.',
-    icon: 'IconBrowser',
+    tier: 'Buildout',
+    price: '$1,500 – $5,000',
+    name: 'Custom Buildout',
+    description: 'Full implementation of the audit. We build the automations, mobile tools, or web platforms that actually fit how your team works in the field. Delivered with training, documentation, and production-ready code.',
+    outcomes: [
+      'Audit-ready records without the binder tax',
+      'Field workers actually use the tools (no training required)',
+      'Faster billing, fewer disputes, real compliance',
+    ],
+    icon: 'IconTools',
   },
   {
-    name: 'AI Integration',
-    description:
-      'Intelligent features powered by OpenAI, Claude, and custom ML pipelines woven into every product.',
-    icon: 'IconBrain',
-  },
-  {
-    name: 'Cloud & DevOps',
-    description:
-      'Scalable infrastructure on Vercel, Supabase, and AWS with CI/CD pipelines and monitoring.',
-    icon: 'IconCloud',
+    tier: 'Care',
+    price: 'Monthly',
+    name: 'Ongoing Care Plan',
+    description: 'Monthly support, iteration, and new automations as your business evolves. We monitor, improve, and expand the system so it keeps delivering value long after launch.',
+    outcomes: [
+      'Continuous improvement without hiring more admin',
+      'New workflows automated as needs arise',
+      'Peace of mind that your systems stay sharp',
+    ],
+    icon: 'IconRefresh',
   },
 ]
 

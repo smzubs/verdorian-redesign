@@ -6,8 +6,7 @@ import { SectionLabel } from '@/components/ui/SectionLabel'
 import { FADE_UP, STAGGER_CONTAINER } from '@/lib/motion'
 
 const STATS = [
-  { value: '5', label: 'Products' },
-  { value: '100%', label: 'Owner-Built' },
+  { value: '5', label: 'Products Shipped' },
   { value: '2026', label: 'Founded' },
   { value: 'Tennessee', label: 'Based' },
 ]
@@ -18,8 +17,8 @@ export default function About() {
       id="about"
       aria-label="About Verdorian Technologies"
       style={{
-        paddingTop: '160px',
-        paddingBottom: '160px',
+        paddingTop: '132px',
+        paddingBottom: '132px',
         background: 'var(--c-bg-alt)',
       }}
     >
@@ -47,53 +46,60 @@ export default function About() {
             variants={FADE_UP}
             style={{ display: 'flex', flexDirection: 'column', gap: '24px', maxWidth: '640px' }}
           >
-            <SectionLabel>ABOUT US</SectionLabel>
+            <SectionLabel>ABOUT</SectionLabel>
 
             <h2
               style={{
-                fontFamily: 'var(--font-geist), sans-serif',
+                fontFamily: 'var(--font-display), serif',
                 fontWeight: 700,
                 fontSize: 'var(--t-h2)',
                 letterSpacing: 'var(--track-h2)',
-                lineHeight: 1.1,
+                lineHeight: 1.05,
                 margin: 0,
               }}
             >
               <span style={{ display: 'block', color: 'var(--c-text-1)' }}>
-                Engineering tomorrow&apos;s
+                From the field to
               </span>
               <span style={{ display: 'block', color: 'var(--c-text-3)' }}>
-                technology.
+                the systems that protect it.
               </span>
             </h2>
 
             <p
               style={{
                 fontFamily: 'var(--font-dm-sans), sans-serif',
-                fontSize: '17px',
+                fontSize: '16px',
                 color: 'var(--c-text-2)',
-                lineHeight: 1.7,
+                lineHeight: 1.65,
                 margin: 0,
               }}
             >
-              Verdorian Technologies is an indie software studio based in
-              Clarksville, Tennessee. We specialize in building mobile
-              applications, AI-powered tools, and SaaS platforms that solve
-              real-world problems. From concept to deployment, we craft every
-              pixel and every line of code with precision.
+              For seven years we have lived the work — field operations, safety, and compliance on active sites. We know the inspections, the forms, the signatures, and the real risk when records are missing or slow.
             </p>
 
             <p
               style={{
                 fontFamily: 'var(--font-dm-sans), sans-serif',
-                fontSize: '17px',
+                fontSize: '16px',
                 color: 'var(--c-text-2)',
-                lineHeight: 1.7,
+                lineHeight: 1.65,
                 margin: 0,
               }}
             >
-              Every product is owner-designed, owner-coded, and owner-deployed.
-              AI is a core feature in every product we build — not an afterthought.
+              We saw the same pattern on every site: crews running on paper, near-misses unreported because the process was too slow, and teams carrying real operational and compliance risk with almost no modern systems.
+            </p>
+
+            <p
+              style={{
+                fontFamily: 'var(--font-dm-sans), sans-serif',
+                fontSize: '16px',
+                color: 'var(--c-text-2)',
+                lineHeight: 1.65,
+                margin: 0,
+              }}
+            >
+              Now we build AI systems that automate exactly those workflows — inspections, documentation, planning, and compliance records — so teams doing the real work can focus on the work, not the binders. We ship with confidence because we have been the ones who needed these tools.
             </p>
           </motion.div>
 
@@ -104,7 +110,7 @@ export default function About() {
               gridTemplateColumns: 'repeat(2, 1fr)',
               gap: '16px',
             }}
-            className="sm:grid-cols-4"
+            className="sm:grid-cols-3"
           >
             {STATS.map((stat, index) => (
               <motion.div
@@ -118,20 +124,17 @@ export default function About() {
                   ease: [0.19, 1, 0.22, 1],
                 }}
                 style={{
-                  background: 'rgba(255, 255, 255, 0.45)',
-                  backdropFilter: 'blur(6px) saturate(160%)',
-                  WebkitBackdropFilter: 'blur(6px) saturate(160%)',
-                  border: '1px solid rgba(255, 255, 255, 0.40)',
-                  borderRadius: '16px',
-                  padding: '24px',
-                  boxShadow: `
-                    inset 0 1px 0 rgba(255,255,255,0.40),
-                    0 2px 8px rgba(0,0,0,0.03)
-                  `,
+                  background: 'var(--glass-fill)',
+                  backdropFilter: 'blur(16px) saturate(1.28)',
+                  WebkitBackdropFilter: 'blur(16px) saturate(1.28)',
+                  border: '1px solid var(--glass-border)',
+                  borderRadius: '18px',
+                  padding: '22px 18px',
+                  boxShadow: '0 6px 20px rgba(0,0,0,0.05), inset 0 1px 0 rgba(255,255,255,0.14)',
                   textAlign: 'center',
                   display: 'flex',
                   flexDirection: 'column',
-                  gap: '8px',
+                  gap: '6px',
                   position: 'relative',
                   isolation: 'isolate',
                   overflow: 'hidden',
@@ -164,11 +167,11 @@ export default function About() {
                     delay: index * 0.15,
                   }}
                   style={{
-                    fontFamily: 'var(--font-geist), sans-serif',
+                    fontFamily: 'var(--font-display), serif',
                     fontWeight: 400,
-                    fontSize: '48px',
+                    fontSize: '46px',
                     lineHeight: 1,
-                    letterSpacing: '-0.02em',
+                    letterSpacing: '-0.025em',
                     color: 'var(--c-text-1)',
                     position: 'relative',
                     zIndex: 1,

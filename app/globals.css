@@ -1,69 +1,71 @@
 @import "tailwindcss";
 
-/* ─── DESIGN SYSTEM: PREMIUM LIGHT CREAM + PURPLE ───────────────── */
+/* ─── DESIGN SYSTEM: SUPER PREMIUM iOS LIQUID GLASS — WARM BEIGE (Apple-grade, memorable) ───────────────── */
 :root {
-  /* ── Backgrounds ── */
-  --c-bg-base:     #FAF7F2;    /* warm cream — primary bg */
-  --c-bg-hero:     #F5F0E8;    /* warm cream darker — hero */
-  --c-bg-alt:      #F0EBE1;    /* cream warm — alternating sections */
-  --c-bg-card:     #FFFFFF;    /* pure white cards — float above cream */
-  --c-bg-elevated: #FFFFFF;    /* elevated state (shadow does the work) */
-  --c-bg-dark:     #1a1a2e;    /* dark footer bookend */
+  /* ── Backgrounds — Warm Cream Beige (Liquid Glass base) ── */
+  --c-bg-base:     #F5F0E8;    /* primary warm cream */
+  --c-bg-hero:     #F0E9DC;    /* richer hero beige */
+  --c-bg-alt:      #EBE4D6;    /* alt sections */
+  --c-bg-card:     #FBF7F0;    /* elevated glass cards */
+  --c-bg-elevated: #FFFBF5;    /* highest glass */
+  --c-bg-dark:     #2B2118;    /* warm ink for footer/bookend */
 
-  /* Keep old names as aliases for backward compat */
-  --c-abyss:    var(--c-bg-dark);
-  --c-void:     var(--c-bg-base);
-  --c-obsidian: var(--c-bg-alt);
-  --c-forge:    var(--c-bg-card);
-  --c-rim:      var(--c-bg-elevated);
+  /* Premium brand (sparing, refined — no neon) */
+  --c-gold:         #B0883C;   /* refined gold accent */
+  --c-gold-light:   #C9A23E;   /* brighter gold for highlights */
+  --c-sage:         #6E7656;   /* sage for depth in blobs */
+  --c-ink:          #2B2118;   /* warm ink text */
+  --c-blue:         #1877F2;   /* kept for primary CTAs (confident, not the only color) */
+  --c-blue-dark:    #1565D8;
+  --c-blue-light:   #4A9AF5;
 
-  /* ── Brand Accent ── */
-  --c-plasma:       #8B5CF6;   /* primary purple */
-  --c-plasma-dark:  #7C4DFF;   /* hover purple */
-  --c-plasma-light: #A78BFA;   /* light purple for subtle fills */
-  --c-arc:          #22D3EE;   /* secondary cyan */
-  --c-blue:         #1877F2;   /* Facebook Blue — CTA primary */
-  --c-blue-dark:    #1565D8;   /* hover state */
-  --c-blue-light:   #4A9AF5;   /* subtle fills */
+  /* Text — warm ink, excellent contrast over glass */
+  --c-text-1:   #2B2118;                    /* primary warm ink */
+  --c-text-2:   rgba(43, 33, 24, 0.72);     /* body */
+  --c-text-3:   rgba(43, 33, 24, 0.45);     /* muted/meta */
 
-  /* ── Text (dark on light) ── */
-  --c-text-1:   #1a1a2e;                    /* primary — near black with blue tint */
-  --c-text-2:   rgba(26, 26, 46, 0.55);     /* body text */
-  --c-text-3:   rgba(26, 26, 46, 0.35);     /* muted/meta */
+  /* Borders */
+  --c-border:       #E8E3DA;
+  --c-border-hover: rgba(201, 162, 62, 0.22);
 
-  /* ── Borders ── */
-  --c-border:       #E8E3DA;                    /* warm cream border */
-  --c-border-hover: rgba(139, 92, 246, 0.25);   /* purple tint on hover */
+  /* Ghost */
+  --c-ghost: rgba(201, 162, 62, 0.06);
 
-  /* ── Ghost surface ── */
-  --c-ghost: rgba(139, 92, 246, 0.04);
+  /* Glass system tokens (core of the aesthetic) */
+  --glass-blur-sm: 16px;
+  --glass-blur:    20px;
+  --glass-blur-lg: 28px;
+  --glass-saturate: 1.3;
+  --glass-fill: rgba(245, 240, 232, 0.58);
+  --glass-fill-elevated: rgba(251, 247, 240, 0.64);
+  --glass-border: rgba(255, 255, 255, 0.28);
+  --glass-border-gold: rgba(201, 162, 62, 0.18);
 
-  /* ── Shadows — purple-tinted ── */
-  --shadow-sm:         0 1px 2px rgba(139, 92, 246, 0.04);
-  --shadow-card:       0 6px 24px rgba(139, 92, 246, 0.06), 0 1px 4px rgba(0,0,0,0.05), inset 0 1px 0 rgba(255,255,255,0.60), inset 0 -1px 0 rgba(0,0,0,0.04);
-  --shadow-card-hover: 0 20px 56px rgba(139, 92, 246, 0.12), 0 6px 16px rgba(0,0,0,0.09), inset 0 1px 0 rgba(255,255,255,0.75), inset 0 -1px 0 rgba(0,0,0,0.04);
-  --shadow-button:     0 8px 30px rgba(139, 92, 246, 0.35);
+  /* Legacy purple kept only for button variants that already use them — will phase in re-skin */
+  --c-plasma: #8B5CF6;
+  --c-plasma-dark: #7C4DFF;
+  --c-arc: #22D3EE;
 
-  /* Legacy aliases */
-  --glow-plasma: 0 0 0 1px rgba(139, 92, 246, 0.3), 0 4px 24px rgba(139, 92, 246, 0.1);
-  --glow-arc:    0 0 0 1px rgba(34, 211, 238, 0.3), 0 4px 24px rgba(34, 211, 238, 0.1);
-  --glow-card:   none;
+  /* Shadows — soft, layered, expensive (neutral + subtle gold tint on hover) */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.03);
+  --shadow-card: 0 8px 28px rgba(0, 0, 0, 0.06), 0 2px 6px rgba(0, 0, 0, 0.04), inset 0 1px 0 rgba(255,255,255,0.12), inset 0 -1px 0 rgba(0,0,0,0.025);
+  --shadow-card-hover: 0 18px 52px rgba(0, 0, 0, 0.09), 0 6px 16px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255,255,255,0.18), inset 0 -1px 0 rgba(0,0,0,0.03);
+  --shadow-button: 0 6px 24px rgba(24, 119, 242, 0.22);
 
-  /* ── Gradients ── */
-  --grad-text:   linear-gradient(120deg, var(--c-plasma) 0%, var(--c-arc) 100%);
-  --grad-border: linear-gradient(135deg, var(--c-plasma), var(--c-arc));
+  /* Typography */
+  --font-display: var(--font-fraunces);
+  --font-body: var(--font-outfit);
+  --font-mono: var(--font-spline-mono);
 
-  /* ── Typography tracking ── */
-  --track-hero:     -0.02em;
-  --track-display:  -0.015em;
-  --track-h2:       -0.01em;
-  --track-h3:        0em;
-  --track-body:      0em;
-  --track-label:     0.19em;
-  --track-sublabel:  0.06em;
-  --track-eyebrow:   0.14em;
+  --track-hero: -0.025em;
+  --track-display: -0.018em;
+  --track-h2: -0.012em;
+  --track-h3: -0.005em;
+  --track-body: 0em;
+  --track-label: 0.08em;
+  --track-eyebrow: 0.12em;
 
-  /* ── Spacing (8pt grid) ── */
+  /* Spacing (8pt premium rhythm — generous but tightened from bloat) */
   --sp-1: 8px;
   --sp-2: 16px;
   --sp-3: 24px;
@@ -71,27 +73,27 @@
   --sp-6: 48px;
   --sp-8: 64px;
   --sp-12: 96px;
-  --sp-16: 128px;
 
-  /* ── Radius ── */
-  --r-sm: 8px;
+  /* Radii — generous liquid glass */
+  --r-sm: 10px;
   --r-md: 16px;
-  --r-lg: 24px;
+  --r-lg: 22px;
+  --r-xl: 28px;
   --r-pill: 9999px;
 
-  /* ── Easing ── */
+  /* Easings — silk for expensive feel */
   --ease-expo: cubic-bezier(0.19, 1, 0.22, 1);
   --ease-back: cubic-bezier(0.34, 1.56, 0.64, 1);
   --ease-silk: cubic-bezier(0.25, 0.46, 0.45, 0.94);
 
-  /* ── Typography scale ── */
-  --t-hero:    clamp(48px, 6.5vw, 88px);
-  --t-h2:      clamp(36px, 5vw, 72px);
-  --t-h3:      clamp(20px, 2.5vw, 28px);
+  /* Typography scale (large, confident, Apple-like) */
+  --t-hero: clamp(52px, 6.8vw, 92px);
+  --t-h2: clamp(38px, 5.2vw, 68px);
+  --t-h3: clamp(21px, 2.6vw, 30px);
   --t-body-lg: 18px;
-  --t-body:    16px;
-  --t-sm:      13px;
-  --t-label:   11px;
+  --t-body: 16px;
+  --t-sm: 13px;
+  --t-label: 11px;
 }
 
 /* ─── BASE RESET ─────────────────────────────────────────────── */
@@ -116,9 +118,10 @@ html {
 body {
   overflow-x: hidden;
   min-height: 100svh;
+  font-family: var(--font-body), system-ui, -apple-system, sans-serif;
 }
 
-/* ─── RICH AMBIENT BACKGROUND — color pools for glass refraction ── */
+/* ─── WARM LIQUID GLASS BACKGROUND (Option A — slow-drifting gold + sage blobs, the signature) ── */
 body::before {
   content: '';
   position: fixed;
@@ -126,23 +129,28 @@ body::before {
   z-index: -1;
   pointer-events: none;
   background:
-    radial-gradient(ellipse 60% 40% at 15% 25%, rgba(139, 92, 246, 0.08) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 50% at 85% 75%, rgba(34, 211, 238, 0.05) 0%, transparent 55%),
-    radial-gradient(ellipse 40% 35% at 50% 50%, rgba(236, 72, 153, 0.04) 0%, transparent 50%);
+    /* Large soft gold drifts — warm expensive light */
+    radial-gradient(ellipse 62% 42% at 14% 24%, rgba(201, 162, 62, 0.13) 0%, transparent 68%),
+    radial-gradient(ellipse 48% 38% at 78% 72%, rgba(201, 162, 62, 0.09) 0%, transparent 62%),
+    /* Sage for calm depth and refraction */
+    radial-gradient(ellipse 52% 44% at 82% 19%, rgba(110, 118, 86, 0.10) 0%, transparent 65%),
+    radial-gradient(ellipse 38% 32% at 22% 78%, rgba(110, 118, 86, 0.07) 0%, transparent 58%),
+    /* Subtle center warmth */
+    radial-gradient(ellipse 42% 36% at 52% 52%, rgba(201, 162, 62, 0.05) 0%, transparent 55%);
 }
 
-/* ─── GRAIN OVERLAY — mix-blend-mode: overlay for light theme ─── */
+/* ─── GRAIN OVERLAY — subtle film, slow for premium tactility ─── */
 body::after {
   content: '';
   position: fixed;
   inset: 0;
   z-index: 9999;
   pointer-events: none;
-  opacity: 0.018;
+  opacity: 0.014;
   mix-blend-mode: overlay;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
   background-size: 200px 200px;
-  animation: grainShift 0.5s steps(2) infinite;
+  animation: grainShift 28s steps(3) infinite;
 }
 
 @keyframes grainShift {
@@ -277,17 +285,244 @@ html {
   80%       { transform: translate(15px, -20px) scale(1.03); }
 }
 
-/* ─── RESPONSIVE SECTION PADDING ────────────────────────────── */
-@media (max-width: 767px) {
-  #products,
-  #capabilities,
-  #contact {
-    padding-top: 100px !important;
-    padding-bottom: 100px !important;
+/* ─── LIQUID DRIFT KEYFRAMES (world-class slow, calm, expensive — the signature "liquid" behind glass) ─── */
+@keyframes liquidDriftGold1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(22px, -14px) scale(1.035); }
+}
+@keyframes liquidDriftGold2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-16px, 18px) scale(0.97); }
+}
+@keyframes liquidDriftSage1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-24px, 11px) scale(1.02); }
+}
+@keyframes liquidDriftSage2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(14px, -19px) scale(0.98); }
+}
+
+/* Keep a few legacy for hero cleanup phase (will remove floats) */
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(0.6deg); }
+}
+
+/* ─── GLASS SYSTEM (the heart of the premium iOS Liquid Glass aesthetic) ─── */
+.glass {
+  background: var(--glass-fill);
+  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  border: 1px solid var(--glass-border);
+  box-shadow: 
+    0 10px 38px rgba(0, 0, 0, 0.065),
+    0 3px 9px rgba(0, 0, 0, 0.035),
+    inset 0 1px 0 rgba(255, 255, 255, 0.13),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.022);
+  border-radius: 20px;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  transition: 
+    transform 0.55s var(--ease-silk),
+    box-shadow 0.55s var(--ease-expo),
+    border-color 0.28s var(--ease-expo);
+}
+.glass::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 44%;
+  background: linear-gradient(180deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 100%);
+  pointer-events: none;
+  z-index: 1;
+  border-radius: 20px 20px 0 0;
+}
+
+/* Thinner, more elegant for sticky nav bar */
+.glass-nav {
+  background: rgba(245, 240, 232, 0.74);
+  backdrop-filter: blur(18px) saturate(1.32);
+  -webkit-backdrop-filter: blur(18px) saturate(1.32);
+  border: 1px solid rgba(255, 255, 255, 0.30);
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255,255,255,0.18);
+  border-radius: 9999px;
+}
+
+/* Deeper, more presence for cards and major panels */
+.glass-card {
+  background: var(--glass-fill-elevated);
+  backdrop-filter: blur(var(--glass-blur-lg)) saturate(var(--glass-saturate));
+  -webkit-backdrop-filter: blur(var(--glass-blur-lg)) saturate(var(--glass-saturate));
+  border: 1px solid var(--glass-border);
+  box-shadow: 
+    0 14px 48px rgba(0, 0, 0, 0.075),
+    0 4px 12px rgba(0, 0, 0, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.025);
+  border-radius: 22px;
+}
+.glass-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 22px 62px rgba(0, 0, 0, 0.10),
+    0 7px 18px rgba(0, 0, 0, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.20);
+  border-color: var(--glass-border-gold);
+}
+
+/* Frosted CTAs / buttons that still feel glass */
+.glass-cta {
+  background: var(--glass-fill);
+  backdrop-filter: blur(14px) saturate(1.28);
+  -webkit-backdrop-filter: blur(14px) saturate(1.28);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255,255,255,0.12);
+  border-radius: 9999px;
+  transition: all 0.35s var(--ease-silk);
+}
+.glass-cta:hover {
+  background: rgba(251, 247, 240, 0.78);
+  border-color: var(--glass-border-gold);
+  transform: translateY(-1px);
+}
+
+/* Subtle gold hairline / rule for premium separation */
+.gold-hairline {
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(201, 162, 62, 0.22), transparent);
+}
+
+/* Gold animated underline for links (tasteful, not overdone) */
+.gold-link {
+  position: relative;
+  color: var(--c-text-1);
+  text-decoration: none;
+}
+.gold-link::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, var(--c-gold), var(--c-gold-light));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s var(--ease-expo);
+}
+.gold-link:hover::after {
+  transform: scaleX(1);
+}
+
+/* Premium focus (gold, visible, not harsh) */
+:focus-visible {
+  outline: 2px solid var(--c-gold);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* Selection — warm gold tint */
+::selection {
+  background: rgba(201, 162, 62, 0.18);
+  color: var(--c-text-1);
+}
+
+/* Scrollbar — refined gold on cream */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(201, 162, 62, 0.28) transparent;
+}
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: rgba(201, 162, 62, 0.28);
+  border-radius: 9999px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(201, 162, 62, 0.42);
+  background-clip: content-box;
+}
+
+/* Skip link — gold, premium */
+.skip-link {
+  position: absolute;
+  top: -9999px;
+  left: 0;
+  z-index: 99999;
+  background: var(--c-gold);
+  color: #fff;
+  padding: 8px 18px;
+  border-radius: 0 0 10px 0;
+  font-family: var(--font-body), sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  text-decoration: none;
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+}
+.skip-link:focus {
+  top: 0;
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+/* Solid fallback for browsers without backdrop-filter (rare but professional) */
+@supports not (backdrop-filter: blur(1px)) {
+  .glass,
+  .glass-nav,
+  .glass-card,
+  .glass-cta {
+    background: var(--c-bg-card);
+    border-color: rgba(226, 220, 208, 0.9);
   }
 }
 
-/* ─── REDUCED MOTION ─────────────────────────────────────────── */
+/* Premium typography activation — Fraunces for display/headings (luxury serif with character) */
+h1,
+h2,
+.display,
+.hero-h1 {
+  font-family: var(--font-display), serif !important;
+}
+
+/* Body and UI text default to Outfit (clean geometric) — already on body, reinforce for consistency */
+p,
+li,
+button,
+a,
+span,
+label,
+input,
+textarea {
+  font-family: var(--font-body), system-ui, -apple-system, sans-serif;
+}
+
+/* Mono for tags, stack, labels, status */
+code,
+pre,
+.mono,
+.tag,
+.pill {
+  font-family: var(--font-mono), ui-monospace, monospace;
+}
+
+/* ─── RESPONSIVE SECTION PADDING (tightened for modern premium density) ────────────────────────────── */
+@media (max-width: 767px) {
+  #products,
+  #services,
+  #how-i-build,
+  #about,
+  #contact {
+    padding-top: 92px !important;
+    padding-bottom: 92px !important;
+  }
+}
+
+/* ─── REDUCED MOTION — absolute respect (world-class accessibility) ─────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -297,8 +532,11 @@ html {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-
-  body::after {
-    animation: none;
+  body::after,
+  body::before {
+    animation: none !important;
+  }
+  .glass-card:hover {
+    transform: none !important;
   }
 }

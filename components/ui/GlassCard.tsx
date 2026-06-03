@@ -52,57 +52,56 @@ export function GlassCard({
   const handleMouseEnter = useCallback(() => {
     if (!cardRef.current) return
     isHoveredRef.current = true
+    // Liquid glass hover: lift 2px + shadow deepen + gold hairline tint (tactile, expensive, memorable)
     cardRef.current.style.boxShadow = `
-      0 20px 56px rgba(139, 92, 246, 0.12),
-      0 6px 16px rgba(0, 0, 0, 0.09),
-      inset 0 1px 0 rgba(255, 255, 255, 0.75),
-      inset 0 -1px 0 rgba(0, 0, 0, 0.04)
+      0 22px 62px rgba(0, 0, 0, 0.10),
+      0 7px 18px rgba(0, 0, 0, 0.05),
+      inset 0 1px 0 rgba(255, 255, 255, 0.20),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.03)
     `
-    cardRef.current.style.borderColor = 'rgba(255, 255, 255, 0.70)'
-    // Only translate if no tilt (tilt overrides transform on mousemove)
+    cardRef.current.style.borderColor = 'var(--glass-border-gold)'
     if (!tilt && !reducedMotionRef.current) {
-      cardRef.current.style.transform = 'translateY(-4px) scale(1.015)'
+      cardRef.current.style.transform = 'translateY(-2px) scale(1.01)'
     }
   }, [tilt])
 
   const handleMouseLeave = useCallback(() => {
     if (!cardRef.current) return
     isHoveredRef.current = false
-    // Clear transform — CSS transition handles the spring-back via ease-back
     cardRef.current.style.transform = ''
+    // Return to base liquid glass shadow + border
     cardRef.current.style.boxShadow = `
-      0 6px 24px rgba(139, 92, 246, 0.06),
-      0 1px 4px rgba(0, 0, 0, 0.05),
-      inset 0 1px 0 rgba(255, 255, 255, 0.60),
-      inset 0 -1px 0 rgba(0, 0, 0, 0.04)
+      0 14px 48px rgba(0, 0, 0, 0.075),
+      0 4px 12px rgba(0, 0, 0, 0.04),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.025)
     `
-    cardRef.current.style.borderColor = 'rgba(255, 255, 255, 0.50)'
+    cardRef.current.style.borderColor = 'var(--glass-border)'
   }, [])
 
   const cardStyle: React.CSSProperties = {
     ...externalStyle,
-    background: externalStyle?.background ?? 'rgba(255, 255, 255, 0.55)',
-    backdropFilter: 'blur(8px) saturate(160%) brightness(105%)',
-    WebkitBackdropFilter: 'blur(8px) saturate(160%) brightness(105%)',
-    border: '1px solid rgba(255, 255, 255, 0.50)',
-    borderRadius: '20px',
+    // Full Liquid Glass spec — warm cream, deeper blur, hairline, layered expensive shadows + inner lit edge
+    background: externalStyle?.background ?? 'var(--glass-fill-elevated)',
+    backdropFilter: 'blur(var(--glass-blur-lg)) saturate(var(--glass-saturate))',
+    WebkitBackdropFilter: 'blur(var(--glass-blur-lg)) saturate(var(--glass-saturate))',
+    border: '1px solid var(--glass-border)',
+    borderRadius: '22px',
     boxShadow: `
-      0 6px 24px rgba(139, 92, 246, 0.06),
-      0 1px 4px rgba(0, 0, 0, 0.05),
-      inset 0 1px 0 rgba(255, 255, 255, 0.60),
-      inset 0 -1px 0 rgba(0, 0, 0, 0.04)
+      0 14px 48px rgba(0, 0, 0, 0.075),
+      0 4px 12px rgba(0, 0, 0, 0.04),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.025)
     `,
     overflow: 'hidden',
     position: 'relative',
     isolation: 'isolate',
-    // GPU-composited — will-change keeps transform on compositor thread
     willChange: 'transform',
-    // ease-back on transform = slight overshoot on hover entry, spring-back on leave
-    // ease-expo on shadow = smooth fade without bouncing
+    // Premium 400-700ms silk/expo for expensive tactile feel
     transition: [
-      'transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)',
-      'box-shadow 0.6s cubic-bezier(0.19, 1, 0.22, 1)',
-      'border-color 0.35s cubic-bezier(0.19, 1, 0.22, 1)',
+      'transform 0.55s var(--ease-silk)',
+      'box-shadow 0.55s var(--ease-expo)',
+      'border-color 0.28s var(--ease-expo)',
     ].join(', '),
   }
 

@@ -3,86 +3,26 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import {
-  IconDeviceMobile,
-  IconBrowser,
-  IconBrain,
-  IconCloud,
+  IconClipboardList,
+  IconTools,
+  IconCalendar,
 } from '@tabler/icons-react'
 import { GlassCard } from '@/components/ui/GlassCard'
 import { SectionLabel } from '@/components/ui/SectionLabel'
 import { FADE_UP, STAGGER_CONTAINER, CARD_ENTRANCE } from '@/lib/motion'
 import { SERVICES } from '@/lib/utils'
 
-type TablerIcon = React.ComponentType<{ size?: number; stroke?: number; style?: React.CSSProperties }>
-
-const ICON_MAP: Record<string, TablerIcon> = {
-  IconDeviceMobile,
-  IconBrowser,
-  IconBrain,
-  IconCloud,
-}
-
-const ICON_STYLES: Record<string, { bg: string; border: string; color: string; glow: string; orb: string }> = {
-  IconDeviceMobile: {
-    bg: 'rgba(139, 92, 246, 0.08)',
-    border: 'rgba(139, 92, 246, 0.18)',
-    color: 'var(--c-plasma)',
-    glow: 'rgba(139, 92, 246, 0.12)',
-    orb: 'rgba(139, 92, 246, 0.05)',
-  },
-  IconBrowser: {
-    bg: 'rgba(34, 211, 238, 0.08)',
-    border: 'rgba(34, 211, 238, 0.20)',
-    color: 'var(--c-arc)',
-    glow: 'rgba(34, 211, 238, 0.12)',
-    orb: 'rgba(34, 211, 238, 0.05)',
-  },
-  IconBrain: {
-    bg: 'rgba(24, 119, 242, 0.08)',
-    border: 'rgba(24, 119, 242, 0.20)',
-    color: 'var(--c-blue)',
-    glow: 'rgba(24, 119, 242, 0.12)',
-    orb: 'rgba(24, 119, 242, 0.05)',
-  },
-  IconCloud: {
-    bg: 'rgba(139, 92, 246, 0.08)',
-    border: 'rgba(139, 92, 246, 0.18)',
-    color: 'var(--c-plasma)',
-    glow: 'rgba(139, 92, 246, 0.12)',
-    orb: 'rgba(139, 92, 246, 0.05)',
-  },
-}
-
 export default function Services() {
   return (
     <section
       id="services"
-      aria-label="Our Services"
+      aria-label="Services & Pricing"
       style={{
-        paddingTop: '160px',
-        paddingBottom: '160px',
+        paddingTop: '132px',
+        paddingBottom: '132px',
         background: 'var(--c-bg-base)',
       }}
     >
-      {/* Icon glow pulse keyframe — defined once at section level */}
-      <style>{`
-        @keyframes iconGlow {
-          0%, 100% { box-shadow: 0 0 15px rgba(139, 92, 246, 0.08); }
-          50%       { box-shadow: 0 0 28px rgba(139, 92, 246, 0.18); }
-        }
-        @keyframes iconGlowArc {
-          0%, 100% { box-shadow: 0 0 15px rgba(34, 211, 238, 0.08); }
-          50%       { box-shadow: 0 0 28px rgba(34, 211, 238, 0.18); }
-        }
-        @keyframes iconGlowBlue {
-          0%, 100% { box-shadow: 0 0 15px rgba(24, 119, 242, 0.08); }
-          50%       { box-shadow: 0 0 28px rgba(24, 119, 242, 0.18); }
-        }
-        @media (prefers-reduced-motion: reduce) {
-          .service-icon { animation: none !important; }
-        }
-      `}</style>
-
       <div
         style={{
           maxWidth: '80rem',
@@ -96,121 +36,97 @@ export default function Services() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-80px' }}
-          style={{ display: 'flex', flexDirection: 'column', gap: '48px' }}
+          style={{ display: 'flex', flexDirection: 'column', gap: '40px' }}
         >
           {/* Header */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
             <motion.div variants={FADE_UP}>
               <SectionLabel>SERVICES</SectionLabel>
             </motion.div>
             <motion.h2
               variants={FADE_UP}
               style={{
-                fontFamily: 'var(--font-geist), sans-serif',
+                fontFamily: 'var(--font-display), serif',
                 fontWeight: 700,
                 fontSize: 'var(--t-h2)',
                 letterSpacing: 'var(--track-h2)',
                 margin: 0,
-                lineHeight: 1.1,
+                lineHeight: 1.05,
               }}
             >
               <span style={{ display: 'block', color: 'var(--c-text-1)' }}>
-                What we
+                Clear paths. Real results.
               </span>
               <span style={{ display: 'block', color: 'var(--c-text-3)' }}>
-                do.
+                Systems teams actually use.
               </span>
             </motion.h2>
           </div>
 
-          {/* Services grid — 3D card entrance */}
+          {/* Three tiers - glass cards */}
           <div
             style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(1, 1fr)',
               gap: '16px',
             }}
-            className="md:grid-cols-2"
+            className="md:grid-cols-3"
           >
             {SERVICES.map((service, i) => {
-              const IconComponent = ICON_MAP[service.icon]
-              const iconStyle = ICON_STYLES[service.icon] ?? ICON_STYLES['IconDeviceMobile']!
-
-              // Pick glow animation based on color family
-              let glowAnimation = 'iconGlow 3s ease-in-out infinite'
-              if (service.icon === 'IconBrowser') glowAnimation = 'iconGlowArc 3s ease-in-out infinite'
-              if (service.icon === 'IconBrain') glowAnimation = 'iconGlowBlue 3s ease-in-out infinite'
+              const IconComponent = i === 0 ? IconClipboardList : i === 1 ? IconTools : IconCalendar
 
               return (
                 <motion.div
-                  key={service.name}
+                  key={service.tier}
                   variants={CARD_ENTRANCE}
                   custom={i}
                 >
-                  <GlassCard tilt={false}>
+                  <GlassCard tilt={false} style={{ background: 'var(--c-bg-card)', height: '100%' }}>
                     <div
                       style={{
-                        padding: '32px',
-                        position: 'relative',
-                        overflow: 'hidden',
-                        zIndex: 2,
+                        padding: '28px',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        height: '100%',
                       }}
                     >
-                      {/* Corner glow orb */}
-                      <div
-                        aria-hidden="true"
-                        style={{
-                          position: 'absolute',
-                          top: '-40px',
-                          right: '-40px',
-                          width: '160px',
-                          height: '160px',
-                          borderRadius: '9999px',
-                          background: iconStyle.orb,
-                          filter: 'blur(80px)',
-                          pointerEvents: 'none',
-                        }}
-                      />
-
-                      {/* Icon with pulsing glow */}
-                      <div
-                        aria-hidden="true"
-                        className="service-icon"
-                        style={{
-                          width: '56px',
-                          height: '56px',
-                          borderRadius: 'var(--r-md)',
-                          background: iconStyle.bg,
-                          border: `1px solid ${iconStyle.border}`,
-                          // Base glow baked in; keyframe animates it
-                          boxShadow: `0 0 15px ${iconStyle.glow}`,
-                          animation: glowAnimation,
-                          animationDelay: `${i * 0.4}s`,
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          marginBottom: '20px',
-                          position: 'relative',
-                          zIndex: 1,
-                        }}
-                      >
-                        {IconComponent && (
-                          <IconComponent
-                            size={28}
-                            stroke={1.5}
-                            style={{ color: iconStyle.color }}
-                          />
-                        )}
+                      {/* Tier badge + price */}
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '16px' }}>
+                        <span
+                          style={{
+                            fontSize: '11px',
+                            fontWeight: 700,
+                            letterSpacing: '0.1em',
+                            textTransform: 'uppercase',
+                            color: 'var(--c-gold)',
+                            background: 'rgba(176,136,60,0.08)',
+                            padding: '4px 10px',
+                            borderRadius: '9999px',
+                          }}
+                        >
+                          {service.tier}
+                        </span>
+                        <span
+                          style={{
+                            fontFamily: 'var(--font-display), serif',
+                            fontSize: '22px',
+                            fontWeight: 700,
+                            color: 'var(--c-text-1)',
+                            lineHeight: 1,
+                          }}
+                        >
+                          {service.price}
+                        </span>
                       </div>
 
                       <h3
                         style={{
-                          fontFamily: 'var(--font-geist), sans-serif',
-                          fontWeight: 600,
+                          fontFamily: 'var(--font-display), serif',
+                          fontWeight: 700,
                           fontSize: '20px',
                           color: 'var(--c-text-1)',
+                          margin: '0 0 8px',
                           letterSpacing: 'var(--track-h3)',
-                          margin: '0 0 12px',
                         }}
                       >
                         {service.name}
@@ -219,15 +135,39 @@ export default function Services() {
                       <p
                         style={{
                           fontFamily: 'var(--font-dm-sans), sans-serif',
-                          fontWeight: 400,
-                          fontSize: '15px',
+                          fontSize: '14px',
                           color: 'var(--c-text-2)',
-                          lineHeight: 1.65,
-                          margin: 0,
+                          lineHeight: 1.55,
+                          margin: '0 0 16px',
                         }}
                       >
                         {service.description}
                       </p>
+
+                      {/* Outcomes */}
+                      <div style={{ marginTop: 'auto' }}>
+                        <div style={{ fontSize: '10px', fontWeight: 600, letterSpacing: '0.08em', color: 'var(--c-gold)', marginBottom: '8px' }}>
+                          WHAT YOU GET
+                        </div>
+                        <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                          {service.outcomes.map((outcome, idx) => (
+                            <li
+                              key={idx}
+                              style={{
+                                fontSize: '13px',
+                                color: 'var(--c-text-1)',
+                                display: 'flex',
+                                alignItems: 'flex-start',
+                                gap: '8px',
+                                lineHeight: 1.4,
+                              }}
+                            >
+                              <span style={{ color: 'var(--c-gold)', fontWeight: 700, marginTop: '1px' }}>→</span>
+                              {outcome}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
                     </div>
                   </GlassCard>
                 </motion.div>

@@ -288,29 +288,14 @@ export default function Hero() {
         position: 'relative',
         overflow: 'hidden',
         minHeight: '100svh',
-        background: `
-          radial-gradient(ellipse 80% 50% at 40% 30%, rgba(139,92,246,0.06) 0%, transparent 60%),
-          radial-gradient(ellipse 60% 40% at 70% 70%, rgba(236,72,153,0.04) 0%, transparent 50%),
-          var(--c-bg-hero)
-        `,
+        background: 'var(--c-bg-hero)',
         display: 'flex',
         alignItems: 'center',
       }}
     >
       <style>{`
-        /* Hide floating elements on mobile/tablet — they'd overlap text */
+        /* Responsive for new clean glass accent hero */
         @media (max-width: 1023px) {
-          .hero-float {
-            display: none !important;
-          }
-          .hero-mesh {
-            min-height: 300px !important;
-            opacity: 0.7;
-          }
-          .hero-mesh div {
-            width: 220px !important;
-            height: 220px !important;
-          }
           .hero-cta-row {
             flex-direction: column !important;
             align-items: flex-start !important;
@@ -321,11 +306,8 @@ export default function Hero() {
           }
         }
         @media (prefers-reduced-motion: reduce) {
-          .hero-mesh div {
-            animation: none !important;
-          }
-          .hero-float {
-            animation: none !important;
+          .glass {
+            transition: none !important;
           }
         }
       `}</style>
@@ -368,7 +350,7 @@ export default function Hero() {
                 gap: '28px',
               }}
             >
-              {/* Eyebrow stat pill */}
+              {/* Eyebrow */}
               <motion.div variants={FADE_UP}>
                 <span
                   style={{
@@ -382,7 +364,7 @@ export default function Hero() {
                     WebkitBackdropFilter: 'blur(12px) saturate(180%)',
                     border: '1px solid rgba(255, 255, 255, 0.55)',
                     boxShadow: '0 4px 16px rgba(24,119,242,0.06), inset 0 1px 0 rgba(255,255,255,0.60)',
-                    fontFamily: 'var(--font-geist), sans-serif',
+                    fontFamily: 'var(--font-body), system-ui, sans-serif',
                     fontSize: '13px',
                     fontWeight: 500,
                     color: 'var(--c-text-2)',
@@ -395,41 +377,41 @@ export default function Hero() {
                       width: '6px',
                       height: '6px',
                       borderRadius: '50%',
-                      background: 'var(--c-plasma)',
+                      background: 'var(--c-gold)',
                       flexShrink: 0,
                     }}
                   />
-                  5 Products Shipped &middot; 2026
+                  AI Workflow Implementation Specialist
                 </span>
               </motion.div>
 
-              {/* H1 */}
+              {/* H1 - new positioning, keeping glass style */}
               <motion.h1
                 variants={FADE_UP}
                 className="hero-h1"
                 style={{
-                  fontFamily: 'var(--font-geist), sans-serif',
-                  fontWeight: 700,
+                  fontFamily: 'var(--font-display), serif',
+                  fontWeight: 600,
                   fontSize: 'var(--t-hero)',
-                  lineHeight: 1.05,
+                  lineHeight: 1.02,
                   letterSpacing: 'var(--track-hero)',
                   margin: 0,
                   textAlign: 'left',
                 }}
-                aria-label="We don't consult. We create. Then we ship."
+                aria-label="AI workflows that actually work in the field."
               >
                 <span style={{ display: 'block', color: 'var(--c-text-1)' }}>
-                  <LetterReveal text="We don't consult." baseDelay={0.4} />
+                  <LetterReveal text="AI workflows that" baseDelay={0.35} />
                 </span>
                 <span style={{ display: 'block', color: 'var(--c-text-3)' }}>
-                  <LetterReveal text="We create." baseDelay={1.0} />
+                  <LetterReveal text="actually work" baseDelay={0.95} />
                 </span>
-                <span style={{ display: 'block', color: 'var(--c-text-3)' }}>
-                  <LetterReveal text="Then we ship." baseDelay={1.55} />
+                <span style={{ display: 'block', color: 'var(--c-text-1)' }}>
+                  <LetterReveal text="in the field." baseDelay={1.48} />
                 </span>
               </motion.h1>
 
-              {/* Subtitle */}
+              {/* Subtitle - new pitch */}
               <motion.p
                 variants={FADE_UP}
                 style={{
@@ -443,11 +425,10 @@ export default function Hero() {
                   margin: 0,
                 }}
               >
-                From intelligent mobile apps to enterprise SaaS — we turn bold ideas
-                into powerful digital products.
+                With 7 years in construction safety and OSHA compliance, I design, build, and ship AI systems that automate inspections and workflows contractors actually use.
               </motion.p>
 
-              {/* CTA row */}
+              {/* Dual CTAs - updated for two audiences */}
               <motion.div
                 variants={FADE_UP}
                 className="hero-cta-row"
@@ -465,25 +446,62 @@ export default function Hero() {
                   onClick={() => scrollToSection('products')}
                   className="hero-cta-btn"
                 >
-                  Explore our work
+                  See our work
                 </GlowButton>
                 <GlowButton
                   variant="outline"
                   size="lg"
-                  onClick={() => scrollToSection('contact')}
+                  onClick={() => scrollToSection('services')}
                   className="hero-cta-btn"
                 >
-                  Get in touch
+                  Automate your workflow
                 </GlowButton>
               </motion.div>
             </motion.div>
 
-            {/* RIGHT COLUMN — gradient mesh + floating elements */}
+            {/* RIGHT COLUMN — clean, calm glass accent (removed dated floats/mesh for super-premium Apple liquid glass clarity) */}
             <div
-              className="hidden lg:block hero-mesh"
-              style={{ position: 'relative' }}
+              className="hidden lg:block"
+              style={{ position: 'relative', minHeight: '420px' }}
             >
-              <GradientMesh />
+              <div
+                className="glass"
+                style={{
+                  position: 'absolute',
+                  inset: '40px 0 40px 40px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  padding: '32px',
+                  borderRadius: '26px',
+                }}
+              >
+                <div style={{ textAlign: 'center', maxWidth: '260px' }}>
+                  <div
+                    style={{
+                      fontFamily: 'var(--font-display), serif',
+                      fontSize: '13px',
+                      letterSpacing: '0.16em',
+                      textTransform: 'uppercase',
+                      color: 'var(--c-gold)',
+                      marginBottom: '14px',
+                    }}
+                  >
+                    PRODUCTION SYSTEMS
+                  </div>
+                  <div
+                    style={{
+                      fontFamily: 'var(--font-display), serif',
+                      fontSize: '21px',
+                      lineHeight: 1.25,
+                      color: 'var(--c-text-1)',
+                      fontStyle: 'italic',
+                    }}
+                  >
+                    We build what crews<br />actually use in the field.
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

@@ -374,7 +374,7 @@ function CompactCard({ product, showTilt, index }: { product: Product; showTilt:
             <div>
               <span
                 style={{
-                  fontFamily: 'var(--font-geist), sans-serif',
+                  fontFamily: 'var(--font-display), serif',
                   fontSize: '11px',
                   fontWeight: 700,
                   textTransform: 'uppercase',
@@ -388,7 +388,7 @@ function CompactCard({ product, showTilt, index }: { product: Product; showTilt:
               </span>
               <h3
                 style={{
-                  fontFamily: 'var(--font-geist), sans-serif',
+                  fontFamily: 'var(--font-display), serif',
                   fontWeight: 600,
                   fontSize: '18px',
                   color: 'var(--c-text-1)',
@@ -428,8 +428,8 @@ export default function Products() {
       id="products"
       aria-label="Our Products"
       style={{
-        paddingTop: '160px',
-        paddingBottom: '160px',
+        paddingTop: '132px',
+        paddingBottom: '132px',
         background: 'var(--c-bg-base)',
       }}
     >
@@ -451,12 +451,12 @@ export default function Products() {
           {/* Header */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
             <motion.div variants={FADE_UP}>
-              <SectionLabel>OUR PRODUCTS</SectionLabel>
+              <SectionLabel>OUR WORK</SectionLabel>
             </motion.div>
             <motion.h2
               variants={FADE_UP}
               style={{
-                fontFamily: 'var(--font-geist), sans-serif',
+                fontFamily: 'var(--font-display), serif',
                 fontWeight: 700,
                 fontSize: 'var(--t-h2)',
                 letterSpacing: 'var(--track-h2)',
@@ -465,10 +465,10 @@ export default function Products() {
               }}
             >
               <span style={{ display: 'block', color: 'var(--c-text-1)' }}>
-                What we&apos;re
+                What we ship.
               </span>
               <span style={{ display: 'block', color: 'var(--c-text-3)' }}>
-                building.
+                What teams use.
               </span>
             </motion.h2>
           </div>
