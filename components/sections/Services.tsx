@@ -31,6 +31,22 @@ export default function Services() {
           .services-container { padding-left: 16px !important; padding-right: 16px !important; }
           .service-card-inner { padding: 20px !important; }
         }
+        /* Premium ambient breathe + hover intensify for Services cards (world-class subtle life, no jank) */
+        .service-ambient {
+          animation: ambientBreathe 6.5s ease-in-out infinite alternate;
+          opacity: 0.85;
+        }
+        .group:hover .service-ambient {
+          opacity: 1;
+          filter: blur(42px);
+        }
+        @keyframes ambientBreathe {
+          0% { transform: scale(0.94); opacity: 0.78; }
+          100% { transform: scale(1.06); opacity: 0.95; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .service-ambient { animation: none !important; }
+        }
       `}</style>
       <div
         className="services-container"
@@ -75,12 +91,7 @@ export default function Services() {
 
           {/* Three tiers - glass cards */}
           <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(1, 1fr)',
-              gap: '16px',
-            }}
-            className="md:grid-cols-3"
+            className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8"
           >
             {SERVICES.map((service, i) => {
               const IconComponent = i === 0 ? IconClipboardList : i === 1 ? IconTools : IconCalendar
@@ -92,10 +103,11 @@ export default function Services() {
                   custom={i}
                   whileHover={{ scale: 1.015, y: -4 }}
                   transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                  className="group"
                 >
                   <GlassCard tilt={false} style={{ height: '100%' }}>
                     <div
-                      className="service-card-inner p-5 md:p-7"
+                      className="service-card-inner p-6 md:p-8"
                       style={{
                         display: 'flex',
                         flexDirection: 'column',
@@ -103,23 +115,25 @@ export default function Services() {
                         position: 'relative',
                       }}
                     >
-                      {/* Ambient premium light per tier for depth and wow */}
+                      {/* Ambient premium colored light per tier — gold for audit, sage for build, blue for care. Breathes for expensive depth. Intensifies on hover. */}
                       <div
                         aria-hidden="true"
+                        className="service-ambient"
                         style={{
                           position: 'absolute',
-                          top: '-60px',
-                          right: '-60px',
-                          width: '220px',
-                          height: '220px',
+                          top: '-80px',
+                          right: '-70px',
+                          width: '260px',
+                          height: '260px',
                           background: i === 0 
-                            ? 'radial-gradient(circle, rgba(180,138,64,0.10) 0%, transparent 70%)' 
+                            ? 'radial-gradient(circle, rgba(180,138,64,0.13) 0%, transparent 68%)' 
                             : i === 1 
-                            ? 'radial-gradient(circle, rgba(105,115,90,0.08) 0%, transparent 70%)' 
-                            : 'radial-gradient(circle, rgba(24,119,242,0.06) 0%, transparent 70%)',
-                          filter: 'blur(50px)',
+                            ? 'radial-gradient(circle, rgba(105,115,90,0.10) 0%, transparent 68%)' 
+                            : 'radial-gradient(circle, rgba(24,119,242,0.08) 0%, transparent 68%)',
+                          filter: 'blur(48px)',
                           pointerEvents: 'none',
                           zIndex: 0,
+                          transition: 'opacity 0.4s var(--ease-expo)',
                         }}
                       />
                       {/* Tier badge + price */}

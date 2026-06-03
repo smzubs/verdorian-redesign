@@ -54,12 +54,10 @@ export function GlassCard({
 
   const handleMouseEnter = useCallback(() => {
     if (reducedRef.current) return
-    // Liquid glass hover: lift + gold hairline (tactile, expensive, memorable)
-    if (!tilt) {
-      scale.set(1.01)
-      y.set(-2)
-    }
-  }, [tilt, scale, y])
+    // Liquid glass hover lift for premium tactile feel (tilt cards get springs + this base lift)
+    scale.set(1.012)
+    y.set(-3)
+  }, [scale, y])
 
   const handleMouseLeave = useCallback(() => {
     rotateX.set(0)
@@ -100,14 +98,14 @@ export function GlassCard({
         y,
         transformPerspective: 1000,
       }}
-      className={cn('group', className)}
+      className={cn('glass-card group', className)}
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      whileHover={!tilt && !reducedRef.current ? { y: -2, scale: 1.01 } : undefined}
-      transition={{ type: 'spring', stiffness: 300, damping: 28 }}
+      whileHover={{ y: -3, scale: 1.012 }}
+      transition={{ type: 'spring', stiffness: 320, damping: 26 }}
     >
-      {/* Inner highlight layer — top 40% catch light (exact spec) */}
+      {/* Inner highlight layer — top 42% catch light (premium iOS glass) */}
       <div
         aria-hidden="true"
         style={{
@@ -120,6 +118,23 @@ export function GlassCard({
           background: 'linear-gradient(180deg, rgba(255,255,255,0.16) 0%, rgba(255,255,255,0) 100%)',
           pointerEvents: 'none',
           zIndex: 1,
+        }}
+      />
+      {/* Ambient gold light — subtle expensive depth on all glass cards, breathes on hover via group */}
+      <div
+        aria-hidden="true"
+        className="glass-ambient"
+        style={{
+          position: 'absolute',
+          top: '-70px',
+          right: '-55px',
+          width: '210px',
+          height: '210px',
+          background: 'radial-gradient(circle, rgba(180,138,64,0.07) 0%, transparent 72%)',
+          filter: 'blur(42px)',
+          pointerEvents: 'none',
+          zIndex: 0,
+          transition: 'opacity 0.45s var(--ease-expo), filter 0.45s var(--ease-expo)',
         }}
       />
       {children}

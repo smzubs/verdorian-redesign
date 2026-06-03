@@ -500,7 +500,7 @@ export default function Products() {
                 whileHover={{ scale: 1.01, y: -3 }}
                 transition={{ type: 'spring', stiffness: 300, damping: 20 }}
               >
-                <GlassCard tilt style={{ background: 'rgba(255,255,255,0.52)' }}>
+                <GlassCard tilt>
                   <CardContent product={featured} isFeatured />
                 </GlassCard>
               </motion.div>

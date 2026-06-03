@@ -409,10 +409,17 @@ html {
 .glass-card:hover {
   transform: translateY(-2px);
   box-shadow: 
-    0 22px 62px rgba(0, 0, 0, 0.10),
-    0 7px 18px rgba(0, 0, 0, 0.05),
-    inset 0 1px 0 rgba(255, 255, 255, 0.20);
+    0 24px 68px rgba(0, 0, 0, 0.11),
+    0 8px 20px rgba(0, 0, 0, 0.055),
+    0 0 0 1px rgba(180, 138, 64, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.22);
   border-color: var(--glass-border-gold);
+}
+/* Super-premium ambient gold shade on hover for all glass cards (color depth + expensive lit feel) */
+.glass-card:hover .glass-ambient {
+  background: radial-gradient(circle, rgba(180,138,64,0.11) 0%, transparent 68%);
+  opacity: 0.95;
+  filter: blur(38px);
 }
 
 /* Frosted CTAs / buttons that still feel glass */

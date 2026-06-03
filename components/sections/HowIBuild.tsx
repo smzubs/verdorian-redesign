@@ -3,6 +3,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { SectionLabel } from '@/components/ui/SectionLabel'
+import { GlassCard } from '@/components/ui/GlassCard'
 import { FADE_UP, STAGGER_CONTAINER, CARD_ENTRANCE } from '@/lib/motion'
 import { IconBrain, IconShield, IconRocket, IconUsers } from '@tabler/icons-react'
 
@@ -44,7 +45,8 @@ export default function HowIBuild() {
         @media (max-width: 767px) { .how-container { padding-left: 20px !important; padding-right: 20px !important; } }
         @media (max-width: 390px) {
           .how-container { padding-left: 16px !important; padding-right: 16px !important; }
-          .how-principle-card { padding: 20px !important; border-radius: 18px !important; }
+          .how-principle-card { border-radius: 18px !important; }
+          .how-principle-card > div { padding: 18px !important; }
         }
       `}</style>
       <div
@@ -104,20 +106,11 @@ export default function HowIBuild() {
                   key={i}
                   variants={CARD_ENTRANCE}
                   custom={i}
+                  whileHover={{ scale: 1.01, y: -2 }}
+                  transition={{ type: 'spring', stiffness: 300, damping: 22 }}
                 >
-                  <div
-                    className="how-principle-card"
-                    style={{
-                      background: 'var(--glass-fill-elevated)',
-                      backdropFilter: 'blur(20px) saturate(1.3)',
-                      WebkitBackdropFilter: 'blur(20px) saturate(1.3)',
-                      borderRadius: '22px',
-                      padding: '28px',
-                      height: '100%',
-                      border: '1px solid var(--glass-border)',
-                      boxShadow: '0 10px 36px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.14)',
-                    }}
-                  >
+                  <GlassCard tilt={false} className="how-principle-card">
+                    <div style={{ padding: '26px' }}>
                     <div
                       style={{
                         width: '48px',
@@ -158,7 +151,8 @@ export default function HowIBuild() {
                     >
                       {principle.desc}
                     </p>
-                  </div>
+                    </div>
+                  </GlassCard>
                 </motion.div>
               )
             })}
