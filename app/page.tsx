@@ -16,6 +16,12 @@ export default function Home() {
       <main id="main-content">
         <Nav />
         <Hero />
+
+        {/* Quick credibility strip (research from Stripe/Vercel/Apple/Linear: early trust stats right after hero for instant authority before the offer). Pulled from existing About stats + domain copy. */}
+        <div className="border-b border-white/10 bg-[rgba(245,240,232,0.6)] py-3 text-center text-[10px] uppercase tracking-[0.16em] text-[var(--c-text-3)]">
+          7 years field ops • 5 Products Shipped • Tennessee-based • Systems crews actually use
+        </div>
+
         {/* SERVICES higher as primary offer/hook (best marketing: clear value + pricing right after promise). Then proof (Products), mechanism (How), authority (About), action. */}
         <Services />
         <Products />
