@@ -43,6 +43,16 @@ Super-premium, calm, expensive iOS 26 / Apple "Liquid Glass" on rich warm beige/
 - All verified on live (Playwright element screenshots of #services on 375/1280 + text eval confirming no cutoffs + new copy present).
 - Project path: /Users/smzobayer/verdorian-redesign (cd verdorian-redesign from ~)
 
+### 2026-06-23 — Research-backed conversion restructure (commit `ae55393`, pushed, NOT deployed)
+- **Two project agents installed** (`.claude/agents/`): `ai-automation-researcher` (opus, research/strategy only, no code) + `ai-automation-website-builder` (sonnet — pinned to implement INTO the existing Next 16 liquid-glass stack: reuse GlassCard/globals.css tokens, NO shadcn, NO fresh scaffold; UI/UX-agent + design-system.md refs stripped per user). Both dispatchable by name next session.
+- **Research artifacts:** `docs/research-notes.md` (9 competitors, pricing, demand signals + sources + could-not-verify) and `docs/site-brief.md` (positioning, offer, page structure, copy, conversion plan). Brief carries ✅ APPROVED FINAL markers — builder reads finals, not drafts.
+- **Approved finals (Zobayer sign-off):** Hero → "We build automation that survives an audit." ("Automation your team actually uses." = A/B variant); Guarantee verbatim → "We find at least 3 automation opportunities in your operation, or the audit's free."; stats stay qualitative (no cited stat block; unverified McKinsey 67% figure EXCLUDED everywhere).
+- **Wired (structure + copy):** NEW `Offer.tsx` (after Products, $497 band + guarantee) + `FAQ.tsx` (before About, accessible disclosure: aria-expanded/controls, focus, 48px taps). Problem.tsx aligned + qualitative. Eyebrows/headlines/subheads applied to Services/HowIBuild/Products/About/Contact. SERVICES tiers + PRODUCTS data preserved exactly. Order: Nav Hero ProofBar Problem HowIBuild Services Products **Offer** PullQuote **FAQ** About Contact Footer. tsc + build clean.
+- **OPEN / RESUME HERE next session:**
+  1. **Visual QA not done** — run `bun run dev` (or Playwright 375/1280) to review Offer + FAQ + new copy before any deploy. NOT yet deployed to verdorian.com (this was a checkpoint commit).
+  2. **Optional Audit price-context line** ("A full automation audit usually runs into the thousands. Ours is $497…") was SKIPPED — adding it touches Services tier-card markup (sign-off zone). Decide: add or leave.
+  3. **Deferred sign-off-gated pass** (per verification-zone rules): Supabase + Resend lead form, Cal.com booking, PostHog events + 3 ranked A/B tests (hero CTA framing first). Dispatch `ai-automation-website-builder` for this once approved.
+
 ## File Ownership (Core)
 - app/globals.css → :root tokens, body::before drifts + grain, .glass-card rules + hovers + reduced-motion
 - app/layout.tsx → fonts, metadata (now "ai Automation..."), LenisProvider
