@@ -1,113 +1,105 @@
 @import "tailwindcss";
 
-/* ─── DESIGN SYSTEM: SUPER PREMIUM iOS LIQUID GLASS — WARM BEIGE (Apple-grade, memorable) ───────────────── */
+/* ─── DESIGN SYSTEM: HERITAGE PROSPECTUS — warm ivory paper, hairline rules, gold leaf, ink (matches QRSafePro) ─── */
 :root {
-  /* ── Backgrounds — Richer Warm Cream Beige (deeper, more expensive tactile base) ── */
-  --c-bg-base:     #F8F5ED;    /* primary richer warm cream — premium off-white with body */
-  --c-bg-hero:     #F4EFE5;    /* deeper hero cream with warmth */
-  --c-bg-alt:      #EFE9DB;    /* alt sections — subtle shift for depth */
-  --c-bg-card:     #FDFAF3;    /* elevated glass cards — brightest lift */
-  --c-bg-elevated: #FFFEF9;    /* highest glass — near white for contrast pop */
-  --c-bg-dark:     #241C15;    /* warm ink for footer/bookend — richer */
+  /* ── Paper / ink / rule scale ── */
+  --paper:        #F7F3EA;   /* primary ivory */
+  --paper-deep:   #F1EADB;   /* alt section bands */
+  --paper-bright: #FCFAF4;   /* plate fills, elevated */
+  --ink:          #1A1714;   /* main text + dark bands */
+  --ink-soft:     #5C544C;   /* body */
+  --ink-faint:    #8A8076;   /* meta / captions */
+  --rule-strong:  rgba(26, 23, 20, 0.16);   /* standard hairline */
+  --rule:         rgba(26, 23, 20, 0.09);   /* soft divider */
+  --rule-faint:   rgba(26, 23, 20, 0.05);   /* chain lines / barely-there */
 
-  /* Premium brand (sparing, refined — no neon) */
-  --c-gold:         #B48A40;   /* richer refined gold accent for depth */
-  --c-gold-light:   #C9A44A;   /* brighter gold for highlights */
-  --c-sage:         #69735A;   /* deeper sage for layered drifts */
-  --c-ink:          #2B2118;   /* warm ink text */
-  --c-blue:         #1877F2;   /* kept for primary CTAs (confident, not the only color) */
-  --c-blue-dark:    #1565D8;
-  --c-blue-light:   #4A9AF5;
+  /* ── Gold + semantic ── */
+  --gold:        #A57A0B;
+  --gold-bright: #C49A0A;
+  --gold-pale:   rgba(196, 154, 10, 0.12);
+  --green-pass:  #2F5D3A;
+  --red-fail:    #8C3A2E;
 
-  /* Text — warm ink, excellent contrast over glass */
-  --c-text-1:   #2B2118;                    /* primary warm ink */
-  --c-text-2:   rgba(43, 33, 24, 0.72);     /* body */
-  --c-text-3:   rgba(43, 33, 24, 0.45);     /* muted/meta */
+  /* ── Typography (display = Cormorant Garamond, body = Geist) ── */
+  --font-display: var(--font-cormorant);
+  --font-body:    var(--font-geist);
+  --font-mono:    var(--font-geist);
+  /* Compatibility aliases so any lingering section refs still resolve cleanly */
+  --font-fraunces:    var(--font-cormorant);
+  --font-outfit:      var(--font-geist);
+  --font-dm-sans:     var(--font-geist);
+  --font-spline-mono: var(--font-geist);
+  --font-jetbrains:   var(--font-geist);
 
-  /* Borders */
-  --c-border:       #E8E3DA;
-  --c-border-hover: rgba(201, 162, 62, 0.22);
+  /* ── Legacy palette names repointed (sections read these — inherit the new look) ── */
+  --c-bg-base:     var(--paper);
+  --c-bg-hero:     var(--paper);
+  --c-bg-alt:      var(--paper-deep);
+  --c-bg-card:     var(--paper-bright);
+  --c-bg-elevated: var(--paper-bright);
+  --c-bg-dark:     var(--ink);
+  --c-gold:        var(--gold);
+  --c-gold-light:  var(--gold-bright);
+  --c-ink:         var(--ink);
+  --c-text-1:      var(--ink);
+  --c-text-2:      var(--ink-soft);
+  --c-text-3:      var(--ink-faint);
+  --c-border:      var(--rule-strong);
+  --c-border-hover: rgba(196, 154, 10, 0.30);
+  --c-ghost:       var(--gold-pale);
 
-  /* Ghost */
-  --c-ghost: rgba(201, 162, 62, 0.06);
+  /* ── Tracking ── */
+  --track-hero:    -0.018em;
+  --track-display: -0.015em;
+  --track-h2:      -0.012em;
+  --track-h3:      -0.005em;
+  --track-body:    0em;
+  --track-label:   0.18em;
+  --track-eyebrow: 0.3em;
+  --track-btn:     0.18em;
 
-  /* Glass system tokens (core of the aesthetic) — updated for richer cream bg */
-  --glass-blur-sm: 16px;
-  --glass-blur:    20px;
-  --glass-blur-lg: 28px;
-  --glass-saturate: 1.3;
-  --glass-fill: rgba(248, 245, 237, 0.62);
-  --glass-fill-elevated: rgba(253, 250, 243, 0.68);
-  --glass-border: rgba(255, 255, 255, 0.30);
-  --glass-border-gold: rgba(180, 138, 64, 0.20);
+  /* ── Spacing (8pt rhythm) ── */
+  --sp-1: 8px;  --sp-2: 16px; --sp-3: 24px; --sp-4: 32px;
+  --sp-6: 48px; --sp-8: 64px; --sp-12: 96px;
 
-  /* Legacy purple kept only for button variants that already use them — will phase in re-skin */
-  --c-plasma: #8B5CF6;
-  --c-plasma-dark: #7C4DFF;
-  --c-arc: #22D3EE;
-
-  /* Shadows — soft, layered, expensive (neutral + subtle gold tint on hover) */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.03);
-  --shadow-card: 0 8px 28px rgba(0, 0, 0, 0.06), 0 2px 6px rgba(0, 0, 0, 0.04), inset 0 1px 0 rgba(255,255,255,0.12), inset 0 -1px 0 rgba(0,0,0,0.025);
-  --shadow-card-hover: 0 18px 52px rgba(0, 0, 0, 0.09), 0 6px 16px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255,255,255,0.18), inset 0 -1px 0 rgba(0,0,0,0.03);
-  --shadow-button: 0 6px 24px rgba(24, 119, 242, 0.22);
-
-  /* Typography */
-  --font-display: var(--font-fraunces);
-  --font-body: var(--font-outfit);
-  --font-mono: var(--font-spline-mono);
-
-  --track-hero: -0.025em;
-  --track-display: -0.018em;
-  --track-h2: -0.012em;
-  --track-h3: -0.005em;
-  --track-body: 0em;
-  --track-label: 0.08em;
-  --track-eyebrow: 0.12em;
-
-  /* Spacing (8pt premium rhythm — generous but tightened from bloat) */
-  --sp-1: 8px;
-  --sp-2: 16px;
-  --sp-3: 24px;
-  --sp-4: 32px;
-  --sp-6: 48px;
-  --sp-8: 64px;
-  --sp-12: 96px;
-
-  /* Radii — generous liquid glass */
-  --r-sm: 10px;
-  --r-md: 16px;
-  --r-lg: 22px;
-  --r-xl: 28px;
+  /* ── Radii — near-square prospectus plates ── */
+  --r-sm: 2px;
+  --r-md: 3px;
+  --r-lg: 4px;
+  --r-xl: 4px;
   --r-pill: 9999px;
 
-  /* Easings — silk for expensive feel */
-  --ease-expo: cubic-bezier(0.19, 1, 0.22, 1);
-  --ease-back: cubic-bezier(0.34, 1.56, 0.64, 1);
-  --ease-silk: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  /* ── Easings — one prospectus ease everywhere ── */
+  --ease-prospectus: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-expo: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-back: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-silk: cubic-bezier(0.22, 1, 0.36, 1);
 
-  /* Typography scale (large, confident, Apple-like) */
-  --t-hero: clamp(52px, 6.8vw, 92px);
-  --t-h2: clamp(38px, 5.2vw, 68px);
-  --t-h3: clamp(21px, 2.6vw, 30px);
+  /* ── Type scale (serif masthead, confident) ── */
+  --t-hero:    clamp(44px, 7vw, 104px);
+  --t-h2:      clamp(34px, 5vw, 64px);
+  --t-h3:      clamp(20px, 2.4vw, 28px);
   --t-body-lg: 18px;
-  --t-body: 16px;
-  --t-sm: 13px;
-  --t-label: 11px;
+  --t-body:    16px;
+  --t-sm:      13px;
+  --t-label:   11px;
+
+  /* ── Soft prospectus drop shadow ── */
+  --shadow-sm:    0 1px 2px rgba(26, 23, 20, 0.04);
+  --shadow-card:  0 1px 2px rgba(26, 23, 20, 0.04), 0 24px 64px -32px rgba(26, 23, 20, 0.30);
+  --shadow-card-hover: 0 1px 2px rgba(26, 23, 20, 0.05), 0 32px 80px -36px rgba(26, 23, 20, 0.38);
 }
 
 /* ─── BASE RESET ─────────────────────────────────────────────── */
-*,
-*::before,
-*::after {
+*, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
 html {
-  background: var(--c-bg-base);
-  color: var(--c-text-1);
+  background: var(--paper);
+  color: var(--ink);
   scroll-behavior: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -119,22 +111,23 @@ body {
   overflow-x: hidden;
   min-height: 100svh;
   font-family: var(--font-body), system-ui, -apple-system, sans-serif;
+  background: var(--paper);
 }
 
-/* Ultra-strict mobile guardrails — no horizontal scroll or cutoff ever on 375px and below (premium sites never leak) */
+/* Ultra-strict mobile guardrails — no horizontal scroll/cutoff ever */
 @media (max-width: 390px) {
   html, body {
     overflow-x: hidden !important;
     max-width: 100vw !important;
     -webkit-overflow-scrolling: touch;
   }
-  main, section, nav, footer, .glass, .glass-card, .glass-cta, .glass-nav {
+  main, section, nav, footer, .plate {
     max-width: 100vw !important;
     overflow-x: hidden !important;
   }
 }
 
-/* ─── WARM LIQUID GLASS BACKGROUND — ULTRA PREMIUM ENHANCED (richer cream + deeper multi-layered gold/sage drifts w/ micro-lighting + slow cinematic drift for expensive tactile feel) ── */
+/* ─── PAPER BACKGROUND — static gold crown + faint laid-paper chain lines ── */
 body::before {
   content: '';
   position: fixed;
@@ -142,113 +135,66 @@ body::before {
   z-index: -2;
   pointer-events: none;
   background:
-    /* Base premium warm cream with soft overall wash (adds subtle lighting depth) */
-    linear-gradient(180deg, rgba(246, 240, 227, 0.55) 0%, rgba(245, 240, 232, 0.28) 100%),
-    /* Large soft gold drifts — warm expensive light, richer opacities + extra layers for true depth */
-    radial-gradient(ellipse 68% 46% at 12% 22%, rgba(201, 162, 62, 0.17) 0%, transparent 72%),
-    radial-gradient(ellipse 52% 40% at 80% 68%, rgba(201, 162, 62, 0.12) 0%, transparent 66%),
-    radial-gradient(ellipse 36% 30% at 26% 84%, rgba(180, 138, 64, 0.08) 0%, transparent 60%),
-    /* Sage for calm depth and refraction — 4 layered for spatial expensive feel */
-    radial-gradient(ellipse 56% 48% at 82% 16%, rgba(105, 115, 90, 0.13) 0%, transparent 68%),
-    radial-gradient(ellipse 42% 36% at 16% 78%, rgba(105, 115, 90, 0.10) 0%, transparent 62%),
-    radial-gradient(ellipse 32% 28% at 86% 48%, rgba(105, 115, 90, 0.07) 0%, transparent 56%),
-    radial-gradient(ellipse 26% 22% at 8% 42%, rgba(105, 115, 90, 0.05) 0%, transparent 52%),
-    /* Subtle center + edge warmth + far soft vignette for premium "lit studio" micro-texture lighting */
-    radial-gradient(ellipse 46% 38% at 50% 50%, rgba(201, 162, 62, 0.08) 0%, transparent 58%),
-    radial-gradient(ellipse 120% 65% at 50% 118%, rgba(43, 33, 24, 0.04) 0%, transparent 68%);
+    /* warm gold "crown" radiating from the top */
+    radial-gradient(ellipse 62% 42% at 50% -6%, rgba(196, 154, 10, 0.10) 0%, transparent 62%),
+    /* faint vertical chain lines (laid paper) */
+    repeating-linear-gradient(90deg, transparent 0 26px, var(--rule-faint) 26px 27px),
+    /* base ivory + soft bottom vignette */
+    radial-gradient(ellipse 120% 60% at 50% 116%, rgba(26, 23, 20, 0.03) 0%, transparent 66%),
+    var(--paper);
   background-size: cover;
-  /* Slow, calm, ultra-expensive organic drift — 72s for "liquid" signature, multi-pos shift gives layered parallax depth without JS */
-  animation: liquidBgDrift 72s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
-  will-change: background-position;
 }
 
-/* Cinematic slow drift for the entire layered premium bg — feels alive and expensive, like light moving across cream paper + glass */
-@keyframes liquidBgDrift {
-  0%   { background-position: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%; }
-  22%  { background-position: 3% 1%, -2% 4%, 1% -2%, -1% 2%, 2% -3%, 1% 1%, -2% 3%, 0% 2%, 0% 1%; }
-  48%  { background-position: -1% 5%, 4% -1%, -3% 2%, 2% -2%, -2% 1%, -1% 3%, 1% -2%, 1% -1%, 0% -1%; }
-  73%  { background-position: 2% -1%, -1% 3%, 2% 1%, -4% 1%, 3% -1%, 2% -2%, -1% 2%, -1% 1%, 0% 2%; }
-  100% { background-position: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%; }
-}
-
-/* ─── GRAIN + MICRO TEXTURE OVERLAY — enhanced for expensive tactile film grain (higher presence, finer premium noise, slow organic shift) ── */
+/* ─── FINE GRAIN OVERLAY — static paper tactility ── */
 body::after {
   content: '';
   position: fixed;
   inset: 0;
   z-index: 9999;
   pointer-events: none;
-  opacity: 0.018;
-  mix-blend-mode: overlay;
-  /* Finer, more organic premium noise (higher base freq + octaves for expensive paper/cream tactility) */
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.05' numOctaves='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-  background-size: 168px 168px;
-  animation: grainShift 32s steps(4) infinite;
+  opacity: 0.032;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
 }
 
-/* Secondary ultra-fine micro-grain layer for extra expensive tactility (very low opacity, different scale) */
-body {
-  /* micro texture via faint second grain on body for layered depth without perf hit */
-}
-body::before {
-  /* the drifts already layered; micro added here via grain on after only to avoid stacking issues */
-}
-
-@keyframes grainShift {
-  0%   { transform: translate(0, 0); }
-  50%  { transform: translate(-1.5%, -2.5%); }
-  100% { transform: translate(1%, 1.5%); }
-}
-
-/* ─── SCROLLBAR — refined gold on cream (warm theme) ───────────────────────── */
+/* ─── SCROLLBAR — refined gold on ivory ── */
 html {
   scrollbar-width: thin;
-  scrollbar-color: rgba(180, 138, 64, 0.32) transparent;
+  scrollbar-color: rgba(165, 122, 11, 0.34) transparent;
 }
-
-::-webkit-scrollbar {
-  width: 6px;
-}
-
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb {
-  background: rgba(180, 138, 64, 0.32);
+  background: rgba(165, 122, 11, 0.34);
   border-radius: 9999px;
   border: 2px solid transparent;
   background-clip: content-box;
 }
-
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(180, 138, 64, 0.48);
+  background: rgba(165, 122, 11, 0.5);
   background-clip: content-box;
 }
 
-/* ─── SELECTION — warm gold tint (theme consistent) ─────────────────────── */
+/* ─── SELECTION / FOCUS / SKIP LINK ── */
 ::selection {
-  background: rgba(180, 138, 64, 0.18);
-  color: var(--c-text-1);
+  background: rgba(196, 154, 10, 0.18);
+  color: var(--ink);
 }
-
-/* ─── FOCUS — premium gold, visible not harsh ──────────────────────────────────────────────────── */
 :focus-visible {
-  outline: 2px solid var(--c-gold);
+  outline: 2px solid var(--gold);
   outline-offset: 3px;
-  border-radius: 6px;
+  border-radius: 3px;
 }
-
-/* ─── SKIP LINK — gold, premium (warm theme) ──────────────────────────────────────────────── */
 .skip-link {
   position: absolute;
   top: -9999px;
   left: 0;
   z-index: 99999;
-  background: var(--c-gold);
-  color: #fff;
+  background: var(--gold);
+  color: var(--paper-bright);
   padding: 8px 18px;
-  border-radius: 0 0 10px 0;
+  border-radius: 0 0 4px 0;
   font-family: var(--font-body), sans-serif;
   font-weight: 600;
   font-size: 13px;
@@ -256,313 +202,530 @@ html {
   white-space: nowrap;
   letter-spacing: 0.02em;
 }
-
 .skip-link:focus {
   top: 0;
-  outline: 2px solid #fff;
+  outline: 2px solid var(--paper-bright);
   outline-offset: 2px;
 }
 
-/* ─── FLOAT KEYFRAMES ─────────────────────────────────────────── */
-@keyframes shimmerSweep {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(250%); }
+/* ─── PROSPECTUS PRIMITIVES ─────────────────────────────────────── */
+
+/* Gold small-caps eyebrow */
+.eyebrow {
+  font-family: var(--font-body), sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--track-eyebrow);
+  color: var(--gold);
+  display: inline-block;
 }
 
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50%       { transform: translateY(-20px); }
+/* "No. 01" chapter numeral */
+.chapter-numeral {
+  font-family: var(--font-display), serif;
+  font-style: italic;
+  font-weight: 600;
+  color: var(--gold);
+  font-size: 15px;
+  letter-spacing: 0.02em;
 }
 
-/* Slow float — used by hero glass elements */
-@keyframes floatSlow {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50%       { transform: translateY(-12px) rotate(1deg); }
+/* Big outlined / engraved numerals */
+.engraved {
+  -webkit-text-stroke: 1px var(--gold);
+  color: transparent;
+  font-family: var(--font-display), serif;
+  font-weight: 600;
 }
 
-/* Medium float — slightly irregular for organic feel */
-@keyframes floatMedium {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  33%       { transform: translateY(-8px) rotate(-1deg); }
-  66%       { transform: translateY(-4px) rotate(0.5deg); }
-}
+/* Hairline rules */
+.rule        { height: 1px; width: 100%; background: var(--rule); border: 0; }
+.rule-strong { height: 1px; width: 100%; background: var(--rule-strong); border: 0; }
+.rule-v      { width: 1px; align-self: stretch; background: var(--rule); }
 
-/* ─── GRADIENT MESH DRIFT KEYFRAMES (Hero) ───────────────────── */
-@keyframes meshDrift1 {
-  0%, 100% { transform: translate(0, 0); }
-  33%       { transform: translate(-20px, 15px); }
-  66%       { transform: translate(15px, -10px); }
-}
-
-@keyframes meshDrift2 {
-  0%, 100% { transform: translate(0, 0); }
-  50%       { transform: translate(25px, -20px); }
-}
-
-@keyframes meshDrift3 {
-  0%, 100% { transform: translate(0, 0); }
-  40%       { transform: translate(-15px, 20px); }
-  80%       { transform: translate(10px, -15px); }
-}
-
-@keyframes meshDrift4 {
-  0%, 100% { transform: translate(0, 0); }
-  50%       { transform: translate(-20px, -15px); }
-}
-
-/* ─── AMBIENT ORB KEYFRAMES ──────────────────────────────────── */
-@keyframes orbDrift1 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  33%       { transform: translate(-30px, 20px) scale(1.05); }
-  66%       { transform: translate(20px, -15px) scale(0.97); }
-}
-
-@keyframes orbDrift2 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  50%       { transform: translate(35px, -25px) scale(1.08); }
-}
-
-@keyframes orbDrift3 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  40%       { transform: translate(-20px, 30px) scale(0.95); }
-  80%       { transform: translate(15px, -20px) scale(1.03); }
-}
-
-/* ─── LIQUID DRIFT KEYFRAMES (world-class slow, calm, expensive — the signature "liquid" behind glass) ─── */
-@keyframes liquidDriftGold1 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(22px, -14px) scale(1.035); }
-}
-@keyframes liquidDriftGold2 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(-16px, 18px) scale(0.97); }
-}
-@keyframes liquidDriftSage1 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(-24px, 11px) scale(1.02); }
-}
-@keyframes liquidDriftSage2 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(14px, -19px) scale(0.98); }
-}
-
-/* Keep a few legacy for hero cleanup phase (will remove floats) */
-@keyframes floatSlow {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-10px) rotate(0.6deg); }
-}
-
-/* ─── GLASS SYSTEM (the heart of the premium iOS Liquid Glass aesthetic) ─── */
-.glass {
-  background: var(--glass-fill);
-  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
-  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
-  border: 1px solid var(--glass-border);
-  box-shadow: 
-    0 10px 38px rgba(0, 0, 0, 0.065),
-    0 3px 9px rgba(0, 0, 0, 0.035),
-    inset 0 1px 0 rgba(255, 255, 255, 0.13),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.022);
-  border-radius: 20px;
+/* Framed "plate" card (NOT glass) */
+.plate {
   position: relative;
-  isolation: isolate;
-  overflow: hidden;
-  transition: 
-    transform 0.55s var(--ease-silk),
-    box-shadow 0.55s var(--ease-expo),
-    border-color 0.28s var(--ease-expo);
+  background: var(--paper-bright);
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--r-md);
+  box-shadow: var(--shadow-card);
+  transition:
+    transform 0.4s var(--ease-prospectus),
+    border-color 0.4s var(--ease-prospectus),
+    box-shadow 0.4s var(--ease-prospectus);
 }
-.glass::before {
+.plate::after {            /* double inner frame */
   content: '';
   position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 44%;
-  background: linear-gradient(180deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 100%);
+  inset: 6px;
+  border: 1px solid var(--rule);
+  border-radius: 2px;
   pointer-events: none;
   z-index: 1;
-  border-radius: 20px 20px 0 0;
+}
+.plate:hover {
+  border-color: var(--c-border-hover);
+  box-shadow: var(--shadow-card-hover);
+}
+/* plate rendered on a dark band */
+.plate-dark {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(196, 154, 10, 0.24);
+}
+.plate-dark::after { border-color: rgba(247, 243, 234, 0.10); }
+
+/* Dark ink button with shine sweep */
+.btn-ink {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--ink);
+  color: var(--paper-bright);
+  border: 1px solid var(--ink);
+  border-radius: var(--r-sm);
+  padding: 14px 28px;
+  font-family: var(--font-body), sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--track-btn);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.4s var(--ease-prospectus), color 0.4s var(--ease-prospectus);
+}
+.btn-ink::after {           /* shine sweep */
+  content: '';
+  position: absolute;
+  inset: 0;
+  transform: translateX(-120%);
+  background: linear-gradient(105deg, transparent 40%, rgba(255, 255, 255, 0.25) 50%, transparent 60%);
+  transition: transform 0.65s var(--ease-prospectus);
+  pointer-events: none;
+}
+.btn-ink:hover { background: transparent; color: var(--ink); }
+.btn-ink:hover::after { transform: translateX(120%); }
+
+/* Ghost button: paper fill, ink hairline, inverts to ink on hover */
+.btn-ghost {
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--ink);
+  border-radius: var(--r-sm);
+  padding: 14px 28px;
+  font-family: var(--font-body), sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--track-btn);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.4s var(--ease-prospectus), color 0.4s var(--ease-prospectus), border-color 0.4s var(--ease-prospectus);
+}
+.btn-ghost:hover { background: var(--ink); color: var(--paper-bright); }
+
+/* On dark bands: light ghost button (paper outline, inverts to paper fill) */
+.btn-ghost-light {
+  color: var(--paper-bright);
+  border-color: rgba(247, 243, 234, 0.5);
+}
+.btn-ghost-light:hover { background: var(--paper-bright); color: var(--ink); border-color: var(--paper-bright); }
+
+/* PASS / FAIL / LIVE wet-seal stamp */
+.stamp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid currentColor;
+  border-radius: 6px;
+  padding: 5px 12px;
+  transform: rotate(-7deg);
+  font-family: var(--font-body), sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  -webkit-mask-image: radial-gradient(ellipse 120% 100% at 50% 50%, #000 60%, rgba(0, 0, 0, 0.72) 100%);
+          mask-image: radial-gradient(ellipse 120% 100% at 50% 50%, #000 60%, rgba(0, 0, 0, 0.72) 100%);
+  opacity: 0.9;
+}
+.stamp-pass { color: var(--green-pass); }
+.stamp-fail { color: var(--red-fail); }
+.stamp-live { color: var(--gold); }
+
+/* Quiet ruled small-caps label (non-live statuses) */
+.label-quiet {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--font-body), sans-serif;
+  font-size: 10.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--ink-faint);
 }
 
-/* Thinner, more elegant for sticky nav bar */
-.glass-nav {
-  background: rgba(248, 245, 237, 0.76);
-  backdrop-filter: blur(18px) saturate(1.32);
-  -webkit-backdrop-filter: blur(18px) saturate(1.32);
-  border: 1px solid rgba(255, 255, 255, 0.32);
-  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255,255,255,0.18);
-  border-radius: 9999px;
-}
-
-/* Deeper, more presence for cards and major panels */
-.glass-card {
-  background: var(--glass-fill-elevated);
-  backdrop-filter: blur(var(--glass-blur-lg)) saturate(var(--glass-saturate));
-  -webkit-backdrop-filter: blur(var(--glass-blur-lg)) saturate(var(--glass-saturate));
-  border: 1px solid var(--glass-border);
-  box-shadow: 
-    0 14px 48px rgba(0, 0, 0, 0.075),
-    0 4px 12px rgba(0, 0, 0, 0.04),
-    inset 0 1px 0 rgba(255, 255, 255, 0.15),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.025);
-  border-radius: 22px;
-}
-.glass-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 
-    0 24px 68px rgba(0, 0, 0, 0.11),
-    0 8px 20px rgba(0, 0, 0, 0.055),
-    0 0 0 1px rgba(180, 138, 64, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.22);
-  border-color: var(--glass-border-gold);
-}
-/* Super-premium ambient gold shade on hover for all glass cards (color depth + expensive lit feel) */
-.glass-card:hover .glass-ambient {
-  background: radial-gradient(circle, rgba(180,138,64,0.11) 0%, transparent 68%);
-  opacity: 0.95;
-  filter: blur(38px);
-}
-
-/* Frosted CTAs / buttons that still feel glass */
-.glass-cta {
-  background: var(--glass-fill);
-  backdrop-filter: blur(14px) saturate(1.28);
-  -webkit-backdrop-filter: blur(14px) saturate(1.28);
-  border: 1px solid var(--glass-border);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255,255,255,0.12);
-  border-radius: 9999px;
-  transition: all 0.35s var(--ease-silk);
-}
-.glass-cta:hover {
-  background: rgba(251, 247, 240, 0.78);
-  border-color: var(--glass-border-gold);
-  transform: translateY(-1px);
-}
-
-/* Subtle gold hairline / rule for premium separation */
+/* Gold hairline (decorative, kept for section dividers) */
 .gold-hairline {
   height: 1px;
-  background: linear-gradient(to right, transparent, rgba(201, 162, 62, 0.22), transparent);
+  background: linear-gradient(to right, transparent, rgba(196, 154, 10, 0.32), transparent);
 }
 
-/* Gold animated underline for links (tasteful, not overdone) */
+/* Gold animated underline link */
 .gold-link {
   position: relative;
-  color: var(--c-text-1);
+  color: var(--ink);
   text-decoration: none;
 }
 .gold-link::after {
   content: '';
   position: absolute;
-  bottom: -1px;
-  left: 0;
-  width: 100%;
-  height: 1px;
-  background: linear-gradient(to right, var(--c-gold), var(--c-gold-light));
+  bottom: -1px; left: 0;
+  width: 100%; height: 1px;
+  background: linear-gradient(to right, var(--gold), var(--gold-bright));
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform 0.35s var(--ease-expo);
+  transition: transform 0.35s var(--ease-prospectus);
 }
-.gold-link:hover::after {
-  transform: scaleX(1);
+.gold-link:hover::after { transform: scaleX(1); }
+
+/* ─── KEYFRAMES ─────────────────────────────────────────────── */
+/* Gold shimmer for the hero accent word */
+@keyframes goldShimmer {
+  0%, 100% { background-position: 0% 50%; }
+  50%      { background-position: 100% 50%; }
 }
-
-/* (duplicate legacy rules removed for cleanliness — gold versions live earlier in file for warm Liquid Glass theme) */
-
-/* Solid fallback for browsers without backdrop-filter (rare but professional) */
-@supports not (backdrop-filter: blur(1px)) {
-  .glass,
-  .glass-nav,
-  .glass-card,
-  .glass-cta {
-    background: var(--c-bg-card);
-    border-color: rgba(226, 220, 208, 0.9);
-  }
-}
-
-/* Premium typography activation — Fraunces for display/headings (luxury serif with character) */
-h1,
-h2,
-.display,
-.hero-h1 {
-  font-family: var(--font-display), serif !important;
+.gold-shimmer {
+  background: linear-gradient(100deg, var(--gold) 0%, var(--gold-bright) 25%, #E6C875 50%, var(--gold-bright) 75%, var(--gold) 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+          background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  font-style: italic;
+  animation: goldShimmer 7s ease-in-out infinite;
 }
 
-/* Body and UI text default to Outfit (clean geometric) — already on body, reinforce for consistency */
-p,
-li,
-button,
-a,
-span,
-label,
-input,
-textarea {
+/* Optional ambient orb for dark bands */
+@keyframes floatOrb {
+  0%, 100% { transform: translate(0, 0); }
+  33%      { transform: translate(12px, -18px); }
+  66%      { transform: translate(-8px, 12px); }
+}
+.landing-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  animation: floatOrb 28s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* ─── TYPOGRAPHY ACTIVATION ── */
+h1, h2, h3, .display, .hero-h1 {
+  font-family: var(--font-display), Georgia, serif;
+}
+p, li, button, a, label, input, textarea {
   font-family: var(--font-body), system-ui, -apple-system, sans-serif;
 }
-
-/* Mono for tags, stack, labels, status */
-code,
-pre,
-.mono,
-.tag,
-.pill {
+.mono, code, pre, .tag, .pill {
   font-family: var(--font-mono), ui-monospace, monospace;
 }
 
-/* ─── RESPONSIVE SECTION PADDING — MOBILE FIRST PREMIUM (tight but breathing, no bloat on 375px) ────────────────────────────── */
+/* ─── RESPONSIVE SECTION PADDING ── */
 @media (max-width: 767px) {
-  #products,
-  #services,
-  #how-i-build,
-  #about,
-  #contact {
-    padding-top: 72px !important;
-    padding-bottom: 72px !important;
+  #products, #services, #how-i-build, #about, #contact, #problem, #proof {
+    padding-top: 80px !important;
+    padding-bottom: 80px !important;
   }
 }
 @media (max-width: 390px) {
-  #products,
-  #services,
-  #how-i-build,
-  #about,
-  #contact {
+  #products, #services, #how-i-build, #about, #contact, #problem, #proof {
     padding-top: 64px !important;
     padding-bottom: 64px !important;
   }
-  /* tighter horizontal breathing on tiniest phones to avoid cramped feel while keeping touch space */
-  .glass-card,
-  .glass {
-    border-radius: 18px !important;
-  }
 }
 
-/* Additional cellphone friendly guards: no cut off, full width, generous taps (44-48pt), no overflow on 375px and below — research-backed from premium iOS/Linear/Stripe patterns */
+/* Cellphone guards — no cutoff, full width, generous taps, clean wrap */
 @media (max-width: 480px) {
   html, body { overflow-x: hidden !important; max-width: 100vw !important; }
-  .glass-card, .glass, .glass-cta, .glow-button, button[style*="padding"], a[style*="padding"] { min-height: 48px; }
-  .glass-card > div, .product-compact-inner, .service-card-inner, .how-principle-card, .contact-glass-card { padding-left: 16px !important; padding-right: 16px !important; }
-  .hero-grid, .about-stats-grid { gap: 12px !important; }
+  .btn-ink, .btn-ghost, .btn-ghost-light { min-height: 48px; }
+  /* ruled vertical column separators collapse on mobile */
+  .rule-v { display: none; }
+  .plate { word-wrap: break-word; overflow-wrap: anywhere; }
   h2, .display, .hero-h1 { line-height: 1.08 !important; }
-  /* ensure all text in cards wraps cleanly, no cutoff */
-  .glass-card p, .glass-card h3 { word-wrap: break-word; overflow-wrap: anywhere; }
 }
 
-/* ─── REDUCED MOTION — absolute respect (world-class accessibility) ─────────────────────────────────────────── */
+/* ─── DARK BAND — reusable ink section (Problem indictment, etc.) ── */
+.band-dark {
+  position: relative;
+  background: var(--ink);
+  border-top: 1px solid rgba(196, 154, 10, 0.24);
+  border-bottom: 1px solid rgba(196, 154, 10, 0.24);
+  overflow: hidden;
+}
+.band-dark::before {           /* faint gold crown from the top */
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse 64% 54% at 50% -12%, rgba(196, 154, 10, 0.11) 0%, transparent 62%);
+}
+
+/* ─── PULL-QUOTE — big editorial italic conviction ── */
+.pullquote {
+  font-family: var(--font-display), Georgia, serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(26px, 3.4vw, 44px);
+  line-height: 1.24;
+  letter-spacing: var(--track-h2);
+  color: var(--ink);
+  max-width: 19ch;
+  margin: 0 auto;
+}
+.pullquote .pq-mark { color: var(--gold); }
+
+/* ─── PRODUCT MOCKUPS — illustrative proof rendered as fine print ── */
+.mock { font-family: var(--font-body), system-ui, sans-serif; }
+/* mockups drop the plate double-frame — the chrome/table is the structure */
+.plate.mock::after { display: none; }
+
+.mock-bar {                    /* browser chrome bar (hero composition) */
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 11px 14px;
+  border-bottom: 1px solid var(--rule);
+  background: var(--paper-deep);
+  border-radius: var(--r-md) var(--r-md) 0 0;
+}
+.mock-dots { display: flex; gap: 6px; flex-shrink: 0; }
+.mock-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--rule-strong); }
+.mock-url {
+  flex: 1;
+  text-align: center;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--ink-faint);
+  background: var(--paper-bright);
+  border: 1px solid var(--rule);
+  border-radius: var(--r-pill);
+  padding: 4px 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mock-head {                   /* mockup interior header: label + count + stamp */
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.mock-kicker {
+  font-size: 9.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--ink-faint);
+}
+.mock-title {
+  font-family: var(--font-display), serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: var(--track-h3);
+  margin-top: 3px;
+}
+
+.mock-table { width: 100%; border-collapse: collapse; }
+.mock-table th {
+  font-size: 9.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--ink-faint);
+  text-align: left;
+  padding: 0 0 9px;
+  border-bottom: 1px solid var(--rule);
+}
+.mock-table td {
+  font-size: 13px;
+  color: var(--ink);
+  padding: 11px 0;
+  border-bottom: 1px solid var(--rule-faint);
+  vertical-align: middle;
+}
+.mock-num { text-align: right; font-variant-numeric: tabular-nums; }
+.mock-foot {
+  font-family: var(--font-display), serif;
+  font-style: italic;
+  font-size: 12.5px;
+  color: var(--ink-faint);
+  margin-top: 14px;
+}
+.mock-flag {                   /* inline reorder / attention flag */
+  font-family: var(--font-display), serif;
+  font-style: italic;
+  font-size: 12px;
+  color: var(--red-fail);
+  margin-left: 8px;
+}
+.mock-stage {                  /* pipeline / status pill */
+  display: inline-block;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  padding: 3px 9px;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--rule-strong);
+  color: var(--ink-soft);
+}
+.mock-stage-bound { color: var(--gold); border-color: rgba(196, 154, 10, 0.4); }
+
+/* ─── PLATE CAPTION — "Plate I. — italic caption" under a figure ── */
+.plate-caption {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-top: 16px;
+  padding-left: 2px;
+}
+.plate-caption .pc-label {
+  font-family: var(--font-body), sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--gold);
+  flex-shrink: 0;
+}
+.plate-caption .pc-rule { width: 18px; height: 1px; background: var(--rule-strong); align-self: center; flex-shrink: 0; }
+.plate-caption .pc-text {
+  font-family: var(--font-display), serif;
+  font-style: italic;
+  font-size: 13px;
+  color: var(--ink-faint);
+  line-height: 1.4;
+}
+
+/* ─── EDITORIAL CHAPTER GRID (Products) — text ∥ figure, alternating ── */
+.chapter {
+  display: grid;
+  grid-template-columns: 1fr 1.04fr;
+  gap: 64px;
+  align-items: center;
+  padding: 64px 0;
+  border-top: 1px solid var(--rule);
+}
+.chapter:first-of-type { border-top: 0; }
+.chapter-rev .chapter-text { order: 2; }
+.chapter-rev .chapter-figure { order: 1; }
+.chapter-num {
+  font-family: var(--font-display), serif;
+  font-style: italic;
+  font-weight: 600;
+  font-size: 52px;
+  line-height: 0.9;
+  -webkit-text-stroke: 1px var(--gold);
+  color: transparent;
+  display: block;
+}
+.chapter-bullets { list-style: none; padding: 0; margin: 0; }
+.chapter-bullets li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-family: var(--font-body), sans-serif;
+  font-size: 14px;
+  color: var(--ink);
+  line-height: 1.5;
+  padding: 13px 0;
+  border-top: 1px solid var(--rule-faint);
+}
+.chapter-bullets li::before {
+  content: '◆';
+  color: var(--gold);
+  font-size: 9px;
+  line-height: 1.7;
+  flex-shrink: 0;
+}
+
+/* ─── HERO DEVICE COMPOSITION ── */
+.hero-stage { position: relative; }
+.hero-stage::before {          /* soft gold ambient swoosh behind the devices */
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 52%;
+  width: 78%;
+  height: 64%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(ellipse at center, rgba(196, 154, 10, 0.16) 0%, transparent 70%);
+  filter: blur(46px);
+  pointer-events: none;
+  z-index: 0;
+}
+.device-phone {
+  position: relative;
+  border-radius: 28px;
+  border: 1px solid var(--rule-strong);
+  background: var(--paper-bright);
+  box-shadow: var(--shadow-card);
+  padding: 12px;
+}
+.device-phone::before {        /* speaker notch */
+  content: '';
+  position: absolute;
+  top: 11px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 56px;
+  height: 5px;
+  border-radius: 3px;
+  background: var(--rule-strong);
+  z-index: 3;
+}
+
+/* Mobile: stack chapters (text first), shrink mockup type, no overlap */
+@media (max-width: 860px) {
+  .chapter {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding: 48px 0;
+  }
+  .chapter-rev .chapter-text { order: 1; }
+  .chapter-rev .chapter-figure { order: 2; }
+}
+
+/* ─── REDUCED MOTION — absolute respect ─────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
+  *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-  body::after,
-  body::before {
+  .gold-shimmer {
     animation: none !important;
+    background: none !important;
+    -webkit-text-fill-color: var(--gold) !important;
+    color: var(--gold) !important;
   }
-  .glass-card:hover {
-    transform: none !important;
-  }
-  /* disable our premium bg drift on reduced motion */
-  @keyframes liquidBgDrift { 0%,100% { background-position: 0 0; } }
+  .landing-orb { animation: none !important; }
+  .btn-ink::after { display: none !important; }
+  .plate:hover { transform: none !important; }
 }

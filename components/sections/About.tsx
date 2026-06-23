@@ -2,8 +2,14 @@
 
 import React from 'react'
 import { motion } from 'framer-motion'
-import { SectionLabel } from '@/components/ui/SectionLabel'
+import { SectionHeading } from '@/components/ui/SectionHeading'
 import { FADE_UP, STAGGER_CONTAINER } from '@/lib/motion'
+
+const PARAGRAPHS = [
+  'For seven years we have lived the work — real-world operations, compliance, and automation across industries. We know the inspections, the documentation, the approvals, and the real risk when processes are manual or slow.',
+  'We saw the same pattern across businesses: teams running on paper and spreadsheets, errors and delays because the process was too slow, and organizations carrying real operational and compliance risk with almost no modern automation.',
+  'Now we build Ai systems that automate exactly those workflows — inspections, documentation, planning, approvals, and compliance — so teams doing the real work can focus on the work, not the manual drudgery. We ship with confidence because we have been the ones who needed these tools. We focus on web platforms and software automation, with iOS apps where they fit.',
+]
 
 export default function About() {
   return (
@@ -11,102 +17,66 @@ export default function About() {
       id="about"
       aria-label="About Verdorian Technologies"
       style={{
-        paddingTop: '132px',
-        paddingBottom: '132px',
-        background: 'var(--c-bg-alt)',
+        paddingTop: '120px',
+        paddingBottom: '120px',
+        background: 'var(--paper-deep)',
+        borderTop: '1px solid var(--rule-strong)',
       }}
     >
       <style>{`
-        @media (max-width: 767px) {
-          .about-stats-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 12px !important; }
-          .about-container { padding-left: 20px !important; padding-right: 20px !important; }
-        }
-        @media (max-width: 390px) {
-          .about-stats-grid { grid-template-columns: 1fr !important; gap: 12px !important; }
-          .about-stat-value { font-size: 36px !important; }
-          .about-container { padding-left: 16px !important; padding-right: 16px !important; }
-        }
+        @media (max-width: 767px) { .about-container { padding-left: 20px !important; padding-right: 20px !important; } }
       `}</style>
-      <div
-        className="about-container"
-        style={{
-          maxWidth: '80rem',
-          margin: '0 auto',
-          paddingLeft: '24px',
-          paddingRight: '24px',
-        }}
-      >
+      <div className="about-container" style={{ maxWidth: '1200px', margin: '0 auto', paddingLeft: '24px', paddingRight: '24px' }}>
         <motion.div
           variants={STAGGER_CONTAINER}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-80px' }}
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '64px',
-          }}
+          style={{ display: 'flex', flexDirection: 'column', gap: '40px', maxWidth: '720px' }}
         >
-          {/* Text block */}
+          <SectionHeading
+            numeral="05"
+            eyebrow="Who We Are"
+            lead="We've lived the operations"
+            accent="we automate."
+          />
+
+          <div style={{ borderTop: '1px solid var(--rule-strong)' }}>
+            {PARAGRAPHS.map((para, i) => (
+              <motion.p
+                key={i}
+                variants={FADE_UP}
+                style={{
+                  fontFamily: 'var(--font-body), sans-serif',
+                  fontSize: '17px',
+                  color: 'var(--ink-soft)',
+                  lineHeight: 1.75,
+                  margin: 0,
+                  padding: '24px 0',
+                  borderBottom: '1px solid var(--rule)',
+                }}
+              >
+                {para}
+              </motion.p>
+            ))}
+          </div>
+
+          {/* Ruled signature */}
           <motion.div
             variants={FADE_UP}
-            style={{ display: 'flex', flexDirection: 'column', gap: '24px', maxWidth: '640px' }}
+            style={{ display: 'flex', alignItems: 'center', gap: '16px' }}
           >
-            <SectionLabel>ABOUT</SectionLabel>
-
-            <h2
+            <span aria-hidden="true" style={{ width: '40px', height: '1px', background: 'var(--gold)' }} />
+            <span
               style={{
                 fontFamily: 'var(--font-display), serif',
-                fontWeight: 700,
-                fontSize: 'var(--t-h2)',
-                letterSpacing: 'var(--track-h2)',
-                lineHeight: 1.05,
-                margin: 0,
+                fontStyle: 'italic',
+                fontSize: '20px',
+                color: 'var(--ink)',
               }}
             >
-              <span style={{ display: 'block', color: 'var(--c-text-1)' }}>
-                From real operations to
-              </span>
-              <span style={{ display: 'block', color: 'var(--c-text-3)' }}>
-                the automation that powers them.
-              </span>
-            </h2>
-
-            <p
-              style={{
-                fontFamily: 'var(--font-dm-sans), sans-serif',
-                fontSize: '16px',
-                color: 'var(--c-text-2)',
-                lineHeight: 1.65,
-                margin: 0,
-              }}
-            >
-              For seven years we have lived the work — real-world operations, compliance, and automation across industries. We know the inspections, the documentation, the approvals, and the real risk when processes are manual or slow.
-            </p>
-
-            <p
-              style={{
-                fontFamily: 'var(--font-dm-sans), sans-serif',
-                fontSize: '16px',
-                color: 'var(--c-text-2)',
-                lineHeight: 1.65,
-                margin: 0,
-              }}
-            >
-              We saw the same pattern across businesses: teams running on paper and spreadsheets, errors and delays because the process was too slow, and organizations carrying real operational and compliance risk with almost no modern automation.
-            </p>
-
-            <p
-              style={{
-                fontFamily: 'var(--font-dm-sans), sans-serif',
-                fontSize: '16px',
-                color: 'var(--c-text-2)',
-                lineHeight: 1.65,
-                margin: 0,
-              }}
-            >
-              Now we build Ai systems that automate exactly those workflows — inspections, documentation, planning, approvals, and compliance — so teams doing the real work can focus on the work, not the manual drudgery. We ship with confidence because we have been the ones who needed these tools. We focus on web platforms and software automation, with iOS apps where they fit.
-            </p>
+              Verdorian Technologies
+            </span>
           </motion.div>
         </motion.div>
       </div>

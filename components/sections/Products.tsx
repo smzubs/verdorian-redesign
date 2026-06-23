@@ -2,575 +2,190 @@
 
 import React from 'react'
 import { motion } from 'framer-motion'
+import { IconArrowUpRight } from '@tabler/icons-react'
+import { SectionHeading } from '@/components/ui/SectionHeading'
+import { PlateCaption } from '@/components/ui/PlateCaption'
 import {
-  IconMicrophone,
-  IconFileText,
-  IconQrcode,
-  IconShield,
-  IconArrowRight,
-  IconPlus,
-} from '@tabler/icons-react'
-import { GlassCard } from '@/components/ui/GlassCard'
-import { SectionLabel } from '@/components/ui/SectionLabel'
-import { StatusBadge } from '@/components/ui/StatusBadge'
-import { FADE_UP, STAGGER_CONTAINER, CARD_ENTRANCE } from '@/lib/motion'
+  QRSafeProMock,
+  ChangeOrderMock,
+  VoicePencilMock,
+  PolicyPilotMock,
+} from '@/components/mockups'
+import { FADE_UP, STAGGER_CONTAINER } from '@/lib/motion'
 import { PRODUCTS } from '@/lib/utils'
-import type { Product } from '@/lib/utils'
-import { cn } from '@/lib/utils'
+import type { Product, MockupId } from '@/lib/utils'
 
-type TablerIcon = React.ComponentType<{
-  size?: number
-  stroke?: number
-  style?: React.CSSProperties
-}>
+const ROMAN = ['I', 'II', 'III', 'IV'] as const
 
-const ICON_MAP: Record<string, TablerIcon> = {
-  IconMicrophone,
-  IconFileText,
-  IconQrcode,
-  IconShield,
+function Figure({ id }: { id: MockupId }) {
+  switch (id) {
+    case 'qrsafepro':
+      return <QRSafeProMock />
+    case 'changeorder':
+      return <ChangeOrderMock />
+    case 'policypilot':
+      return <PolicyPilotMock />
+    case 'voicepencil':
+      // phone mockup — centered and capped so it doesn't overpower the column
+      return (
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <VoicePencilMock style={{ width: '100%', maxWidth: '290px' }} />
+        </div>
+      )
+  }
 }
 
-const ICON_BG_COLORS: Record<string, { bg: string; border: string }> = {
-  VoicePencil:   { bg: 'rgba(139, 92, 246, 0.08)',  border: 'rgba(139, 92, 246, 0.18)' },
-  ChangeOrderAI: { bg: 'rgba(34, 211, 238, 0.08)',   border: 'rgba(34, 211, 238, 0.20)' },
-  QRSafePro:     { bg: 'rgba(16, 185, 129, 0.08)',   border: 'rgba(16, 185, 129, 0.20)' },
-  PolicyPilot:   { bg: 'rgba(24, 119, 242, 0.08)',    border: 'rgba(24, 119, 242, 0.20)' },
-}
-
-const ICON_COLORS: Record<string, string> = {
-  VoicePencil:   'var(--c-plasma)',
-  ChangeOrderAI: 'var(--c-arc)',
-  QRSafePro:     '#10b981',
-  PolicyPilot:   'var(--c-blue)',
-}
-
-const CARD_TINTS: Record<string, string> = {
-  VoicePencil:   'rgba(139, 92, 246, 0.06)',
-  ChangeOrderAI: 'rgba(34, 211, 238, 0.05)',
-  QRSafePro:     'rgba(16, 185, 129, 0.06)',
-  PolicyPilot:   'rgba(24, 119, 242, 0.05)',
-}
-
-const GRID_STYLES: Record<string, React.CSSProperties> = {
-  VoicePencil:   { gridColumn: '1 / 9',  gridRow: '1 / 2' },
-  ChangeOrderAI: { gridColumn: '9 / 13', gridRow: '1 / 2' },
-  QRSafePro:     { gridColumn: '1 / 7',  gridRow: '2 / 3' },
-  PolicyPilot:   { gridColumn: '7 / 13', gridRow: '2 / 3' },
-}
-
-const MIN_HEIGHTS: Record<string, string> = {
-  VoicePencil:   '380px',
-  ChangeOrderAI: '280px',
-  QRSafePro:     '280px',
-  PolicyPilot:   '280px',
-}
-
-// ─── Shared card inner content ────────────────────────────────────────────────
-interface CardContentProps {
-  product: Product
-  isFeatured?: boolean
-}
-
-function CardContent({ product, isFeatured = false }: CardContentProps) {
-  const IconComponent = ICON_MAP[product.icon]
-  const iconStyle = ICON_BG_COLORS[product.name] ?? { bg: 'rgba(139,92,246,0.08)', border: 'rgba(139,92,246,0.18)' }
-  const iconColor = ICON_COLORS[product.name] ?? 'var(--c-plasma)'
+function Chapter({ product, index }: { product: Product; index: number }) {
+  const reversed = index % 2 === 1
 
   return (
-    <div
-      style={{
-        padding: '20px',
-        height: '100%',
-        minHeight: MIN_HEIGHTS[product.name] ?? '240px',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-        position: 'relative',
-        overflow: 'hidden',
-        opacity: product.status === 'in-development' ? 0.85 : 1,
-        zIndex: 2,
-      }}
+    <motion.article
+      variants={FADE_UP}
+      className={reversed ? 'chapter chapter-rev' : 'chapter'}
     >
-      {/* iOS pill badge for VoicePencil */}
-      {isFeatured && (
-        <div
-          aria-label="iOS App"
-          style={{
-            position: 'absolute',
-            top: '20px',
-            right: '20px',
-            padding: '4px 12px',
-            borderRadius: 'var(--r-pill)',
-            background: 'rgba(139,92,246,0.10)',
-            backdropFilter: 'blur(4px)',
-            WebkitBackdropFilter: 'blur(4px)',
-            border: '1px solid rgba(139,92,246,0.20)',
-            boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.20)',
-            fontFamily: 'monospace',
-            fontSize: '10px',
-            fontWeight: 500,
-            color: 'var(--c-plasma)',
-            letterSpacing: '0.1em',
-            textTransform: 'uppercase',
-          }}
-        >
-          iOS App
-        </div>
-      )}
-
-      {/* Animated waveform for VoicePencil */}
-      {isFeatured && (
-        <div
-          aria-hidden="true"
-          style={{
-            position: 'absolute',
-            bottom: '64px',
-            right: '28px',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '3px',
-            opacity: 0.12,
-          }}
-        >
-          {[16, 28, 20, 36, 24, 40, 20, 32, 18, 28, 16, 24].map((h, i) => (
-            <div
-              key={i}
-              style={{
-                width: '3px',
-                height: `${h}px`,
-                borderRadius: '2px',
-                background: 'var(--c-plasma)',
-                animation: `waveBar 1.4s ease-in-out ${(i * 0.08).toFixed(2)}s infinite alternate`,
-              }}
-            />
-          ))}
-          <style>{`
-            @keyframes waveBar {
-              0%   { transform: scaleY(0.5); }
-              100% { transform: scaleY(1.2); }
-            }
-            @media (prefers-reduced-motion: reduce) {
-              @keyframes waveBar { 0%, 100% { transform: none; } }
-            }
-          `}</style>
-        </div>
-      )}
-
-      {/* Top section */}
-      <div>
-        <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px', marginBottom: '16px' }}>
-          <div
-            aria-hidden="true"
-            style={{
-              width: '48px',
-              height: '48px',
-              borderRadius: 'var(--r-md)',
-              background: iconStyle.bg,
-              border: `1px solid ${iconStyle.border}`,
-              boxShadow: `0 0 20px ${iconStyle.bg.replace('0.08', '0.12')}`,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              flexShrink: 0,
-            }}
-          >
-            {IconComponent && (
-              <IconComponent size={24} stroke={1.5} style={{ color: iconColor }} />
-            )}
-          </div>
-          <span
-            style={{
-              fontFamily: 'var(--font-geist), sans-serif',
-              fontSize: '11px',
-              fontWeight: 700,
-              textTransform: 'uppercase',
-              letterSpacing: 'var(--track-eyebrow, 0.14em)',
-              color: 'var(--c-text-3)',
-              paddingTop: '4px',
-            }}
-          >
-            {product.category}
-          </span>
-        </div>
-
+      <div className="chapter-text">
+        <span className="chapter-num" aria-hidden="true">
+          {ROMAN[index]}
+        </span>
+        <span className="eyebrow" style={{ display: 'block', marginTop: '14px' }}>
+          {product.category}
+        </span>
         <h3
           style={{
-            fontFamily: 'var(--font-geist), sans-serif',
+            fontFamily: 'var(--font-display), serif',
             fontWeight: 600,
-            fontSize: '22px',
-            color: 'var(--c-text-1)',
-            letterSpacing: 'var(--track-h3)',
-            margin: '0 0 8px',
+            fontSize: 'clamp(28px, 3.4vw, 40px)',
+            lineHeight: 1.08,
+            letterSpacing: 'var(--track-h2)',
+            color: 'var(--ink)',
+            margin: '12px 0 18px',
+            maxWidth: '16ch',
           }}
         >
-          {product.name}
+          {product.headline}
         </h3>
         <p
           style={{
-            fontFamily: 'var(--font-dm-sans), sans-serif',
-            fontSize: '14px',
-            color: 'var(--c-text-2)',
-            lineHeight: 1.5,
-            margin: 0,
+            fontFamily: 'var(--font-body), sans-serif',
+            fontSize: '16px',
+            color: 'var(--ink-soft)',
+            lineHeight: 1.7,
+            margin: '0 0 22px',
+            maxWidth: '46ch',
           }}
         >
-          {product.tagline}
+          {product.body}
         </p>
-      </div>
-
-      {/* Bottom: status + link arrow */}
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          marginTop: '24px',
-        }}
-      >
-        <StatusBadge status={product.status} />
-
+        <ul className="chapter-bullets">
+          {product.outcomes.map((o) => (
+            <li key={o}>{o}</li>
+          ))}
+        </ul>
         {product.status === 'live' && product.href && (
           <a
             href={product.href}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label={`Visit ${product.name} — opens in new tab`}
-            className="product-arrow-link"
+            aria-label={`Visit ${product.name} — opens in a new tab`}
+            className="gold-link"
             style={{
-              display: 'flex',
+              display: 'inline-flex',
               alignItems: 'center',
-              justifyContent: 'center',
-              width: '36px',
-              height: '36px',
-              borderRadius: 'var(--r-pill)',
-              background: 'rgba(139,92,246,0.08)',
-              backdropFilter: 'blur(4px)',
-              WebkitBackdropFilter: 'blur(4px)',
-              border: '1px solid rgba(139,92,246,0.15)',
-              boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.20)',
-              color: 'var(--c-plasma)',
-              opacity: 0,
-              transition: 'opacity 0.2s var(--ease-expo), transform 0.2s var(--ease-expo)',
-              transform: 'translateX(-6px)',
+              gap: '7px',
+              marginTop: '24px',
+              fontFamily: 'var(--font-body), sans-serif',
+              fontSize: '12px',
+              fontWeight: 600,
+              textTransform: 'uppercase',
+              letterSpacing: '0.16em',
+              color: 'var(--gold)',
             }}
           >
-            <IconArrowRight size={16} stroke={2} aria-hidden="true" />
+            Visit live site
+            <IconArrowUpRight size={14} stroke={2} aria-hidden="true" />
           </a>
         )}
       </div>
 
-      <style>{`
-        .group:hover .product-arrow-link {
-          opacity: 1 !important;
-          transform: translateX(0) !important;
-        }
-      `}</style>
-    </div>
+      <figure className="chapter-figure" style={{ margin: 0 }}>
+        <Figure id={product.mockup} />
+        <PlateCaption label={product.plate}>{product.caption}</PlateCaption>
+      </figure>
+    </motion.article>
   )
 }
 
-// ─── Ghost card ───────────────────────────────────────────────────────────────
-function GhostCard({ className }: { className?: string }) {
-  return (
-    <div
-      className={cn(className)}
-      style={{
-        minHeight: '200px',
-        borderRadius: '20px',
-        border: '1.5px dashed rgba(201, 162, 62, 0.25)',
-        background: 'var(--glass-fill)',
-        backdropFilter: 'blur(8px) saturate(1.2)',
-        WebkitBackdropFilter: 'blur(8px) saturate(1.2)',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        gap: '12px',
-        padding: '20px',
-      }}
-    >
-      <div
-        style={{
-          width: '40px',
-          height: '40px',
-          borderRadius: 'var(--r-pill)',
-          border: '1.5px dashed rgba(201, 162, 62, 0.25)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
-        <IconPlus size={20} stroke={1.5} style={{ color: 'var(--c-text-3)' }} />
-      </div>
-      <p
-        style={{
-          fontFamily: 'monospace',
-          fontSize: '12px',
-          color: 'var(--c-text-3)',
-          textAlign: 'center',
-          letterSpacing: '0.05em',
-          margin: 0,
-        }}
-      >
-        More products in the forge...
-      </p>
-    </div>
-  )
-}
-
-// ─── Compact card for tablet/mobile ──────────────────────────────────────────
-function CompactCard({ product, showTilt, index }: { product: Product; showTilt: boolean; index: number }) {
-  const IconComponent = ICON_MAP[product.icon]
-  const iconStyle = ICON_BG_COLORS[product.name] ?? { bg: 'rgba(139,92,246,0.08)', border: 'rgba(139,92,246,0.18)' }
-  const iconColor = ICON_COLORS[product.name] ?? 'var(--c-plasma)'
-  const _cardTint = CARD_TINTS[product.name]
-
-  return (
-    <motion.div
-      variants={CARD_ENTRANCE}
-      custom={index}
-      viewport={{ once: true, margin: '-40px' }}
-      whileHover={{ scale: 1.015, y: -2 }}
-      transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-    >
-      <GlassCard tilt={showTilt}>
-        <div
-          className="product-compact-inner"
-          style={{
-            padding: '18px',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '14px',
-            opacity: product.status === 'in-development' ? 0.85 : 1,
-            position: 'relative',
-            zIndex: 2,
-          }}
-        >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-            <div
-              aria-hidden="true"
-              style={{
-                width: '44px',
-                height: '44px',
-                borderRadius: 'var(--r-md)',
-                background: iconStyle.bg,
-                border: `1px solid ${iconStyle.border}`,
-                boxShadow: `0 0 20px ${iconStyle.bg.replace('0.08', '0.12')}`,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                flexShrink: 0,
-              }}
-            >
-              {IconComponent && (
-                <IconComponent size={22} stroke={1.5} style={{ color: iconColor }} />
-              )}
-            </div>
-            <div>
-              <span
-                style={{
-                  fontFamily: 'var(--font-display), serif',
-                  fontSize: '11px',
-                  fontWeight: 700,
-                  textTransform: 'uppercase',
-                  letterSpacing: 'var(--track-eyebrow, 0.14em)',
-                  color: 'var(--c-text-3)',
-                  display: 'block',
-                  marginBottom: '2px',
-                }}
-              >
-                {product.category}
-              </span>
-              <h3
-                style={{
-                  fontFamily: 'var(--font-display), serif',
-                  fontWeight: 600,
-                  fontSize: '18px',
-                  color: 'var(--c-text-1)',
-                  margin: 0,
-                  letterSpacing: 'var(--track-h3)',
-                }}
-              >
-                {product.name}
-              </h3>
-            </div>
-          </div>
-          <p
-            style={{
-              fontSize: '14px',
-              color: 'var(--c-text-2)',
-              lineHeight: 1.5,
-              margin: 0,
-              fontFamily: 'var(--font-dm-sans), sans-serif',
-            }}
-          >
-            {product.tagline}
-          </p>
-          <StatusBadge status={product.status} />
-        </div>
-      </GlassCard>
-    </motion.div>
-  )
-}
-
-// ─── Section ──────────────────────────────────────────────────────────────────
 export default function Products() {
-  const featured = PRODUCTS[0]!
-  const rest = PRODUCTS.slice(1)
-
   return (
     <section
       id="products"
-      aria-label="Our Products"
+      aria-label="Our Work"
       style={{
-        paddingTop: '132px',
-        paddingBottom: '132px',
-        background: 'var(--c-bg-base)',
+        paddingTop: '120px',
+        paddingBottom: '120px',
+        background: 'var(--paper)',
+        borderTop: '1px solid var(--rule-strong)',
       }}
     >
       <style>{`
         @media (max-width: 767px) {
           .products-container { padding-left: 20px !important; padding-right: 20px !important; }
         }
-        @media (max-width: 390px) {
-          .products-container { padding-left: 16px !important; padding-right: 16px !important; }
-          .product-compact-inner { padding: 16px !important; gap: 12px !important; }
-        }
       `}</style>
       <div
         className="products-container"
-        style={{
-          maxWidth: '80rem',
-          margin: '0 auto',
-          paddingLeft: '24px',
-          paddingRight: '24px',
-        }}
+        style={{ maxWidth: '1200px', margin: '0 auto', paddingLeft: '24px', paddingRight: '24px' }}
       >
         <motion.div
           variants={STAGGER_CONTAINER}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-80px' }}
-          style={{ display: 'flex', flexDirection: 'column', gap: '48px' }}
+          style={{ display: 'flex', flexDirection: 'column', gap: '56px' }}
         >
-          {/* Header */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-            <motion.div variants={FADE_UP}>
-              <SectionLabel>OUR WORK</SectionLabel>
-            </motion.div>
-            <motion.h2
-              variants={FADE_UP}
-              style={{
-                fontFamily: 'var(--font-display), serif',
-                fontWeight: 700,
-                fontSize: 'var(--t-h2)',
-                letterSpacing: 'var(--track-h2)',
-                margin: 0,
-                lineHeight: 1.1,
-              }}
-            >
-              <span style={{ display: 'block', color: 'var(--c-text-1)' }}>
-                What we ship.
-              </span>
-              <span style={{ display: 'block', color: 'var(--c-text-3)' }}>
-                What teams use.
-              </span>
-            </motion.h2>
-          </div>
+          <SectionHeading
+            numeral="04"
+            eyebrow="The Work"
+            lead="Four systems,"
+            accent="shipped and running."
+          />
 
-          {/* Bento grid */}
+          <motion.p
+            variants={FADE_UP}
+            style={{
+              fontFamily: 'var(--font-body), sans-serif',
+              fontSize: '17px',
+              color: 'var(--ink-soft)',
+              lineHeight: 1.65,
+              margin: '-28px 0 0',
+              maxWidth: '56ch',
+            }}
+          >
+            Not slideware. Live platforms and apps doing real operational work — inspections,
+            change orders, submissions, structured notes.
+          </motion.p>
+
           <div>
-            {/* ── Desktop 12-col grid (lg+) ── */}
-            <div
-              className="hidden lg:grid"
-              style={{
-                gridTemplateColumns: 'repeat(12, 1fr)',
-                gap: '16px',
-              }}
-            >
-              {/* Featured: VoicePencil col-span-8 with 3D entrance */}
-              <motion.div
-                style={{ ...GRID_STYLES[featured.name] }}
-                variants={CARD_ENTRANCE}
-                custom={0}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: '-60px' }}
-                whileHover={{ scale: 1.01, y: -3 }}
-                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-              >
-                <GlassCard tilt>
-                  <CardContent product={featured} isFeatured />
-                </GlassCard>
-              </motion.div>
-
-              {rest.map((product, i) => (
-                <motion.div
-                  key={product.name}
-                  style={{ ...GRID_STYLES[product.name] }}
-                  variants={CARD_ENTRANCE}
-                  custom={i + 1}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, margin: '-60px' }}
-                  whileHover={{ scale: 1.01, y: -3 }}
-                  transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                >
-                  <GlassCard tilt>
-                    <CardContent product={product} />
-                  </GlassCard>
-                </motion.div>
-              ))}
-
-              {/* Ghost card — "more in the forge" */}
-              <motion.div
-                style={{
-                  gridColumn: '1 / 13',
-                  gridRow: '3 / 4',
-                  minHeight: '200px',
-                }}
-                variants={CARD_ENTRANCE}
-                custom={rest.length + 1}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: '-60px' }}
-              >
-                <GhostCard />
-              </motion.div>
-            </div>
-
-            {/* ── Tablet 2-col grid (md, hidden on lg+) ── */}
-            <motion.div
-              className="hidden md:grid lg:hidden"
-              style={{
-                gridTemplateColumns: 'repeat(2, 1fr)',
-                gap: '16px',
-              }}
-              variants={STAGGER_CONTAINER}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: '-40px' }}
-            >
-              {PRODUCTS.map((product, i) => (
-                <CompactCard key={product.name} product={product} showTilt index={i} />
-              ))}
-            </motion.div>
-
-            {/* ── Mobile 1-col (hidden on md+) ── */}
-            <motion.div
-              className="flex md:hidden flex-col"
-              style={{ gap: '16px' }}
-              variants={STAGGER_CONTAINER}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: '-40px' }}
-            >
-              {PRODUCTS.map((product, i) => (
-                <CompactCard key={product.name} product={product} showTilt={false} index={i} />
-              ))}
-            </motion.div>
+            {PRODUCTS.map((product, i) => (
+              <Chapter key={product.name} product={product} index={i} />
+            ))}
           </div>
+
+          <motion.p
+            variants={FADE_UP}
+            style={{
+              fontFamily: 'var(--font-body), sans-serif',
+              fontSize: '12px',
+              fontWeight: 600,
+              textTransform: 'uppercase',
+              letterSpacing: '0.22em',
+              color: 'var(--ink-faint)',
+              textAlign: 'center',
+              margin: 0,
+            }}
+          >
+            More in the prospectus — new automations in development
+          </motion.p>
         </motion.div>
       </div>
     </section>

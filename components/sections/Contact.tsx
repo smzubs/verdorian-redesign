@@ -13,32 +13,31 @@ export default function Contact() {
       aria-label="Contact Verdorian Technologies"
       style={{
         padding: '132px 0',
-        background: 'var(--c-bg-alt)',
+        background: 'var(--ink)',
         position: 'relative',
         overflow: 'hidden',
+        borderTop: '1px solid rgba(196, 154, 10, 0.24)',
       }}
     >
       <style>{`
         @media (max-width: 767px) { .contact-container { padding: 0 20px !important; } }
-        @media (max-width: 390px) {
-          .contact-container { padding: 0 16px !important; }
-          .contact-glass-card { padding: 28px !important; margin-top: 32px !important; border-radius: 22px !important; }
-          .contact-glass-card > div > div[style*="flex"] { flex-direction: column !important; gap: 10px !important; }
+        @media (max-width: 480px) {
+          .contact-cta-row { flex-direction: column !important; align-items: stretch !important; }
+          .contact-cta-row > * { width: 100% !important; }
         }
       `}</style>
-      {/* Background blue glow */}
+
+      {/* Gold crown glow */}
       <div
         aria-hidden="true"
         style={{
           position: 'absolute',
-          top: '50%',
+          top: 0,
           left: '50%',
-          transform: 'translate(-50%, -50%)',
-          width: '500px',
+          transform: 'translateX(-50%)',
+          width: '760px',
           height: '300px',
-          borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(24,119,242,0.08) 0%, transparent 70%)',
-          filter: 'blur(60px)',
+          background: 'radial-gradient(ellipse 60% 80% at 50% 0%, rgba(196,154,10,0.16) 0%, transparent 70%)',
           pointerEvents: 'none',
         }}
       />
@@ -46,7 +45,7 @@ export default function Contact() {
       <div
         className="contact-container"
         style={{
-          maxWidth: '700px',
+          maxWidth: '760px',
           margin: '0 auto',
           padding: '0 24px',
           textAlign: 'center',
@@ -59,110 +58,60 @@ export default function Contact() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-80px' }}
-          style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0' }}
+          style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '24px' }}
         >
           <motion.div variants={FADE_UP}>
-            <SectionLabel>LETS BUILD</SectionLabel>
+            <SectionLabel>Book a Call</SectionLabel>
           </motion.div>
 
           <motion.h2
             variants={FADE_UP}
             style={{
-              fontFamily: 'var(--font-display), serif',
-              fontWeight: 600,
+              fontFamily: 'var(--font-display), Georgia, serif',
+              fontWeight: 500,
               fontSize: 'var(--t-h2)',
               letterSpacing: 'var(--track-h2)',
-              lineHeight: 1.05,
-              margin: '24px 0 0',
+              lineHeight: 1.04,
+              margin: 0,
             }}
           >
-            <span style={{ display: 'block', color: 'var(--c-text-1)' }}>Ready to build</span>
-            <span style={{ display: 'block', color: 'var(--c-text-3)' }}>something great?</span>
+            <span style={{ display: 'block', color: 'var(--paper-bright)' }}>Find the automation</span>
+            <span style={{ display: 'block', fontStyle: 'italic', color: 'var(--gold)' }}>worth building.</span>
           </motion.h2>
 
-          {/* Glass CTA card */}
-          <motion.div
+          <motion.p
             variants={FADE_UP}
             style={{
-              width: '100%',
-              background: 'var(--glass-fill-elevated)',
-              backdropFilter: 'blur(22px) saturate(1.3)',
-              WebkitBackdropFilter: 'blur(22px) saturate(1.3)',
-              border: '1px solid var(--glass-border)',
-              borderRadius: '26px',
-              padding: '40px',
-              marginTop: '40px',
-              boxShadow: '0 14px 48px rgba(0,0,0,0.07), inset 0 1px 0 rgba(255,255,255,0.16)',
-              position: 'relative',
-              isolation: 'isolate',
-              overflow: 'hidden',
+              fontFamily: 'var(--font-body), sans-serif',
+              color: 'rgba(247, 243, 234, 0.66)',
+              fontSize: '17px',
+              lineHeight: 1.6,
+              margin: 0,
+              maxWidth: '520px',
             }}
-            className="contact-glass-card"
           >
-            {/* Top catch light */}
-            <div
-              aria-hidden="true"
-              style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                right: 0,
-                height: '40%',
-                borderRadius: '24px 24px 0 0',
-                background: 'linear-gradient(180deg, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0) 100%)',
-                pointerEvents: 'none',
-                zIndex: 1,
-              }}
-            />
+            One call. We&apos;ll tell you honestly whether there&apos;s enough here to automate — and where to start.
+          </motion.p>
 
-            <div style={{ position: 'relative', zIndex: 2 }}>
-              <p
-                style={{
-                  fontFamily: 'var(--font-dm-sans), sans-serif',
-                  color: 'var(--c-text-2)',
-                  marginBottom: '28px',
-                  fontSize: '16px',
-                  lineHeight: 1.6,
-                  margin: '0 0 28px',
-                }}
-              >
-                From mobile apps to enterprise SaaS — let&apos;s talk about your next project.
-              </p>
-
-              <div
-                style={{
-                  display: 'flex',
-                  gap: '12px',
-                  justifyContent: 'center',
-                  flexWrap: 'wrap',
-                }}
-              >
-                <GlowButton
-                  variant="blue"
-                  size="lg"
-                  shimmer
-                  href="mailto:sm@verdorian.com"
-                >
-                  LETS TALK!
-                </GlowButton>
-                <GlowButton
-                  variant="ghost"
-                  size="lg"
-                  href="mailto:sm@verdorian.com"
-                >
-                  sm@verdorian.com
-                </GlowButton>
-              </div>
-            </div>
+          <motion.div
+            variants={FADE_UP}
+            className="contact-cta-row"
+            style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap', marginTop: '8px' }}
+          >
+            <GlowButton variant="ghost-light" size="lg" href="mailto:sm@verdorian.com">
+              Book a call
+            </GlowButton>
           </motion.div>
 
           <motion.p
             variants={FADE_UP}
             style={{
-              marginTop: '24px',
-              fontSize: '13px',
-              color: 'var(--c-text-3)',
-              fontFamily: 'var(--font-dm-sans), sans-serif',
+              marginTop: '16px',
+              fontSize: '12px',
+              letterSpacing: '0.22em',
+              textTransform: 'uppercase',
+              color: 'rgba(247, 243, 234, 0.4)',
+              fontFamily: 'var(--font-body), sans-serif',
             }}
           >
             Verdorian Technologies LLC

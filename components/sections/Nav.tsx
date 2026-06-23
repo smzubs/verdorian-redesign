@@ -19,15 +19,13 @@ export default function Nav() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [activeSection, setActiveSection] = useState<string>('hero')
-  const [hoveredLink, setHoveredLink] = useState<string | null>(null)
   const ticking = useRef(false)
 
-  // Scroll → compact pill
   useEffect(() => {
     const handleScroll = () => {
       if (!ticking.current) {
         window.requestAnimationFrame(() => {
-          setScrolled(window.scrollY > 60)
+          setScrolled(window.scrollY > 40)
           ticking.current = false
         })
         ticking.current = true
@@ -37,10 +35,8 @@ export default function Nav() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // Active section via IntersectionObserver
   useEffect(() => {
     const observers: IntersectionObserver[] = []
-
     SECTION_IDS.forEach((id) => {
       const el = document.getElementById(id)
       if (!el) return
@@ -53,11 +49,9 @@ export default function Nav() {
       observer.observe(el)
       observers.push(observer)
     })
-
     return () => observers.forEach((o) => o.disconnect())
   }, [])
 
-  // Body scroll lock on mobile menu
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? 'hidden' : ''
     return () => { document.body.style.overflow = '' }
@@ -70,18 +64,6 @@ export default function Nav() {
 
   return (
     <>
-      <style>{`
-        @media (max-width: 390px) {
-          .nav-root { padding-left: 16px !important; padding-right: 16px !important; }
-        }
-        @media (max-width: 390px) {
-          #mobile-menu button {
-            font-size: 20px !important;
-            padding: 10px 24px !important;
-            min-height: 48px !important;
-          }
-        }
-      `}</style>
       <nav
         aria-label="Main navigation"
         style={{
@@ -90,56 +72,26 @@ export default function Nav() {
           left: 0,
           right: 0,
           zIndex: 1000,
-          // Padding shrinks when scrolled so the pill floats with breathing room — bigger, bolder base for premium wow
-          padding: scrolled ? '12px 28px' : '16px 28px',
-          transition: 'padding 0.4s var(--ease-expo)',
-          display: 'flex',
-          justifyContent: 'center',
+          background: scrolled ? 'rgba(247, 243, 234, 0.92)' : 'rgba(247, 243, 234, 0.55)',
+          borderBottom: scrolled ? '1px solid var(--rule-strong)' : '1px solid transparent',
+          backdropFilter: 'saturate(1.1)',
+          WebkitBackdropFilter: 'saturate(1.1)',
+          transition: 'background 0.4s var(--ease-prospectus), border-color 0.4s var(--ease-prospectus)',
         }}
-        className="nav-root"
       >
-        <motion.div
-          animate={{
-            maxWidth: scrolled ? '720px' : '1400px',
-            height: scrolled ? '52px' : '64px',
-            borderRadius: scrolled ? '980px' : '20px',
-            paddingLeft: scrolled ? '18px' : '24px',
-            paddingRight: scrolled ? '18px' : '24px',
-          }}
-          transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+        <div
+          className="nav-inner"
           style={{
-            width: '100%',
+            maxWidth: '1200px',
+            margin: '0 auto',
+            padding: scrolled ? '12px 24px' : '18px 24px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            background: scrolled ? 'var(--glass-fill-elevated)' : 'var(--glass-fill)',
-            backdropFilter: scrolled ? 'blur(20px) saturate(1.35)' : 'blur(26px) saturate(1.4)',
-            WebkitBackdropFilter: scrolled ? 'blur(20px) saturate(1.35)' : 'blur(26px) saturate(1.4)',
-            border: '1px solid var(--glass-border)',
-            boxShadow: scrolled
-              ? '0 12px 40px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04), inset 0 1px 0 rgba(255,255,255,0.22)'
-              : '0 20px 56px rgba(0,0,0,0.10), 0 6px 16px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.20), inset 0 -1px 0 rgba(0,0,0,0.04)',
-            overflow: 'hidden',
-            isolation: 'isolate',
-            position: 'relative',
+            transition: 'padding 0.4s var(--ease-prospectus)',
           }}
         >
-          {/* Top highlight shimmer */}
-          <div
-            aria-hidden="true"
-            style={{
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              right: 0,
-              height: '55%',
-              background: 'linear-gradient(180deg, rgba(255,255,255,0.28) 0%, rgba(255,255,255,0) 100%)',
-              pointerEvents: 'none',
-              zIndex: 1,
-            }}
-          />
-
-          {/* LEFT: Wordmark — collapses to "V" badge when scrolled */}
+          {/* Wordmark */}
           <button
             type="button"
             onClick={() => scrollToSection('hero')}
@@ -150,175 +102,96 @@ export default function Nav() {
               cursor: 'pointer',
               padding: 0,
               display: 'flex',
-              alignItems: 'center',
-              gap: '8px',
-              position: 'relative',
-              zIndex: 2,
+              flexDirection: 'column',
+              alignItems: 'flex-start',
+              gap: '2px',
               flexShrink: 0,
-              minWidth: scrolled ? '28px' : 'auto',
             }}
           >
-            {/* V badge — shown when scrolled */}
-            <motion.span
-              animate={{ opacity: scrolled ? 1 : 0, scale: scrolled ? 1 : 0.6, width: scrolled ? '32px' : '0px' }}
-              transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+            <span
               style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                width: '32px',
-                height: '32px',
-                borderRadius: '8px',
-                background: 'rgba(139,92,246,0.10)',
-                border: '1px solid rgba(139,92,246,0.18)',
                 fontFamily: 'var(--font-display), serif',
-                fontWeight: 700,
-                fontSize: '14px',
-                color: 'var(--c-gold)',
-                letterSpacing: '0.01em',
-                flexShrink: 0,
-                overflow: 'hidden',
+                fontWeight: 600,
+                fontSize: '20px',
+                color: 'var(--ink)',
+                lineHeight: 1,
+                letterSpacing: '0.14em',
+                textTransform: 'uppercase',
+                whiteSpace: 'nowrap',
               }}
             >
-              V
-            </motion.span>
-
-            {/* Full wordmark — hidden when scrolled */}
-            <motion.div
-              animate={{ opacity: scrolled ? 0 : 1, width: scrolled ? '0px' : 'auto' }}
-              transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+              Verdorian
+            </span>
+            <span
               style={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'flex-start',
-                gap: '2px',
-                overflow: 'hidden',
+                fontFamily: 'var(--font-body), sans-serif',
+                fontWeight: 600,
+                fontSize: '8px',
+                color: 'var(--ink-faint)',
+                letterSpacing: '0.3em',
+                textTransform: 'uppercase',
+                lineHeight: 1,
+                whiteSpace: 'nowrap',
               }}
             >
-              <span
-                style={{
-                  fontFamily: 'var(--font-display), serif',
-                  fontWeight: 700,
-                  fontSize: '18px',
-                  color: 'var(--c-text-1)',
-                  lineHeight: 1,
-                  letterSpacing: '0.08em',
-                  textTransform: 'uppercase',
-                  whiteSpace: 'nowrap',
-                }}
-              >
-                VERDORIAN
-              </span>
-              <span
-                style={{
-                  fontFamily: 'var(--font-body), system-ui, sans-serif',
-                  fontWeight: 600,
-                  fontSize: '9px',
-                  color: 'var(--c-text-3)',
-                  letterSpacing: '0.18em',
-                  textTransform: 'uppercase',
-                  lineHeight: 1,
-                  whiteSpace: 'nowrap',
-                }}
-              >
-                TECHNOLOGIES
-              </span>
-            </motion.div>
+              Technologies
+            </span>
           </button>
 
-          {/* CENTER: Nav tabs with sliding active indicator */}
-          <div
-            className="hidden md:flex"
-            style={{
-              alignItems: 'center',
-              gap: '4px',
-              padding: '4px',
-              borderRadius: '14px',
-              background: 'var(--glass-fill)',
-              border: '1px solid var(--glass-border)',
-              position: 'relative',
-              zIndex: 2,
-            }}
-          >
+          {/* Center tabs */}
+          <div className="hidden md:flex" style={{ alignItems: 'center', gap: '4px' }}>
             {NAV_LINKS.map((link) => {
               const isActive = activeSection === link.id
-              const isHovered = hoveredLink === link.id
-
               return (
                 <button
                   key={link.id}
                   type="button"
                   onClick={() => scrollToSection(link.id)}
-                  onMouseEnter={() => setHoveredLink(link.id)}
-                  onMouseLeave={() => setHoveredLink(null)}
                   aria-label={`Navigate to ${link.label} section`}
                   aria-current={isActive ? 'true' : undefined}
                   style={{
                     position: 'relative',
-                    background: (!isActive && isHovered) ? 'rgba(0,0,0,0.03)' : 'transparent',
+                    background: 'none',
                     border: 'none',
                     cursor: 'pointer',
-                    padding: '9px 18px',
-                    borderRadius: '10px',
-                    fontFamily: 'var(--font-body), system-ui, sans-serif',
-                    fontWeight: isActive ? 700 : 600,
-                    fontSize: '15px',
-                    letterSpacing: '0.01em',
-                    color: isActive ? 'var(--c-gold)' : 'var(--c-text-1)',
-                    transition: 'color 0.2s var(--ease-expo), background 0.15s ease, font-weight 0.1s',
+                    padding: '8px 14px',
+                    fontFamily: 'var(--font-body), sans-serif',
+                    fontWeight: 600,
+                    fontSize: '13px',
+                    letterSpacing: '0.02em',
+                    color: isActive ? 'var(--gold)' : 'var(--ink-soft)',
+                    transition: 'color 0.25s var(--ease-prospectus)',
                     whiteSpace: 'nowrap',
-                    zIndex: 1,
                   }}
                 >
-                  {/* Sliding active pill indicator — layoutId magic */}
+                  {link.label}
                   {isActive && (
-                    <motion.div
-                      layoutId="activeTabIndicator"
+                    <motion.span
+                      layoutId="activeNavUnderline"
                       style={{
                         position: 'absolute',
-                        inset: 0,
-                        borderRadius: '10px',
-                        background: 'var(--glass-fill-elevated)',
-                        border: '1px solid var(--glass-border-gold)',
-                        boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.35), 0 0 16px rgba(180,138,64,0.10)',
-                        zIndex: 0,
+                        left: '14px',
+                        right: '14px',
+                        bottom: '0px',
+                        height: '1.5px',
+                        background: 'var(--gold)',
                       }}
-                      transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                      transition={{ type: 'spring', stiffness: 400, damping: 32 }}
                     />
                   )}
-                  <span style={{ position: 'relative', zIndex: 2 }}>{link.label}</span>
                 </button>
               )
             })}
           </div>
 
-          {/* RIGHT: CTA + hamburger */}
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '10px',
-              position: 'relative',
-              zIndex: 2,
-              flexShrink: 0,
-            }}
-          >
-            <motion.div
-              className="hidden md:block"
-              animate={{ scale: scrolled ? 0.9 : 1, opacity: scrolled ? 0.85 : 1 }}
-              transition={{ type: 'spring', stiffness: 400, damping: 30 }}
-            >
-              <GlowButton
-                variant="blue"
-                size="md"
-                shimmer
-                onClick={() => scrollToSection('contact')}
-              >
+          {/* Right: CTA + hamburger */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexShrink: 0 }}>
+            <div className="hidden md:block">
+              <GlowButton variant="ink" size="sm" onClick={() => scrollToSection('contact')}>
                 LETS TALK!
               </GlowButton>
-            </motion.div>
+            </div>
 
-            {/* Hamburger — mobile only */}
             <button
               type="button"
               aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
@@ -327,47 +200,26 @@ export default function Nav() {
               onClick={() => setMobileOpen((v) => !v)}
               className="flex md:hidden"
               style={{
-                background: 'var(--glass-fill)',
-                border: '1px solid var(--glass-border)',
-                borderRadius: '12px',
+                background: 'transparent',
+                border: '1px solid var(--rule-strong)',
+                borderRadius: 'var(--r-sm)',
                 cursor: 'pointer',
                 width: '44px',
                 height: '44px',
-                display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                color: 'var(--c-text-1)',
-                transition: 'all 0.2s var(--ease-expo)',
-                boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.12)',
+                color: 'var(--ink)',
               }}
             >
-              <svg
-                width="18"
-                height="18"
-                viewBox="0 0 20 20"
-                fill="none"
-                aria-hidden="true"
-              >
+              <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">
                 <AnimatePresence mode="wait" initial={false}>
                   {mobileOpen ? (
-                    <motion.g
-                      key="x"
-                      initial={{ opacity: 0, rotate: -45 }}
-                      animate={{ opacity: 1, rotate: 0 }}
-                      exit={{ opacity: 0, rotate: 45 }}
-                      transition={{ duration: 0.2 }}
-                    >
+                    <motion.g key="x" initial={{ opacity: 0, rotate: -45 }} animate={{ opacity: 1, rotate: 0 }} exit={{ opacity: 0, rotate: 45 }} transition={{ duration: 0.2 }}>
                       <line x1="4" y1="4" x2="16" y2="16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
                       <line x1="16" y1="4" x2="4" y2="16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
                     </motion.g>
                   ) : (
-                    <motion.g
-                      key="hamburger"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ duration: 0.2 }}
-                    >
+                    <motion.g key="hamburger" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.2 }}>
                       <line x1="3" y1="6" x2="17" y2="6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
                       <line x1="3" y1="10" x2="17" y2="10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
                       <line x1="3" y1="14" x2="17" y2="14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
@@ -377,10 +229,10 @@ export default function Nav() {
               </svg>
             </button>
           </div>
-        </motion.div>
+        </div>
       </nav>
 
-      {/* Mobile overlay — frosted cream glass */}
+      {/* Mobile overlay — paper */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
@@ -396,14 +248,12 @@ export default function Nav() {
               position: 'fixed',
               inset: 0,
               zIndex: 999,
-              background: 'rgba(248, 245, 237, 0.94)',
-              backdropFilter: 'blur(30px) saturate(180%)',
-              WebkitBackdropFilter: 'blur(30px) saturate(180%)',
+              background: 'var(--paper)',
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
               justifyContent: 'center',
-              gap: '4px',
+              gap: '8px',
             }}
           >
             {NAV_LINKS.map((link, i) => (
@@ -411,9 +261,9 @@ export default function Nav() {
                 key={link.id}
                 type="button"
                 onClick={() => handleNavLink(link.id)}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 10 }}
+                exit={{ opacity: 0, y: 8 }}
                 transition={{ duration: 0.3, delay: i * 0.06 }}
                 style={{
                   background: 'none',
@@ -422,38 +272,23 @@ export default function Nav() {
                   minHeight: '52px',
                   padding: '12px 40px',
                   fontFamily: 'var(--font-display), serif',
-                  fontWeight: 700,
-                  fontSize: '24px',
-                  color: activeSection === link.id ? 'var(--c-gold)' : 'var(--c-text-1)',
-                  letterSpacing: '0.10em',
-                  textTransform: 'uppercase',
-                  transition: 'color 0.2s',
-                }}
-                onMouseEnter={(e) => {
-                  ;(e.currentTarget as HTMLButtonElement).style.color = 'var(--c-gold)'
-                }}
-                onMouseLeave={(e) => {
-                  ;(e.currentTarget as HTMLButtonElement).style.color =
-                    activeSection === link.id ? 'var(--c-gold)' : 'var(--c-text-1)'
+                  fontWeight: 600,
+                  fontSize: '28px',
+                  color: activeSection === link.id ? 'var(--gold)' : 'var(--ink)',
+                  letterSpacing: '0.04em',
                 }}
               >
                 {link.label}
               </motion.button>
             ))}
-
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3, delay: NAV_LINKS.length * 0.06 }}
               style={{ marginTop: '24px' }}
             >
-              <GlowButton
-                variant="blue"
-                size="lg"
-                shimmer
-                onClick={() => handleNavLink('contact')}
-              >
+              <GlowButton variant="ink" size="lg" onClick={() => handleNavLink('contact')}>
                 LETS TALK!
               </GlowButton>
             </motion.div>

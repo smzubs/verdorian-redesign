@@ -16,186 +16,97 @@ export default function Footer() {
     <footer
       aria-label="Site footer"
       style={{
-        background: 'var(--c-bg-dark)',
-        borderTop: '1px solid rgba(255, 255, 255, 0.08)',
-        paddingTop: '40px',
-        paddingBottom: '40px',
+        background: 'var(--ink)',
+        borderTop: '1px solid rgba(247, 243, 234, 0.10)',
+        paddingTop: '48px',
+        paddingBottom: '48px',
       }}
     >
       <style>{`
         .footer-inner {
-          max-width: 80rem;
+          max-width: 1200px;
           margin: 0 auto;
           padding-left: 24px;
           padding-right: 24px;
           display: flex;
-          align-items: center;
+          align-items: flex-start;
           justify-content: space-between;
           flex-wrap: wrap;
           gap: 32px;
         }
-        @media (max-width: 640px) {
-          .footer-inner {
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            padding-left: 20px !important;
-            padding-right: 20px !important;
-          }
-          .footer-wordmark {
-            align-items: center !important;
-          }
-          .footer-legal {
-            align-items: center !important;
-            text-align: center !important;
-          }
+        .footer-link {
+          background: none; border: none; cursor: pointer;
+          padding: 6px 0; min-height: 40px;
+          font-family: var(--font-body), sans-serif;
+          font-size: 13px; letter-spacing: 0.04em;
+          color: rgba(247,243,234,0.5);
+          transition: color 0.25s var(--ease-prospectus);
+          text-align: left;
         }
-        @media (max-width: 390px) {
-          .footer-inner {
-            padding-left: 16px !important;
-            padding-right: 16px !important;
-            gap: 24px !important;
-          }
+        .footer-link:hover { color: var(--gold); }
+        @media (max-width: 640px) {
+          .footer-inner { flex-direction: column; align-items: center; text-align: center; padding-left: 20px !important; padding-right: 20px !important; }
+          .footer-wordmark, .footer-legal { align-items: center !important; text-align: center !important; }
+          .footer-nav { align-items: center !important; }
         }
       `}</style>
       <div className="footer-inner">
-        {/* Left: Wordmark */}
-        <div className="footer-wordmark" style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+        {/* Left: wordmark */}
+        <div className="footer-wordmark" style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
           <span
             style={{
-              fontFamily: 'var(--font-geist), sans-serif',
-              fontWeight: 800,
-              fontSize: '16px',
-              color: 'rgba(255, 255, 255, 0.80)',
-              letterSpacing: '0.15em',
+              fontFamily: 'var(--font-display), serif',
+              fontWeight: 600,
+              fontSize: '22px',
+              color: 'var(--paper-bright)',
+              letterSpacing: '0.14em',
               textTransform: 'uppercase',
             }}
           >
-            VERDORIAN
+            Verdorian
           </span>
           <span
             style={{
-              fontFamily: 'var(--font-dm-sans), sans-serif',
+              fontFamily: 'var(--font-body), sans-serif',
               fontSize: '13px',
-              color: 'rgba(255, 255, 255, 0.40)',
-              lineHeight: 1.5,
-              maxWidth: '240px',
+              color: 'rgba(247, 243, 234, 0.42)',
+              lineHeight: 1.6,
+              maxWidth: '260px',
             }}
           >
             Indie software studio. Web platforms, software automation, and iOS apps — built and shipped by one team.
           </span>
         </div>
 
-        {/* Center: Nav links — glass-on-dark treatment */}
-        <nav aria-label="Footer navigation">
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(2, auto)',
-              gap: '4px 8px',
-              background: 'rgba(255, 255, 255, 0.04)',
-              backdropFilter: 'blur(8px) saturate(160%)',
-              WebkitBackdropFilter: 'blur(8px) saturate(160%)',
-              border: '1px solid rgba(255, 255, 255, 0.08)',
-              borderRadius: '14px',
-              padding: '8px',
-              boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.06)',
-            }}
-          >
-            {NAV_LINKS.map((link) => (
-              <button
-                key={link.id}
-                type="button"
-                onClick={() => scrollToSection(link.id)}
-                aria-label={`Navigate to ${link.label} section`}
-                style={{
-                  background: 'none',
-                  border: 'none',
-                  cursor: 'pointer',
-                  padding: '10px 16px',
-                  minHeight: '44px',
-                  borderRadius: '8px',
-                  fontFamily: 'var(--font-dm-sans), sans-serif',
-                  fontSize: '14px',
-                  color: 'rgba(255, 255, 255, 0.45)',
-                  transition: 'color 0.2s, background 0.2s',
-                  textAlign: 'left',
-                }}
-                onMouseEnter={(e) => {
-                  const el = e.currentTarget as HTMLButtonElement
-                  el.style.color = 'rgba(255, 255, 255, 0.80)'
-                  el.style.background = 'rgba(255, 255, 255, 0.06)'
-                }}
-                onMouseLeave={(e) => {
-                  const el = e.currentTarget as HTMLButtonElement
-                  el.style.color = 'rgba(255, 255, 255, 0.45)'
-                  el.style.background = 'none'
-                }}
-              >
-                {link.label}
-              </button>
-            ))}
-          </div>
+        {/* Center: ruled link column */}
+        <nav aria-label="Footer navigation" className="footer-nav" style={{ display: 'flex', flexDirection: 'column' }}>
+          {NAV_LINKS.map((link) => (
+            <button
+              key={link.id}
+              type="button"
+              onClick={() => scrollToSection(link.id)}
+              aria-label={`Navigate to ${link.label} section`}
+              className="footer-link"
+            >
+              {link.label}
+            </button>
+          ))}
         </nav>
 
-        {/* Right: Legal */}
+        {/* Right: legal */}
         <div
           className="footer-legal"
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'flex-end',
-            gap: '6px',
-            textAlign: 'right',
-          }}
+          style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '8px', textAlign: 'right' }}
         >
-          <span
-            style={{
-              fontFamily: 'var(--font-dm-sans), sans-serif',
-              fontSize: '12px',
-              color: 'rgba(255, 255, 255, 0.35)',
-            }}
-          >
+          <span style={{ fontFamily: 'var(--font-body), sans-serif', fontSize: '12px', color: 'rgba(247, 243, 234, 0.35)' }}>
             &copy; 2026 Verdorian Technologies LLC
           </span>
-          <div style={{ display: 'flex', gap: '12px' }}>
-            <a
-              href="/privacy"
-              style={{
-                fontFamily: 'var(--font-dm-sans), sans-serif',
-                fontSize: '12px',
-                color: 'rgba(255, 255, 255, 0.35)',
-                textDecoration: 'none',
-                transition: 'color 0.2s',
-              }}
-              onMouseEnter={(e) => {
-                ;(e.currentTarget as HTMLAnchorElement).style.color = 'rgba(255, 255, 255, 0.60)'
-              }}
-              onMouseLeave={(e) => {
-                ;(e.currentTarget as HTMLAnchorElement).style.color = 'rgba(255, 255, 255, 0.35)'
-              }}
-            >
+          <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+            <a href="/privacy" className="gold-link" style={{ fontFamily: 'var(--font-body), sans-serif', fontSize: '12px', color: 'rgba(247, 243, 234, 0.35)' }}>
               Privacy Policy
             </a>
-            <span style={{ color: 'rgba(255, 255, 255, 0.25)', fontSize: '12px' }}>
-              ·
-            </span>
-            <a
-              href="/terms"
-              style={{
-                fontFamily: 'var(--font-dm-sans), sans-serif',
-                fontSize: '12px',
-                color: 'rgba(255, 255, 255, 0.35)',
-                textDecoration: 'none',
-                transition: 'color 0.2s',
-              }}
-              onMouseEnter={(e) => {
-                ;(e.currentTarget as HTMLAnchorElement).style.color = 'rgba(255, 255, 255, 0.60)'
-              }}
-              onMouseLeave={(e) => {
-                ;(e.currentTarget as HTMLAnchorElement).style.color = 'rgba(255, 255, 255, 0.35)'
-              }}
-            >
+            <span style={{ color: 'rgba(247, 243, 234, 0.22)', fontSize: '12px' }}>·</span>
+            <a href="/terms" className="gold-link" style={{ fontFamily: 'var(--font-body), sans-serif', fontSize: '12px', color: 'rgba(247, 243, 234, 0.35)' }}>
               Terms
             </a>
           </div>

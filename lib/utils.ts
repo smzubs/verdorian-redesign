@@ -6,46 +6,91 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export type ProductStatus = 'live' | 'coming-soon' | 'in-development'
+export type MockupId = 'qrsafepro' | 'changeorder' | 'voicepencil' | 'policypilot'
 
 export interface Product {
   name: string
-  tagline: string
+  /** small-caps eyebrow above the chapter heading */
+  category: string
+  /** serif chapter headline (the product's plain-language promise) */
+  headline: string
+  /** chapter paragraph */
+  body: string
+  /** three gold-bulleted outcomes */
+  outcomes: string[]
   status: ProductStatus
   href?: string
-  icon: string
-  category: string
+  /** which product-UI mockup renders in the figure column */
+  mockup: MockupId
+  /** plate caption label, e.g. "Plate I." */
+  plate: string
+  /** italic figure caption under the mockup */
+  caption: string
 }
 
+// Four products, presented as editorial chapters (I–IV) — each paired with a
+// realistic product-UI mockup. Order is intentional: live work leads.
 export const PRODUCTS: Product[] = [
   {
-    name: 'VoicePencil',
-    tagline: 'Your voice, supercharged with ai',
-    status: 'coming-soon',
-    icon: 'IconMicrophone',
-    category: 'Mobile App',
+    name: 'QRSafePro',
+    category: 'Web Platform · Live',
+    headline: 'Equipment inspections that survive an audit',
+    body: 'QR-based equipment inspection, built for the field. Crews scan an asset, run the inspection, and sign it in under two minutes — and every inspection becomes a permanent, dated record. When the audit comes, the paperwork already exists.',
+    outcomes: [
+      'Scan-to-record inspections, done on site',
+      'A permanent, signed history for every asset',
+      'Compliance-grade exports on demand',
+    ],
+    status: 'live',
+    href: 'https://qrsafepro.com',
+    mockup: 'qrsafepro',
+    plate: 'Plate I.',
+    caption: 'The inspection register — every asset, on the record.',
   },
   {
     name: 'ChangeOrderAI',
-    tagline: 'Ai docs and automation for project teams and operations',
+    category: 'Enterprise SaaS · In development',
+    headline: 'Change orders, written while you talk',
+    body: 'The crew describes the change; the system drafts the order, prices it, and routes it for approval. The back-and-forth that used to lose days now settles before the truck leaves the site.',
+    outcomes: [
+      'Draft orders from plain language',
+      'Priced and routed for approval automatically',
+      'An append-only record of every change',
+    ],
     status: 'in-development',
-    icon: 'IconFileText',
-    category: 'Enterprise SaaS',
+    mockup: 'changeorder',
+    plate: 'Plate II.',
+    caption: 'A change order, from voice to signature.',
   },
   {
-    name: 'QRSafePro',
-    tagline: 'QR-based equipment inspection SaaS',
-    status: 'live',
-    href: 'https://qrsafepro.com',
-    icon: 'IconQrcode',
-    category: 'Web Platform',
+    name: 'VoicePencil',
+    category: 'Mobile App · Coming soon',
+    headline: 'Your voice, filed as finished work',
+    body: 'Speak a note and it comes back structured — transcribed, cleaned, and sorted into something you can actually use. The thinking stays yours; the typing disappears.',
+    outcomes: [
+      'Capture by voice, anywhere',
+      'Clean transcripts in seconds',
+      'Notes that organize themselves',
+    ],
+    status: 'coming-soon',
+    mockup: 'voicepencil',
+    plate: 'Plate III.',
+    caption: 'A spoken note, transcribed and filed.',
   },
-
   {
     name: 'PolicyPilot',
-    tagline: 'Insurance agency management platform',
+    category: 'Enterprise SaaS · In development',
+    headline: 'Submission to binding, in one ledger',
+    body: 'Every submission, quote, and bound policy moves through a single tracked pipeline. Agencies see exactly where each account stands — no more chasing status across inboxes and spreadsheets.',
+    outcomes: [
+      'One pipeline from intake to binding',
+      'Live status on every account',
+      'Nothing lost between systems',
+    ],
     status: 'in-development',
-    icon: 'IconShield',
-    category: 'Enterprise SaaS',
+    mockup: 'policypilot',
+    plate: 'Plate IV.',
+    caption: 'The submission pipeline — intake to binding.',
   },
 ]
 
@@ -95,6 +140,18 @@ export const SERVICES: Service[] = [
     ],
     icon: 'IconRefresh',
   },
+]
+
+export interface Stat {
+  value: string
+  label: string
+}
+
+// Hero / ProofBar ruled stat row (prospectus "ledger" figures)
+export const STATS: Stat[] = [
+  { value: '7', label: 'Years in operations' },
+  { value: '4', label: 'Products shipped' },
+  { value: 'Web · Software · iOS', label: 'What we build' },
 ]
 
 export const TECH_STACK = [

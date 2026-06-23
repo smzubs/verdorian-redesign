@@ -1,8 +1,9 @@
 import type { Metadata, Viewport } from 'next'
-import { Geist, DM_Sans, JetBrains_Mono, Fraunces, Outfit, Spline_Sans_Mono } from 'next/font/google'
+import { Geist, Cormorant_Garamond } from 'next/font/google'
 import { LenisProvider } from '@/lib/lenis-provider'
 import './globals.css'
 
+// Body / UI sans
 const geist = Geist({
   subsets: ['latin'],
   weight: ['400', '500', '600', '700'],
@@ -10,40 +11,12 @@ const geist = Geist({
   display: 'swap',
 })
 
-const dmSans = DM_Sans({
+// Display serif — heritage prospectus headlines (matches QRSafePro)
+const cormorant = Cormorant_Garamond({
   subsets: ['latin'],
-  weight: ['300', '400', '500'],
-  variable: '--font-dm-sans',
-  display: 'optional',
-})
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ['latin'],
-  weight: ['400', '500'],
-  variable: '--font-jetbrains',
-  display: 'swap',
-})
-
-// Super premium fonts
-const fraunces = Fraunces({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
+  weight: ['500', '600'],
   style: ['normal', 'italic'],
-  variable: '--font-fraunces',
-  display: 'swap',
-})
-
-const outfit = Outfit({
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700'],
-  variable: '--font-outfit',
-  display: 'swap',
-})
-
-const splineMono = Spline_Sans_Mono({
-  subsets: ['latin'],
-  weight: ['400', '500'],
-  variable: '--font-spline-mono',
+  variable: '--font-cormorant',
   display: 'swap',
 })
 
@@ -90,7 +63,7 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  themeColor: '#F8F5ED',
+  themeColor: '#F7F3EA',
   colorScheme: 'light',
 }
 
@@ -98,7 +71,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="en"
-      className={`${geist.variable} ${dmSans.variable} ${jetbrainsMono.variable} ${fraunces.variable} ${outfit.variable} ${splineMono.variable}`}
+      className={`${geist.variable} ${cormorant.variable}`}
       suppressHydrationWarning
     >
       <body className="font-[family-name:var(--font-body)]">

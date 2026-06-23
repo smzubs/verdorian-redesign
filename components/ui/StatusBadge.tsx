@@ -7,88 +7,22 @@ interface StatusBadgeProps {
   className?: string
 }
 
-const statusConfig = {
-  live: {
-    label: 'Live',
-    bg: 'rgba(16, 185, 129, 0.10)',
-    border: 'rgba(16, 185, 129, 0.30)',
-    color: '#059669',
-    dot: true,
-    dotColor: '#10b981',
-  },
-  'coming-soon': {
-    label: 'Coming Soon',
-    bg: 'rgba(139, 92, 246, 0.10)',
-    border: 'rgba(139, 92, 246, 0.30)',
-    color: 'var(--c-plasma)',
-    dot: false,
-    dotColor: '',
-  },
-  'in-development': {
-    label: 'In Development',
-    bg: 'rgba(24, 119, 242, 0.08)',
-    border: 'rgba(24, 119, 242, 0.25)',
-    color: '#1877F2',
-    dot: false,
-    dotColor: '',
-  },
-} as const
-
+/**
+ * Prospectus status mark:
+ *  - live          → rotated gold wet-seal stamp ("LIVE")
+ *  - coming-soon   → quiet ruled small-caps label ("SOON")
+ *  - in-development → quiet ruled small-caps label ("IN DEV")
+ */
 export function StatusBadge({ status, className }: StatusBadgeProps) {
-  const config = statusConfig[status]
+  if (status === 'live') {
+    return <span className={cn('stamp stamp-live', className)}>Live</span>
+  }
 
+  const label = status === 'coming-soon' ? 'Soon' : 'In Dev'
   return (
-    <span
-      className={cn('inline-flex items-center gap-1.5', className)}
-      style={{
-        display: 'inline-flex',
-        alignItems: 'center',
-        gap: '6px',
-        padding: '4px 10px',
-        borderRadius: 'var(--r-pill)',
-        border: `1px solid ${config.border}`,
-        background: config.bg,
-        backdropFilter: 'blur(4px) saturate(160%)',
-        WebkitBackdropFilter: 'blur(4px) saturate(160%)',
-        boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.20)',
-        fontFamily: 'var(--font-geist), sans-serif',
-        fontSize: '10px',
-        fontWeight: 700,
-        textTransform: 'uppercase',
-        letterSpacing: 'var(--track-sublabel, 0.06em)',
-        color: config.color,
-        lineHeight: 1,
-      }}
-    >
-      {config.dot && (
-        <>
-          <span
-            aria-hidden="true"
-            style={{
-              display: 'inline-block',
-              width: '6px',
-              height: '6px',
-              borderRadius: '9999px',
-              background: config.dotColor,
-              flexShrink: 0,
-              animation: 'statusPulse 2s ease-in-out infinite',
-            }}
-          />
-          <style>{`
-            @keyframes statusPulse {
-              0%, 100% { transform: scale(1); opacity: 1; }
-              50%       { transform: scale(1.6); opacity: 0.5; }
-            }
-            @media (prefers-reduced-motion: reduce) {
-              @keyframes statusPulse {
-                from { transform: scale(1); opacity: 1; }
-                to   { transform: scale(1); opacity: 1; }
-              }
-            }
-          `}</style>
-        </>
-      )}
-      {config.label}
+    <span className={cn('label-quiet', className)}>
+      <span aria-hidden="true" style={{ width: '14px', height: '1px', background: 'var(--rule-strong)' }} />
+      {label}
     </span>
   )
 }

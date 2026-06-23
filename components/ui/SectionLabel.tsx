@@ -3,24 +3,25 @@ import { cn } from '@/lib/utils'
 
 interface SectionLabelProps {
   children: string
+  /** optional chapter numeral, e.g. "01" → renders "No. 01" in gold italic serif */
+  numeral?: string
   className?: string
 }
 
-export function SectionLabel({ children, className }: SectionLabelProps) {
+/** Gold small-caps eyebrow, optionally preceded by a "No. 0X" chapter numeral. */
+export function SectionLabel({ children, numeral, className }: SectionLabelProps) {
   return (
     <span
-      className={cn(className)}
-      style={{
-        fontFamily: 'var(--font-geist), sans-serif',
-        fontSize: '13px',
-        fontWeight: 800,
-        letterSpacing: '0.19em',
-        textTransform: 'uppercase',
-        color: 'var(--c-plasma)',
-        display: 'inline-block',
-      }}
+      className={cn('inline-flex items-center gap-3', className)}
+      style={{ display: 'inline-flex', alignItems: 'center', gap: '12px' }}
     >
-      {children}
+      {numeral && (
+        <>
+          <span className="chapter-numeral">No.&nbsp;{numeral}</span>
+          <span aria-hidden="true" style={{ width: '28px', height: '1px', background: 'var(--rule-strong)' }} />
+        </>
+      )}
+      <span className="eyebrow">{children}</span>
     </span>
   )
 }
