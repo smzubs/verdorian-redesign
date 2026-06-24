@@ -1,5 +1,16 @@
 # Verdorian Technologies — verdorian.com (Premium Liquid Glass Redesign)
 
+> ## ⚡ LATEST STATE (2026-06-24) — "AI AUTOMATION STUDIO" REPOSITION — read this first
+> The site was repositioned from a vague software/product studio into a **crystal-clear AI-automation business site** (commit `cbf3eeb`, **committed LOCAL ONLY — not pushed/deployed; live site still serves `0f5b64c` until the user approves go-live**).
+> - **Theme:** still LIGHT cool-blue iOS-26 "liquid glass" (#F2F5FA base, #1877F2 accent via `--gold`) — the user explicitly REJECTED a dark rebuild. Pushed "futuristic" via a **command-center hero workflow visual** + shared workflow primitives in globals.css (`.vd-node`/`.vd-node-accent`/`.vd-dot`/`.vd-dot-done`/`.vd-line`, vdFlow/vdPulse keyframes).
+> - **Offer:** the **$497 audit is RETIRED — the audit is now FREE.** CTA everywhere = "Get Free Automation Audit". (The old "$497 locked" non-negotiable below is VOID.)
+> - **H1:** "AI Automation for the Work You Shouldn't Be Doing Manually".
+> - **New 11-section homepage** (`app/page.tsx`): Nav → Hero(#hero) → PainSection(#problem) → Capabilities(#automate, "What We Automate" — 8 cards each with a real CSS/SVG mini-diagram incl. Business Intelligence) → BusinessVsIndividual(#solutions / #for-business / #for-individuals) → BeforeAfter(#workflow) → ROISection(#roi, interactive calculator) → HowItWorks(#how-it-works, 4 steps) → Trust(#trust, 6 control/human-review cards + honest real-work proof: QRSafePro·VoicePencil·Knight Electric) → Contact(#contact, audit FORM → composes a **mailto** to sm@verdorian.com, NO backend yet) → Footer.
+> - **Nav:** Solutions · For Business · For Individuals · How It Works + "Get Free Automation Audit" CTA.
+> - **DEAD/unused section files still in repo** (no longer imported by page.tsx; still contain old $497 copy — safe to prune): Offer, Services, FAQ, Problem, ProofBar, PullQuote, About, HowIBuild, WhyChooseUs, Products, ui/GlassCard.tsx, STATS in lib/utils.
+> - **Honesty rules (unchanged):** no fake testimonials/logos/case-studies, no "100% accurate"/"fully autonomous"/"guaranteed", human-review framing.
+> - Everything BELOW this banner predates the reposition and is partly stale (page order, $497, paper×glass). Treat the banner as authoritative.
+
 ## Current Aesthetic (June 2026) — PAPER × GLASS BLEND
 Editorial "heritage prospectus" PAPER base with selective LIQUID-GLASS accents. **The governing rule: glass = live/offered, paper = settled/authoritative.** (Full art-direction spec: `docs/research-2026-06-23-design.md`; market/copy grounding: `docs/research-2026-06-23-market.md`.)
 - **Paper base (the substrate):** ivory `--paper #F7F3EA` / `--paper-deep #F1EADB` / `--paper-bright #FCFAF4`, ink `--ink #1A1714` (+ `--ink-soft`/`--ink-faint`), hairline `--rule`/`--rule-strong`/`--rule-faint`, gold `--gold #A57A0B` / `--gold-bright #C49A0A`. Static gold "crown" radial + faint laid-paper chain lines + fine grain overlay. Near-square radii (2–4px). One ease: `--ease-prospectus`.
