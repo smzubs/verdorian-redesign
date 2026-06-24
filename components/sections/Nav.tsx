@@ -72,7 +72,7 @@ export default function Nav() {
           right: 0,
           zIndex: 1000,
           background: scrolled ? 'rgba(247, 243, 234, 0.82)' : 'rgba(247, 243, 234, 0.55)',
-          borderBottom: scrolled ? '1px solid rgba(196, 154, 10, 0.18)' : '1px solid transparent',
+          borderBottom: scrolled ? '1px solid rgba(24, 119, 242, 0.18)' : '1px solid transparent',
           backdropFilter: scrolled ? 'blur(18px) saturate(1.18)' : 'blur(8px) saturate(1.05)',
           WebkitBackdropFilter: scrolled ? 'blur(18px) saturate(1.18)' : 'blur(8px) saturate(1.05)',
           transition: 'background 0.4s var(--ease-prospectus), border-color 0.4s var(--ease-prospectus), backdrop-filter 0.4s var(--ease-prospectus)',

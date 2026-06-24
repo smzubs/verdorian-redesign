@@ -3,20 +3,20 @@
 /* ─── DESIGN SYSTEM: HERITAGE PROSPECTUS — warm ivory paper, hairline rules, gold leaf, ink (matches QRSafePro) ─── */
 :root {
   /* ── Paper / ink / rule scale ── */
-  --paper:        #F7F3EA;   /* primary ivory */
-  --paper-deep:   #F1EADB;   /* alt section bands */
-  --paper-bright: #FCFAF4;   /* plate fills, elevated */
-  --ink:          #1A1714;   /* main text + dark bands */
-  --ink-soft:     #5C544C;   /* body */
-  --ink-faint:    #8A8076;   /* meta / captions */
-  --rule-strong:  rgba(26, 23, 20, 0.16);   /* standard hairline */
-  --rule:         rgba(26, 23, 20, 0.09);   /* soft divider */
-  --rule-faint:   rgba(26, 23, 20, 0.05);   /* chain lines / barely-there */
+  --paper:        #F2F5FA;   /* primary ivory */
+  --paper-deep:   #E7ECF4;   /* alt section bands */
+  --paper-bright: #FBFCFE;   /* plate fills, elevated */
+  --ink:          #13161B;   /* main text + dark bands */
+  --ink-soft:     #474B54;   /* body */
+  --ink-faint:    #868C98;   /* meta / captions */
+  --rule-strong:  rgba(20, 24, 32, 0.16);   /* standard hairline */
+  --rule:         rgba(20, 24, 32, 0.09);   /* soft divider */
+  --rule-faint:   rgba(20, 24, 32, 0.05);   /* chain lines / barely-there */
 
   /* ── Gold + semantic ── */
-  --gold:        #A57A0B;
-  --gold-bright: #C49A0A;
-  --gold-pale:   rgba(196, 154, 10, 0.12);
+  --gold:        #1877F2;
+  --gold-bright: #4C9AFF;
+  --gold-pale:   rgba(24, 119, 242, 0.12);
   --green-pass:  #2F5D3A;
   --red-fail:    #8C3A2E;
 
@@ -45,7 +45,7 @@
   --c-text-2:      var(--ink-soft);
   --c-text-3:      var(--ink-faint);
   --c-border:      var(--rule-strong);
-  --c-border-hover: rgba(196, 154, 10, 0.30);
+  --c-border-hover: rgba(24, 119, 242, 0.30);
   --c-ghost:       var(--gold-pale);
 
   /* ── Tracking ── */
@@ -85,9 +85,9 @@
   --t-label:   11px;
 
   /* ── Soft prospectus drop shadow ── */
-  --shadow-sm:    0 1px 2px rgba(26, 23, 20, 0.04);
-  --shadow-card:  0 1px 2px rgba(26, 23, 20, 0.04), 0 24px 64px -32px rgba(26, 23, 20, 0.30);
-  --shadow-card-hover: 0 1px 2px rgba(26, 23, 20, 0.05), 0 32px 80px -36px rgba(26, 23, 20, 0.38);
+  --shadow-sm:    0 1px 2px rgba(20, 24, 32, 0.04);
+  --shadow-card:  0 1px 2px rgba(20, 24, 32, 0.04), 0 24px 64px -32px rgba(20, 24, 32, 0.30);
+  --shadow-card-hover: 0 1px 2px rgba(20, 24, 32, 0.05), 0 32px 80px -36px rgba(20, 24, 32, 0.38);
 }
 
 /* ─── BASE RESET ─────────────────────────────────────────────── */
@@ -136,11 +136,11 @@ body::before {
   pointer-events: none;
   background:
     /* warm gold "crown" radiating from the top */
-    radial-gradient(ellipse 62% 42% at 50% -6%, rgba(196, 154, 10, 0.10) 0%, transparent 62%),
+    radial-gradient(ellipse 62% 42% at 50% -6%, rgba(24, 119, 242, 0.10) 0%, transparent 62%),
     /* faint vertical chain lines (laid paper) */
     repeating-linear-gradient(90deg, transparent 0 26px, var(--rule-faint) 26px 27px),
     /* base ivory + soft bottom vignette */
-    radial-gradient(ellipse 120% 60% at 50% 116%, rgba(26, 23, 20, 0.03) 0%, transparent 66%),
+    radial-gradient(ellipse 120% 60% at 50% 116%, rgba(20, 24, 32, 0.03) 0%, transparent 66%),
     var(--paper);
   background-size: cover;
 }
@@ -161,24 +161,24 @@ body::after {
 /* ─── SCROLLBAR — refined gold on ivory ── */
 html {
   scrollbar-width: thin;
-  scrollbar-color: rgba(165, 122, 11, 0.34) transparent;
+  scrollbar-color: rgba(24, 119, 242, 0.34) transparent;
 }
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb {
-  background: rgba(165, 122, 11, 0.34);
+  background: rgba(24, 119, 242, 0.34);
   border-radius: 9999px;
   border: 2px solid transparent;
   background-clip: content-box;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(165, 122, 11, 0.5);
+  background: rgba(24, 119, 242, 0.5);
   background-clip: content-box;
 }
 
 /* ─── SELECTION / FOCUS / SKIP LINK ── */
 ::selection {
-  background: rgba(196, 154, 10, 0.18);
+  background: rgba(24, 119, 242, 0.18);
   color: var(--ink);
 }
 :focus-visible {
@@ -272,7 +272,7 @@ html {
 /* plate rendered on a dark band */
 .plate-dark {
   background: rgba(255, 255, 255, 0.03);
-  border-color: rgba(196, 154, 10, 0.24);
+  border-color: rgba(24, 119, 242, 0.24);
 }
 .plate-dark::after { border-color: rgba(247, 243, 234, 0.10); }
 
@@ -380,7 +380,7 @@ html {
 /* Gold hairline (decorative, kept for section dividers) */
 .gold-hairline {
   height: 1px;
-  background: linear-gradient(to right, transparent, rgba(196, 154, 10, 0.32), transparent);
+  background: linear-gradient(to right, transparent, rgba(24, 119, 242, 0.32), transparent);
 }
 
 /* Gold animated underline link */
@@ -412,19 +412,19 @@ html {
   --glass-fill:        rgba(253, 251, 246, 0.58);   /* warm cream-frosted, lets the stage show through */
   --glass-fill-deep:   rgba(248, 243, 233, 0.66);   /* deeper warm glass */
   --glass-border:      rgba(255, 255, 255, 0.55);   /* luminous light edge (scientificquran-style) */
-  --glass-border-hover: rgba(196, 154, 10, 0.42);   /* warms to gold on hover */
-  --glass-ambient: radial-gradient(ellipse 72% 54% at 82% -8%, rgba(196, 154, 10, 0.09) 0%, transparent 68%);
+  --glass-border-hover: rgba(24, 119, 242, 0.42);   /* warms to gold on hover */
+  --glass-ambient: radial-gradient(ellipse 72% 54% at 82% -8%, rgba(24, 119, 242, 0.09) 0%, transparent 68%);
   --glass-shadow:
     0 1px 0 rgba(255, 255, 255, 0.64) inset,
-    0 1px 3px rgba(26, 23, 20, 0.04),
-    0 8px 24px -8px rgba(26, 23, 20, 0.12),
-    0 24px 64px -24px rgba(26, 23, 20, 0.18);
+    0 1px 3px rgba(20, 24, 32, 0.04),
+    0 8px 24px -8px rgba(20, 24, 32, 0.12),
+    0 24px 64px -24px rgba(20, 24, 32, 0.18);
   --glass-shadow-hover:
     0 1px 0 rgba(255, 255, 255, 0.72) inset,
-    0 1px 3px rgba(26, 23, 20, 0.05),
-    0 12px 32px -8px rgba(26, 23, 20, 0.16),
-    0 32px 80px -24px rgba(26, 23, 20, 0.24),
-    0 0 0 1px rgba(196, 154, 10, 0.10) inset;
+    0 1px 3px rgba(20, 24, 32, 0.05),
+    0 12px 32px -8px rgba(20, 24, 32, 0.16),
+    0 32px 80px -24px rgba(20, 24, 32, 0.24),
+    0 0 0 1px rgba(24, 119, 242, 0.10) inset;
 }
 
 /* Frosted glass card — the offered/live surface */
@@ -479,24 +479,24 @@ html {
 .glass-stage {
   position: relative;
   background:
-    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(196, 154, 10, 0.10) 0%, transparent 60%),
-    radial-gradient(ellipse 70% 50% at 85% 110%, rgba(105, 115, 90, 0.06) 0%, transparent 60%),
-    linear-gradient(180deg, var(--paper-deep) 0%, #ECE3D2 100%);
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(24, 119, 242, 0.10) 0%, transparent 60%),
+    radial-gradient(ellipse 70% 50% at 85% 110%, rgba(99, 102, 241, 0.06) 0%, transparent 60%),
+    linear-gradient(180deg, var(--paper-deep) 0%, #E2E8F1 100%);
 }
 .glass-stage::before {        /* soft floating gold bloom, GPU-cheap, behind cards */
   content: '';
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: radial-gradient(ellipse 50% 40% at 50% 42%, rgba(196, 154, 10, 0.07) 0%, transparent 70%);
+  background: radial-gradient(ellipse 50% 40% at 50% 42%, rgba(24, 119, 242, 0.07) 0%, transparent 70%);
   filter: blur(40px);
   z-index: 0;
 }
 .glass-stage > * { position: relative; z-index: 1; }
 
 /* Per-tier ambient temperature (Services 3-tier ladder) — all warm, no cyan */
-.glass-amber::before { background: radial-gradient(ellipse 72% 54% at 82% -8%, rgba(196, 154, 10, 0.10) 0%, transparent 68%); }
-.glass-sage::before  { background: radial-gradient(ellipse 72% 54% at 82% -8%, rgba(105, 115, 90, 0.09) 0%, transparent 68%); }
+.glass-amber::before { background: radial-gradient(ellipse 72% 54% at 82% -8%, rgba(24, 119, 242, 0.10) 0%, transparent 68%); }
+.glass-sage::before  { background: radial-gradient(ellipse 72% 54% at 82% -8%, rgba(99, 102, 241, 0.09) 0%, transparent 68%); }
 .glass-care::before  { background: radial-gradient(ellipse 72% 54% at 82% -8%, rgba(90, 84, 76, 0.08) 0%, transparent 68%); }
 .glass-care:hover { border-color: rgba(47, 93, 58, 0.24); }   /* Care = system health */
 
@@ -536,7 +536,7 @@ html {
   content: '';
   position: absolute;
   inset: -20% -10%;
-  background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(196, 154, 10, 0.07) 0%, transparent 70%);
+  background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(24, 119, 242, 0.07) 0%, transparent 70%);
   filter: blur(32px);
   pointer-events: none;
   z-index: -1;
@@ -553,7 +553,7 @@ html {
 .nav-glass[data-scrolled='true'] {
   -webkit-backdrop-filter: blur(18px) saturate(1.18);
           backdrop-filter: blur(18px) saturate(1.18);
-  border-bottom-color: rgba(196, 154, 10, 0.14);
+  border-bottom-color: rgba(24, 119, 242, 0.14);
 }
 
 /* Editorial body measure — the single biggest "designed, not templated" tell */
@@ -580,7 +580,7 @@ html {
   50%      { background-position: 100% 50%; }
 }
 .gold-shimmer {
-  background: linear-gradient(100deg, var(--gold) 0%, var(--gold-bright) 25%, #E6C875 50%, var(--gold-bright) 75%, var(--gold) 100%);
+  background: linear-gradient(100deg, var(--gold) 0%, var(--gold-bright) 25%, #9DC8FF 50%, var(--gold-bright) 75%, var(--gold) 100%);
   background-size: 200% auto;
   -webkit-background-clip: text;
           background-clip: text;
@@ -643,8 +643,8 @@ p, li, button, a, label, input, textarea {
 .band-dark {
   position: relative;
   background: var(--ink);
-  border-top: 1px solid rgba(196, 154, 10, 0.24);
-  border-bottom: 1px solid rgba(196, 154, 10, 0.24);
+  border-top: 1px solid rgba(24, 119, 242, 0.24);
+  border-bottom: 1px solid rgba(24, 119, 242, 0.24);
   overflow: hidden;
 }
 .band-dark::before {           /* faint gold crown from the top */
@@ -652,7 +652,7 @@ p, li, button, a, label, input, textarea {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: radial-gradient(ellipse 64% 54% at 50% -12%, rgba(196, 154, 10, 0.11) 0%, transparent 62%);
+  background: radial-gradient(ellipse 64% 54% at 50% -12%, rgba(24, 119, 242, 0.11) 0%, transparent 62%);
 }
 
 /* ─── PULL-QUOTE — big editorial italic conviction ── */
@@ -766,7 +766,7 @@ p, li, button, a, label, input, textarea {
   border: 1px solid var(--rule-strong);
   color: var(--ink-soft);
 }
-.mock-stage-bound { color: var(--gold); border-color: rgba(196, 154, 10, 0.4); }
+.mock-stage-bound { color: var(--gold); border-color: rgba(24, 119, 242, 0.4); }
 
 /* ─── PLATE CAPTION — "Plate I. — italic caption" under a figure ── */
 .plate-caption {
@@ -846,7 +846,7 @@ p, li, button, a, label, input, textarea {
   width: 78%;
   height: 64%;
   transform: translate(-50%, -50%);
-  background: radial-gradient(ellipse at center, rgba(196, 154, 10, 0.16) 0%, transparent 70%);
+  background: radial-gradient(ellipse at center, rgba(24, 119, 242, 0.16) 0%, transparent 70%);
   filter: blur(46px);
   pointer-events: none;
   z-index: 0;

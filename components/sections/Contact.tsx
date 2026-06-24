@@ -16,7 +16,7 @@ export default function Contact() {
         background: 'var(--ink)',
         position: 'relative',
         overflow: 'hidden',
-        borderTop: '1px solid rgba(196, 154, 10, 0.24)',
+        borderTop: '1px solid rgba(24, 119, 242, 0.24)',
       }}
     >
       <style>{`
@@ -37,7 +37,7 @@ export default function Contact() {
           transform: 'translateX(-50%)',
           width: '760px',
           height: '300px',
-          background: 'radial-gradient(ellipse 60% 80% at 50% 0%, rgba(196,154,10,0.16) 0%, transparent 70%)',
+          background: 'radial-gradient(ellipse 60% 80% at 50% 0%, rgba(24,119,242,0.16) 0%, transparent 70%)',
           pointerEvents: 'none',
         }}
       />

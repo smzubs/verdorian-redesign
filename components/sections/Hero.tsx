@@ -2,8 +2,6 @@
 
 import { motion } from 'framer-motion'
 import { GlowButton } from '@/components/ui/GlowButton'
-import { QRSafeProMockAnimated } from '@/components/mockups/QRSafeProMockAnimated'
-import { VoicePencilMock } from '@/components/mockups/VoicePencilMock'
 import { FADE_UP, STAGGER_CONTAINER } from '@/lib/motion'
 import { scrollToSection } from '@/lib/utils'
 
@@ -137,22 +135,6 @@ export default function Hero() {
           <span aria-hidden="true" style={{ color: 'var(--gold)', fontSize: '11px' }}>◆</span>
           We find at least 3 automation opportunities in your operation, or the audit&apos;s free.
         </motion.p>
-
-        {/* Device composition — live product UI as proof, on a gold ambient swoosh */}
-        <motion.div
-          variants={FADE_UP}
-          className="hero-stage"
-          style={{ width: '100%', maxWidth: '940px', marginTop: '56px' }}
-        >
-          <div className="hero-devices" style={{ position: 'relative', zIndex: 1 }}>
-            <div className="hero-browser" style={{ maxWidth: '720px', margin: '0 auto' }}>
-              <QRSafeProMockAnimated chrome />
-            </div>
-            <div className="hero-phone" style={{ position: 'absolute', right: 0, bottom: '-28px', width: '204px', zIndex: 2 }}>
-              <VoicePencilMock />
-            </div>
-          </div>
-        </motion.div>
       </motion.div>
     </section>
   )

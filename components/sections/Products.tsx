@@ -11,6 +11,7 @@ import {
   VoicePencilMock,
   PolicyPilotMock,
 } from '@/components/mockups'
+import { QRSafeProMockAnimated } from '@/components/mockups/QRSafeProMockAnimated'
 import { FADE_UP, STAGGER_CONTAINER, EASE_PROSPECTUS } from '@/lib/motion'
 import { PRODUCTS } from '@/lib/utils'
 import type { Product, MockupId } from '@/lib/utils'
@@ -826,6 +827,13 @@ export default function Products() {
           .specialty-inner { padding: 24px 20px 20px !important; }
         }
 
+        /* Work banner composition — phone overlaps browser on desktop, stacks on mobile */
+        @media (max-width: 860px) {
+          .work-banner-devices { display: flex !important; flex-direction: column; align-items: center; }
+          .work-banner-browser { max-width: 100% !important; }
+          .work-banner-phone { position: static !important; right: auto !important; bottom: auto !important; width: 230px !important; margin: 24px auto 0 !important; }
+        }
+
         /* glass-mock hover lift — prefers-reduced-motion guard already in globals */
         .glass-mock { cursor: default; }
       `}</style>
@@ -859,6 +867,25 @@ export default function Products() {
           >
             Different industries, one studio. Proof that automation means a working product, not a promise.
           </motion.p>
+
+          {/* ── Banner composition — live product UI as the section's lead visual ── */}
+          <motion.div
+            variants={FADE_UP}
+            className="work-banner figure-halo"
+            style={{ width: '100%', maxWidth: '960px', margin: '56px auto 0' }}
+          >
+            <div className="work-banner-devices" style={{ position: 'relative', zIndex: 1 }}>
+              <div className="work-banner-browser" style={{ maxWidth: '740px', margin: '0 auto' }}>
+                <QRSafeProMockAnimated chrome />
+              </div>
+              <div
+                className="work-banner-phone"
+                style={{ position: 'absolute', right: 0, bottom: '-28px', width: '208px', zIndex: 2 }}
+              >
+                <VoicePencilMock />
+              </div>
+            </div>
+          </motion.div>
 
           {/* ── Flagship chapter (QRSafePro) ───────────────────── */}
           <div style={{ marginTop: '56px' }}>

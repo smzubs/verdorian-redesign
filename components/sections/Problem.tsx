@@ -32,7 +32,7 @@ export default function Problem() {
         @media (max-width: 767px) { .problem-container { padding-left: 20px !important; padding-right: 20px !important; } }
         @media (max-width: 767px) {
           .problem-tiles { grid-template-columns: 1fr !important; gap: 0 !important; }
-          .problem-tile { border-left: 0 !important; border-top: 1px solid rgba(196, 154, 10, 0.18) !important; padding: 28px 0 !important; }
+          .problem-tile { border-left: 0 !important; border-top: 1px solid rgba(24, 119, 242, 0.18) !important; padding: 28px 0 !important; }
           .problem-tile:first-child { border-top: 0 !important; }
         }
       `}</style>
@@ -104,8 +104,8 @@ export default function Problem() {
               gridTemplateColumns: 'repeat(3, 1fr)',
               gap: '0',
               width: '100%',
-              borderTop: '1px solid rgba(196, 154, 10, 0.24)',
-              borderBottom: '1px solid rgba(196, 154, 10, 0.24)',
+              borderTop: '1px solid rgba(24, 119, 242, 0.24)',
+              borderBottom: '1px solid rgba(24, 119, 242, 0.24)',
             }}
           >
             {COST_TILES.map((tile, i) => (
@@ -114,7 +114,7 @@ export default function Problem() {
                 className="problem-tile"
                 style={{
                   padding: '40px 32px',
-                  borderLeft: i > 0 ? '1px solid rgba(196, 154, 10, 0.18)' : 'none',
+                  borderLeft: i > 0 ? '1px solid rgba(24, 119, 242, 0.18)' : 'none',
                   display: 'flex',
                   flexDirection: 'column',
                   gap: '14px',
@@ -128,7 +128,7 @@ export default function Problem() {
                     fontWeight: 600,
                     fontSize: '40px',
                     lineHeight: 0.9,
-                    WebkitTextStroke: '1px rgba(196, 154, 10, 0.5)',
+                    WebkitTextStroke: '1px rgba(24, 119, 242, 0.5)',
                     color: 'transparent',
                   }}
                 >
