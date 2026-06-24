@@ -1,9 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { GlowButton } from '@/components/ui/GlowButton'
 import { FADE_UP, STAGGER_CONTAINER } from '@/lib/motion'
-import { scrollToSection } from '@/lib/utils'
 
 export default function Hero() {
   return (
@@ -101,19 +99,6 @@ export default function Hero() {
           operation — and we can point to it working.
         </motion.p>
 
-        {/* CTAs */}
-        <motion.div
-          variants={FADE_UP}
-          className="hero-cta-row"
-          style={{ display: 'flex', flexDirection: 'row', gap: '12px', alignItems: 'center', marginTop: '4px' }}
-        >
-          <GlowButton variant="ink" size="lg" onClick={() => scrollToSection('contact')}>
-            Book a call
-          </GlowButton>
-          <GlowButton variant="ghost" size="lg" onClick={() => scrollToSection('products')}>
-            See the work
-          </GlowButton>
-        </motion.div>
       </motion.div>
     </section>
   )
