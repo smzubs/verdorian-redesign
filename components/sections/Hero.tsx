@@ -71,17 +71,17 @@ export default function Hero() {
           style={{
             fontFamily: 'var(--font-display), Georgia, serif',
             fontWeight: 400,
-            fontSize: 'var(--t-hero)',
-            lineHeight: 1.02,
-            letterSpacing: '-0.024em',
+            fontSize: 'clamp(34px, 5.4vw, 76px)',
+            lineHeight: 1.05,
+            letterSpacing: '-0.02em',
             margin: 0,
             color: 'var(--ink)',
-            maxWidth: '14ch',
+            maxWidth: '20ch',
           }}
-          aria-label="Automation you'll actually use."
+          aria-label="AI Automation & Custom Software That Eliminates Manual Work"
         >
-          Automation you&apos;ll{' '}
-          <em className="gold-shimmer">actually use.</em>
+          AI Automation &amp; Custom Software{' '}
+          <em className="gold-shimmer">That Eliminates Manual Work</em>
         </motion.h1>
 
         {/* Subtitle */}
