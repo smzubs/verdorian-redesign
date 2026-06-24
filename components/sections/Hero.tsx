@@ -114,27 +114,6 @@ export default function Hero() {
             See the work
           </GlowButton>
         </motion.div>
-
-        {/* Guarantee one-liner directly below the primary CTA — highest-leverage trust placement */}
-        <motion.p
-          variants={FADE_UP}
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '9px',
-            fontFamily: 'var(--font-body), sans-serif',
-            fontSize: '13px',
-            lineHeight: 1.5,
-            color: 'var(--ink-faint)',
-            margin: '-12px 0 0',
-            textAlign: 'center',
-            flexWrap: 'wrap',
-            justifyContent: 'center',
-          }}
-        >
-          <span aria-hidden="true" style={{ color: 'var(--gold)', fontSize: '11px' }}>◆</span>
-          We find at least 3 automation opportunities in your operation, or the audit&apos;s free.
-        </motion.p>
       </motion.div>
     </section>
   )
