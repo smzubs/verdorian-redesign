@@ -409,10 +409,10 @@ html {
    cyan, never a colored tint. Keep ≤ ~6 glass surfaces visible at once (GPU).
    ════════════════════════════════════════════════════════════════ */
 :root {
-  --glass-fill:        rgba(252, 250, 244, 0.64);   /* warm cream-frosted */
-  --glass-fill-deep:   rgba(241, 234, 219, 0.72);   /* deeper warm glass */
-  --glass-border:      rgba(196, 154, 10, 0.14);
-  --glass-border-hover: rgba(196, 154, 10, 0.34);
+  --glass-fill:        rgba(253, 251, 246, 0.58);   /* warm cream-frosted, lets the stage show through */
+  --glass-fill-deep:   rgba(248, 243, 233, 0.66);   /* deeper warm glass */
+  --glass-border:      rgba(255, 255, 255, 0.55);   /* luminous light edge (scientificquran-style) */
+  --glass-border-hover: rgba(196, 154, 10, 0.42);   /* warms to gold on hover */
   --glass-ambient: radial-gradient(ellipse 72% 54% at 82% -8%, rgba(196, 154, 10, 0.09) 0%, transparent 68%);
   --glass-shadow:
     0 1px 0 rgba(255, 255, 255, 0.64) inset,
@@ -432,10 +432,10 @@ html {
   position: relative;
   isolation: isolate;
   background: var(--glass-fill);
-  -webkit-backdrop-filter: blur(18px) saturate(1.18);
-          backdrop-filter: blur(18px) saturate(1.18);
+  -webkit-backdrop-filter: blur(22px) saturate(1.4);
+          backdrop-filter: blur(22px) saturate(1.4);
   border: 1px solid var(--glass-border);
-  border-radius: 8px;
+  border-radius: 16px;
   box-shadow: var(--glass-shadow);
   transform: translateZ(0);
   transition:
@@ -472,7 +472,27 @@ html {
 .glass-card:hover::before { opacity: 1; }
 
 /* Deeper warm glass variant (panels / larger surfaces) */
-.glass-panel { background: var(--glass-fill-deep); border-radius: 12px; }
+.glass-panel { background: var(--glass-fill-deep); border-radius: 20px; }
+
+/* GLASS STAGE — warm depth behind glass-card sections so the frost actually reads
+   (the light-theme equivalent of scientificquran's dark cosmos). Keeps our ivory/gold palette. */
+.glass-stage {
+  position: relative;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(196, 154, 10, 0.10) 0%, transparent 60%),
+    radial-gradient(ellipse 70% 50% at 85% 110%, rgba(105, 115, 90, 0.06) 0%, transparent 60%),
+    linear-gradient(180deg, var(--paper-deep) 0%, #ECE3D2 100%);
+}
+.glass-stage::before {        /* soft floating gold bloom, GPU-cheap, behind cards */
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse 50% 40% at 50% 42%, rgba(196, 154, 10, 0.07) 0%, transparent 70%);
+  filter: blur(40px);
+  z-index: 0;
+}
+.glass-stage > * { position: relative; z-index: 1; }
 
 /* Per-tier ambient temperature (Services 3-tier ladder) — all warm, no cyan */
 .glass-amber::before { background: radial-gradient(ellipse 72% 54% at 82% -8%, rgba(196, 154, 10, 0.10) 0%, transparent 68%); }
@@ -486,7 +506,7 @@ html {
   top: 0; left: 0;
   height: 2px;
   width: 100%;
-  border-radius: 8px 8px 0 0;
+  border-radius: 16px 16px 0 0;
   background: linear-gradient(to right, var(--gold), var(--gold-bright));
   transform: scaleX(0);
   transform-origin: left;
@@ -500,15 +520,15 @@ html {
 .glass-mock {
   position: relative;
   background: var(--glass-fill);
-  -webkit-backdrop-filter: blur(14px) saturate(1.15);
-          backdrop-filter: blur(14px) saturate(1.15);
+  -webkit-backdrop-filter: blur(18px) saturate(1.3);
+          backdrop-filter: blur(18px) saturate(1.3);
   border: 1px solid var(--glass-border);
-  border-radius: 8px;
+  border-radius: 16px;
   box-shadow: var(--glass-shadow);
   transform: translateZ(0);
   transition: transform 0.45s var(--ease-prospectus), box-shadow 0.4s var(--ease-prospectus);
 }
-.glass-mock .mock-bar { background: var(--glass-fill-deep); border-radius: 8px 8px 0 0; }
+.glass-mock .mock-bar { background: var(--glass-fill-deep); border-radius: 16px 16px 0 0; }
 
 /* Section-level gold ambient behind a figure (no card border) */
 .figure-halo { position: relative; }

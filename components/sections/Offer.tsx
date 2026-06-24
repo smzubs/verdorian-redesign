@@ -2,7 +2,6 @@
 
 import React from 'react'
 import { motion } from 'framer-motion'
-import { GlassCard } from '@/components/ui/GlassCard'
 import { GlowButton } from '@/components/ui/GlowButton'
 import { FADE_UP, STAGGER_CONTAINER } from '@/lib/motion'
 import { scrollToSection } from '@/lib/utils'
@@ -12,10 +11,10 @@ export default function Offer() {
     <section
       id="offer"
       aria-label="Start with a $497 audit"
+      className="glass-stage"
       style={{
         paddingTop: '120px',
         paddingBottom: '120px',
-        background: 'var(--paper-deep)',
         borderTop: '1px solid var(--rule-strong)',
       }}
     >
@@ -37,7 +36,8 @@ export default function Offer() {
           viewport={{ once: true, margin: '-80px' }}
           style={{ display: 'flex', flexDirection: 'column', gap: '0' }}
         >
-          <GlassCard style={{ padding: '0' }}>
+          <div className="glass-card glass-panel" style={{ position: 'relative' }}>
+            <span className="glass-topline" aria-hidden="true" />
             <div style={{ padding: '56px 52px' }}>
               <motion.div variants={FADE_UP} style={{ display: 'flex', flexDirection: 'column', gap: '28px' }}>
 
@@ -139,7 +139,7 @@ export default function Offer() {
 
               </motion.div>
             </div>
-          </GlassCard>
+          </div>
         </motion.div>
       </div>
     </section>

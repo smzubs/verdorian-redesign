@@ -780,10 +780,10 @@ export default function Products() {
     <section
       id="products"
       aria-label="Our Work — Four systems, running in the real world"
+      className="glass-stage"
       style={{
         paddingTop: '120px',
         paddingBottom: '120px',
-        background: 'var(--paper)',
         borderTop: '1px solid var(--rule-strong)',
       }}
     >

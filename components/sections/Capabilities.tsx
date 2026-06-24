@@ -181,7 +181,7 @@ const SERVICES: ServiceCard[] = [
 ]
 
 /* ──────────────────────────────────────────────────────────────────────────
-   CARD — paper plate, hairline grid, hover: gold top-rule draw + 1px lift.
+   CARD — frosted glass tile, gold topline draws in on hover, spring lift.
    ────────────────────────────────────────────────────────────────────────── */
 
 function CapabilityCard({ card, index }: { card: ServiceCard; index: number }) {
@@ -192,7 +192,8 @@ function CapabilityCard({ card, index }: { card: ServiceCard; index: number }) {
     <motion.article
       custom={index}
       variants={CARD_ENTRANCE}
-      className="cap-card"
+      className="glass-card cap-card"
+      whileHover={{ y: -4, transition: { type: 'spring', stiffness: 300, damping: 24 } }}
       onMouseEnter={() => setActive(true)}
       onMouseLeave={() => setActive(false)}
       onFocus={() => setActive(true)}
@@ -200,52 +201,15 @@ function CapabilityCard({ card, index }: { card: ServiceCard; index: number }) {
       tabIndex={0}
       aria-label={`Service: ${card.name}`}
       style={{
-        position: 'relative',
         display: 'flex',
         flexDirection: 'column',
-        background: 'var(--paper-bright)',
-        border: '1px solid var(--rule-strong)',
-        borderRadius: 0,
         padding: '32px 28px 28px',
-        transform: active ? 'translateY(-1px)' : 'translateY(0)',
-        borderColor: active ? 'rgba(196,154,10,0.28)' : 'var(--rule-strong)',
-        transition:
-          'transform 0.4s var(--ease-prospectus), border-color 0.4s var(--ease-prospectus), box-shadow 0.4s var(--ease-prospectus)',
-        boxShadow: active
-          ? '0 1px 2px rgba(26,23,20,0.04), 0 24px 48px -24px rgba(26,23,20,0.18)'
-          : 'var(--shadow-card)',
         outline: 'none',
         cursor: 'default',
       }}
     >
-      {/* Gold top-rule: scaleX 0 → 1 on hover, left origin */}
-      <span
-        aria-hidden="true"
-        style={{
-          position: 'absolute',
-          top: 0, left: 0,
-          height: '2px', width: '100%',
-          background: 'linear-gradient(to right, var(--gold), var(--gold-bright))',
-          transform: active ? 'scaleX(1)' : 'scaleX(0)',
-          transformOrigin: 'left',
-          transition: 'transform 0.45s var(--ease-prospectus)',
-          pointerEvents: 'none',
-        }}
-      />
-
-      {/* Subtle gold ambient — top-right corner glow */}
-      <span
-        aria-hidden="true"
-        style={{
-          position: 'absolute',
-          inset: 0,
-          pointerEvents: 'none',
-          background:
-            'radial-gradient(ellipse 70% 55% at 95% -8%, rgba(196,154,10,0.07) 0%, transparent 65%)',
-          opacity: active ? 1 : 0.4,
-          transition: 'opacity 0.4s var(--ease-prospectus)',
-        }}
-      />
+      {/* Gold top-rule: scaleX 0 → 1 on hover via .glass-topline CSS */}
+      <span className="glass-topline" aria-hidden="true" />
 
       {/* Header: mark + engraved numeral */}
       <div
@@ -341,7 +305,7 @@ function CapabilityCard({ card, index }: { card: ServiceCard; index: number }) {
 }
 
 /* ──────────────────────────────────────────────────────────────────────────
-   ROOT — flat 3-col ledger grid, no group headers, no specialty wrapper.
+   ROOT — glass-stage backdrop, floating 3-col card grid (3→2→1).
    ────────────────────────────────────────────────────────────────────────── */
 
 export default function Capabilities() {
@@ -349,31 +313,25 @@ export default function Capabilities() {
     <section
       id="capabilities"
       aria-label="What we do — services"
+      className="glass-stage"
       style={{
         paddingTop: '140px',
         paddingBottom: '140px',
-        background: 'var(--paper)',
         borderTop: '1px solid var(--rule-strong)',
       }}
     >
       <style>{`
-        /* Ledger grid — shared hairlines, no doubled borders */
-        .cap-grid {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          border-top: 1px solid var(--rule-strong);
-          border-left: 1px solid var(--rule-strong);
-        }
-        .cap-grid > .cap-card {
-          border-top:  0 !important;
-          border-left: 0 !important;
-          border-radius: 0;
-        }
-
         /* Focus ring — inset gold */
         .cap-card:focus-visible {
           outline: 2px solid var(--gold);
-          outline-offset: -2px;
+          outline-offset: 3px;
+        }
+
+        /* Floating card grid — 3 → 2 → 1 */
+        .cap-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 22px;
         }
 
         /* Responsive */
@@ -388,11 +346,11 @@ export default function Capabilities() {
           .cap-card { padding: 24px 18px 20px !important; }
         }
 
-        /* Reduced motion */
+        /* Reduced motion — suppress spring lift; topline already frozen by globals.css */
         @media (prefers-reduced-motion: reduce) {
           .cap-card {
             transform: none !important;
-            transition: border-color 0.01ms !important;
+            transition: border-color 0.01ms, box-shadow 0.01ms !important;
           }
         }
       `}</style>
@@ -416,7 +374,7 @@ export default function Capabilities() {
             accent="and have shipped."
           />
 
-          {/* Flat 6-card ledger grid */}
+          {/* Floating 6-card glass grid */}
           <motion.div
             className="cap-grid"
             variants={STAGGER_CONTAINER}

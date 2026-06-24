@@ -54,21 +54,18 @@ export default function WhyChooseUs() {
     <section
       id="why-us"
       aria-label="Why work with us"
+      className="glass-stage"
       style={{
         paddingTop: '140px',
         paddingBottom: '140px',
-        background: 'var(--paper)',
         borderTop: '1px solid var(--rule-strong)',
       }}
     >
       {/* Scoped responsive overrides — mobile-first, no horizontal scroll */}
       <style>{`
         @media (max-width: 767px) {
-          .why-container { padding-left: 20px !important; padding-right: 20px !important; }
-          .why-row      { grid-template-columns: 1fr !important; gap: 14px !important; padding: 32px 0 !important; }
-          .why-numeral  { font-size: 46px !important; }
-        }
-        @media (max-width: 480px) {
+          .why-container  { padding-left: 20px !important; padding-right: 20px !important; }
+          .why-cards      { grid-template-columns: 1fr !important; gap: 16px !important; }
           .why-trust-strip { gap: 10px !important; }
         }
       `}</style>
@@ -101,87 +98,85 @@ export default function WhyChooseUs() {
             aria-hidden="true"
           />
 
-          {/* ── Numbered ledger — ruled rows, engraved numeral column ── */}
+          {/* ── Three glass cards — 3-col desktop, 1-col mobile ── */}
           <div
-            style={{ borderTop: '1px solid var(--rule-strong)' }}
+            className="why-cards"
             role="list"
             aria-label="Three reasons to work with us"
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(3, 1fr)',
+              gap: '22px',
+            }}
           >
             {REASONS.map((r, i) => (
-              <motion.div
+              <motion.article
                 key={i}
                 variants={{
-                  hidden: { opacity: 0, y: 16 },
+                  hidden: { opacity: 0, y: 20 },
                   visible: {
                     opacity: 1,
                     y: 0,
                     transition: {
-                      duration: 0.45,
-                      delay: i * 0.10,
+                      duration: 0.5,
+                      delay: i * 0.12,
                       ease: [0.22, 1, 0.36, 1],
                     },
                   },
                 }}
-                whileHover={{ y: -1 }}
-                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                className="why-row"
+                whileHover={{ y: -4 }}
+                transition={{ type: 'spring', stiffness: 260, damping: 24 }}
+                className="glass-card"
                 role="listitem"
-                style={{
-                  display: 'grid',
-                  gridTemplateColumns: '160px 1fr',
-                  gap: '40px',
-                  alignItems: 'start',
-                  padding: '40px 0',
-                  borderBottom: '1px solid var(--rule)',
-                }}
+                style={{ padding: '32px 30px 30px' }}
               >
-                {/* Engraved gold numeral */}
-                <motion.span
-                  variants={FADE_IN}
-                  className="engraved why-numeral"
+                {/* Gold draw-in topline — first child, absolutely positioned */}
+                <span className="glass-topline" aria-hidden="true" />
+
+                {/* Engraved numeral */}
+                <span
+                  className="engraved"
                   style={{
-                    fontSize: '64px',
+                    display: 'block',
+                    fontSize: '52px',
                     lineHeight: 0.9,
                     fontStyle: 'italic',
                     userSelect: 'none',
-                    paddingTop: '4px',
+                    marginBottom: '22px',
                   }}
                   aria-hidden="true"
                 >
                   {String(i + 1).padStart(2, '0')}
-                </motion.span>
+                </span>
 
-                {/* Reason text */}
-                <div>
-                  <h3
-                    style={{
-                      fontFamily: 'var(--font-display), serif',
-                      fontWeight: 600,
-                      fontSize: 'clamp(20px, 2.4vw, 26px)',
-                      color: 'var(--ink)',
-                      margin: '0 0 14px',
-                      letterSpacing: 'var(--track-h3)',
-                      lineHeight: 1.18,
-                      maxWidth: '26ch',
-                    }}
-                  >
-                    {r.title}
-                  </h3>
-                  <p
-                    style={{
-                      fontFamily: 'var(--font-body), sans-serif',
-                      fontSize: '16px',
-                      color: 'var(--ink-soft)',
-                      lineHeight: 1.72,
-                      margin: 0,
-                      maxWidth: '560px',
-                      fontStyle: 'normal',
-                    }}
-                  >
-                    {r.desc}
-                  </p>
-                </div>
-              </motion.div>
+                {/* Headline */}
+                <h3
+                  style={{
+                    fontFamily: 'var(--font-display), serif',
+                    fontWeight: 600,
+                    fontSize: 'clamp(18px, 2vw, 22px)',
+                    color: 'var(--ink)',
+                    margin: '0 0 14px',
+                    letterSpacing: 'var(--track-h3)',
+                    lineHeight: 1.22,
+                  }}
+                >
+                  {r.title}
+                </h3>
+
+                {/* Body with italic conviction clause */}
+                <p
+                  style={{
+                    fontFamily: 'var(--font-body), sans-serif',
+                    fontSize: '15px',
+                    color: 'var(--ink-soft)',
+                    lineHeight: 1.74,
+                    margin: 0,
+                  }}
+                >
+                  {r.desc}
+                </p>
+              </motion.article>
             ))}
           </div>
 
