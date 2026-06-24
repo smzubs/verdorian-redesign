@@ -612,6 +612,88 @@ html {
   pointer-events: none;
 }
 
+/* ════════════════════════════════════════════════════════════════
+   WORKFLOW / COMMAND-CENTER VISUAL LAYER — shared primitives for the
+   hero flow + before/after lanes + service-card mini-diagrams.
+   Light theme: blue (--gold = #1877F2) glow on glass. Keep GPU-cheap.
+   ════════════════════════════════════════════════════════════════ */
+
+/* Animated dashed connector (SVG stroke-dashoffset travels along the path) */
+@keyframes vdFlow {
+  to { stroke-dashoffset: -16; }
+}
+/* Status-dot breathing pulse */
+@keyframes vdPulse {
+  0%, 100% { opacity: 1;   transform: scale(1); }
+  50%      { opacity: 0.45; transform: scale(0.82); }
+}
+/* Soft halo breathing for active nodes */
+@keyframes vdGlow {
+  0%, 100% { opacity: 0.55; }
+  50%      { opacity: 1; }
+}
+/* Gentle vertical float for free-standing nodes */
+@keyframes vdFloat {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-5px); }
+}
+
+/* A glass "node" chip — a labelled step in a workflow diagram */
+.vd-node {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 13px;
+  border-radius: 13px;
+  background: rgba(255, 255, 255, 0.58);
+  -webkit-backdrop-filter: blur(16px) saturate(1.5);
+          backdrop-filter: blur(16px) saturate(1.5);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.8) inset,
+    0 6px 18px -8px rgba(31, 64, 122, 0.28);
+  font-family: var(--font-body), sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink);
+  white-space: nowrap;
+}
+.vd-node-accent {
+  border-color: rgba(24, 119, 242, 0.45);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.85) inset,
+    0 0 0 1px rgba(24, 119, 242, 0.16) inset,
+    0 8px 22px -8px rgba(24, 119, 242, 0.42);
+}
+
+/* Glowing status dot */
+.vd-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 0 3px rgba(24, 119, 242, 0.18), 0 0 10px 1px rgba(24, 119, 242, 0.55);
+  flex-shrink: 0;
+  animation: vdPulse 2.4s var(--ease-glass) infinite;
+}
+.vd-dot-done { background: var(--green-pass); box-shadow: 0 0 0 3px rgba(47, 93, 58, 0.16), 0 0 10px 1px rgba(47, 93, 58, 0.45); }
+
+/* SVG connector stroke (apply to <path>/<line>) */
+.vd-line {
+  fill: none;
+  stroke: rgba(24, 119, 242, 0.5);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-dasharray: 5 6;
+  animation: vdFlow 0.9s linear infinite;
+}
+.vd-line-static { stroke-dasharray: none; animation: none; stroke: var(--rule-strong); }
+
+@media (prefers-reduced-motion: reduce) {
+  .vd-dot, .vd-line, .vd-node { animation: none !important; }
+}
+
 /* ─── TYPOGRAPHY ACTIVATION ── */
 h1, h2, h3, .display, .hero-h1 {
   font-family: var(--font-display), Georgia, serif;

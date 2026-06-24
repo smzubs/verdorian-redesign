@@ -1,10 +1,12 @@
 import Nav from '@/components/sections/Nav'
 import Hero from '@/components/sections/Hero'
+import PainSection from '@/components/sections/PainSection'
 import Capabilities from '@/components/sections/Capabilities'
-import WhyChooseUs from '@/components/sections/WhyChooseUs'
-import HowIBuild from '@/components/sections/HowIBuild'
-import Products from '@/components/sections/Products'
-import Offer from '@/components/sections/Offer'
+import BusinessVsIndividual from '@/components/sections/BusinessVsIndividual'
+import BeforeAfter from '@/components/sections/BeforeAfter'
+import ROISection from '@/components/sections/ROISection'
+import HowItWorks from '@/components/sections/HowItWorks'
+import Trust from '@/components/sections/Trust'
 import Contact from '@/components/sections/Contact'
 import Footer from '@/components/sections/Footer'
 
@@ -17,12 +19,14 @@ export default function Home() {
       <main id="main-content">
         <Nav />
         <Hero />
-        {/* rapidloop-style flow, what-we-do first: promise → what we do → why us → how it works → our work (proof) → start → talk */}
+        {/* Clarity-first AI-automation flow: pain → what we automate → who it's for → before/after → ROI → how → trust → audit */}
+        <PainSection />
         <Capabilities />
-        <WhyChooseUs />
-        <HowIBuild />
-        <Products />
-        <Offer />
+        <BusinessVsIndividual />
+        <BeforeAfter />
+        <ROISection />
+        <HowItWorks />
+        <Trust />
         <Contact />
         <Footer />
       </main>

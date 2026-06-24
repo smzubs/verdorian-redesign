@@ -4,10 +4,10 @@ import React from 'react'
 import { scrollToSection } from '@/lib/utils'
 
 const NAV_LINKS = [
-  { label: 'Services', id: 'services' },
-  { label: 'Work', id: 'products' },
-  { label: 'How We Build', id: 'how-i-build' },
-  { label: 'About', id: 'about' },
+  { label: 'Solutions', id: 'automate' },
+  { label: 'For Business', id: 'for-business' },
+  { label: 'For Individuals', id: 'for-individuals' },
+  { label: 'How It Works', id: 'how-it-works' },
   { label: 'Contact', id: 'contact' },
 ]
 
@@ -68,13 +68,25 @@ export default function Footer() {
           <span
             style={{
               fontFamily: 'var(--font-body), sans-serif',
+              fontSize: '11px',
+              fontWeight: 600,
+              textTransform: 'uppercase',
+              letterSpacing: '0.22em',
+              color: 'var(--gold)',
+            }}
+          >
+            AI Automation Studio
+          </span>
+          <span
+            style={{
+              fontFamily: 'var(--font-body), sans-serif',
               fontSize: '13px',
               color: 'rgba(247, 243, 234, 0.42)',
               lineHeight: 1.6,
-              maxWidth: '260px',
+              maxWidth: '280px',
             }}
           >
-            Indie software studio. Web platforms, software automation, and iOS apps — built and shipped by one team.
+            Custom AI workflows, agents, dashboards, and internal tools — built around the work you already do.
           </span>
         </div>
 

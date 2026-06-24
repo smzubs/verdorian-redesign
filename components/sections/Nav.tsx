@@ -6,13 +6,13 @@ import { GlowButton } from '@/components/ui/GlowButton'
 import { scrollToSection } from '@/lib/utils'
 
 const NAV_LINKS = [
-  { label: 'Services', id: 'capabilities' },
-  { label: 'How', id: 'how-i-build' },
-  { label: 'Work', id: 'products' },
-  { label: 'Contact', id: 'contact' },
+  { label: 'Solutions', id: 'automate' },
+  { label: 'For Business', id: 'for-business' },
+  { label: 'For Individuals', id: 'for-individuals' },
+  { label: 'How It Works', id: 'how-it-works' },
 ]
 
-const SECTION_IDS = ['hero', 'capabilities', 'why-us', 'how-i-build', 'products', 'contact']
+const SECTION_IDS = ['hero', 'automate', 'solutions', 'how-it-works', 'trust', 'contact']
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false)
@@ -187,7 +187,7 @@ export default function Nav() {
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexShrink: 0 }}>
             <div className="hidden md:block">
               <GlowButton variant="ink" size="sm" onClick={() => scrollToSection('contact')}>
-                LETS TALK!
+                Get Free Automation Audit
               </GlowButton>
             </div>
 
@@ -288,7 +288,7 @@ export default function Nav() {
               style={{ marginTop: '24px' }}
             >
               <GlowButton variant="ink" size="lg" onClick={() => handleNavLink('contact')}>
-                LETS TALK!
+                Get Free Automation Audit
               </GlowButton>
             </motion.div>
           </motion.div>
