@@ -12,14 +12,14 @@ interface FAQItem {
 
 const FAQ_ITEMS: FAQItem[] = [
   {
-    question: "We’re not a tech company — is our work even automatable?",
+    question: "We’re not a tech company — can our work even be automated?",
     answer:
-      "That’s most of who we build for. If your work runs on forms, spreadsheets, approvals, inspections, or documents, it’s a strong candidate. The $497 audit tells you exactly which parts pay off first.",
+      "That’s most of who we build for. If your work runs on forms, spreadsheets, approvals, or documents, it’s a strong candidate. The $497 audit tells you exactly which parts pay off first.",
   },
   {
     question: "How is this different from buying a tool or wiring up Zapier?",
     answer:
-      "Off-the-shelf tools cover the easy 80% and stall on the part that matters — the regulatory edge cases, the real-world exceptions, the reliability an audit depends on. We build production systems for that hard 20%, and we stay on to keep them working.",
+      "Off-the-shelf tools cover the easy 80% and stall on the part that matters — the workflow exceptions, the edge cases, the reliability that doesn’t come from a no-code template. We build production systems for that hard 20%, and we stay on to keep them working.",
   },
   {
     question: "What does it cost, really?",
@@ -27,9 +27,9 @@ const FAQ_ITEMS: FAQItem[] = [
       "The audit is $497. Most buildouts run $1,500–$5,000 depending on scope. Ongoing care is monthly and optional. You see the full plan and ROI before any build starts.",
   },
   {
-    question: "How long until we see something?",
+    question: "How fast do we see something?",
     answer:
-      "The audit lands fast, and frontier ai agents compress the foundational build from months into days — so you’re using a working system in weeks, not quarters.",
+      "The audit lands fast. Frontier ai agents compress the build from months into days — so you’re using a working system in weeks, not quarters.",
   },
 ]
 

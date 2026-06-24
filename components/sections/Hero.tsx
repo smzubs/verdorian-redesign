@@ -1,12 +1,11 @@
 'use client'
 
-import React from 'react'
 import { motion } from 'framer-motion'
 import { GlowButton } from '@/components/ui/GlowButton'
-import { QRSafeProMock } from '@/components/mockups/QRSafeProMock'
+import { QRSafeProMockAnimated } from '@/components/mockups/QRSafeProMockAnimated'
 import { VoicePencilMock } from '@/components/mockups/VoicePencilMock'
 import { FADE_UP, STAGGER_CONTAINER } from '@/lib/motion'
-import { scrollToSection, STATS } from '@/lib/utils'
+import { scrollToSection } from '@/lib/utils'
 
 export default function Hero() {
   return (
@@ -17,8 +16,8 @@ export default function Hero() {
         position: 'relative',
         overflow: 'hidden',
         background: 'var(--paper)',
-        paddingTop: '128px',
-        paddingBottom: '96px',
+        paddingTop: '144px',
+        paddingBottom: '112px',
       }}
     >
       <style>{`
@@ -63,7 +62,7 @@ export default function Hero() {
         {/* Eyebrow */}
         <motion.div variants={FADE_UP} style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
           <span aria-hidden="true" style={{ width: '40px', height: '1px', background: 'var(--rule-strong)' }} />
-          <span className="eyebrow">Production Automation</span>
+          <span className="eyebrow">AI Automation Studio</span>
           <span aria-hidden="true" style={{ width: '40px', height: '1px', background: 'var(--rule-strong)' }} />
         </motion.div>
 
@@ -73,18 +72,18 @@ export default function Hero() {
           className="hero-h1"
           style={{
             fontFamily: 'var(--font-display), Georgia, serif',
-            fontWeight: 500,
+            fontWeight: 400,
             fontSize: 'var(--t-hero)',
-            lineHeight: 1.04,
-            letterSpacing: 'var(--track-hero)',
+            lineHeight: 1.02,
+            letterSpacing: '-0.024em',
             margin: 0,
             color: 'var(--ink)',
-            maxWidth: '15ch',
+            maxWidth: '14ch',
           }}
-          aria-label="We build automation that survives an audit."
+          aria-label="Automation you'll actually use."
         >
-          We build automation that{' '}
-          <em className="gold-shimmer">survives an audit.</em>
+          Automation you&apos;ll{' '}
+          <em className="gold-shimmer">actually use.</em>
         </motion.h1>
 
         {/* Subtitle */}
@@ -93,16 +92,16 @@ export default function Hero() {
           style={{
             fontFamily: 'var(--font-body), sans-serif',
             fontWeight: 400,
-            fontSize: '18px',
+            fontSize: '17px',
             color: 'var(--ink-soft)',
-            maxWidth: '620px',
-            lineHeight: 1.65,
+            maxWidth: '56ch',
+            lineHeight: 1.7,
             margin: 0,
           }}
         >
-          We build production web platforms, software, and iOS apps that take over the repetitive,
-          high-stakes work — inspections, compliance, documentation, approvals — and keep running
-          long after launch.
+          We design, build, and ship production ai automation for the repetitive work that runs
+          your business — data entry, reports, approvals, scheduling, documents, follow-ups —
+          for teams of any size, and for people who just want their time back.
         </motion.p>
 
         {/* CTAs */}
@@ -119,57 +118,26 @@ export default function Hero() {
           </GlowButton>
         </motion.div>
 
-        {/* Ruled stat row */}
-        <motion.div
+        {/* Guarantee one-liner directly below the primary CTA — highest-leverage trust placement */}
+        <motion.p
           variants={FADE_UP}
-          className="hero-stats"
           style={{
             display: 'flex',
-            alignItems: 'stretch',
+            alignItems: 'center',
+            gap: '9px',
+            fontFamily: 'var(--font-body), sans-serif',
+            fontSize: '13px',
+            lineHeight: 1.5,
+            color: 'var(--ink-faint)',
+            margin: '-12px 0 0',
+            textAlign: 'center',
+            flexWrap: 'wrap',
             justifyContent: 'center',
-            gap: '0',
-            width: '100%',
-            maxWidth: '760px',
-            marginTop: '28px',
-            borderTop: '1px solid var(--rule-strong)',
-            borderBottom: '1px solid var(--rule-strong)',
           }}
         >
-          {STATS.map((stat, i) => (
-            <React.Fragment key={stat.label}>
-              {i > 0 && <span className="rule-v" aria-hidden="true" />}
-              <div
-                className="hero-stat"
-                style={{ flex: 1, padding: '24px 16px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px' }}
-              >
-                <span
-                  style={{
-                    fontFamily: 'var(--font-display), serif',
-                    fontWeight: 600,
-                    fontStyle: 'italic',
-                    fontSize: stat.value.length > 4 ? '20px' : '40px',
-                    lineHeight: 1,
-                    color: 'var(--gold)',
-                  }}
-                >
-                  {stat.value}
-                </span>
-                <span
-                  style={{
-                    fontFamily: 'var(--font-body), sans-serif',
-                    fontSize: '11px',
-                    fontWeight: 600,
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.18em',
-                    color: 'var(--ink-faint)',
-                  }}
-                >
-                  {stat.label}
-                </span>
-              </div>
-            </React.Fragment>
-          ))}
-        </motion.div>
+          <span aria-hidden="true" style={{ color: 'var(--gold)', fontSize: '11px' }}>◆</span>
+          We find at least 3 automation opportunities in your operation, or the audit&apos;s free.
+        </motion.p>
 
         {/* Device composition — live product UI as proof, on a gold ambient swoosh */}
         <motion.div
@@ -179,7 +147,7 @@ export default function Hero() {
         >
           <div className="hero-devices" style={{ position: 'relative', zIndex: 1 }}>
             <div className="hero-browser" style={{ maxWidth: '720px', margin: '0 auto' }}>
-              <QRSafeProMock chrome />
+              <QRSafeProMockAnimated chrome />
             </div>
             <div className="hero-phone" style={{ position: 'absolute', right: 0, bottom: '-28px', width: '204px', zIndex: 2 }}>
               <VoicePencilMock />

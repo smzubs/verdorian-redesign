@@ -8,15 +8,15 @@ import { FADE_UP, STAGGER_CONTAINER } from '@/lib/motion'
 const COST_TILES = [
   {
     title: "Hours that don’t come back",
-    body: 'Repetitive admin that scales with headcount instead of software.',
+    body: "Repetitive admin that scales with headcount, not software — every new person means more manual work, not less.",
   },
   {
-    title: 'Audit panic',
-    body: 'Records scattered across spreadsheets and inboxes when you need them most.',
+    title: "Work that only runs when one person is in",
+    body: "Process trapped in someone’s head. When they’re out, the work stops — and nobody else can pick it up.",
   },
   {
-    title: 'Work that drifts',
-    body: 'Processes that only run when the one person who knows them is in.',
+    title: "The slow leak",
+    body: "Errors, dropped handoffs, things re-done. It never shows up as one big bill — just slow weeks and work nobody has time to fix.",
   },
 ]
 
@@ -88,10 +88,10 @@ export default function Problem() {
               }}
             >
               The hours go to re-keying the same data, chasing approvals across inboxes, and
-              rebuilding the paper trail when an audit lands. It rarely shows up as one big bill
-              — it shows up as slow weeks, missed records, and work nobody has time to fix.
-              Operations is the single most-automated function in business for a reason: it&apos;s
-              where the leak is.
+              rebuilding records that should have been filed automatically. It rarely shows up
+              as one big bill — it shows up as slow weeks, missed handoffs, and work nobody
+              has time to fix. Operations is the most-automated function in business for a
+              reason: it&apos;s where the leak is.
             </motion.p>
           </div>
 

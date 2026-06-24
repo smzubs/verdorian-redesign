@@ -401,6 +401,158 @@ html {
 }
 .gold-link:hover::after { transform: scaleX(1); }
 
+/* ════════════════════════════════════════════════════════════════
+   GLASS LAYER — "fenestration" cut into the paper dossier.
+   Glass = live / offered (Services, Product plates, Nav).
+   Paper (.plate) = settled / authoritative (Why Choose Us, Capabilities).
+   Strict tokens only. Radius capped 8–12px. Warm cream, gold ambient — never
+   cyan, never a colored tint. Keep ≤ ~6 glass surfaces visible at once (GPU).
+   ════════════════════════════════════════════════════════════════ */
+:root {
+  --glass-fill:        rgba(252, 250, 244, 0.64);   /* warm cream-frosted */
+  --glass-fill-deep:   rgba(241, 234, 219, 0.72);   /* deeper warm glass */
+  --glass-border:      rgba(196, 154, 10, 0.14);
+  --glass-border-hover: rgba(196, 154, 10, 0.34);
+  --glass-ambient: radial-gradient(ellipse 72% 54% at 82% -8%, rgba(196, 154, 10, 0.09) 0%, transparent 68%);
+  --glass-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.64) inset,
+    0 1px 3px rgba(26, 23, 20, 0.04),
+    0 8px 24px -8px rgba(26, 23, 20, 0.12),
+    0 24px 64px -24px rgba(26, 23, 20, 0.18);
+  --glass-shadow-hover:
+    0 1px 0 rgba(255, 255, 255, 0.72) inset,
+    0 1px 3px rgba(26, 23, 20, 0.05),
+    0 12px 32px -8px rgba(26, 23, 20, 0.16),
+    0 32px 80px -24px rgba(26, 23, 20, 0.24),
+    0 0 0 1px rgba(196, 154, 10, 0.10) inset;
+}
+
+/* Frosted glass card — the offered/live surface */
+.glass-card {
+  position: relative;
+  isolation: isolate;
+  background: var(--glass-fill);
+  -webkit-backdrop-filter: blur(18px) saturate(1.18);
+          backdrop-filter: blur(18px) saturate(1.18);
+  border: 1px solid var(--glass-border);
+  border-radius: 8px;
+  box-shadow: var(--glass-shadow);
+  transform: translateZ(0);
+  transition:
+    transform 0.45s var(--ease-prospectus),
+    border-color 0.4s var(--ease-prospectus),
+    box-shadow 0.4s var(--ease-prospectus);
+}
+.glass-card::before {            /* gold ambient halo (upper-right) */
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: var(--glass-ambient);
+  opacity: 0.6;
+  transition: opacity 0.4s var(--ease-prospectus);
+  z-index: 0;
+}
+.glass-card::after {             /* 1px inner top highlight — the "frosted" tell */
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.44) 0%, rgba(255, 255, 255, 0) 100%);
+  z-index: 1;
+}
+.glass-card > * { position: relative; z-index: 2; }   /* content above ambient */
+.glass-card:hover {
+  border-color: var(--glass-border-hover);
+  box-shadow: var(--glass-shadow-hover);
+}
+.glass-card:hover::before { opacity: 1; }
+
+/* Deeper warm glass variant (panels / larger surfaces) */
+.glass-panel { background: var(--glass-fill-deep); border-radius: 12px; }
+
+/* Per-tier ambient temperature (Services 3-tier ladder) — all warm, no cyan */
+.glass-amber::before { background: radial-gradient(ellipse 72% 54% at 82% -8%, rgba(196, 154, 10, 0.10) 0%, transparent 68%); }
+.glass-sage::before  { background: radial-gradient(ellipse 72% 54% at 82% -8%, rgba(105, 115, 90, 0.09) 0%, transparent 68%); }
+.glass-care::before  { background: radial-gradient(ellipse 72% 54% at 82% -8%, rgba(90, 84, 76, 0.08) 0%, transparent 68%); }
+.glass-care:hover { border-color: rgba(47, 93, 58, 0.24); }   /* Care = system health */
+
+/* Gold top-rule that draws in on hover (Services / Product plates) */
+.glass-topline {
+  position: absolute;
+  top: 0; left: 0;
+  height: 2px;
+  width: 100%;
+  border-radius: 8px 8px 0 0;
+  background: linear-gradient(to right, var(--gold), var(--gold-bright));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.45s var(--ease-prospectus);
+  z-index: 3;
+  pointer-events: none;
+}
+.glass-card:hover .glass-topline { transform: scaleX(1); }
+
+/* Glass mockup plate (Products figure column) — slightly lighter blur */
+.glass-mock {
+  position: relative;
+  background: var(--glass-fill);
+  -webkit-backdrop-filter: blur(14px) saturate(1.15);
+          backdrop-filter: blur(14px) saturate(1.15);
+  border: 1px solid var(--glass-border);
+  border-radius: 8px;
+  box-shadow: var(--glass-shadow);
+  transform: translateZ(0);
+  transition: transform 0.45s var(--ease-prospectus), box-shadow 0.4s var(--ease-prospectus);
+}
+.glass-mock .mock-bar { background: var(--glass-fill-deep); border-radius: 8px 8px 0 0; }
+
+/* Section-level gold ambient behind a figure (no card border) */
+.figure-halo { position: relative; }
+.figure-halo::before {
+  content: '';
+  position: absolute;
+  inset: -20% -10%;
+  background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(196, 154, 10, 0.07) 0%, transparent 70%);
+  filter: blur(32px);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Nav glass — floating document header, deepens on scroll (data-scrolled) */
+.nav-glass {
+  background: rgba(247, 243, 234, 0.72);
+  -webkit-backdrop-filter: blur(8px) saturate(1.0);
+          backdrop-filter: blur(8px) saturate(1.0);
+  border-bottom: 1px solid var(--rule-strong);
+  transition: backdrop-filter 0.4s var(--ease-prospectus), border-color 0.4s var(--ease-prospectus), background 0.4s var(--ease-prospectus);
+}
+.nav-glass[data-scrolled='true'] {
+  -webkit-backdrop-filter: blur(18px) saturate(1.18);
+          backdrop-filter: blur(18px) saturate(1.18);
+  border-bottom-color: rgba(196, 154, 10, 0.14);
+}
+
+/* Editorial body measure — the single biggest "designed, not templated" tell */
+.prose-measure { max-width: 62ch; }
+
+/* Mid-range GPUs: lighter blur on small screens */
+@media (max-width: 767px) {
+  .glass-card, .nav-glass[data-scrolled='true'] {
+    -webkit-backdrop-filter: blur(12px) saturate(1.12);
+            backdrop-filter: blur(12px) saturate(1.12);
+  }
+}
+
+/* Graceful degradation — no backdrop-filter (older Firefox/Android) */
+@supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+  .glass-card, .glass-mock { background: rgba(252, 250, 244, 0.95); }
+  .nav-glass { background: rgba(247, 243, 234, 0.96); }
+}
+
 /* ─── KEYFRAMES ─────────────────────────────────────────────── */
 /* Gold shimmer for the hero accent word */
 @keyframes goldShimmer {
@@ -445,13 +597,13 @@ p, li, button, a, label, input, textarea {
 
 /* ─── RESPONSIVE SECTION PADDING ── */
 @media (max-width: 767px) {
-  #products, #services, #how-i-build, #about, #contact, #problem, #proof {
+  #products, #services, #how-i-build, #about, #contact, #problem, #proof, #automate {
     padding-top: 80px !important;
     padding-bottom: 80px !important;
   }
 }
 @media (max-width: 390px) {
-  #products, #services, #how-i-build, #about, #contact, #problem, #proof {
+  #products, #services, #how-i-build, #about, #contact, #problem, #proof, #automate {
     padding-top: 64px !important;
     padding-bottom: 64px !important;
   }
@@ -728,4 +880,7 @@ p, li, button, a, label, input, textarea {
   .landing-orb { animation: none !important; }
   .btn-ink::after { display: none !important; }
   .plate:hover { transform: none !important; }
+  .glass-card, .glass-mock { will-change: auto; }
+  .glass-card:hover, .glass-mock:hover { transform: translateZ(0) !important; }
+  .glass-card:hover .glass-topline { transform: scaleX(0) !important; }
 }

@@ -42,11 +42,11 @@ export function SectionHeading({
         variants={FADE_UP}
         style={{
           fontFamily: 'var(--font-display), Georgia, serif',
-          fontWeight: 500,
+          fontWeight: 400,
           fontSize: 'var(--t-h2)',
-          letterSpacing: 'var(--track-h2)',
+          letterSpacing: '-0.014em',
           margin: 0,
-          lineHeight: 1.06,
+          lineHeight: 1.04,
           maxWidth: '18ch',
         }}
       >

@@ -6,14 +6,14 @@ import { GlowButton } from '@/components/ui/GlowButton'
 import { scrollToSection } from '@/lib/utils'
 
 const NAV_LINKS = [
-  { label: 'Services', id: 'services' },
-  { label: 'How We Build', id: 'how-i-build' },
+  { label: 'Services', id: 'capabilities' },
   { label: 'Work', id: 'products' },
+  { label: 'Pricing', id: 'services' },
   { label: 'About', id: 'about' },
   { label: 'Contact', id: 'contact' },
 ]
 
-const SECTION_IDS = ['hero', 'services', 'how-i-build', 'products', 'about', 'contact']
+const SECTION_IDS = ['hero', 'capabilities', 'products', 'services', 'about', 'contact']
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false)
@@ -72,11 +72,11 @@ export default function Nav() {
           left: 0,
           right: 0,
           zIndex: 1000,
-          background: scrolled ? 'rgba(247, 243, 234, 0.92)' : 'rgba(247, 243, 234, 0.55)',
-          borderBottom: scrolled ? '1px solid var(--rule-strong)' : '1px solid transparent',
-          backdropFilter: 'saturate(1.1)',
-          WebkitBackdropFilter: 'saturate(1.1)',
-          transition: 'background 0.4s var(--ease-prospectus), border-color 0.4s var(--ease-prospectus)',
+          background: scrolled ? 'rgba(247, 243, 234, 0.82)' : 'rgba(247, 243, 234, 0.55)',
+          borderBottom: scrolled ? '1px solid rgba(196, 154, 10, 0.18)' : '1px solid transparent',
+          backdropFilter: scrolled ? 'blur(18px) saturate(1.18)' : 'blur(8px) saturate(1.05)',
+          WebkitBackdropFilter: scrolled ? 'blur(18px) saturate(1.18)' : 'blur(8px) saturate(1.05)',
+          transition: 'background 0.4s var(--ease-prospectus), border-color 0.4s var(--ease-prospectus), backdrop-filter 0.4s var(--ease-prospectus)',
         }}
       >
         <div

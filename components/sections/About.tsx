@@ -6,9 +6,9 @@ import { SectionHeading } from '@/components/ui/SectionHeading'
 import { FADE_UP, STAGGER_CONTAINER } from '@/lib/motion'
 
 const PARAGRAPHS = [
-  'For seven years we have lived the work — real-world operations, compliance, and automation across industries. We know the inspections, the documentation, the approvals, and the real risk when processes are manual or slow.',
-  'We saw the same pattern across businesses: teams running on paper and spreadsheets, errors and delays because the process was too slow, and organizations carrying real operational and compliance risk with almost no modern automation.',
-  'Now we build Ai systems that automate exactly those workflows — inspections, documentation, planning, approvals, and compliance — so teams doing the real work can focus on the work, not the manual drudgery. We ship with confidence because we have been the ones who needed these tools. We focus on web platforms and software automation, with iOS apps where they fit.',
+  'For seven years we have lived the work — real-world operations, workflow design, and automation across industries. We have run inspections, managed change orders, captured voice notes, and routed insurance submissions. We know the approvals, the documentation, and the real cost when processes stay manual.',
+  'We saw the same pattern across businesses of every size: teams running on paper and spreadsheets, errors and delays because the process was too slow, and good people spending their best hours on work software should handle.',
+  'Now we build ai systems that automate exactly those workflows — inspections, change orders, voice capture, insurance pipelines, and whatever comes next — so teams can focus on the work that actually moves things forward. We ship with confidence because we have been the ones who needed these tools.',
 ]
 
 export default function About() {
