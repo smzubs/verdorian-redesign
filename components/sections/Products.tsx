@@ -840,7 +840,7 @@ export default function Products() {
         >
           {/* ── Section heading ────────────────────────────────── */}
           <SectionHeading
-            numeral="03"
+            numeral="01"
             eyebrow="WHAT WE'VE SHIPPED"
             lead="Four systems,"
             accent="running in the real world."

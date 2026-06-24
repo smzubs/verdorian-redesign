@@ -99,9 +99,8 @@ export default function Hero() {
             margin: 0,
           }}
         >
-          We design, build, and ship production ai automation for the repetitive work that runs
-          your business — data entry, reports, approvals, scheduling, documents, follow-ups —
-          for teams of any size, and for people who just want their time back.
+          We design, build, and ship the ai automation and software that runs your
+          operation — and we can point to it working.
         </motion.p>
 
         {/* CTAs */}

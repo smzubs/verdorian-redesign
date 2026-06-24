@@ -5,22 +5,29 @@ import { motion } from 'framer-motion'
 import { SectionHeading } from '@/components/ui/SectionHeading'
 import { FADE_UP, STAGGER_CONTAINER } from '@/lib/motion'
 
-const PRINCIPLES = [
+interface Step {
+  numeral: string
+  title: string
+  titleItalic?: boolean
+  body: string
+}
+
+const STEPS: Step[] = [
   {
-    title: 'Ai as force multiplier',
-    desc: 'Frontier ai agents and the latest generative technologies act as a genuine force multiplier. They compress months of foundational work into days — generating structure, code, and documentation at machine speed — while we apply deep operational expertise to the decisions that make automation reliable in real operations.',
+    numeral: '01',
+    title: 'Audit',
+    body: 'We find the highest-ROI automations in how you already work — guaranteed three, or the audit is free.',
   },
   {
-    title: 'Domain moat that matters',
-    desc: '7 years in operations and real-world automation across industries means we catch what the models miss — the operational realities, the workflow exceptions, and the difference between "runs in a demo" and "actually reliable in practice." Our moat is real experience, not theory.',
+    numeral: '02',
+    title: 'Build',
+    body: 'We ship the system that fits your operation, not a template — production software, not a demo.',
   },
   {
-    title: 'Ship fast, validate faster',
-    desc: 'Prototypes in days, real-world testing immediately. We iterate with the teams who will actually use the tools until they fit their workflow like they were always there. No hand-off — we stay until it ships right.',
-  },
-  {
-    title: "Built by someone who's been there",
-    desc: 'Every system starts from painful problems we have lived in real operations. No consulting fluff — just production automation we would have wanted for the workflows we did. We ship what we know works across businesses of all sizes.',
+    numeral: '03',
+    title: 'Care',
+    titleItalic: true,
+    body: 'We stay on: monitor, tune, and add the next automation as you grow.',
   },
 ]
 
@@ -28,321 +35,134 @@ export default function HowIBuild() {
   return (
     <section
       id="how-i-build"
-      aria-label="The Method"
+      aria-label="How it works"
       style={{
-        paddingTop: '140px',
-        paddingBottom: '140px',
+        paddingTop: '120px',
+        paddingBottom: '120px',
         background: 'var(--paper-deep)',
         borderTop: '1px solid var(--rule-strong)',
       }}
     >
       <style>{`
-        @media (max-width: 767px) {
-          .how-container { padding-left: 20px !important; padding-right: 20px !important; }
-          .how-row { grid-template-columns: 1fr !important; gap: 12px !important; }
-          .how-numeral { font-size: 44px !important; }
+        .hiw-steps {
+          display: flex;
+          flex-direction: column;
         }
-        @media (max-width: 560px) {
-          .loop-row { flex-direction: column !important; gap: 20px !important; }
-          .loop-conn { display: none !important; }
+        /* Vertical gold rule between steps — desktop only */
+        .hiw-step + .hiw-step::before {
+          content: '';
+          display: block;
+          height: 1px;
+          background: linear-gradient(to right, var(--gold), rgba(165,122,11,0.0));
+          margin: 0 clamp(20px, 5vw, 40px);
+        }
+        @media (min-width: 680px) {
+          .hiw-steps {
+            flex-direction: row;
+            align-items: stretch;
+          }
+          .hiw-step + .hiw-step::before {
+            content: none;
+          }
+          /* Vertical hairline via border-left */
+          .hiw-step + .hiw-step {
+            border-left: 1px solid rgba(165,122,11,0.22);
+          }
         }
       `}</style>
-      <div className="how-container" style={{ maxWidth: '1200px', margin: '0 auto', paddingLeft: '24px', paddingRight: '24px' }}>
+
+      <div
+        style={{
+          maxWidth: '1100px',
+          margin: '0 auto',
+          paddingLeft: 'clamp(20px, 5vw, 48px)',
+          paddingRight: 'clamp(20px, 5vw, 48px)',
+        }}
+      >
         <motion.div
           variants={STAGGER_CONTAINER}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: '-80px' }}
-          style={{ display: 'flex', flexDirection: 'column', gap: '64px' }}
+          viewport={{ once: true, margin: '-60px' }}
+          style={{ display: 'flex', flexDirection: 'column', gap: '72px' }}
         >
           <SectionHeading
-            numeral="02"
-            eyebrow="How We Build"
-            lead="Production systems,"
-            accent="built with ai."
+            numeral="03"
+            eyebrow="HOW IT WORKS"
+            lead="Three steps."
+            accent="No ambiguity."
           />
 
-          {/* The Verdorian Loop — named mechanism centerpiece */}
-          <motion.div
-            variants={FADE_UP}
-            style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '24px' }}
-          >
-            <span
-              style={{
-                fontFamily: 'var(--font-body), sans-serif',
-                fontSize: '11px',
-                fontWeight: 600,
-                textTransform: 'uppercase',
-                letterSpacing: '0.3em',
-                color: 'var(--gold)',
-              }}
-            >
-              The Verdorian Loop
-            </span>
-
-            {/* Loop diagram — three steps connected by gold hairlines with a return arc */}
-            <div
-              aria-hidden="true"
-              style={{ width: '100%', maxWidth: '640px', position: 'relative' }}
-            >
-              {/* Step row */}
-              <div
-                className="loop-row"
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: '0',
-                  position: 'relative',
-                  zIndex: 1,
-                }}
-              >
-                {/* Audit */}
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px' }}>
-                  <span
-                    style={{
-                      fontFamily: 'var(--font-display), serif',
-                      fontWeight: 600,
-                      fontSize: '11px',
-                      textTransform: 'uppercase',
-                      letterSpacing: '0.22em',
-                      color: 'var(--ink-faint)',
-                    }}
-                  >
-                    01
-                  </span>
-                  <span
-                    style={{
-                      fontFamily: 'var(--font-display), serif',
-                      fontWeight: 500,
-                      fontSize: 'clamp(20px, 3.5vw, 40px)',
-                      letterSpacing: 'var(--track-h2)',
-                      color: 'var(--ink)',
-                    }}
-                  >
-                    Audit
-                  </span>
-                  <span
-                    style={{
-                      fontFamily: 'var(--font-body), sans-serif',
-                      fontSize: '11px',
-                      color: 'var(--ink-faint)',
-                      letterSpacing: '0.04em',
-                      whiteSpace: 'nowrap',
-                    }}
-                  >
-                    Find the 3 best
-                  </span>
-                </div>
-
-                {/* Connector: Audit → Build */}
-                <div
-                  className="loop-conn"
-                  style={{
-                    flex: 1,
-                    height: '1px',
-                    background: 'linear-gradient(to right, rgba(165,122,11,0.5), rgba(165,122,11,0.2))',
-                    margin: '0 12px',
-                    marginTop: '-20px',
-                  }}
-                />
-
-                {/* Build */}
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px' }}>
-                  <span
-                    style={{
-                      fontFamily: 'var(--font-display), serif',
-                      fontWeight: 600,
-                      fontSize: '11px',
-                      textTransform: 'uppercase',
-                      letterSpacing: '0.22em',
-                      color: 'var(--ink-faint)',
-                    }}
-                  >
-                    02
-                  </span>
-                  <span
-                    style={{
-                      fontFamily: 'var(--font-display), serif',
-                      fontWeight: 500,
-                      fontSize: 'clamp(20px, 3.5vw, 40px)',
-                      letterSpacing: 'var(--track-h2)',
-                      color: 'var(--ink)',
-                    }}
-                  >
-                    Build
-                  </span>
-                  <span
-                    style={{
-                      fontFamily: 'var(--font-body), sans-serif',
-                      fontSize: '11px',
-                      color: 'var(--ink-faint)',
-                      letterSpacing: '0.04em',
-                      whiteSpace: 'nowrap',
-                    }}
-                  >
-                    Ship the system
-                  </span>
-                </div>
-
-                {/* Connector: Build → Care */}
-                <div
-                  className="loop-conn"
-                  style={{
-                    flex: 1,
-                    height: '1px',
-                    background: 'linear-gradient(to right, rgba(165,122,11,0.2), rgba(165,122,11,0.5))',
-                    margin: '0 12px',
-                    marginTop: '-20px',
-                  }}
-                />
-
-                {/* Care */}
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px' }}>
-                  <span
-                    style={{
-                      fontFamily: 'var(--font-display), serif',
-                      fontWeight: 600,
-                      fontSize: '11px',
-                      textTransform: 'uppercase',
-                      letterSpacing: '0.22em',
-                      color: 'var(--gold)',
-                    }}
-                  >
-                    03
-                  </span>
-                  <span
-                    style={{
-                      fontFamily: 'var(--font-display), serif',
-                      fontStyle: 'italic',
-                      fontWeight: 500,
-                      fontSize: 'clamp(20px, 3.5vw, 40px)',
-                      letterSpacing: 'var(--track-h2)',
-                      color: 'var(--gold)',
-                    }}
-                  >
-                    Care
-                  </span>
-                  <span
-                    style={{
-                      fontFamily: 'var(--font-body), sans-serif',
-                      fontSize: '11px',
-                      color: 'var(--ink-faint)',
-                      letterSpacing: '0.04em',
-                      whiteSpace: 'nowrap',
-                    }}
-                  >
-                    Keep it sharp
-                  </span>
-                </div>
-              </div>
-
-              {/* Return arc — Care feeds the next Audit */}
-              <div
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  marginTop: '12px',
-                  gap: '8px',
-                  position: 'relative',
-                }}
-              >
-                {/* left half-hairline */}
-                <div
-                  style={{
-                    flex: 1,
-                    height: '1px',
-                    background: 'linear-gradient(to left, rgba(165,122,11,0.28), transparent)',
-                  }}
-                />
-                {/* return glyph */}
-                <span
-                  style={{
-                    fontFamily: 'var(--font-body), sans-serif',
-                    fontSize: '11px',
-                    color: 'var(--gold)',
-                    letterSpacing: '0.12em',
-                    opacity: 0.72,
-                    userSelect: 'none',
-                  }}
-                >
-                  ↺ returns to Audit
-                </span>
-                {/* right half-hairline */}
-                <div
-                  style={{
-                    flex: 1,
-                    height: '1px',
-                    background: 'linear-gradient(to right, rgba(165,122,11,0.28), transparent)',
-                  }}
-                />
-              </div>
-            </div>
-
-            <p
-              style={{
-                fontFamily: 'var(--font-body), sans-serif',
-                fontSize: '14px',
-                color: 'var(--ink-faint)',
-                margin: 0,
-                textAlign: 'center',
-                maxWidth: '52ch',
-                lineHeight: 1.7,
-              }}
-            >
-              We find your highest-ROI automations, build the system that fits how you actually work,
-              then keep it sharp as you grow. The loop never stops — each pass finds the next thing worth automating.
-            </p>
-          </motion.div>
-
-          {/* Ruled method ledger */}
-          <div style={{ borderTop: '1px solid var(--rule-strong)' }}>
-            {PRINCIPLES.map((p, i) => (
+          <div className="hiw-steps">
+            {STEPS.map((step, i) => (
               <motion.div
-                key={i}
+                key={step.numeral}
+                className="hiw-step"
                 variants={FADE_UP}
-                className="how-row"
-                style={{
-                  display: 'grid',
-                  gridTemplateColumns: '120px 1fr',
-                  gap: '32px',
-                  alignItems: 'start',
-                  padding: '36px 0',
-                  borderBottom: '1px solid var(--rule)',
-                }}
+                custom={i}
+                style={{ flex: 1, minWidth: 0 }}
               >
-                <span
-                  className="engraved how-numeral"
-                  style={{ fontSize: '64px', lineHeight: 0.9, fontStyle: 'italic' }}
+                {/* Gold top accent hairline — always present above numeral */}
+                <div
                   aria-hidden="true"
+                  style={{
+                    height: '1px',
+                    margin: '0 clamp(20px, 5vw, 40px)',
+                    background: 'linear-gradient(to right, var(--gold), rgba(165,122,11,0.0))',
+                  }}
+                />
+
+                {/* Step content */}
+                <div
+                  style={{
+                    padding: 'clamp(28px, 4vw, 48px) clamp(20px, 5vw, 40px)',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '20px',
+                  }}
                 >
-                  {String(i + 1).padStart(2, '0')}
-                </span>
-                <div>
+                  {/* Engraved numeral */}
+                  <span
+                    className="engraved"
+                    aria-hidden="true"
+                    style={{
+                      fontSize: 'clamp(56px, 8vw, 96px)',
+                      lineHeight: 0.85,
+                      display: 'block',
+                      userSelect: 'none',
+                    }}
+                  >
+                    {step.numeral}
+                  </span>
+
+                  {/* Step title */}
                   <h3
                     style={{
-                      fontFamily: 'var(--font-display), serif',
-                      fontWeight: 600,
-                      fontSize: '26px',
-                      color: 'var(--ink)',
-                      margin: '0 0 10px',
-                      letterSpacing: 'var(--track-h3)',
+                      fontFamily: 'var(--font-display), Georgia, serif',
+                      fontWeight: 400,
+                      fontStyle: step.titleItalic === true ? 'italic' : 'normal',
+                      fontSize: 'clamp(28px, 3.5vw, 40px)',
+                      letterSpacing: 'var(--track-h2)',
+                      color: step.titleItalic === true ? 'var(--gold)' : 'var(--ink)',
+                      margin: 0,
+                      lineHeight: 1.05,
                     }}
                   >
-                    {p.title}
+                    {step.title}
                   </h3>
+
+                  {/* One sentence */}
                   <p
                     style={{
                       fontFamily: 'var(--font-body), sans-serif',
-                      fontSize: '15px',
+                      fontSize: 'clamp(15px, 1.6vw, 16px)',
                       color: 'var(--ink-soft)',
-                      lineHeight: 1.7,
+                      lineHeight: 1.72,
                       margin: 0,
-                      maxWidth: '640px',
+                      maxWidth: '30ch',
                     }}
                   >
-                    {p.desc}
+                    {step.body}
                   </p>
                 </div>
               </motion.div>
