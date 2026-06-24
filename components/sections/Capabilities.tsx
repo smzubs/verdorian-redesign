@@ -6,8 +6,8 @@ import { SectionHeading } from '@/components/ui/SectionHeading'
 import { FADE_UP, STAGGER_CONTAINER, CARD_ENTRANCE } from '@/lib/motion'
 
 /* ──────────────────────────────────────────────────────────────────────────
-   MARK FAMILY — ink + gold, 40×40 viewBox, stroke 1.4px, round caps/joins.
-   Reused from the full family; 6 selected for the 6 service cards.
+   MARK FAMILY — ink + blue-gold, 40×40 viewBox, stroke 1.4px, round caps/joins.
+   7 marks selected; all share the same ink/gold accent variables.
    ────────────────────────────────────────────────────────────────────────── */
 
 interface MarkProps { active: boolean }
@@ -19,14 +19,14 @@ function mkBase(active: boolean) {
     'aria-hidden': true,
     style: {
       flexShrink: 0,
-      transition: 'opacity 0.4s var(--ease-prospectus)',
+      transition: 'opacity 0.4s var(--ease-glass)',
       opacity: active ? 1 : 0.88,
     },
   }
 }
 
-const ink  = (a: boolean) => a ? 'var(--ink)'        : 'var(--ink-soft)'
-const gold = (a: boolean) => a ? 'var(--gold-bright)' : 'var(--gold)'
+const ink  = (a: boolean) => a ? 'var(--ink)'         : 'var(--ink-soft)'
+const gold = (a: boolean) => a ? 'var(--gold-bright)'  : 'var(--gold)'
 
 /* 01 — Workflow & Data Automation
    Central trunk forks into three branches, each sealed with a gold node. */
@@ -45,7 +45,7 @@ function MarkWorkflow({ active }: MarkProps) {
   )
 }
 
-/* 02 — AI Documents & Voice
+/* 02 — ai Documents & Voice
    Mic capsule (ink) → directional bridge → gold filed lines. */
 function MarkVoice({ active }: MarkProps) {
   return (
@@ -59,7 +59,33 @@ function MarkVoice({ active }: MarkProps) {
   )
 }
 
-/* 03 — Dashboards & Analytics
+/* 03 — Business Intelligence
+   Faceted gem (ink outline) with a gold insight ray bursting from the centre —
+   "clarity from many angles." Distinct from the bar-chart MarkDashboard. */
+function MarkBI({ active }: MarkProps) {
+  return (
+    <svg {...mkBase(active)}>
+      {/* gem silhouette — hexagonal cross-section */}
+      <path
+        d="M20 5 L32 13 L32 27 L20 35 L8 27 L8 13 Z"
+        stroke={ink(active)} strokeWidth={SW}
+        strokeLinejoin="round"
+      />
+      {/* internal facet lines */}
+      <path d="M8 13 L20 20 L32 13"  stroke={ink(active)} strokeWidth={SW * 0.7} strokeLinejoin="round" />
+      <path d="M8 27 L20 20 L32 27"  stroke={ink(active)} strokeWidth={SW * 0.7} strokeLinejoin="round" />
+      <path d="M20 5 L20 20"          stroke={ink(active)} strokeWidth={SW * 0.7} strokeLinecap="round" />
+      <path d="M20 20 L20 35"         stroke={ink(active)} strokeWidth={SW * 0.7} strokeLinecap="round" />
+      {/* gold insight ray — top-right burst */}
+      <path d="M27 6 L34 2M31 10 L37 8M34 16 L38 13"
+        stroke={gold(active)} strokeWidth={SW}
+        strokeLinecap="round"
+      />
+    </svg>
+  )
+}
+
+/* 04 — Dashboards & Analytics
    Three vertical bars + gold trend-line threading through them. */
 function MarkDashboard({ active }: MarkProps) {
   return (
@@ -76,7 +102,7 @@ function MarkDashboard({ active }: MarkProps) {
   )
 }
 
-/* 04 — Web Platforms & SaaS
+/* 05 — Web Platforms & SaaS
    Browser frame + gold live-starburst dot. */
 function MarkWeb({ active }: MarkProps) {
   return (
@@ -92,7 +118,7 @@ function MarkWeb({ active }: MarkProps) {
   )
 }
 
-/* 05 — Mobile & QR Apps
+/* 06 — Mobile & QR Apps
    Device silhouette + gold signal arcs. */
 function MarkMobile({ active }: MarkProps) {
   return (
@@ -106,7 +132,7 @@ function MarkMobile({ active }: MarkProps) {
   )
 }
 
-/* 06 — Book Translation & Publishing
+/* 07 — Book Translation & Publishing
    Open book with spine + gold bookmark ribbon. */
 function MarkBook({ active }: MarkProps) {
   return (
@@ -124,7 +150,7 @@ function MarkBook({ active }: MarkProps) {
 }
 
 /* ──────────────────────────────────────────────────────────────────────────
-   DATA
+   DATA — 7 services, ordered: automation-first, then outputs, then publishing
    ────────────────────────────────────────────────────────────────────────── */
 
 interface ServiceCard {
@@ -152,27 +178,34 @@ const SERVICES: ServiceCard[] = [
   },
   {
     numeral: '03',
+    name: 'Business Intelligence',
+    benefit: 'Turn scattered data into clear answers and decisions you can act on.',
+    proof: 'Next.js + Supabase data stacks · live metrics across our platforms',
+    Mark: MarkBI,
+  },
+  {
+    numeral: '04',
     name: 'Dashboards & Analytics',
     benefit: 'Your whole operation in one live view, not a month-end scramble.',
     proof: 'Next.js + Supabase · WithinYou',
     Mark: MarkDashboard,
   },
   {
-    numeral: '04',
+    numeral: '05',
     name: 'Web Platforms & SaaS',
     benefit: 'The custom software your team logs into and trusts.',
     proof: 'QRSafePro, live at qrsafepro.com',
     Mark: MarkWeb,
   },
   {
-    numeral: '05',
+    numeral: '06',
     name: 'Mobile & QR Apps',
     benefit: 'Apps and QR tools for the work that happens in the field.',
     proof: 'VoicePencil iOS · QRSafePro / QRStock',
     Mark: MarkMobile,
   },
   {
-    numeral: '06',
+    numeral: '07',
     name: 'Book Translation & Publishing',
     benefit: 'Premium long-form translation and typesetting, ai at scale with human judgment.',
     proof: 'Scientific Tafsir, 114+114 chapters',
@@ -232,7 +265,7 @@ function CapabilityCard({ card, index }: { card: ServiceCard; index: number }) {
             WebkitTextStroke: '1px var(--gold)',
             color: 'transparent',
             opacity: active ? 0.6 : 0.24,
-            transition: 'opacity 0.4s var(--ease-prospectus)',
+            transition: 'opacity 0.4s var(--ease-glass)',
             letterSpacing: '0.02em',
           }}
         >
@@ -367,14 +400,28 @@ export default function Capabilities() {
           style={{ display: 'flex', flexDirection: 'column', gap: '64px' }}
         >
           {/* Section heading */}
-          <SectionHeading
-            numeral="02"
-            eyebrow="WHAT WE DO"
-            lead="Six things we build"
-            accent="and have shipped."
-          />
+          <motion.div variants={FADE_UP}>
+            <SectionHeading
+              numeral="01"
+              eyebrow="WHAT WE DO"
+              lead="Everything you can hand"
+              accent="to software."
+            />
+            <p
+              style={{
+                fontFamily: 'var(--font-body), sans-serif',
+                fontSize: '16px',
+                color: 'var(--ink-soft)',
+                lineHeight: 1.6,
+                marginTop: '20px',
+                maxWidth: '52ch',
+              }}
+            >
+              Tell us the repetitive problem; we design the system that automates it.
+            </p>
+          </motion.div>
 
-          {/* Floating 6-card glass grid */}
+          {/* Floating 7-card glass grid */}
           <motion.div
             className="cap-grid"
             variants={STAGGER_CONTAINER}

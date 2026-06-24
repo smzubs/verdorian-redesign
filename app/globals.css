@@ -71,6 +71,7 @@
 
   /* ── Easings — one prospectus ease everywhere ── */
   --ease-prospectus: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-glass: cubic-bezier(0.16, 1, 0.3, 1);   /* smoother, softer settle for liquid-glass motion */
   --ease-expo: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-back: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-silk: cubic-bezier(0.22, 1, 0.36, 1);
@@ -409,22 +410,26 @@ html {
    cyan, never a colored tint. Keep ≤ ~6 glass surfaces visible at once (GPU).
    ════════════════════════════════════════════════════════════════ */
 :root {
-  --glass-fill:        rgba(253, 251, 246, 0.58);   /* warm cream-frosted, lets the stage show through */
-  --glass-fill-deep:   rgba(248, 243, 233, 0.66);   /* deeper warm glass */
-  --glass-border:      rgba(255, 255, 255, 0.55);   /* luminous light edge (scientificquran-style) */
-  --glass-border-hover: rgba(24, 119, 242, 0.42);   /* warms to gold on hover */
-  --glass-ambient: radial-gradient(ellipse 72% 54% at 82% -8%, rgba(24, 119, 242, 0.09) 0%, transparent 68%);
+  --glass-fill:        rgba(255, 255, 255, 0.42);   /* translucent — the cool/blue stage shows through (iOS 26 Liquid Glass) */
+  --glass-fill-deep:   rgba(255, 255, 255, 0.52);   /* slightly denser glass */
+  --glass-border:      rgba(255, 255, 255, 0.70);   /* bright specular edge */
+  --glass-border-hover: rgba(24, 119, 242, 0.50);   /* lights to blue on hover */
+  --glass-ambient: radial-gradient(ellipse 80% 60% at 80% -10%, rgba(24, 119, 242, 0.16) 0%, transparent 64%);
+  /* Diagonal specular sheen — the "liquid glass" lit-from-above tell */
+  --glass-sheen: linear-gradient(133deg, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.10) 20%, rgba(255,255,255,0) 46%);
   --glass-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.64) inset,
-    0 1px 3px rgba(20, 24, 32, 0.04),
-    0 8px 24px -8px rgba(20, 24, 32, 0.12),
-    0 24px 64px -24px rgba(20, 24, 32, 0.18);
+    0 1px 0 rgba(255, 255, 255, 0.80) inset,
+    0 0 0 0.5px rgba(255, 255, 255, 0.35) inset,
+    0 2px 6px rgba(20, 24, 32, 0.05),
+    0 14px 34px -10px rgba(20, 24, 32, 0.16),
+    0 34px 80px -28px rgba(31, 64, 122, 0.24);
   --glass-shadow-hover:
-    0 1px 0 rgba(255, 255, 255, 0.72) inset,
-    0 1px 3px rgba(20, 24, 32, 0.05),
-    0 12px 32px -8px rgba(20, 24, 32, 0.16),
-    0 32px 80px -24px rgba(20, 24, 32, 0.24),
-    0 0 0 1px rgba(24, 119, 242, 0.10) inset;
+    0 1px 0 rgba(255, 255, 255, 0.90) inset,
+    0 0 0 0.5px rgba(255, 255, 255, 0.45) inset,
+    0 2px 6px rgba(20, 24, 32, 0.06),
+    0 18px 44px -10px rgba(20, 24, 32, 0.20),
+    0 44px 96px -28px rgba(24, 119, 242, 0.30),
+    0 0 0 1px rgba(24, 119, 242, 0.14) inset;
 }
 
 /* Frosted glass card — the offered/live surface */
@@ -432,16 +437,16 @@ html {
   position: relative;
   isolation: isolate;
   background: var(--glass-fill);
-  -webkit-backdrop-filter: blur(22px) saturate(1.4);
-          backdrop-filter: blur(22px) saturate(1.4);
+  -webkit-backdrop-filter: blur(30px) saturate(1.8);
+          backdrop-filter: blur(30px) saturate(1.8);
   border: 1px solid var(--glass-border);
-  border-radius: 16px;
+  border-radius: 22px;
   box-shadow: var(--glass-shadow);
   transform: translateZ(0);
   transition:
-    transform 0.45s var(--ease-prospectus),
-    border-color 0.4s var(--ease-prospectus),
-    box-shadow 0.4s var(--ease-prospectus);
+    transform 0.55s var(--ease-glass),
+    border-color 0.45s var(--ease-glass),
+    box-shadow 0.45s var(--ease-glass);
 }
 .glass-card::before {            /* gold ambient halo (upper-right) */
   content: '';
@@ -454,14 +459,14 @@ html {
   transition: opacity 0.4s var(--ease-prospectus);
   z-index: 0;
 }
-.glass-card::after {             /* 1px inner top highlight — the "frosted" tell */
+.glass-card::after {             /* diagonal specular sheen — the iOS-26 liquid-glass "lit-from-above" tell */
   content: '';
   position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 1px;
+  inset: 0;
   border-radius: inherit;
   pointer-events: none;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.44) 0%, rgba(255, 255, 255, 0) 100%);
+  background: var(--glass-sheen);
+  opacity: 0.9;
   z-index: 1;
 }
 .glass-card > * { position: relative; z-index: 2; }   /* content above ambient */
@@ -472,24 +477,27 @@ html {
 .glass-card:hover::before { opacity: 1; }
 
 /* Deeper warm glass variant (panels / larger surfaces) */
-.glass-panel { background: var(--glass-fill-deep); border-radius: 20px; }
+.glass-panel { background: var(--glass-fill-deep); border-radius: 24px; }
 
 /* GLASS STAGE — warm depth behind glass-card sections so the frost actually reads
    (the light-theme equivalent of scientificquran's dark cosmos). Keeps our ivory/gold palette. */
 .glass-stage {
   position: relative;
   background:
-    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(24, 119, 242, 0.10) 0%, transparent 60%),
-    radial-gradient(ellipse 70% 50% at 85% 110%, rgba(99, 102, 241, 0.06) 0%, transparent 60%),
-    linear-gradient(180deg, var(--paper-deep) 0%, #E2E8F1 100%);
+    radial-gradient(ellipse 70% 55% at 18% 0%, rgba(24, 119, 242, 0.20) 0%, transparent 58%),
+    radial-gradient(ellipse 64% 50% at 88% 108%, rgba(99, 102, 241, 0.16) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 40% at 60% 50%, rgba(76, 154, 255, 0.10) 0%, transparent 64%),
+    linear-gradient(180deg, var(--paper-deep) 0%, #DDE6F2 100%);
 }
-.glass-stage::before {        /* soft floating gold bloom, GPU-cheap, behind cards */
+.glass-stage::before {        /* soft floating blue bloom, GPU-cheap, behind the glass */
   content: '';
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: radial-gradient(ellipse 50% 40% at 50% 42%, rgba(24, 119, 242, 0.07) 0%, transparent 70%);
-  filter: blur(40px);
+  background:
+    radial-gradient(ellipse 44% 36% at 32% 38%, rgba(24, 119, 242, 0.14) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 34% at 74% 64%, rgba(99, 102, 241, 0.12) 0%, transparent 70%);
+  filter: blur(36px);
   z-index: 0;
 }
 .glass-stage > * { position: relative; z-index: 1; }
@@ -506,7 +514,7 @@ html {
   top: 0; left: 0;
   height: 2px;
   width: 100%;
-  border-radius: 16px 16px 0 0;
+  border-radius: 22px 22px 0 0;
   background: linear-gradient(to right, var(--gold), var(--gold-bright));
   transform: scaleX(0);
   transform-origin: left;
@@ -520,15 +528,15 @@ html {
 .glass-mock {
   position: relative;
   background: var(--glass-fill);
-  -webkit-backdrop-filter: blur(18px) saturate(1.3);
-          backdrop-filter: blur(18px) saturate(1.3);
+  -webkit-backdrop-filter: blur(24px) saturate(1.6);
+          backdrop-filter: blur(24px) saturate(1.6);
   border: 1px solid var(--glass-border);
-  border-radius: 16px;
+  border-radius: 22px;
   box-shadow: var(--glass-shadow);
   transform: translateZ(0);
-  transition: transform 0.45s var(--ease-prospectus), box-shadow 0.4s var(--ease-prospectus);
+  transition: transform 0.55s var(--ease-glass), box-shadow 0.45s var(--ease-glass);
 }
-.glass-mock .mock-bar { background: var(--glass-fill-deep); border-radius: 16px 16px 0 0; }
+.glass-mock .mock-bar { background: var(--glass-fill-deep); border-radius: 22px 22px 0 0; }
 
 /* Section-level gold ambient behind a figure (no card border) */
 .figure-halo { position: relative; }

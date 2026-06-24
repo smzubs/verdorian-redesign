@@ -83,7 +83,7 @@ export default function WhyChooseUs() {
         >
           {/* ── Section heading ── */}
           <SectionHeading
-            numeral="04"
+            numeral="02"
             eyebrow="WHY US"
             lead="The quiet kind of"
             accent="good."
