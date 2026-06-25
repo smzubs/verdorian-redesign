@@ -97,7 +97,8 @@ export default function PainSection() {
                 letterSpacing: '-0.01em',
               }}
             >
-              Manual work is quietly costing you time.
+              Manual work is quietly costing you time.{' '}
+              <em style={{ fontStyle: 'italic', color: 'var(--gold)' }}>Let automation handle the work.</em>
             </h2>
             <p
               style={{
