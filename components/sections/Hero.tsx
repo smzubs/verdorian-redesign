@@ -257,8 +257,8 @@ export default function Hero() {
           content: '';
           position: absolute; left: 0; right: 0; top: 50%;
           height: 36px; transform: translateY(-50%);
-          border-top: 1px solid rgba(34,211,238,0.22);
-          border-bottom: 1px solid rgba(34,211,238,0.22);
+          border-top: 1px solid rgba(24,119,242,0.24);
+          border-bottom: 1px solid rgba(24,119,242,0.24);
           z-index: 2;
         }
         .picker-drum {
@@ -279,8 +279,8 @@ export default function Hero() {
           font-size: 13px;
           font-weight: 600;
           letter-spacing: 0.03em;
-          color: #28B6E8;
-          text-shadow: 0 0 6px rgba(34,211,238,0.75), 0 0 14px rgba(76,154,255,0.45), 0 0 26px rgba(24,119,242,0.3);
+          color: #13171F;
+          text-shadow: 0 0 4px rgba(40,120,235,0.40), 0 0 11px rgba(24,119,242,0.26);
         }
 
         /* ── Command-center flow rail ── */
@@ -366,7 +366,7 @@ export default function Hero() {
             <span
               key={i}
               className="picker-row"
-              style={{ transform: `rotateX(${i * 45}deg) translateZ(56px)` }}
+              style={{ transform: `rotateX(${i * 45}deg) translateZ(56px)`, color: i % 2 ? '#1E6FF0' : '#13171F' }}
             >
               {s}
             </span>
@@ -410,6 +410,21 @@ export default function Hero() {
           <span style={{ display: 'block' }}>Your daily tasks,</span>
           <em className="gold-shimmer" style={{ display: 'block' }}>fully automated.</em>
         </motion.h1>
+
+        {/* Studio credit line */}
+        <motion.p
+          variants={FADE_UP}
+          style={{
+            fontFamily: 'var(--font-body), sans-serif',
+            fontWeight: 600,
+            fontSize: '15px',
+            letterSpacing: '0.04em',
+            color: 'var(--ink-soft)',
+            margin: '-14px 0 0',
+          }}
+        >
+          — with <span style={{ color: 'var(--gold)' }}>Verdorian AI Studio</span>
+        </motion.p>
 
         {/* Subhead */}
         <motion.p
