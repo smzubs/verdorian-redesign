@@ -313,16 +313,17 @@ html {
 .btn-ink:hover { background: transparent; color: var(--ink); }
 .btn-ink:hover::after { transform: translateX(120%); }
 
-/* Premium glossy blue button — blue gradient, white text, soft glow + shine sweep */
+/* Premium glossy blue button — blue gradient, white text, smooth gradient glide + soft glow */
 .btn-blue {
   position: relative;
-  overflow: hidden;
   isolation: isolate;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  background: linear-gradient(135deg, #2E88FF 0%, #1877F2 52%, #0E63DB 100%);
+  background: linear-gradient(115deg, #3A8DFF 0%, #1877F2 38%, #0E63DB 70%, #2280F6 100%);
+  background-size: 220% 100%;
+  background-position: 0% 50%;
   color: #ffffff;
   border: 1px solid rgba(255, 255, 255, 0.22);
   border-radius: var(--r-sm);
@@ -337,29 +338,18 @@ html {
   box-shadow:
     0 1px 0 rgba(255, 255, 255, 0.40) inset,
     0 -9px 18px -10px rgba(6, 36, 92, 0.55) inset,
-    0 12px 26px -10px rgba(24, 119, 242, 0.55),
-    0 2px 6px -2px rgba(24, 119, 242, 0.40);
-  transition: box-shadow 0.4s var(--ease-prospectus), transform 0.3s var(--ease-prospectus), filter 0.3s var(--ease-prospectus);
-}
-.btn-blue::after {           /* shine sweep */
-  content: '';
-  position: absolute;
-  inset: 0;
-  transform: translateX(-120%);
-  background: linear-gradient(105deg, transparent 38%, rgba(255, 255, 255, 0.42) 50%, transparent 62%);
-  transition: transform 0.65s var(--ease-prospectus);
-  pointer-events: none;
+    0 10px 24px -12px rgba(24, 119, 242, 0.5),
+    0 2px 6px -3px rgba(24, 119, 242, 0.4);
+  transition: background-position 0.8s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.55s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .btn-blue:hover {
-  filter: brightness(1.06);
-  transform: translateY(-1px);
+  background-position: 100% 50%;
   box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.50) inset,
+    0 1px 0 rgba(255, 255, 255, 0.5) inset,
     0 -9px 18px -10px rgba(6, 36, 92, 0.6) inset,
-    0 16px 32px -10px rgba(24, 119, 242, 0.65),
-    0 3px 8px -2px rgba(24, 119, 242, 0.45);
+    0 14px 30px -12px rgba(24, 119, 242, 0.62),
+    0 3px 9px -3px rgba(24, 119, 242, 0.45);
 }
-.btn-blue:hover::after { transform: translateX(120%); }
 
 /* Ghost button: paper fill, ink hairline, inverts to ink on hover */
 .btn-ghost {
