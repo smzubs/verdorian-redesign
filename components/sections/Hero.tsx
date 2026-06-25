@@ -262,14 +262,14 @@ export default function Hero() {
         /* ── iOS-picker data-drum — a 3D rotating wheel of sentences on the right ── */
         .matrix-rain {
           position: absolute;
-          top: 40%; right: 0; left: 63%;
+          top: 40%; right: 0; left: 56%;
           height: 200px;
           perspective: 820px;
           overflow: hidden;
           pointer-events: none;
           z-index: 0;
-          -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 30%, #000 100%), linear-gradient(180deg, transparent 0%, #000 22%, #000 78%, transparent 100%);
-                  mask-image: linear-gradient(90deg, transparent 0%, #000 30%, #000 100%), linear-gradient(180deg, transparent 0%, #000 22%, #000 78%, transparent 100%);
+          -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 14%, #000 100%), linear-gradient(180deg, transparent 0%, #000 22%, #000 78%, transparent 100%);
+                  mask-image: linear-gradient(90deg, transparent 0%, #000 14%, #000 100%), linear-gradient(180deg, transparent 0%, #000 22%, #000 78%, transparent 100%);
           -webkit-mask-composite: source-in;
                   mask-composite: intersect;
         }
@@ -292,7 +292,7 @@ export default function Hero() {
           position: absolute;
           top: -16px; left: 0; right: 0; height: 32px;
           display: flex; align-items: center; justify-content: flex-end;
-          padding-right: 26px;
+          padding-right: 60px;
           backface-visibility: hidden;
           -webkit-backface-visibility: hidden;
           white-space: nowrap;
