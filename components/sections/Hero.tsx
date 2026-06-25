@@ -19,48 +19,49 @@ const STROKE = { stroke: 'currentColor', strokeWidth: 1.6, fill: 'none', strokeL
 
 const STEPS: FlowStep[] = [
   {
-    label: 'Missed Call',
-    status: 'After hours',
+    label: 'Data Collected',
+    status: 'Sales, emails, forms, invoices & tasks connected',
     glyph: (
-      <svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 4h-2A1.5 1.5 0 003 5.6 15 15 0 0018.4 21 1.5 1.5 0 0020 19.5v-2a1 1 0 00-.7-1l-3-1a1 1 0 00-1 .3l-1 1.2a11.5 11.5 0 01-5.3-5.3l1.2-1a1 1 0 00.3-1l-1-3a1 1 0 00-1-.7z" {...STROKE} /><path d="M15.5 3.5l4.5 4.5M20 3.5l-4.5 4.5" {...STROKE} /></svg>
+      <svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v10m0 0l-3.6-3.6M12 13l3.6-3.6" {...STROKE} /><path d="M4 15v3a2 2 0 002 2h12a2 2 0 002-2v-3" {...STROKE} /></svg>
     ),
   },
   {
-    label: 'AI Texts Back',
-    status: 'Replies in seconds',
+    label: 'AI Organizes',
+    status: 'Data cleaned, sorted & updated automatically',
     accent: true,
     glyph: (
-      <svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6a2 2 0 012-2h12a2 2 0 012 2v6a2 2 0 01-2 2h-6l-4 3v-3H6a2 2 0 01-2-2z" {...STROKE} /><path d="M8.5 8.8h7M8.5 11.4h4.5" {...STROKE} /></svg>
+      <svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4" {...STROKE} /><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1" {...STROKE} /></svg>
     ),
   },
   {
-    label: 'Checks Calendar',
-    status: 'Finds open slot',
+    label: 'Smart Dashboard',
+    status: 'Live numbers shown in one simple view',
     glyph: (
-      <svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2" {...STROKE} /><path d="M3.5 9.5h17M8 3.2v3.4M16 3.2v3.4" {...STROKE} /></svg>
+      <svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2" {...STROKE} /><path d="M7.5 15.5v-3M11 15.5v-6M14.5 15.5v-4" {...STROKE} /></svg>
     ),
   },
   {
-    label: 'Books the Job',
-    status: 'Added to schedule',
+    label: 'AI Insights',
+    status: 'Trends, problems & opportunities detected',
+    accent: true,
     glyph: (
-      <svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2" {...STROKE} /><path d="M3.5 9.5h17M8 3.2v3.4M16 3.2v3.4M9 14.8l2 2 4-4" {...STROKE} /></svg>
+      <svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 16l4.5-5 3.5 3 6-7.5" {...STROKE} /><path d="M16 6.5h2.5V9" {...STROKE} /></svg>
     ),
   },
   {
-    label: 'You Approve',
-    status: 'One-tap confirm',
+    label: 'Human Decision',
+    status: 'Owner or team reviews what matters',
     accent: true,
     glyph: (
       <svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5" {...STROKE} /><path d="M5.5 20a6.5 6.5 0 0113 0" {...STROKE} /><path d="M15.5 13.5l1.6 1.6 3-3.2" {...STROKE} /></svg>
     ),
   },
   {
-    label: 'Customer Booked',
-    status: 'Lead saved',
+    label: 'Action Taken',
+    status: 'Follow-up, report, alert or task created',
     done: true,
     glyph: (
-      <svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" {...STROKE} /><path d="M8.2 12.2l2.6 2.6 5-5.2" {...STROKE} /></svg>
+      <svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2.5L5.5 13H11l-1 8.5L18.5 10H13z" {...STROKE} /></svg>
     ),
   },
 ]
@@ -206,16 +207,16 @@ export default function Hero() {
         /* Neon-sign power-on: flickers awake, then settles to the stable glass pill (plays once on load) */
         @keyframes neonPowerOn {
           0%   { opacity: 0;    filter: brightness(0.4); }
-          6%   { opacity: 0.9;  filter: brightness(1.55); }
-          9%   { opacity: 0.12; filter: brightness(0.5); }
-          14%  { opacity: 1;    filter: brightness(1.6); }
-          17%  { opacity: 0.22; filter: brightness(0.55); }
-          22%  { opacity: 1;    filter: brightness(1.4); }
-          25%  { opacity: 0.45; filter: brightness(0.8); }
-          31%  { opacity: 1;    filter: brightness(1.6); }
-          35%  { opacity: 0.7;  filter: brightness(1.05); }
-          41%  { opacity: 1;    filter: brightness(1.3); }
-          47%  { opacity: 0.9;  filter: brightness(1.06); }
+          6%   { opacity: 0.92; filter: brightness(1.7) hue-rotate(-65deg) drop-shadow(0 0 12px rgba(255,0,170,0.85)); }   /* magenta zap */
+          9%   { opacity: 0.10; filter: brightness(0.5); }
+          14%  { opacity: 1;    filter: brightness(1.75) hue-rotate(95deg) drop-shadow(0 0 14px rgba(0,225,255,0.85)); }   /* cyan zap */
+          17%  { opacity: 0.20; filter: brightness(0.55); }
+          22%  { opacity: 1;    filter: brightness(1.6) hue-rotate(-35deg) drop-shadow(0 0 12px rgba(150,80,255,0.8)); }   /* violet zap */
+          25%  { opacity: 0.42; filter: brightness(0.8); }
+          31%  { opacity: 1;    filter: brightness(1.7) hue-rotate(45deg) drop-shadow(0 0 14px rgba(0,200,255,0.75)); }    /* aqua zap */
+          35%  { opacity: 0.68; filter: brightness(1.05) hue-rotate(0deg) drop-shadow(0 0 7px rgba(24,119,242,0.6)); }
+          41%  { opacity: 1;    filter: brightness(1.35) drop-shadow(0 0 11px rgba(24,119,242,0.6)); }                     /* settle to blue */
+          47%  { opacity: 0.92; filter: brightness(1.06) drop-shadow(0 0 6px rgba(24,119,242,0.4)); }
           100% { opacity: 1;    filter: brightness(1); }
         }
         .hero-badge-dot {
@@ -306,16 +307,16 @@ export default function Hero() {
         }
 
         /* ── Command-center flow rail ── */
-        .flow-rail { display: flex; flex-direction: row; align-items: stretch; justify-content: center; gap: 0; flex-wrap: nowrap; }
-        .flow-step { display: flex; flex-direction: column; align-items: center; gap: 9px; flex: 0 0 auto; text-align: center; }
+        .flow-rail { display: flex; flex-direction: row; align-items: flex-start; justify-content: center; gap: 0; flex-wrap: nowrap; }
+        .flow-step { display: flex; flex-direction: column; align-items: center; gap: 9px; flex: 0 0 auto; text-align: center; max-width: 128px; }
         .flow-conn {
           position: relative;
           flex: 1 1 auto;
-          align-self: center;
-          min-width: 28px;
-          max-width: 76px;
+          align-self: flex-start;
+          min-width: 22px;
+          max-width: 64px;
           height: 2px;
-          margin-top: -26px;
+          margin-top: 17px;
           border-radius: 2px;
           background: linear-gradient(90deg, rgba(24,119,242,0.10), rgba(24,119,242,0.30) 50%, rgba(24,119,242,0.10));
         }
@@ -346,8 +347,8 @@ export default function Hero() {
           animation-delay: calc(var(--i, 0) * 0.4s);
           will-change: transform;
         }
-        .flow-label { font-family: var(--font-body), sans-serif; font-weight: 600; font-size: 12.5px; color: var(--ink); white-space: nowrap; }
-        .flow-status { font-family: var(--font-body), sans-serif; font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-faint); white-space: nowrap; }
+        .flow-label { font-family: var(--font-body), sans-serif; font-weight: 700; font-size: 12.5px; color: var(--ink); white-space: nowrap; }
+        .flow-status { font-family: var(--font-body), sans-serif; font-size: 9px; letter-spacing: 0.05em; line-height: 1.45; text-transform: uppercase; color: var(--ink-faint); }
 
         @media (max-width: 860px) {
           .flow-rail { flex-direction: column; align-items: center; }
@@ -465,7 +466,7 @@ export default function Hero() {
             margin: 0,
           }}
         >
-          Let AI handle the work so you can focus on what matters.
+          Let us autopilot your busywork, so you can focus on growing your business&mdash;and enjoying your life.
         </motion.p>
 
         {/* CTAs */}
@@ -494,16 +495,21 @@ export default function Hero() {
         <motion.div
           variants={FADE_UP}
           className="figure-halo"
-          aria-label="A sample automation: a customer's call is missed after hours, AI texts them back in seconds, checks your calendar, books the job, you approve in one tap, and the customer is booked — no lead lost."
+          aria-label="A sample business-intelligence automation: data from sales, emails, forms, invoices and tasks is collected, AI organizes it, a smart dashboard shows live numbers, AI surfaces insights, a human makes the decision, and the right action is taken."
           style={{ width: '100%', marginTop: '34px', perspective: '1400px' }}
         >
           <motion.div ref={cardRef} style={{ rotateX, transformStyle: 'preserve-3d', willChange: 'transform' }}>
             <div className="glass-card" style={{ padding: '30px 26px', borderRadius: '24px' }}>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '24px', flexWrap: 'wrap', gap: '10px' }}>
-                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '9px' }}>
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '11px' }}>
                   <span className="vd-dot" />
-                  <span style={{ fontFamily: 'var(--font-body), sans-serif', fontSize: '11px', fontWeight: 600, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--ink-soft)' }}>
-                    Sample live workflow
+                  <span style={{ display: 'flex', flexDirection: 'column', gap: '3px' }}>
+                    <span style={{ fontFamily: 'var(--font-body), sans-serif', fontSize: '9.5px', fontWeight: 600, letterSpacing: '0.22em', textTransform: 'uppercase', color: 'var(--ink-faint)' }}>
+                      Sample automation workflow
+                    </span>
+                    <span style={{ fontFamily: 'var(--font-body), sans-serif', fontSize: '13.5px', fontWeight: 700, letterSpacing: '0.02em', color: 'var(--ink)' }}>
+                      Business Intelligence Automation
+                    </span>
                   </span>
                 </span>
                 <span style={{ fontFamily: 'var(--font-body), sans-serif', fontSize: '11px', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--ink-faint)' }}>
