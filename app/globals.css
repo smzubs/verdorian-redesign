@@ -351,6 +351,26 @@ html {
     0 3px 9px -3px rgba(24, 119, 242, 0.45);
 }
 
+/* Modern frosted segmented-control nav tab */
+.nav-tab {
+  position: relative;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 9px 16px;
+  border-radius: 999px;
+  font-family: var(--font-body), sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  color: var(--ink-soft);
+  transition: color 0.25s var(--ease-prospectus), background 0.25s var(--ease-prospectus);
+}
+.nav-tab:hover { color: var(--ink); background: rgba(20, 30, 55, 0.05); }
+.nav-tab[aria-current='true'] { color: var(--gold); }
+.nav-tab[aria-current='true']:hover { background: transparent; }
+
 /* Ghost button: paper fill, ink hairline, inverts to ink on hover */
 .btn-ghost {
   position: relative;

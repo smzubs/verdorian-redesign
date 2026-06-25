@@ -6,9 +6,9 @@ import { GlowButton } from '@/components/ui/GlowButton'
 import { scrollToSection } from '@/lib/utils'
 
 const NAV_LINKS = [
-  { label: 'Solutions', id: 'automate' },
-  { label: 'Process', id: 'how-it-works' },
-  { label: 'Proof', id: 'trust' },
+  { label: 'What We Automate', id: 'automate' },
+  { label: 'How We Automate', id: 'how-it-works' },
+  { label: 'Our Best Bits', id: 'trust' },
 ]
 
 const SECTION_IDS = ['hero', 'automate', 'how-it-works', 'trust', 'contact']
@@ -136,47 +136,48 @@ export default function Nav() {
             </span>
           </button>
 
-          {/* Center tabs */}
-          <div className="hidden md:flex" style={{ alignItems: 'center', gap: '4px' }}>
+          {/* Center tabs — modern frosted segmented control with a sliding glass pill */}
+          <div
+            className="hidden md:flex"
+            style={{
+              alignItems: 'center',
+              gap: '2px',
+              padding: '4px',
+              borderRadius: '999px',
+              background: 'rgba(255, 255, 255, 0.45)',
+              backdropFilter: 'blur(14px) saturate(1.6)',
+              WebkitBackdropFilter: 'blur(14px) saturate(1.6)',
+              border: '1px solid rgba(255, 255, 255, 0.6)',
+              boxShadow: '0 1px 0 rgba(255,255,255,0.7) inset, 0 6px 18px -12px rgba(15,23,42,0.3)',
+            }}
+          >
             {NAV_LINKS.map((link) => {
               const isActive = activeSection === link.id
               return (
                 <button
                   key={link.id}
                   type="button"
+                  className="nav-tab"
                   onClick={() => scrollToSection(link.id)}
                   aria-label={`Navigate to ${link.label} section`}
                   aria-current={isActive ? 'true' : undefined}
-                  style={{
-                    position: 'relative',
-                    background: 'none',
-                    border: 'none',
-                    cursor: 'pointer',
-                    padding: '8px 14px',
-                    fontFamily: 'var(--font-body), sans-serif',
-                    fontWeight: 600,
-                    fontSize: '13px',
-                    letterSpacing: '0.02em',
-                    color: isActive ? 'var(--gold)' : 'var(--ink-soft)',
-                    transition: 'color 0.25s var(--ease-prospectus)',
-                    whiteSpace: 'nowrap',
-                  }}
                 >
-                  {link.label}
                   {isActive && (
                     <motion.span
-                      layoutId="activeNavUnderline"
+                      layoutId="activeNavPill"
                       style={{
                         position: 'absolute',
-                        left: '14px',
-                        right: '14px',
-                        bottom: '0px',
-                        height: '1.5px',
-                        background: 'var(--gold)',
+                        inset: 0,
+                        borderRadius: '999px',
+                        background: 'linear-gradient(180deg, rgba(46,136,255,0.18), rgba(24,119,242,0.12))',
+                        border: '1px solid rgba(24,119,242,0.24)',
+                        boxShadow: '0 1px 0 rgba(255,255,255,0.6) inset, 0 4px 12px -6px rgba(24,119,242,0.45)',
+                        zIndex: 0,
                       }}
-                      transition={{ type: 'spring', stiffness: 400, damping: 32 }}
+                      transition={{ type: 'spring', stiffness: 380, damping: 32 }}
                     />
                   )}
+                  <span style={{ position: 'relative', zIndex: 1 }}>{link.label}</span>
                 </button>
               )
             })}
