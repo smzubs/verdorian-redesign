@@ -241,14 +241,14 @@ export default function Hero() {
         /* ── iOS-picker data-drum — a 3D rotating wheel of sentences on the right ── */
         .matrix-rain {
           position: absolute;
-          top: 16%; right: 0; left: 60%;
-          height: 188px;
+          top: 41%; right: 0; left: 60%;
+          height: 150px;
           perspective: 620px;
           overflow: hidden;
           pointer-events: none;
           z-index: 0;
-          -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 16%, #000 100%), linear-gradient(180deg, transparent 0%, #000 26%, #000 74%, transparent 100%);
-                  mask-image: linear-gradient(90deg, transparent 0%, #000 16%, #000 100%), linear-gradient(180deg, transparent 0%, #000 26%, #000 74%, transparent 100%);
+          -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 16%, #000 100%), linear-gradient(180deg, transparent 0%, #000 33%, #000 67%, transparent 100%);
+                  mask-image: linear-gradient(90deg, transparent 0%, #000 16%, #000 100%), linear-gradient(180deg, transparent 0%, #000 33%, #000 67%, transparent 100%);
           -webkit-mask-composite: source-in;
                   mask-composite: intersect;
         }
