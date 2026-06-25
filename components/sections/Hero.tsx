@@ -81,7 +81,21 @@ const MATRIX_SENTENCES = [
   'Automation that fits how your team works.',
   'Reclaim time. Reduce mistakes. Move faster.',
   'Your partner for a smarter, simpler business.',
+  'Automate today. Grow faster tomorrow.',
+  'Less busywork. More business momentum.',
+  'Smart systems for smarter business growth.',
+  'Operations simplified by intelligent automation.',
+  'Turn daily tasks into automatic progress.',
+  'Workflows built to save real hours.',
+  'AI that supports how you operate.',
+  'Reduce manual work. Increase business clarity.',
+  'Automation designed for teams that grow.',
+  'Stop chasing tasks. Start scaling smarter.',
 ]
+// Drum geometry scales with the line count so the cylinder, blue-sync, and ~4-line
+// window stay correct as sentences are added. Radius keeps ~42px row spacing at the front.
+const DRUM_PERIOD = 30 // seconds for one full rotation (must match the CSS animation durations)
+const DRUM_RADIUS = Math.round(21 / Math.sin(Math.PI / MATRIX_SENTENCES.length))
 
 function FlowConnector({ i }: { i: number }) {
   return (
@@ -129,9 +143,9 @@ export default function Hero() {
         }
         /* Each row is black, glows blue only while it passes through the centre band (synced to drumSpin) */
         @keyframes rowGlow {
-          0%, 41%   { color: #14181F; text-shadow: 0 0 3px rgba(40,120,235,0.18); }
-          50%       { color: #1E6FF0; text-shadow: 0 0 8px rgba(40,120,235,0.75), 0 0 18px rgba(24,119,242,0.5); }
-          59%, 100% { color: #14181F; text-shadow: 0 0 3px rgba(40,120,235,0.18); }
+          0%, 45%   { color: #14181F; text-shadow: 0 0 3px rgba(40,120,235,0.18); }
+          50%       { color: #1E6FF0; text-shadow: 0 0 8px rgba(40,120,235,0.78), 0 0 18px rgba(24,119,242,0.5); }
+          55%, 100% { color: #14181F; text-shadow: 0 0 3px rgba(40,120,235,0.18); }
         }
 
         .hero-wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
@@ -247,14 +261,14 @@ export default function Hero() {
         /* ── iOS-picker data-drum — a 3D rotating wheel of sentences on the right ── */
         .matrix-rain {
           position: absolute;
-          top: 40%; right: 0; left: 60%;
+          top: 40%; right: 0; left: 63%;
           height: 200px;
-          perspective: 660px;
+          perspective: 820px;
           overflow: hidden;
           pointer-events: none;
           z-index: 0;
-          -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 16%, #000 100%), linear-gradient(180deg, transparent 0%, #000 22%, #000 78%, transparent 100%);
-                  mask-image: linear-gradient(90deg, transparent 0%, #000 16%, #000 100%), linear-gradient(180deg, transparent 0%, #000 22%, #000 78%, transparent 100%);
+          -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 30%, #000 100%), linear-gradient(180deg, transparent 0%, #000 22%, #000 78%, transparent 100%);
+                  mask-image: linear-gradient(90deg, transparent 0%, #000 30%, #000 100%), linear-gradient(180deg, transparent 0%, #000 22%, #000 78%, transparent 100%);
           -webkit-mask-composite: source-in;
                   mask-composite: intersect;
         }
@@ -271,7 +285,7 @@ export default function Hero() {
           position: absolute;
           top: 50%; left: 0; right: 0; height: 0;
           transform-style: preserve-3d;
-          animation: drumSpin 22s linear infinite;
+          animation: drumSpin 30s linear infinite;
         }
         .picker-row {
           position: absolute;
@@ -282,13 +296,13 @@ export default function Hero() {
           -webkit-backface-visibility: hidden;
           white-space: nowrap;
           font-family: ui-monospace, 'SF Mono', Menlo, monospace;
-          font-size: 13px;
+          font-size: 11px;
           font-weight: 600;
-          letter-spacing: 0.03em;
+          letter-spacing: 0.02em;
           color: #14181F;
           text-shadow: 0 0 3px rgba(40,120,235,0.18);
           will-change: color;
-          animation: rowGlow 22s linear infinite;
+          animation: rowGlow 30s linear infinite;
         }
 
         /* ── Command-center flow rail ── */
@@ -358,7 +372,7 @@ export default function Hero() {
         @media (min-width: 861px) {
           .flow-step .flow-text { display: flex; flex-direction: column; gap: 3px; align-items: center; }
         }
-        @media (max-width: 1240px) {
+        @media (max-width: 1300px) {
           .matrix-rain { display: none; }
         }
         @media (prefers-reduced-motion: reduce) {
@@ -376,8 +390,8 @@ export default function Hero() {
               key={i}
               className="picker-row"
               style={{
-                transform: `rotateX(${i * 45}deg) translateZ(56px)`,
-                animationDelay: `${(i * 2.75 - 11).toFixed(2)}s`,
+                transform: `rotateX(${(i * 360) / MATRIX_SENTENCES.length}deg) translateZ(${DRUM_RADIUS}px)`,
+                animationDelay: `${(i * (DRUM_PERIOD / MATRIX_SENTENCES.length) - DRUM_PERIOD / 2).toFixed(2)}s`,
               }}
             >
               {s}
