@@ -66,15 +66,19 @@ export default function Nav() {
         aria-label="Main navigation"
         style={{
           position: 'fixed',
-          top: 0,
-          left: 0,
-          right: 0,
+          top: scrolled ? '10px' : '16px',
+          left: '16px',
+          right: '16px',
           zIndex: 1000,
-          background: scrolled ? 'rgba(247, 243, 234, 0.82)' : 'rgba(247, 243, 234, 0.55)',
-          borderBottom: scrolled ? '1px solid rgba(24, 119, 242, 0.18)' : '1px solid transparent',
-          backdropFilter: scrolled ? 'blur(18px) saturate(1.18)' : 'blur(8px) saturate(1.05)',
-          WebkitBackdropFilter: scrolled ? 'blur(18px) saturate(1.18)' : 'blur(8px) saturate(1.05)',
-          transition: 'background 0.4s var(--ease-prospectus), border-color 0.4s var(--ease-prospectus), backdrop-filter 0.4s var(--ease-prospectus)',
+          borderRadius: '20px',
+          background: scrolled ? 'rgba(247, 243, 234, 0.9)' : 'rgba(247, 243, 234, 0.72)',
+          border: '1px solid rgba(255, 255, 255, 0.6)',
+          boxShadow: scrolled
+            ? '0 1px 0 rgba(255,255,255,0.7) inset, 0 10px 28px -12px rgba(15,23,42,0.3), 0 2px 8px -4px rgba(15,23,42,0.12)'
+            : '0 1px 0 rgba(255,255,255,0.6) inset, 0 16px 38px -16px rgba(15,23,42,0.24), 0 2px 8px -5px rgba(15,23,42,0.1)',
+          backdropFilter: 'blur(18px) saturate(1.2)',
+          WebkitBackdropFilter: 'blur(18px) saturate(1.2)',
+          transition: 'top 0.4s var(--ease-prospectus), background 0.4s var(--ease-prospectus), box-shadow 0.4s var(--ease-prospectus)',
         }}
       >
         <div
@@ -82,7 +86,7 @@ export default function Nav() {
           style={{
             maxWidth: 'none',
             margin: 0,
-            padding: scrolled ? '12px 34px' : '18px 34px',
+            padding: scrolled ? '11px 24px' : '14px 26px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
