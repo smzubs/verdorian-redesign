@@ -127,18 +127,57 @@ export default function Hero() {
 
         .hero-wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
 
-        /* ── Modern glass chip badge ── */
+        /* ── iOS-26 Liquid Glass chip badge ── */
         .hero-badge {
+          position: relative;
+          isolation: isolate;
+          overflow: hidden;
           display: inline-flex;
           align-items: center;
-          gap: 10px;
-          padding: 9px 20px;
+          gap: 11px;
+          padding: 10px 22px;
           border-radius: 999px;
-          background: rgba(255, 255, 255, 0.34);
-          -webkit-backdrop-filter: blur(22px) saturate(1.7);
-                  backdrop-filter: blur(22px) saturate(1.7);
-          border: 1px solid rgba(24, 119, 242, 0.24);
-          box-shadow: 0 1px 0 rgba(255,255,255,0.7) inset, 0 6px 20px -10px rgba(24,119,242,0.35);
+          background:
+            linear-gradient(180deg, rgba(255,255,255,0.62) 0%, rgba(255,255,255,0.20) 100%),
+            radial-gradient(120% 160% at 18% 0%, rgba(111,176,255,0.18) 0%, rgba(255,255,255,0) 60%);
+          -webkit-backdrop-filter: blur(20px) saturate(185%) brightness(1.08);
+                  backdrop-filter: blur(20px) saturate(185%) brightness(1.08);
+          box-shadow:
+            0 1px 1px rgba(255,255,255,0.95) inset,
+            0 -6px 14px -8px rgba(24,119,242,0.18) inset,
+            0 10px 26px -12px rgba(24,119,242,0.42),
+            0 3px 10px -5px rgba(15,23,42,0.16);
+        }
+        /* refractive gradient edge */
+        .hero-badge::before {
+          content: '';
+          position: absolute; inset: 0;
+          border-radius: inherit;
+          padding: 1px;
+          background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(24,119,242,0.30) 38%, rgba(255,255,255,0.10) 64%, rgba(111,176,255,0.65) 100%);
+          -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+                  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+          -webkit-mask-composite: xor;
+                  mask-composite: exclude;
+          pointer-events: none;
+          z-index: 2;
+        }
+        /* slow liquid specular sweep */
+        .hero-badge::after {
+          content: '';
+          position: absolute; inset: 0;
+          border-radius: inherit;
+          background: linear-gradient(115deg, transparent 36%, rgba(255,255,255,0.6) 50%, transparent 64%);
+          background-size: 220% 100%;
+          background-position: 135% 0;
+          animation: badgeSheen 7s ease-in-out infinite;
+          pointer-events: none;
+          z-index: 1;
+        }
+        .hero-badge > * { position: relative; z-index: 3; }
+        @keyframes badgeSheen {
+          0%        { background-position: 135% 0; }
+          55%, 100% { background-position: -55% 0; }
         }
         .hero-badge-dot {
           width: 8px; height: 8px; flex: 0 0 auto;
@@ -175,6 +214,7 @@ export default function Hero() {
         }
         @media (prefers-reduced-motion: reduce) {
           .hero-badge-dot { animation: none; }
+          .hero-badge::after { animation: none; opacity: 0; }
         }
         .hero-cta-row { display: flex; flex-direction: row; gap: 12px; align-items: center; justify-content: center; flex-wrap: wrap; }
 
