@@ -19,45 +19,45 @@ const STROKE = { stroke: 'currentColor', strokeWidth: 1.6, fill: 'none', strokeL
 
 const STEPS: FlowStep[] = [
   {
-    label: 'Email / Form',
-    status: 'Task captured',
+    label: 'Missed Call',
+    status: 'After hours',
     glyph: (
-      <svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" {...STROKE} /><path d="M4 7l8 6 8-6" {...STROKE} /></svg>
+      <svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 4h-2A1.5 1.5 0 003 5.6 15 15 0 0018.4 21 1.5 1.5 0 0020 19.5v-2a1 1 0 00-.7-1l-3-1a1 1 0 00-1 .3l-1 1.2a11.5 11.5 0 01-5.3-5.3l1.2-1a1 1 0 00.3-1l-1-3a1 1 0 00-1-.7z" {...STROKE} /><path d="M15.5 3.5l4.5 4.5M20 3.5l-4.5 4.5" {...STROKE} /></svg>
     ),
   },
   {
-    label: 'AI Agent',
-    status: 'AI reads',
+    label: 'AI Texts Back',
+    status: 'Replies in seconds',
     accent: true,
     glyph: (
-      <svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5" {...STROKE} /><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1" {...STROKE} /></svg>
+      <svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6a2 2 0 012-2h12a2 2 0 012 2v6a2 2 0 01-2 2h-6l-4 3v-3H6a2 2 0 01-2-2z" {...STROKE} /><path d="M8.5 8.8h7M8.5 11.4h4.5" {...STROKE} /></svg>
     ),
   },
   {
-    label: 'CRM / Database',
-    status: 'Data updated',
+    label: 'Checks Calendar',
+    status: 'Finds open slot',
     glyph: (
-      <svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="6" rx="7" ry="3" {...STROKE} /><path d="M5 6v12c0 1.7 3.1 3 7 3s7-1.3 7-3V6M5 12c0 1.7 3.1 3 7 3s7-1.3 7-3" {...STROKE} /></svg>
+      <svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2" {...STROKE} /><path d="M3.5 9.5h17M8 3.2v3.4M16 3.2v3.4" {...STROKE} /></svg>
     ),
   },
   {
-    label: 'Dashboard',
-    status: 'Report generated',
+    label: 'Books the Job',
+    status: 'Added to schedule',
     glyph: (
-      <svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10M9 20V4M14 20v-7M19 20v-11" {...STROKE} /></svg>
+      <svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2" {...STROKE} /><path d="M3.5 9.5h17M8 3.2v3.4M16 3.2v3.4M9 14.8l2 2 4-4" {...STROKE} /></svg>
     ),
   },
   {
-    label: 'Human Review',
-    status: 'Human approved',
+    label: 'You Approve',
+    status: 'One-tap confirm',
     accent: true,
     glyph: (
       <svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5" {...STROKE} /><path d="M5.5 20a6.5 6.5 0 0113 0" {...STROKE} /><path d="M15.5 13.5l1.6 1.6 3-3.2" {...STROKE} /></svg>
     ),
   },
   {
-    label: 'Done',
-    status: 'Workflow complete',
+    label: 'Customer Booked',
+    status: 'Lead saved',
     done: true,
     glyph: (
       <svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" {...STROKE} /><path d="M8.2 12.2l2.6 2.6 5-5.2" {...STROKE} /></svg>
@@ -422,7 +422,7 @@ export default function Hero() {
         <motion.div
           variants={FADE_UP}
           className="figure-halo"
-          aria-label="A sample automated workflow: a task is captured, an AI agent reads it, your database and dashboard update, a human approves, and the workflow completes."
+          aria-label="A sample automation: a customer's call is missed after hours, AI texts them back in seconds, checks your calendar, books the job, you approve in one tap, and the customer is booked — no lead lost."
           style={{ width: '100%', marginTop: '34px', perspective: '1400px' }}
         >
           <motion.div ref={cardRef} style={{ rotateX, transformStyle: 'preserve-3d', willChange: 'transform' }}>
