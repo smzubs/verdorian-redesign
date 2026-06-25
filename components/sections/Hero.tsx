@@ -19,23 +19,37 @@ const STROKE = { stroke: 'currentColor', strokeWidth: 1.6, fill: 'none', strokeL
 
 const STEPS: FlowStep[] = [
   {
-    label: 'Task In',
-    status: 'Captured',
+    label: 'Email / Form',
+    status: 'Task captured',
     glyph: (
       <svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" {...STROKE} /><path d="M4 7l8 6 8-6" {...STROKE} /></svg>
     ),
   },
   {
-    label: 'AI Workflow',
-    status: 'AI processes',
+    label: 'AI Agent',
+    status: 'AI reads',
     accent: true,
     glyph: (
       <svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5" {...STROKE} /><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1" {...STROKE} /></svg>
     ),
   },
   {
+    label: 'CRM / Database',
+    status: 'Data updated',
+    glyph: (
+      <svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="6" rx="7" ry="3" {...STROKE} /><path d="M5 6v12c0 1.7 3.1 3 7 3s7-1.3 7-3V6M5 12c0 1.7 3.1 3 7 3s7-1.3 7-3" {...STROKE} /></svg>
+    ),
+  },
+  {
+    label: 'Dashboard',
+    status: 'Report generated',
+    glyph: (
+      <svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10M9 20V4M14 20v-7M19 20v-11" {...STROKE} /></svg>
+    ),
+  },
+  {
     label: 'Human Review',
-    status: 'You approve',
+    status: 'Human approved',
     accent: true,
     glyph: (
       <svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5" {...STROKE} /><path d="M5.5 20a6.5 6.5 0 0113 0" {...STROKE} /><path d="M15.5 13.5l1.6 1.6 3-3.2" {...STROKE} /></svg>
@@ -43,7 +57,7 @@ const STEPS: FlowStep[] = [
   },
   {
     label: 'Done',
-    status: 'Complete',
+    status: 'Workflow complete',
     done: true,
     glyph: (
       <svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" {...STROKE} /><path d="M8.2 12.2l2.6 2.6 5-5.2" {...STROKE} /></svg>
@@ -208,7 +222,7 @@ export default function Hero() {
         <motion.div
           variants={FADE_UP}
           className="figure-halo"
-          aria-label="How an automated workflow runs: a task comes in, the AI workflow processes it, a human reviews and approves, and the workflow completes."
+          aria-label="How an automated workflow runs: a task is captured, an AI agent reads it, your database and dashboard update, a human approves, and the workflow completes."
           style={{ width: '100%', marginTop: '34px' }}
         >
           <div
