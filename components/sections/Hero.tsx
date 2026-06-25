@@ -267,13 +267,19 @@ export default function Hero() {
           -webkit-mask-composite: source-in;
                   mask-composite: intersect;
         }
-        /* faint selection band, like the iOS picker focus row */
+        /* transparent floating-ribbon selection band framing the focused line */
         .matrix-rain::before {
           content: '';
-          position: absolute; left: 0; right: 0; top: 50%;
-          height: 36px; transform: translateY(-50%);
-          border-top: 1px solid rgba(24,119,242,0.24);
-          border-bottom: 1px solid rgba(24,119,242,0.24);
+          position: absolute; left: 18%; right: 10px; top: 50%;
+          height: 34px; transform: translateY(-50%);
+          border-radius: 13px;
+          border: 1px solid rgba(120, 170, 255, 0.5);
+          background: rgba(255, 255, 255, 0.05);
+          box-shadow:
+            0 1px 0 rgba(255,255,255,0.5) inset,
+            0 8px 20px -10px rgba(15,23,42,0.22),
+            0 2px 7px -3px rgba(24,119,242,0.22);
+          pointer-events: none;
           z-index: 2;
         }
         .picker-drum {
