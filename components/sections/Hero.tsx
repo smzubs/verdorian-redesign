@@ -69,18 +69,20 @@ const STEPS: FlowStep[] = [
 const BINARY_BASE = '0110100101100001'
 const BINARY_STREAM = BINARY_BASE + BINARY_BASE
 
-// Magical AI-automation "data rain" — full readable sentences fall down the right side.
-// Each column is one sentence rendered as a rotated vertical line (legible, not single-glyph noise).
+// AI-automation "data stream" — readable HORIZONTAL lines on the right that fade in,
+// hold fully visible, then fade out. Staggered so ~5 show at once with vertical gaps.
+// Each line rotates its horizontal lane (right → middle → left) on every reappearance.
 // Deterministic, SSR-safe.
-const MATRIX_COLUMNS = [
-  { left: 4,  dur: 26, delay: 0,   chars: 'Built with AI. Designed around your business.' },
-  { left: 17, dur: 32, delay: 5,   chars: 'Automate the work that slows you down.' },
-  { left: 30, dur: 29, delay: 2,   chars: 'Your workflow, your way — smarter, faster, always improving.' },
-  { left: 43, dur: 34, delay: 7,   chars: 'Verdorian AI Studio turns repetitive tasks into reliable automation.' },
-  { left: 56, dur: 24, delay: 3,   chars: 'Less manual work. More time to grow.' },
-  { left: 69, dur: 31, delay: 6,   chars: 'Automation that works the way your team already works.' },
-  { left: 82, dur: 27, delay: 1,   chars: 'Reclaim your time. Reduce mistakes. Move faster.' },
-  { left: 95, dur: 30, delay: 4,   chars: 'Your automation partner for a smarter, simpler business.' },
+const MATRIX_LANES = [0, 38, 76] // px shifted left from the right edge, cycled per repeat
+const MATRIX_LINES = [
+  { top: 9,  dur: 9,   delay: 0,   text: 'Built with AI. Designed around your business.' },
+  { top: 16, dur: 11,  delay: 3.4, text: 'Automate the work that slows you down.' },
+  { top: 23, dur: 10,  delay: 6.2, text: 'Your workflow, your way — smarter, faster.' },
+  { top: 31, dur: 12,  delay: 1.6, text: 'Repetitive tasks become reliable automation.' },
+  { top: 38, dur: 9.5, delay: 4.8, text: 'Less manual work. More time to grow.' },
+  { top: 45, dur: 11,  delay: 7.5, text: 'Automation that fits how your team works.' },
+  { top: 52, dur: 10,  delay: 2.6, text: 'Reclaim time. Reduce mistakes. Move faster.' },
+  { top: 59, dur: 12,  delay: 5.5, text: 'Your partner for a smarter, simpler business.' },
 ]
 
 function FlowConnector({ i }: { i: number }) {
@@ -98,6 +100,14 @@ export default function Hero() {
   const { scrollYProgress } = useScroll({ target: cardRef, offset: ['start end', 'end start'] })
   const rotateXRaw = useTransform(scrollYProgress, [0, 0.45, 1], [7, 0, -4])
   const rotateX = reduce ? 0 : rotateXRaw
+
+  // Each data-stream line jumps to the next horizontal lane on every repeat (while invisible).
+  const cycleLane = React.useCallback((e: React.AnimationEvent<HTMLSpanElement>) => {
+    const el = e.currentTarget
+    const next = (Number(el.dataset.lane ?? '0') + 1) % MATRIX_LANES.length
+    el.dataset.lane = String(next)
+    el.style.transform = `translateX(-${MATRIX_LANES[next]}px)`
+  }, [])
 
   return (
     <section
@@ -123,12 +133,12 @@ export default function Hero() {
           0%, 64%, 100% { transform: translateY(0) scale(1); filter: brightness(1); }
           12%           { transform: translateY(-3px) scale(1.06); filter: brightness(1.14); }
         }
-        @keyframes matrixReveal {
-          0%   { opacity: 0; transform: translateY(-22%); }
-          22%  { opacity: 1; }
+        @keyframes lineFade {
+          0%   { opacity: 0; }
+          12%  { opacity: 1; }
           50%  { opacity: 1; }
-          78%  { opacity: 1; }
-          100% { opacity: 0; transform: translateY(22%); }
+          64%  { opacity: 0; }
+          100% { opacity: 0; }
         }
 
         .hero-wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
@@ -224,35 +234,31 @@ export default function Hero() {
         }
         .hero-cta-row { display: flex; flex-direction: row; gap: 12px; align-items: center; justify-content: center; flex-wrap: wrap; }
 
-        /* ── Magical AI data-rain — RIGHT side only, never under the headline text ── */
+        /* ── AI data-stream — readable horizontal lines, RIGHT side, clear of the headline ── */
         .matrix-rain {
           position: absolute;
-          top: 0; bottom: 0; right: 0; left: 66%;
+          top: 0; bottom: 0; right: 0; left: 64%;
           overflow: hidden;
           pointer-events: none;
           z-index: 0;
-          -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 40%, #000 100%), linear-gradient(180deg, transparent 0%, #000 12%, #000 46%, transparent 66%);
-                  mask-image: linear-gradient(90deg, transparent 0%, #000 40%, #000 100%), linear-gradient(180deg, transparent 0%, #000 12%, #000 46%, transparent 66%);
+          -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 18%, #000 100%), linear-gradient(180deg, transparent 0%, #000 8%, #000 56%, transparent 70%);
+                  mask-image: linear-gradient(90deg, transparent 0%, #000 18%, #000 100%), linear-gradient(180deg, transparent 0%, #000 8%, #000 56%, transparent 70%);
           -webkit-mask-composite: source-in;
                   mask-composite: intersect;
         }
-        .matrix-col {
+        .matrix-line {
           position: absolute;
-          top: 0;
-          writing-mode: vertical-rl;
-          font-family: ui-monospace, 'SF Mono', Menlo, monospace;
-          font-size: 14px;
-          font-weight: 500;
-          letter-spacing: 0.3px;
-          line-height: 1.9;
+          right: 30px;
           white-space: nowrap;
-          user-select: none;
+          font-family: var(--font-body), sans-serif;
+          font-size: 12.5px;
+          font-weight: 500;
+          letter-spacing: 0.02em;
           color: rgba(34, 112, 230, 0.92);
-          -webkit-text-fill-color: rgba(34, 112, 230, 0.92);
-          text-shadow: 0 0 10px rgba(76, 154, 255, 0.5);
+          text-shadow: 0 0 10px rgba(76, 154, 255, 0.45);
           opacity: 0;
-          will-change: opacity, transform;
-          animation-name: matrixReveal;
+          will-change: opacity;
+          animation-name: lineFade;
           animation-timing-function: ease-in-out;
           animation-iteration-count: infinite;
         }
@@ -324,23 +330,37 @@ export default function Hero() {
         @media (min-width: 861px) {
           .flow-step .flow-text { display: flex; flex-direction: column; gap: 3px; align-items: center; }
         }
+        @media (max-width: 1240px) {
+          .matrix-rain { display: none; }
+        }
         @media (prefers-reduced-motion: reduce) {
-          .flow-binary > span, .flow-step .vd-node, .flow-conn::after, .matrix-col { animation: none !important; }
+          .flow-binary > span, .flow-step .vd-node, .flow-conn::after, .matrix-line { animation: none !important; }
           .flow-conn::after { opacity: 0; }
+          .matrix-line { opacity: 0.3; }
         }
       `}</style>
 
-      {/* Matrix digital-rain backdrop */}
+      {/* AI data-stream backdrop — horizontal readable lines */}
       <div className="matrix-rain" aria-hidden="true">
-        {MATRIX_COLUMNS.map((c, i) => (
-          <span
-            key={i}
-            className="matrix-col"
-            style={{ left: `${c.left}%`, animationDuration: `${c.dur}s`, animationDelay: `${c.delay}s` }}
-          >
-            {c.chars}
-          </span>
-        ))}
+        {MATRIX_LINES.map((l, i) => {
+          const lane = i % MATRIX_LANES.length
+          return (
+            <span
+              key={i}
+              className="matrix-line"
+              data-lane={lane}
+              onAnimationIteration={cycleLane}
+              style={{
+                top: `${l.top}%`,
+                transform: `translateX(-${MATRIX_LANES[lane]}px)`,
+                animationDuration: `${l.dur}s`,
+                animationDelay: `${l.delay}s`,
+              }}
+            >
+              {l.text}
+            </span>
+          )
+        })}
       </div>
 
       <motion.div
