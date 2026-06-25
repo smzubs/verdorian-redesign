@@ -144,9 +144,9 @@ export default function Hero() {
         }
         /* Each row is black, glows blue only while it passes through the centre band (synced to drumSpin) */
         @keyframes rowGlow {
-          0%, 45%   { color: #14181F; text-shadow: 0 0 3px rgba(40,120,235,0.18); }
-          50%       { color: #1E6FF0; text-shadow: 0 0 8px rgba(40,120,235,0.78), 0 0 18px rgba(24,119,242,0.5); }
-          55%, 100% { color: #14181F; text-shadow: 0 0 3px rgba(40,120,235,0.18); }
+          0%, 47%   { color: #14181F; text-shadow: 0 0 3px rgba(40,120,235,0.18); }
+          50%       { color: #1E6FF0; text-shadow: 0 0 8px rgba(40,120,235,0.82), 0 0 18px rgba(24,119,242,0.5); }
+          53%, 100% { color: #14181F; text-shadow: 0 0 3px rgba(40,120,235,0.18); }
         }
 
         .hero-wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
@@ -270,9 +270,9 @@ export default function Hero() {
         /* transparent floating-ribbon selection band framing the focused line */
         .matrix-rain::before {
           content: '';
-          position: absolute; left: 18%; right: 10px; top: 50%;
-          height: 34px; transform: translateY(-50%);
-          border-radius: 13px;
+          position: absolute; left: 44%; right: 44px; top: 50%;
+          height: 30px; transform: translateY(-50%);
+          border-radius: 11px;
           border: 1px solid rgba(120, 170, 255, 0.5);
           background: rgba(255, 255, 255, 0.05);
           box-shadow:
@@ -373,7 +373,11 @@ export default function Hero() {
         @media (min-width: 861px) {
           .flow-step .flow-text { display: flex; flex-direction: column; gap: 3px; align-items: center; }
         }
-        @media (max-width: 1300px) {
+        @media (max-width: 1480px) {
+          .picker-row { font-size: 10px; letter-spacing: 0.01em; }
+          .matrix-rain { left: 58%; }
+        }
+        @media (max-width: 1180px) {
           .matrix-rain { display: none; }
         }
         @media (prefers-reduced-motion: reduce) {
