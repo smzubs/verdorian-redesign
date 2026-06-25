@@ -69,16 +69,18 @@ const STEPS: FlowStep[] = [
 const BINARY_BASE = '0110100101100001'
 const BINARY_STREAM = BINARY_BASE + BINARY_BASE
 
-// Magical AI-automation "data rain" — bigger, slow, right-side only (clear of the headline).
-// Mixes binary with automation tokens (AI / FLOW / RUN / BOT / API / code symbols). Deterministic, SSR-safe.
+// Magical AI-automation "data rain" — full readable sentences fall down the right side.
+// Each column is one sentence rendered as a rotated vertical line (legible, not single-glyph noise).
+// Deterministic, SSR-safe.
 const MATRIX_COLUMNS = [
-  { left: 4,  dur: 19, delay: 0,   chars: '01AI10<>1001{}10/01FLOW1001AI' },
-  { left: 18, dur: 25, delay: 4,   chars: '1001{}01AI10<>10/0101RUN01100A' },
-  { left: 31, dur: 21, delay: 1.5, chars: '0110AI1001<>01/10BOT0110AI0110' },
-  { left: 45, dur: 28, delay: 6,   chars: '10/01FLOW1001{}01AI10<>1001API' },
-  { left: 59, dur: 18, delay: 2.5, chars: '01<>1001AI10{}01/10RUN0101AI10' },
-  { left: 73, dur: 23, delay: 3.5, chars: '1001AI01<>10/01{}10FLOW1001<>0' },
-  { left: 88, dur: 26, delay: 5,   chars: '0101{}10AI01<>1001/10BOT01AI10' },
+  { left: 4,  dur: 26, delay: 0,   chars: 'Built with AI. Designed around your business.' },
+  { left: 17, dur: 32, delay: 5,   chars: 'Automate the work that slows you down.' },
+  { left: 30, dur: 29, delay: 2,   chars: 'Your workflow, your way — smarter, faster, always improving.' },
+  { left: 43, dur: 34, delay: 7,   chars: 'Verdorian AI Studio turns repetitive tasks into reliable automation.' },
+  { left: 56, dur: 24, delay: 3,   chars: 'Less manual work. More time to grow.' },
+  { left: 69, dur: 31, delay: 6,   chars: 'Automation that works the way your team already works.' },
+  { left: 82, dur: 27, delay: 1,   chars: 'Reclaim your time. Reduce mistakes. Move faster.' },
+  { left: 95, dur: 30, delay: 4,   chars: 'Your automation partner for a smarter, simpler business.' },
 ]
 
 function FlowConnector({ i }: { i: number }) {
@@ -179,7 +181,7 @@ export default function Hero() {
         /* ── Magical AI data-rain — RIGHT side only, never under the headline text ── */
         .matrix-rain {
           position: absolute;
-          top: 0; bottom: 0; right: 0; left: 70%;
+          top: 0; bottom: 0; right: 0; left: 66%;
           overflow: hidden;
           pointer-events: none;
           z-index: 0;
@@ -192,12 +194,11 @@ export default function Hero() {
           position: absolute;
           top: 0;
           writing-mode: vertical-rl;
-          text-orientation: upright;
           font-family: ui-monospace, 'SF Mono', Menlo, monospace;
-          font-size: 22px;
+          font-size: 14px;
           font-weight: 500;
-          letter-spacing: 2px;
-          line-height: 1.16;
+          letter-spacing: 0.3px;
+          line-height: 1.9;
           white-space: nowrap;
           user-select: none;
           background: linear-gradient(to bottom, rgba(34,211,238,0) 0%, rgba(24,119,242,0.16) 38%, rgba(76,154,255,0.85) 86%, rgba(220,238,255,0.98) 100%);
