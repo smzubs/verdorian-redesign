@@ -69,20 +69,16 @@ const STEPS: FlowStep[] = [
 const BINARY_BASE = '0110100101100001'
 const BINARY_STREAM = BINARY_BASE + BINARY_BASE
 
-// Faint matrix digital-rain columns behind the hero (deterministic — no Math.random, SSR-safe).
+// Magical AI-automation "data rain" — bigger, slow, right-side only (clear of the headline).
+// Mixes binary with automation tokens (AI / FLOW / RUN / BOT / API / code symbols). Deterministic, SSR-safe.
 const MATRIX_COLUMNS = [
-  { left: 3,  dur: 8.5,  delay: 0,   chars: '01001011010010110100101101001011010010' },
-  { left: 11, dur: 11,   delay: 1.6, chars: '11010010110100101101001011010010110100' },
-  { left: 19, dur: 9.5,  delay: 0.8, chars: '01101001011000010110100101100001011010' },
-  { left: 27, dur: 12.5, delay: 2.4, chars: '10010110100101101001011010010110100101' },
-  { left: 35, dur: 7.5,  delay: 0.3, chars: '01011010010110100101101001011010010110' },
-  { left: 43, dur: 10.5, delay: 1.1, chars: '11001010110010101100101011001010110010' },
-  { left: 51, dur: 9,    delay: 2.0, chars: '01101001011010010110100101101001011010' },
-  { left: 59, dur: 12,   delay: 0.6, chars: '10110100101101001011010010110100101101' },
-  { left: 67, dur: 8,    delay: 1.9, chars: '01001011010010110100101101001011010010' },
-  { left: 75, dur: 11.5, delay: 0.4, chars: '11010010110100101101001011010010110100' },
-  { left: 83, dur: 9.8,  delay: 2.7, chars: '01100001011010010110000101101001011000' },
-  { left: 91, dur: 10,   delay: 1.3, chars: '10010110100101101001011010010110100101' },
+  { left: 4,  dur: 19, delay: 0,   chars: '01AI10<>1001{}10/01FLOW1001AI' },
+  { left: 18, dur: 25, delay: 4,   chars: '1001{}01AI10<>10/0101RUN01100A' },
+  { left: 31, dur: 21, delay: 1.5, chars: '0110AI1001<>01/10BOT0110AI0110' },
+  { left: 45, dur: 28, delay: 6,   chars: '10/01FLOW1001{}01AI10<>1001API' },
+  { left: 59, dur: 18, delay: 2.5, chars: '01<>1001AI10{}01/10RUN0101AI10' },
+  { left: 73, dur: 23, delay: 3.5, chars: '1001AI01<>10/01{}10FLOW1001<>0' },
+  { left: 88, dur: 26, delay: 5,   chars: '0101{}10AI01<>1001/10BOT01AI10' },
 ]
 
 function FlowConnector({ i }: { i: number }) {
@@ -125,20 +121,22 @@ export default function Hero() {
           0%, 64%, 100% { transform: translateY(0) scale(1); filter: brightness(1); }
           12%           { transform: translateY(-3px) scale(1.06); filter: brightness(1.14); }
         }
-        @keyframes matrixFall { from { transform: translateY(-60%); } to { transform: translateY(150%); } }
+        @keyframes matrixFall { from { transform: translateY(-85%); } to { transform: translateY(165%); } }
 
         .hero-wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
         .hero-cta-row { display: flex; flex-direction: row; gap: 12px; align-items: center; justify-content: center; flex-wrap: wrap; }
 
-        /* ── Matrix digital-rain backdrop (faint, behind content) ── */
+        /* ── Magical AI data-rain — RIGHT side only, never under the headline text ── */
         .matrix-rain {
           position: absolute;
-          inset: 0;
+          top: 0; bottom: 0; right: 0; left: 70%;
           overflow: hidden;
           pointer-events: none;
           z-index: 0;
-          -webkit-mask-image: radial-gradient(ellipse 88% 76% at 50% 24%, #000 0%, rgba(0,0,0,0.55) 50%, transparent 80%);
-                  mask-image: radial-gradient(ellipse 88% 76% at 50% 24%, #000 0%, rgba(0,0,0,0.55) 50%, transparent 80%);
+          -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 40%, #000 100%), linear-gradient(180deg, transparent 0%, #000 14%, #000 80%, transparent 100%);
+                  mask-image: linear-gradient(90deg, transparent 0%, #000 40%, #000 100%), linear-gradient(180deg, transparent 0%, #000 14%, #000 80%, transparent 100%);
+          -webkit-mask-composite: source-in;
+                  mask-composite: intersect;
         }
         .matrix-col {
           position: absolute;
@@ -146,13 +144,18 @@ export default function Hero() {
           writing-mode: vertical-rl;
           text-orientation: upright;
           font-family: ui-monospace, 'SF Mono', Menlo, monospace;
-          font-size: 13px;
-          letter-spacing: 3px;
-          line-height: 1.18;
-          color: rgba(24, 119, 242, 0.17);
+          font-size: 22px;
+          font-weight: 500;
+          letter-spacing: 2px;
+          line-height: 1.16;
           white-space: nowrap;
           user-select: none;
-          filter: blur(0.2px);
+          background: linear-gradient(to bottom, rgba(34,211,238,0) 0%, rgba(24,119,242,0.16) 38%, rgba(76,154,255,0.85) 86%, rgba(220,238,255,0.98) 100%);
+          -webkit-background-clip: text;
+                  background-clip: text;
+          color: transparent;
+          -webkit-text-fill-color: transparent;
+          filter: drop-shadow(0 0 8px rgba(34,211,238,0.45));
           animation-name: matrixFall;
           animation-timing-function: linear;
           animation-iteration-count: infinite;
@@ -191,8 +194,8 @@ export default function Hero() {
           letter-spacing: 1.5px;
           color: var(--gold);
           opacity: 0.9;
-          animation: binaryFlow 2.6s linear infinite;
-          animation-delay: calc(var(--i, 0) * -0.5s);
+          animation: binaryFlow 6s linear infinite;
+          animation-delay: calc(var(--i, 0) * -1.2s);
         }
         .flow-step .vd-node {
           animation: nodeWave 2s var(--ease-glass) infinite;
@@ -220,7 +223,7 @@ export default function Hero() {
             animation: connCometV 2s linear infinite;
             animation-delay: calc(var(--i, 0) * 0.4s);
           }
-          .matrix-col { font-size: 11px; }
+          .matrix-rain { display: none; }
         }
         @media (min-width: 861px) {
           .flow-step .flow-text { display: flex; flex-direction: column; gap: 3px; align-items: center; }
