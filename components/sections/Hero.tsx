@@ -453,14 +453,14 @@ export default function Hero() {
           style={{
             fontFamily: 'var(--font-body), sans-serif',
             fontWeight: 400,
-            fontSize: '18px',
+            fontSize: '17px',
             color: 'var(--ink-soft)',
-            maxWidth: '56ch',
-            lineHeight: 1.66,
+            maxWidth: 'none',
+            lineHeight: 1.6,
             margin: 0,
           }}
         >
-          Let us autopilot your busywork, so you can focus on growing your business&mdash;and enjoying your life.
+          Let us autopilot your busywork&mdash;so you can grow your business and enjoy your life.
         </motion.p>
 
         {/* CTAs */}

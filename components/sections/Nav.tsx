@@ -80,9 +80,9 @@ export default function Nav() {
         <div
           className="nav-inner"
           style={{
-            maxWidth: '1200px',
-            margin: '0 auto',
-            padding: scrolled ? '12px 24px' : '18px 24px',
+            maxWidth: 'none',
+            margin: 0,
+            padding: scrolled ? '12px 34px' : '18px 34px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
