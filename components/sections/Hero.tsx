@@ -444,7 +444,7 @@ export default function Hero() {
 
         {/* CTAs */}
         <motion.div variants={FADE_UP} className="hero-cta-row" style={{ marginTop: '4px' }}>
-          <GlowButton variant="ink" size="lg" onClick={() => scrollToSection('contact')}>
+          <GlowButton variant="blue" size="lg" onClick={() => scrollToSection('contact')}>
             Get Free Automation Audit
           </GlowButton>
         </motion.div>

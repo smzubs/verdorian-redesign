@@ -32,7 +32,10 @@ function resolveClass(variant: Variant): string {
       return 'btn-ghost'
     case 'ghost-light':
       return 'btn-ghost btn-ghost-light'
-    // primary / blue / emerald / ink → solid ink
+    case 'blue':
+    case 'primary':
+      return 'btn-blue'
+    // emerald / ink → solid ink
     default:
       return 'btn-ink'
   }

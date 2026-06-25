@@ -313,6 +313,54 @@ html {
 .btn-ink:hover { background: transparent; color: var(--ink); }
 .btn-ink:hover::after { transform: translateX(120%); }
 
+/* Premium glossy blue button — blue gradient, white text, soft glow + shine sweep */
+.btn-blue {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #2E88FF 0%, #1877F2 52%, #0E63DB 100%);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: var(--r-sm);
+  padding: 14px 28px;
+  font-family: var(--font-body), sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--track-btn);
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.40) inset,
+    0 -9px 18px -10px rgba(6, 36, 92, 0.55) inset,
+    0 12px 26px -10px rgba(24, 119, 242, 0.55),
+    0 2px 6px -2px rgba(24, 119, 242, 0.40);
+  transition: box-shadow 0.4s var(--ease-prospectus), transform 0.3s var(--ease-prospectus), filter 0.3s var(--ease-prospectus);
+}
+.btn-blue::after {           /* shine sweep */
+  content: '';
+  position: absolute;
+  inset: 0;
+  transform: translateX(-120%);
+  background: linear-gradient(105deg, transparent 38%, rgba(255, 255, 255, 0.42) 50%, transparent 62%);
+  transition: transform 0.65s var(--ease-prospectus);
+  pointer-events: none;
+}
+.btn-blue:hover {
+  filter: brightness(1.06);
+  transform: translateY(-1px);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.50) inset,
+    0 -9px 18px -10px rgba(6, 36, 92, 0.6) inset,
+    0 16px 32px -10px rgba(24, 119, 242, 0.65),
+    0 3px 8px -2px rgba(24, 119, 242, 0.45);
+}
+.btn-blue:hover::after { transform: translateX(120%); }
+
 /* Ghost button: paper fill, ink hairline, inverts to ink on hover */
 .btn-ghost {
   position: relative;
@@ -723,7 +771,7 @@ p, li, button, a, label, input, textarea {
 /* Cellphone guards — no cutoff, full width, generous taps, clean wrap */
 @media (max-width: 480px) {
   html, body { overflow-x: hidden !important; max-width: 100vw !important; }
-  .btn-ink, .btn-ghost, .btn-ghost-light { min-height: 48px; }
+  .btn-ink, .btn-blue, .btn-ghost, .btn-ghost-light { min-height: 48px; }
   /* ruled vertical column separators collapse on mobile */
   .rule-v { display: none; }
   .plate { word-wrap: break-word; overflow-wrap: anywhere; }
@@ -989,7 +1037,8 @@ p, li, button, a, label, input, textarea {
     color: var(--gold) !important;
   }
   .landing-orb { animation: none !important; }
-  .btn-ink::after { display: none !important; }
+  .btn-ink::after, .btn-blue::after { display: none !important; }
+  .btn-blue:hover { transform: none; }
   .plate:hover { transform: none !important; }
   .glass-card, .glass-mock { will-change: auto; }
   .glass-card:hover, .glass-mock:hover { transform: translateZ(0) !important; }
