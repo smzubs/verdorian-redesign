@@ -11,8 +11,6 @@ const NAV_LINKS = [
   { label: 'Our Best Bits', id: 'trust' },
 ]
 
-const SECTION_IDS = ['hero', 'automate', 'how-it-works', 'trust', 'contact']
-
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
@@ -33,21 +31,29 @@ export default function Nav() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  // Scrollspy: highlight the nav-link section whose top has crossed the reference line.
+  // Deterministic — handles the untracked sections (problem/audience/workflow/roi) in between.
   useEffect(() => {
-    const observers: IntersectionObserver[] = []
-    SECTION_IDS.forEach((id) => {
-      const el = document.getElementById(id)
-      if (!el) return
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) setActiveSection(id)
-        },
-        { threshold: 0.3, rootMargin: '-80px 0px -50% 0px' }
-      )
-      observer.observe(el)
-      observers.push(observer)
-    })
-    return () => observers.forEach((o) => o.disconnect())
+    let raf = false
+    const update = () => {
+      const refLine = window.innerHeight * 0.35
+      let current = ''
+      for (const { id } of NAV_LINKS) {
+        const el = document.getElementById(id)
+        if (el && el.getBoundingClientRect().top <= refLine) current = id
+      }
+      setActiveSection(current)
+      raf = false
+    }
+    const onScroll = () => {
+      if (!raf) {
+        raf = true
+        window.requestAnimationFrame(update)
+      }
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    update()
+    return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
   useEffect(() => {
