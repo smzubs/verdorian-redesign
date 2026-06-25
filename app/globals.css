@@ -217,9 +217,10 @@ html {
   font-size: 12px;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: var(--track-eyebrow);
+  letter-spacing: 0.34em;
   color: var(--gold);
   display: inline-block;
+  text-indent: 0.34em;
 }
 
 /* "No. 01" chapter numeral */
@@ -410,8 +411,8 @@ html {
    cyan, never a colored tint. Keep ≤ ~6 glass surfaces visible at once (GPU).
    ════════════════════════════════════════════════════════════════ */
 :root {
-  --glass-fill:        rgba(255, 255, 255, 0.42);   /* translucent — the cool/blue stage shows through (iOS 26 Liquid Glass) */
-  --glass-fill-deep:   rgba(255, 255, 255, 0.52);   /* slightly denser glass */
+  --glass-fill:        rgba(255, 255, 255, 0.30);   /* wetter, more see-through — the cool/blue stage shows through (iOS 26 Liquid Glass / water) */
+  --glass-fill-deep:   rgba(255, 255, 255, 0.40);   /* slightly denser glass */
   --glass-border:      rgba(255, 255, 255, 0.70);   /* bright specular edge */
   --glass-border-hover: rgba(24, 119, 242, 0.50);   /* lights to blue on hover */
   --glass-ambient: radial-gradient(ellipse 80% 60% at 80% -10%, rgba(24, 119, 242, 0.16) 0%, transparent 64%);
@@ -437,10 +438,10 @@ html {
   position: relative;
   isolation: isolate;
   background: var(--glass-fill);
-  -webkit-backdrop-filter: blur(30px) saturate(1.8);
-          backdrop-filter: blur(30px) saturate(1.8);
+  -webkit-backdrop-filter: blur(34px) saturate(2) brightness(1.03);
+          backdrop-filter: blur(34px) saturate(2) brightness(1.03);
   border: 1px solid var(--glass-border);
-  border-radius: 22px;
+  border-radius: 24px;
   box-shadow: var(--glass-shadow);
   transform: translateZ(0);
   transition:

@@ -44,9 +44,9 @@ export function SectionHeading({
           fontFamily: 'var(--font-display), Georgia, serif',
           fontWeight: 400,
           fontSize: 'var(--t-h2)',
-          letterSpacing: '-0.014em',
+          letterSpacing: '0.008em',
           margin: 0,
-          lineHeight: 1.04,
+          lineHeight: 1.08,
           maxWidth: '18ch',
         }}
       >
