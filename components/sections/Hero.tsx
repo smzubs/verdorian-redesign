@@ -279,11 +279,11 @@ export default function Hero() {
             letterSpacing: '0.005em',
             margin: 0,
             color: 'var(--ink)',
-            maxWidth: '17ch',
+            maxWidth: '24ch',
           }}
         >
-          Let automation handle the work{' '}
-          <em className="gold-shimmer">your team shouldn&apos;t have to.</em>
+          <span style={{ display: 'block' }}>Let automation handle the work</span>
+          <em className="gold-shimmer" style={{ display: 'block' }}>your team shouldn&apos;t have to.</em>
         </motion.h1>
 
         {/* Subhead */}
