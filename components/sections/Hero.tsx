@@ -65,8 +65,8 @@ const STEPS: FlowStep[] = [
   },
 ]
 
-function FlowConnector() {
-  return <span className="flow-conn" aria-hidden="true" />
+function FlowConnector({ i }: { i: number }) {
+  return <span className="flow-conn" style={{ '--i': i } as React.CSSProperties} aria-hidden="true" />
 }
 
 export default function Hero() {
@@ -83,8 +83,22 @@ export default function Hero() {
       }}
     >
       <style>{`
-        @keyframes connMove { to { background-position: -16px 0; } }
-        @keyframes connMoveV { to { background-position: 0 -16px; } }
+        @keyframes connComet {
+          0%   { left: -5px; opacity: 0; transform: scale(0.5); }
+          15%  { opacity: 1; transform: scale(1); }
+          85%  { opacity: 1; transform: scale(1); }
+          100% { left: calc(100% - 5px); opacity: 0; transform: scale(0.5); }
+        }
+        @keyframes connCometV {
+          0%   { top: -5px; opacity: 0; transform: scale(0.5); }
+          15%  { opacity: 1; transform: scale(1); }
+          85%  { opacity: 1; transform: scale(1); }
+          100% { top: calc(100% - 5px); opacity: 0; transform: scale(0.5); }
+        }
+        @keyframes nodeWave {
+          0%, 64%, 100% { transform: translateY(0) scale(1); filter: brightness(1); }
+          12%           { transform: translateY(-3px) scale(1.06); filter: brightness(1.14); }
+        }
 
         .hero-wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
 
@@ -108,17 +122,34 @@ export default function Hero() {
           text-align: center;
         }
         .flow-conn {
+          position: relative;
           flex: 1 1 auto;
           align-self: center;
-          min-width: 22px;
-          max-width: 64px;
+          min-width: 26px;
+          max-width: 72px;
           height: 2px;
           margin-top: -26px;
-          background-image: repeating-linear-gradient(90deg, var(--gold) 0 5px, transparent 5px 11px);
-          background-size: 16px 2px;
-          background-repeat: repeat-x;
-          opacity: 0.6;
-          animation: connMove 0.9s linear infinite;
+          border-radius: 2px;
+          background: linear-gradient(90deg, rgba(24,119,242,0.10), rgba(24,119,242,0.32) 50%, rgba(24,119,242,0.10));
+        }
+        .flow-conn::after {
+          content: '';
+          position: absolute;
+          top: 50%;
+          left: -5px;
+          width: 16px;
+          height: 16px;
+          margin-top: -8px;
+          border-radius: 50%;
+          pointer-events: none;
+          background: radial-gradient(circle, rgba(76,154,255,0.95) 0%, rgba(24,119,242,0.55) 38%, rgba(24,119,242,0) 72%);
+          animation: connComet 2s linear infinite;
+          animation-delay: calc(var(--i, 0) * 0.4s);
+        }
+        .flow-step .vd-node {
+          animation: nodeWave 2s var(--ease-glass) infinite;
+          animation-delay: calc(var(--i, 0) * 0.4s);
+          will-change: transform;
         }
         .flow-label { font-family: var(--font-body), sans-serif; font-weight: 600; font-size: 12.5px; color: var(--ink); white-space: nowrap; }
         .flow-status { font-family: var(--font-body), sans-serif; font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-faint); white-space: nowrap; }
@@ -128,17 +159,21 @@ export default function Hero() {
           .flow-step { flex-direction: row; gap: 13px; width: 100%; max-width: 280px; text-align: left; justify-content: flex-start; }
           .flow-step .flow-text { display: flex; flex-direction: column; gap: 2px; align-items: flex-start; }
           .flow-conn {
-            width: 2px; height: 18px; min-width: 0; max-width: none; margin-top: 0; margin-left: 19px;
-            background-image: repeating-linear-gradient(180deg, var(--gold) 0 5px, transparent 5px 11px);
-            background-size: 2px 16px; background-repeat: repeat-y;
-            animation: connMoveV 0.9s linear infinite;
+            width: 2px; height: 20px; min-width: 0; max-width: none; margin-top: 0; margin-left: 19px;
+            background: linear-gradient(180deg, rgba(24,119,242,0.10), rgba(24,119,242,0.32) 50%, rgba(24,119,242,0.10));
+          }
+          .flow-conn::after {
+            top: -5px; left: 50%; margin-top: 0; margin-left: -8px;
+            animation: connCometV 2s linear infinite;
+            animation-delay: calc(var(--i, 0) * 0.4s);
           }
         }
         @media (min-width: 861px) {
           .flow-step .flow-text { display: flex; flex-direction: column; gap: 3px; align-items: center; }
         }
         @media (prefers-reduced-motion: reduce) {
-          .flow-conn { animation: none !important; }
+          .flow-conn::after, .flow-step .vd-node { animation: none !important; }
+          .flow-conn::after { opacity: 0; }
         }
       `}</style>
 
@@ -245,7 +280,7 @@ export default function Hero() {
               {STEPS.map((step, i) => (
                 <React.Fragment key={step.label}>
                   <div className="flow-step">
-                    <span className={step.accent ? 'vd-node vd-node-accent' : 'vd-node'} style={{ borderRadius: '13px' }}>
+                    <span className={step.accent ? 'vd-node vd-node-accent' : 'vd-node'} style={{ borderRadius: '13px', '--i': i } as React.CSSProperties}>
                       <span style={{ color: step.done ? 'var(--green-pass)' : 'var(--gold)', display: 'inline-flex' }}>{step.glyph}</span>
                       <span className={step.done ? 'vd-dot vd-dot-done' : 'vd-dot'} />
                     </span>
@@ -254,7 +289,7 @@ export default function Hero() {
                       <span className="flow-status">{step.status}</span>
                     </span>
                   </div>
-                  {i < STEPS.length - 1 && <FlowConnector />}
+                  {i < STEPS.length - 1 && <FlowConnector i={i} />}
                 </React.Fragment>
               ))}
             </div>
