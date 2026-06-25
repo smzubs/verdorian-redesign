@@ -182,14 +182,8 @@ export default function Nav() {
             })}
           </div>
 
-          {/* Right: CTA + hamburger */}
+          {/* Right: hamburger (mobile only) */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexShrink: 0 }}>
-            <div className="hidden md:block">
-              <GlowButton variant="ink" size="sm" onClick={() => scrollToSection('contact')}>
-                Get Free Automation Audit
-              </GlowButton>
-            </div>
-
             <button
               type="button"
               aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
