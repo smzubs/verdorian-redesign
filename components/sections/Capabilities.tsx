@@ -6,10 +6,9 @@ import { SectionHeading } from '@/components/ui/SectionHeading'
 import { FADE_UP, STAGGER_CONTAINER, CARD_ENTRANCE } from '@/lib/motion'
 
 /* ──────────────────────────────────────────────────────────────────────────
-   ICON TILE — animated wrapper + inner tile
-   The motion wrapper owns: sheen sweep (always-on, staggered per card) +
-   gentle float/breathing + hover scale/brighten + glyph micro-rotate.
-   Reduced-motion: all transform/filter animations disabled via CSS.
+   ICON TILE
+   Animated wrapper: slow organic float (no snap). Hover: spring scale +
+   brightness via Framer. No sweeps or flashes — everything is slow drift.
    ────────────────────────────────────────────────────────────────────────── */
 
 interface IconTileProps {
@@ -20,15 +19,15 @@ interface IconTileProps {
 }
 
 function IconTile({ gradFrom, gradTo, cardIndex, children }: IconTileProps) {
-  // Stagger sheen so cards don&apos;t all sweep at once: each card offset by 0.8s
-  const sheenDelay = cardIndex * 0.8
+  // Each tile floats at a slightly different phase so they feel independent
+  const floatDelay = (cardIndex * 0.9).toFixed(1)
 
   return (
     <motion.div
       aria-hidden="true"
       className="icon-tile"
-      whileHover={{ scale: 1.08, filter: 'brightness(1.18)' }}
-      transition={{ type: 'spring', stiffness: 320, damping: 24 }}
+      whileHover={{ scale: 1.07, filter: 'brightness(1.15)' }}
+      transition={{ type: 'spring', stiffness: 260, damping: 26 }}
       style={
         {
           width: '54px',
@@ -37,35 +36,33 @@ function IconTile({ gradFrom, gradTo, cardIndex, children }: IconTileProps) {
           flexShrink: 0,
           position: 'relative',
           background: `linear-gradient(140deg, ${gradFrom} 0%, ${gradTo} 100%)`,
-          border: '1px solid rgba(255,255,255,0.58)',
+          border: '1px solid rgba(255,255,255,0.62)',
           boxShadow:
-            '0 1px 0 0 rgba(255,255,255,0.48) inset, 0 4px 14px rgba(24,119,242,0.28), 0 1px 3px rgba(24,119,242,0.16)',
+            '0 1px 0 0 rgba(255,255,255,0.52) inset, 0 0 0 1px rgba(255,255,255,0.14) inset, 0 4px 16px rgba(24,119,242,0.30), 0 1px 4px rgba(24,119,242,0.18)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           overflow: 'hidden',
-          '--sheen-delay': `${sheenDelay}s`,
+          '--float-delay': `${floatDelay}s`,
         } as React.CSSProperties
       }
     >
-      {/* Static inner diagonal sheen */}
+      {/* Static diagonal inner sheen — corner specular, always visible */}
       <span
         style={{
           position: 'absolute',
           inset: 0,
           borderRadius: '14px',
           background:
-            'linear-gradient(135deg, rgba(255,255,255,0.24) 0%, transparent 55%)',
+            'linear-gradient(135deg, rgba(255,255,255,0.28) 0%, transparent 52%)',
           pointerEvents: 'none',
         }}
       />
-      {/* Animated sheen sweep — CSS keyframe, staggered via custom property */}
-      <span className="tile-sheen" aria-hidden="true" />
-      {/* Glyph — motion.span for micro-rotate on parent hover */}
+      {/* Glyph wrapper — subtle micro-rotate on card hover via Framer */}
       <motion.span
         style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-        whileHover={{ rotate: 6 }}
-        transition={{ type: 'spring', stiffness: 400, damping: 20 }}
+        whileHover={{ rotate: 5 }}
+        transition={{ type: 'spring', stiffness: 380, damping: 22 }}
       >
         {children}
       </motion.span>
@@ -278,12 +275,16 @@ const CAPABILITIES: CapabilityItem[] = [
 ]
 
 /* ──────────────────────────────────────────────────────────────────────────
-   CARD — iOS-26 liquid glass transparency + hover lift + shimmer
+   CARD — iOS-26 "water glass" + slow organic ambient drift
    ────────────────────────────────────────────────────────────────────────── */
 
 function CapabilityCard({ item, index }: { item: CapabilityItem; index: number }) {
   const { Icon } = item
   const prefersReducedMotion = useReducedMotion()
+
+  // Stagger caustic drift phase so each card is at a different point in the loop
+  const causticDelay = `-${(index * 2.1).toFixed(1)}s`
+  const specularDelay = `-${(index * 1.4).toFixed(1)}s`
 
   return (
     <motion.article
@@ -295,27 +296,34 @@ function CapabilityCard({ item, index }: { item: CapabilityItem; index: number }
           ? undefined
           : {
               y: -6,
-              transition: { type: 'spring', stiffness: 280, damping: 22 },
+              transition: { type: 'spring', stiffness: 260, damping: 24 },
             }
       }
       tabIndex={0}
       aria-label={item.title}
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '0',
-        padding: '30px 28px 28px',
-        outline: 'none',
-        cursor: 'default',
-        position: 'relative',
-        overflow: 'hidden',
-      }}
+      style={
+        {
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '0',
+          padding: '30px 28px 28px',
+          outline: 'none',
+          cursor: 'default',
+          position: 'relative',
+          overflow: 'hidden',
+          '--caustic-delay': causticDelay,
+          '--specular-delay': specularDelay,
+        } as React.CSSProperties
+      }
     >
       {/* Blue top-rule: scaleX 0 → 1 on hover via CSS */}
       <span className="glass-topline" aria-hidden="true" />
 
-      {/* Card hover shimmer sweep */}
-      <span className="card-shimmer" aria-hidden="true" />
+      {/* Caustic light blob — slow radial-gradient drift, like light through water */}
+      <span className="cap-caustic" aria-hidden="true" />
+
+      {/* Top-edge breathing specular — opacity + slight vertical drift */}
+      <span className="cap-specular" aria-hidden="true" />
 
       {/* Icon tile */}
       <div style={{ marginBottom: '20px' }}>
@@ -323,6 +331,21 @@ function CapabilityCard({ item, index }: { item: CapabilityItem; index: number }
           <Icon />
         </IconTile>
       </div>
+
+      {/* Faint inner text-scrim so copy stays readable over caustic blob */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          right: 0,
+          height: '72%',
+          background: 'linear-gradient(to bottom, transparent 0%, rgba(232,239,252,0.18) 100%)',
+          pointerEvents: 'none',
+          borderRadius: '0 0 24px 24px',
+        }}
+      />
 
       {/* Title */}
       <h3
@@ -336,6 +359,7 @@ function CapabilityCard({ item, index }: { item: CapabilityItem; index: number }
           lineHeight: 1.25,
           wordWrap: 'break-word',
           overflowWrap: 'anywhere',
+          position: 'relative',
         }}
       >
         {item.title}
@@ -348,6 +372,7 @@ function CapabilityCard({ item, index }: { item: CapabilityItem; index: number }
           height: '1px',
           background: 'var(--rule)',
           marginBottom: '12px',
+          position: 'relative',
         }}
       />
 
@@ -361,6 +386,7 @@ function CapabilityCard({ item, index }: { item: CapabilityItem; index: number }
           margin: 0,
           wordWrap: 'break-word',
           overflowWrap: 'anywhere',
+          position: 'relative',
         }}
       >
         {item.description}
@@ -393,117 +419,149 @@ export default function Capabilities() {
           outline-offset: 3px;
         }
 
-        /* ── CARD: iOS-26 liquid glass transparency ── */
+        /* ── CARD: iOS-26 water-glass surface ── */
+        /* More translucent fill, stronger blur, rounder, layered inset light */
         .cap-card {
-          border-radius: 22px;
-          background: rgba(255, 255, 255, 0.36);
-          backdrop-filter: blur(28px) saturate(1.65);
-          -webkit-backdrop-filter: blur(28px) saturate(1.65);
-          border: 1px solid rgba(255, 255, 255, 0.58);
+          border-radius: 24px;
+          background: rgba(255, 255, 255, 0.30);
+          backdrop-filter: blur(32px) saturate(1.80) brightness(1.04);
+          -webkit-backdrop-filter: blur(32px) saturate(1.80) brightness(1.04);
+          border: 1px solid rgba(255, 255, 255, 0.62);
           box-shadow:
-            0 2px 0 0 rgba(255, 255, 255, 0.52) inset,
-            0 8px 32px rgba(24, 119, 242, 0.12),
-            0 2px 8px rgba(99, 102, 241, 0.10),
-            0 1px 2px rgba(0, 0, 0, 0.06);
+            /* curved top-edge specular — mimics a glass lens rim */
+            0 2px 0 0 rgba(255, 255, 255, 0.58) inset,
+            /* inner side-light refraction */
+            -1px 0 0 0 rgba(255, 255, 255, 0.22) inset,
+            1px 0 0 0 rgba(255, 255, 255, 0.14) inset,
+            /* outer blue-tinted glow from the glass-stage behind */
+            0 8px 36px rgba(24, 119, 242, 0.14),
+            0 2px 10px rgba(99, 102, 241, 0.10),
+            0 1px 2px rgba(0, 0, 0, 0.05);
           transition:
-            box-shadow 0.3s ease,
-            border-color 0.3s ease;
+            box-shadow 0.5s ease,
+            border-color 0.5s ease;
         }
 
-        /* Fallback for browsers without backdrop-filter */
+        /* Fallback: no backdrop-filter support */
         @supports not (backdrop-filter: blur(1px)) {
           .cap-card {
-            background: rgba(242, 245, 250, 0.94);
+            background: rgba(235, 241, 252, 0.96);
           }
         }
 
-        /* Hover: stronger blue glow */
+        /* Hover: caustic pools a touch brighter, border luminance up */
         .cap-card:hover {
           box-shadow:
-            0 2px 0 0 rgba(255, 255, 255, 0.60) inset,
-            0 12px 40px rgba(24, 119, 242, 0.22),
-            0 4px 16px rgba(99, 102, 241, 0.16),
-            0 1px 3px rgba(0, 0, 0, 0.08);
-          border-color: rgba(255, 255, 255, 0.72);
-        }
-
-        /* ── Card hover shimmer sweep ── */
-        .card-shimmer {
-          position: absolute;
-          inset: 0;
-          border-radius: 22px;
-          background: linear-gradient(
-            115deg,
-            transparent 20%,
-            rgba(255, 255, 255, 0.18) 50%,
-            transparent 80%
-          );
-          transform: translateX(-110%);
-          transition: none;
-          pointer-events: none;
-          will-change: transform;
-        }
-        .cap-card:hover .card-shimmer {
-          transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
-          transform: translateX(110%);
+            0 2px 0 0 rgba(255, 255, 255, 0.68) inset,
+            -1px 0 0 0 rgba(255, 255, 255, 0.26) inset,
+            1px 0 0 0 rgba(255, 255, 255, 0.18) inset,
+            0 14px 48px rgba(24, 119, 242, 0.24),
+            0 4px 18px rgba(99, 102, 241, 0.16),
+            0 1px 3px rgba(0, 0, 0, 0.07);
+          border-color: rgba(255, 255, 255, 0.78);
         }
 
         /* ── Blue top-rule ── */
         .glass-topline {
           position: absolute;
           top: 0;
-          left: 10%;
-          right: 10%;
+          left: 12%;
+          right: 12%;
           height: 2px;
           border-radius: 0 0 2px 2px;
           background: linear-gradient(90deg, transparent, var(--gold, #1877F2), transparent);
           transform: scaleX(0);
           transform-origin: center;
-          transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+          transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
         }
         .cap-card:hover .glass-topline {
           transform: scaleX(1);
         }
 
-        /* ── Icon tile float / breathing — always-on ── */
-        @keyframes tileFloat {
-          0%, 100% { transform: translateY(0px); }
-          50%       { transform: translateY(-3px); }
+        /* ── CAUSTIC LIGHT BLOB
+           A soft, large radial gradient in blue/cyan/indigo that drifts very
+           slowly around the card interior — like sunlight rippling under water.
+           Opacity ~0.08–0.11, huge blur via filter, 15–20s ease-in-out loop.
+           Each card gets a negative delay so they start mid-animation (all different).
+        ── */
+        @keyframes causticDrift {
+          0%   { transform: translate(-18%, -22%) scale(1.0);    opacity: 0.08; }
+          25%  { transform: translate(12%, -8%)  scale(1.12);   opacity: 0.11; }
+          50%  { transform: translate(20%, 18%)  scale(0.94);   opacity: 0.07; }
+          75%  { transform: translate(-8%, 24%)  scale(1.08);   opacity: 0.10; }
+          100% { transform: translate(-18%, -22%) scale(1.0);   opacity: 0.08; }
         }
 
-        /* ── Sheen sweep across icon tile — staggered per card ── */
-        @keyframes tileSheen {
-          0%   { transform: translateX(-130%) skewX(-18deg); opacity: 0; }
-          15%  { opacity: 1; }
-          85%  { opacity: 1; }
-          100% { transform: translateX(230%) skewX(-18deg); opacity: 0; }
-        }
-
-        .tile-sheen {
+        .cap-caustic {
           position: absolute;
-          top: 0;
-          left: 0;
-          width: 40%;
-          height: 100%;
+          top: -30%;
+          left: -20%;
+          width: 140%;
+          height: 140%;
+          border-radius: 50%;
+          background: radial-gradient(
+            ellipse 68% 58% at 50% 50%,
+            rgba(24, 119, 242, 0.22) 0%,
+            rgba(99, 102, 241, 0.14) 40%,
+            rgba(34, 211, 238, 0.06) 70%,
+            transparent 100%
+          );
+          filter: blur(28px);
+          animation: causticDrift 18s ease-in-out infinite;
+          animation-delay: var(--caustic-delay, 0s);
+          pointer-events: none;
+          will-change: transform, opacity;
+        }
+
+        /* ── SPECULAR HIGHLIGHT
+           A thin luminous arc along the top edge of the card that slowly
+           breathes in opacity and drifts 4px vertically — like a light seam
+           through frosted water-glass. 10–14s, very subtle.
+        ── */
+        @keyframes specularBreathe {
+          0%   { opacity: 0.55; transform: translateY(0px)   scaleX(0.82); }
+          40%  { opacity: 0.80; transform: translateY(1.5px) scaleX(0.94); }
+          70%  { opacity: 0.62; transform: translateY(3px)   scaleX(0.88); }
+          100% { opacity: 0.55; transform: translateY(0px)   scaleX(0.82); }
+        }
+
+        .cap-specular {
+          position: absolute;
+          top: 1px;
+          left: 15%;
+          right: 15%;
+          height: 3px;
+          border-radius: 0 0 100% 100% / 0 0 6px 6px;
           background: linear-gradient(
             90deg,
-            transparent,
-            rgba(255, 255, 255, 0.42),
-            transparent
+            transparent 0%,
+            rgba(255, 255, 255, 0.72) 35%,
+            rgba(255, 255, 255, 0.90) 50%,
+            rgba(255, 255, 255, 0.72) 65%,
+            transparent 100%
           );
-          /* Fire once every 8s, staggered by --sheen-delay */
-          animation: tileSheen 1.1s cubic-bezier(0.22, 1, 0.36, 1) var(--sheen-delay, 0s) infinite;
-          animation-delay: var(--sheen-delay, 0s);
+          filter: blur(0.8px);
+          animation: specularBreathe 12s ease-in-out infinite;
+          animation-delay: var(--specular-delay, 0s);
           pointer-events: none;
-          will-change: transform;
+          will-change: opacity, transform;
+        }
+
+        /* ── ICON TILE: slow buttery float (no snap) ── */
+        @keyframes tileFloat {
+          0%   { transform: translateY(0px);    }
+          30%  { transform: translateY(-2.5px); }
+          65%  { transform: translateY(1px);    }
+          100% { transform: translateY(0px);    }
         }
 
         .icon-tile {
-          animation: tileFloat 4s ease-in-out infinite;
+          animation: tileFloat 7s ease-in-out infinite;
+          animation-delay: var(--float-delay, 0s);
           will-change: transform;
         }
 
-        /* Pause float on hover so Framer scale doesn't fight CSS */
+        /* Pause float on hover — Framer spring takes over cleanly */
         .cap-card:hover .icon-tile {
           animation-play-state: paused;
         }
@@ -525,16 +583,21 @@ export default function Capabilities() {
           .cap-card { padding: 22px 18px 20px !important; }
         }
 
-        /* ── Reduced motion: suppress ALL transforms/animations ── */
+        /* ── Reduced motion: freeze all drift to a calm static state ── */
         @media (prefers-reduced-motion: reduce) {
           .icon-tile {
             animation: none !important;
           }
-          .tile-sheen {
+          .cap-caustic {
             animation: none !important;
+            /* Leave the blob in a neutral position as a soft static accent */
+            transform: translate(0%, 0%) scale(1.0);
+            opacity: 0.07;
           }
-          .card-shimmer {
-            display: none !important;
+          .cap-specular {
+            animation: none !important;
+            opacity: 0.60;
+            transform: translateY(0) scaleX(0.88);
           }
           .cap-card,
           .cap-card:hover {
