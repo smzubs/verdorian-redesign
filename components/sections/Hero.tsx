@@ -231,8 +231,8 @@ export default function Hero() {
           overflow: hidden;
           pointer-events: none;
           z-index: 0;
-          -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 40%, #000 100%), linear-gradient(180deg, transparent 0%, #000 14%, #000 80%, transparent 100%);
-                  mask-image: linear-gradient(90deg, transparent 0%, #000 40%, #000 100%), linear-gradient(180deg, transparent 0%, #000 14%, #000 80%, transparent 100%);
+          -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 40%, #000 100%), linear-gradient(180deg, transparent 0%, #000 12%, #000 46%, transparent 66%);
+                  mask-image: linear-gradient(90deg, transparent 0%, #000 40%, #000 100%), linear-gradient(180deg, transparent 0%, #000 12%, #000 46%, transparent 66%);
           -webkit-mask-composite: source-in;
                   mask-composite: intersect;
         }
