@@ -292,7 +292,7 @@ export default function Hero() {
           position: absolute;
           top: -16px; left: 0; right: 0; height: 32px;
           display: flex; align-items: center; justify-content: flex-end;
-          padding-right: 60px;
+          padding-right: 74px;
           backface-visibility: hidden;
           -webkit-backface-visibility: hidden;
           white-space: nowrap;
