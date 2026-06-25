@@ -124,6 +124,11 @@ export default function Hero() {
         @keyframes matrixFall { from { transform: translateY(-85%); } to { transform: translateY(165%); } }
 
         .hero-wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+        .hero-eyebrow { letter-spacing: 0.26em; }
+        @media (max-width: 560px) {
+          .hero-eyebrow-rule { display: none; }
+          .hero-eyebrow { letter-spacing: 0.16em; text-indent: 0.16em; white-space: normal; text-align: center; line-height: 1.7; }
+        }
         .hero-cta-row { display: flex; flex-direction: row; gap: 12px; align-items: center; justify-content: center; flex-wrap: wrap; }
 
         /* ── Magical AI data-rain — RIGHT side only, never under the headline text ── */
@@ -256,10 +261,10 @@ export default function Hero() {
         style={{ position: 'relative', zIndex: 10, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '26px', textAlign: 'center' }}
       >
         {/* Eyebrow */}
-        <motion.div variants={FADE_UP} style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-          <span aria-hidden="true" style={{ width: '40px', height: '1px', background: 'var(--rule-strong)' }} />
-          <span className="eyebrow">AI Automation Studio</span>
-          <span aria-hidden="true" style={{ width: '40px', height: '1px', background: 'var(--rule-strong)' }} />
+        <motion.div variants={FADE_UP} className="hero-eyebrow-row" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px', flexWrap: 'wrap' }}>
+          <span aria-hidden="true" className="hero-eyebrow-rule" style={{ width: '40px', height: '1px', background: 'var(--rule-strong)' }} />
+          <span className="eyebrow hero-eyebrow">Smart Automation for Growing Businesses</span>
+          <span aria-hidden="true" className="hero-eyebrow-rule" style={{ width: '40px', height: '1px', background: 'var(--rule-strong)' }} />
         </motion.div>
 
         {/* H1 */}
@@ -277,8 +282,8 @@ export default function Hero() {
             maxWidth: '17ch',
           }}
         >
-          AI Automation for{' '}
-          <em className="gold-shimmer">Repetitive Business Work</em>
+          Let automation handle the work{' '}
+          <em className="gold-shimmer">your team shouldn&apos;t have to.</em>
         </motion.h1>
 
         {/* Subhead */}
@@ -294,8 +299,9 @@ export default function Hero() {
             margin: 0,
           }}
         >
-          Verdorian builds custom AI workflows, dashboards, and internal tools that remove
-          manual work, reduce errors, and help your team move faster.
+          Verdorian AI Studio builds smart, custom automation systems for small and mid-sized
+          businesses&mdash;helping you save time, reduce errors, cut costs, and grow faster with
+          less manual work.
         </motion.p>
 
         {/* CTAs */}
