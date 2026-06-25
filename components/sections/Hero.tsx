@@ -273,7 +273,7 @@ export default function Hero() {
           className="hero-h1"
           style={{
             fontFamily: 'var(--font-display), Georgia, serif',
-            fontWeight: 400,
+            fontWeight: 700,
             fontSize: 'clamp(36px, 5.6vw, 82px)',
             lineHeight: 1.06,
             letterSpacing: '0.005em',
