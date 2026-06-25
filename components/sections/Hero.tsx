@@ -127,6 +127,12 @@ export default function Hero() {
           from { transform: rotateX(0deg); }
           to   { transform: rotateX(-360deg); }
         }
+        /* Each row is black, glows blue only while it passes through the centre band (synced to drumSpin) */
+        @keyframes rowGlow {
+          0%, 41%   { color: #14181F; text-shadow: 0 0 3px rgba(40,120,235,0.18); }
+          50%       { color: #1E6FF0; text-shadow: 0 0 8px rgba(40,120,235,0.75), 0 0 18px rgba(24,119,242,0.5); }
+          59%, 100% { color: #14181F; text-shadow: 0 0 3px rgba(40,120,235,0.18); }
+        }
 
         .hero-wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
 
@@ -241,14 +247,14 @@ export default function Hero() {
         /* ── iOS-picker data-drum — a 3D rotating wheel of sentences on the right ── */
         .matrix-rain {
           position: absolute;
-          top: 41%; right: 0; left: 60%;
-          height: 150px;
-          perspective: 620px;
+          top: 40%; right: 0; left: 60%;
+          height: 200px;
+          perspective: 660px;
           overflow: hidden;
           pointer-events: none;
           z-index: 0;
-          -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 16%, #000 100%), linear-gradient(180deg, transparent 0%, #000 33%, #000 67%, transparent 100%);
-                  mask-image: linear-gradient(90deg, transparent 0%, #000 16%, #000 100%), linear-gradient(180deg, transparent 0%, #000 33%, #000 67%, transparent 100%);
+          -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 16%, #000 100%), linear-gradient(180deg, transparent 0%, #000 22%, #000 78%, transparent 100%);
+                  mask-image: linear-gradient(90deg, transparent 0%, #000 16%, #000 100%), linear-gradient(180deg, transparent 0%, #000 22%, #000 78%, transparent 100%);
           -webkit-mask-composite: source-in;
                   mask-composite: intersect;
         }
@@ -265,7 +271,7 @@ export default function Hero() {
           position: absolute;
           top: 50%; left: 0; right: 0; height: 0;
           transform-style: preserve-3d;
-          animation: drumSpin 18s linear infinite;
+          animation: drumSpin 22s linear infinite;
         }
         .picker-row {
           position: absolute;
@@ -279,8 +285,10 @@ export default function Hero() {
           font-size: 13px;
           font-weight: 600;
           letter-spacing: 0.03em;
-          color: #13171F;
-          text-shadow: 0 0 4px rgba(40,120,235,0.40), 0 0 11px rgba(24,119,242,0.26);
+          color: #14181F;
+          text-shadow: 0 0 3px rgba(40,120,235,0.18);
+          will-change: color;
+          animation: rowGlow 22s linear infinite;
         }
 
         /* ── Command-center flow rail ── */
@@ -354,8 +362,9 @@ export default function Hero() {
           .matrix-rain { display: none; }
         }
         @media (prefers-reduced-motion: reduce) {
-          .flow-binary > span, .flow-step .vd-node, .flow-conn::after, .picker-drum { animation: none !important; }
+          .flow-binary > span, .flow-step .vd-node, .flow-conn::after, .picker-drum, .picker-row { animation: none !important; }
           .flow-conn::after { opacity: 0; }
+          .picker-row { color: #14181F; }
         }
       `}</style>
 
@@ -366,7 +375,10 @@ export default function Hero() {
             <span
               key={i}
               className="picker-row"
-              style={{ transform: `rotateX(${i * 45}deg) translateZ(56px)`, color: i % 2 ? '#1E6FF0' : '#13171F' }}
+              style={{
+                transform: `rotateX(${i * 45}deg) translateZ(56px)`,
+                animationDelay: `${(i * 2.75 - 11).toFixed(2)}s`,
+              }}
             >
               {s}
             </span>
