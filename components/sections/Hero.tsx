@@ -171,7 +171,7 @@ export default function Hero() {
             0 -6px 14px -8px rgba(24,119,242,0.18) inset,
             0 10px 26px -12px rgba(24,119,242,0.42),
             0 3px 10px -5px rgba(15,23,42,0.16);
-          animation: neonPowerOn 1.9s ease-out both;
+          animation: neonPowerOn 4s ease-in-out both;
         }
         /* refractive gradient edge */
         .hero-badge::before {
@@ -206,18 +206,12 @@ export default function Hero() {
         }
         /* Neon-sign power-on: flickers awake, then settles to the stable glass pill (plays once on load) */
         @keyframes neonPowerOn {
-          0%   { opacity: 0;    filter: brightness(0.4); }
-          6%   { opacity: 0.92; filter: brightness(1.7) hue-rotate(-65deg) drop-shadow(0 0 12px rgba(255,0,170,0.85)); }   /* magenta zap */
-          9%   { opacity: 0.10; filter: brightness(0.5); }
-          14%  { opacity: 1;    filter: brightness(1.75) hue-rotate(95deg) drop-shadow(0 0 14px rgba(0,225,255,0.85)); }   /* cyan zap */
-          17%  { opacity: 0.20; filter: brightness(0.55); }
-          22%  { opacity: 1;    filter: brightness(1.6) hue-rotate(-35deg) drop-shadow(0 0 12px rgba(150,80,255,0.8)); }   /* violet zap */
-          25%  { opacity: 0.42; filter: brightness(0.8); }
-          31%  { opacity: 1;    filter: brightness(1.7) hue-rotate(45deg) drop-shadow(0 0 14px rgba(0,200,255,0.75)); }    /* aqua zap */
-          35%  { opacity: 0.68; filter: brightness(1.05) hue-rotate(0deg) drop-shadow(0 0 7px rgba(24,119,242,0.6)); }
-          41%  { opacity: 1;    filter: brightness(1.35) drop-shadow(0 0 11px rgba(24,119,242,0.6)); }                     /* settle to blue */
-          47%  { opacity: 0.92; filter: brightness(1.06) drop-shadow(0 0 6px rgba(24,119,242,0.4)); }
-          100% { opacity: 1;    filter: brightness(1); }
+          0%   { opacity: 0;    filter: brightness(0.7) blur(3px) drop-shadow(0 0 0 transparent); }
+          20%  { opacity: 0.9;  filter: brightness(1.3) blur(1px) hue-rotate(-60deg) drop-shadow(0 0 16px rgba(255,0,170,0.6)); }  /* dreamy magenta bloom */
+          40%  { opacity: 1;    filter: brightness(1.32) blur(0.4px) hue-rotate(95deg) drop-shadow(0 0 18px rgba(0,225,255,0.6)); } /* cyan */
+          60%  { opacity: 1;    filter: brightness(1.28) hue-rotate(-30deg) drop-shadow(0 0 18px rgba(150,80,255,0.55)); }          /* violet */
+          80%  { opacity: 1;    filter: brightness(1.16) hue-rotate(18deg) drop-shadow(0 0 14px rgba(24,119,242,0.55)); }           /* settling into blue */
+          100% { opacity: 1;    filter: brightness(1) blur(0) drop-shadow(0 0 0 transparent); }
         }
         .hero-badge-dot {
           width: 8px; height: 8px; flex: 0 0 auto;
