@@ -477,19 +477,26 @@ export default function Hero() {
         </motion.div>
 
         {/* Micro-trust line */}
-        <motion.p
+        <motion.div
           variants={FADE_UP}
           style={{
-            fontFamily: 'var(--font-body), sans-serif',
-            fontSize: '13px',
-            lineHeight: 1.5,
-            color: 'var(--ink-faint)',
-            margin: '-10px 0 0',
-            maxWidth: '52ch',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: '9px',
+            flexWrap: 'wrap',
+            margin: '-6px 0 0',
+            maxWidth: '56ch',
           }}
         >
-          Tell us one task you repeat every week. We&apos;ll show you what can be automated.
-        </motion.p>
+          <svg width="15" height="15" viewBox="0 0 24 24" aria-hidden="true" style={{ flexShrink: 0 }}>
+            <path d="M13 2.5L5.5 13H11l-1 8.5L18.5 10H13z" fill="none" stroke="var(--gold)" strokeWidth="1.7" strokeLinejoin="round" strokeLinecap="round" />
+          </svg>
+          <span style={{ fontFamily: 'var(--font-body), sans-serif', fontSize: '13.5px', lineHeight: 1.5, color: 'var(--ink-faint)' }}>
+            Tell us one task you repeat every week —{' '}
+            <span style={{ color: 'var(--gold)', fontWeight: 600 }}>we&apos;ll show you what can be automated.</span>
+          </span>
+        </motion.div>
 
         {/* ── Command-center workflow visual (iOS 3D scroll tilt) ── */}
         <motion.div
