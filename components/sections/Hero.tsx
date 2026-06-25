@@ -355,9 +355,6 @@ export default function Hero() {
           <GlowButton variant="ink" size="lg" onClick={() => scrollToSection('contact')}>
             Get Free Automation Audit
           </GlowButton>
-          <GlowButton variant="ghost" size="lg" onClick={() => scrollToSection('automate')}>
-            See What We Automate
-          </GlowButton>
         </motion.div>
 
         {/* Micro-trust line */}
