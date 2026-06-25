@@ -1,143 +1,14 @@
 'use client'
 
-import React from 'react'
 import { motion } from 'framer-motion'
-import { SectionHeading } from '@/components/ui/SectionHeading'
 import { FADE_UP, STAGGER_CONTAINER } from '@/lib/motion'
 
-/* ─── Pain catalogue ─────────────────────────────────────────────────── */
-
-const PAIN_CARDS: { label: string }[] = [
-  { label: 'Copy-pasting data between apps' },
-  { label: 'Chasing approvals and updates' },
-  { label: 'Replying to the same questions' },
-  { label: 'Building reports by hand' },
-  { label: 'Searching emails and documents' },
-  { label: 'Updating spreadsheets and CRMs' },
-  { label: 'Forgetting follow-ups' },
-  { label: 'Repeating admin work every week' },
-]
-
-/* ─── Repeat-cycle SVG indicator ─────────────────────────────────────── */
-
-interface RepeatIconProps {
-  animated: boolean
-}
-
-function RepeatIcon({ animated }: RepeatIconProps) {
-  return (
-    <svg
-      width="18"
-      height="18"
-      viewBox="0 0 18 18"
-      fill="none"
-      aria-hidden="true"
-      style={{
-        flexShrink: 0,
-        animation: animated ? 'pain-spin 3.2s linear infinite' : 'none',
-        transformOrigin: 'center',
-      }}
-    >
-      {/* Top-right arc arrow */}
-      <path
-        d="M13.5 3.75A6.75 6.75 0 0 1 15.75 9"
-        stroke="currentColor"
-        strokeWidth="1.35"
-        strokeLinecap="round"
-      />
-      <path
-        d="M13.5 3.75l1.8-.9-.9 1.8"
-        stroke="currentColor"
-        strokeWidth="1.35"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      {/* Bottom-left arc arrow */}
-      <path
-        d="M4.5 14.25A6.75 6.75 0 0 1 2.25 9"
-        stroke="currentColor"
-        strokeWidth="1.35"
-        strokeLinecap="round"
-      />
-      <path
-        d="M4.5 14.25l-1.8.9.9-1.8"
-        stroke="currentColor"
-        strokeWidth="1.35"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  )
-}
-
-/* ─── Individual pain card ───────────────────────────────────────────── */
-
-interface PainCardProps {
-  label: string
-  index: number
-}
-
-function PainCard({ label, index }: PainCardProps) {
-  const [hovered, setHovered] = React.useState(false)
-
-  return (
-    <motion.div
-      variants={FADE_UP}
-      custom={index}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      onFocus={() => setHovered(true)}
-      onBlur={() => setHovered(false)}
-      style={{
-        display: 'flex',
-        alignItems: 'flex-start',
-        gap: '12px',
-        padding: '20px 22px',
-        background: 'rgba(255,255,255,0.52)',
-        border: '1px solid var(--rule-strong)',
-        borderRadius: '6px',
-        boxShadow: hovered
-          ? '0 4px 20px rgba(19,22,27,0.07), 0 1px 4px rgba(19,22,27,0.05)'
-          : '0 1px 3px rgba(19,22,27,0.04)',
-        transform: hovered ? 'translateY(-2px)' : 'translateY(0)',
-        transition: 'box-shadow 0.26s ease, transform 0.26s ease, background 0.26s ease',
-        cursor: 'default',
-        backdropFilter: 'blur(8px)',
-        WebkitBackdropFilter: 'blur(8px)',
-      }}
-      aria-label={label}
-    >
-      {/* Repeat indicator */}
-      <span
-        style={{
-          marginTop: '2px',
-          color: hovered ? 'var(--gold)' : 'var(--ink-soft)',
-          transition: 'color 0.26s ease',
-          lineHeight: 1,
-        }}
-      >
-        <RepeatIcon animated={hovered} />
-      </span>
-
-      {/* Pain text */}
-      <span
-        style={{
-          fontFamily: 'var(--font-body), sans-serif',
-          fontSize: '14.5px',
-          fontWeight: 450,
-          color: hovered ? 'var(--ink)' : 'var(--ink-soft)',
-          lineHeight: 1.5,
-          letterSpacing: '0.01em',
-          transition: 'color 0.26s ease',
-        }}
-      >
-        {label}
-      </span>
-    </motion.div>
-  )
-}
-
-/* ─── Section ────────────────────────────────────────────────────────── */
+const CHIPS = [
+  'Copy-pasting data',
+  'Chasing follow-ups',
+  'Building reports by hand',
+  'Updating spreadsheets and CRMs',
+] as const
 
 export default function PainSection() {
   return (
@@ -153,52 +24,23 @@ export default function PainSection() {
         overflow: 'hidden',
       }}
     >
-      {/* Scoped responsive styles + keyframes */}
       <style>{`
-        @media (prefers-reduced-motion: reduce) {
-          .pain-card-repeat { animation: none !important; }
-        }
-
-        @keyframes pain-spin {
-          0%   { transform: rotate(0deg);   opacity: 0.7; }
-          45%  { transform: rotate(160deg); opacity: 1;   }
-          50%  { transform: rotate(160deg); opacity: 1;   }
-          95%  { transform: rotate(360deg); opacity: 0.7; }
-          100% { transform: rotate(360deg); opacity: 0.7; }
-        }
-
-        .pain-grid {
-          display: grid;
-          grid-template-columns: repeat(4, 1fr);
-          gap: 14px;
-        }
-
-        @media (max-width: 900px) {
-          .pain-grid {
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-          }
-        }
-
         @media (max-width: 520px) {
-          .pain-grid {
-            grid-template-columns: 1fr;
-            gap: 10px;
-          }
-
           .pain-section-inner {
             padding-left: 20px !important;
             padding-right: 20px !important;
           }
-
-          .pain-section-wrap {
-            padding-top: 80px !important;
-            padding-bottom: 80px !important;
+          .pain-chips {
+            flex-direction: column !important;
+            align-items: stretch !important;
           }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .pain-chips * { animation: none !important; }
         }
       `}</style>
 
-      {/* Subtle faint ambient — very low opacity so it reads as paper, not glass */}
+      {/* Faint ambient — single decorative flourish */}
       <div
         aria-hidden="true"
         style={{
@@ -230,68 +72,95 @@ export default function PainSection() {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            gap: '48px',
+            gap: '40px',
           }}
         >
-          {/* ── Heading block ── */}
-          <div
+          {/* Heading block */}
+          <motion.div
+            variants={FADE_UP}
             style={{
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
-              gap: '20px',
+              gap: '16px',
               textAlign: 'center',
             }}
           >
-            <SectionHeading
-              eyebrow="WHERE TIME GOES"
-              lead="Your business is leaking time"
-              accent="in small tasks every day."
-              align="center"
-            />
-
-            <motion.p
-              variants={FADE_UP}
+            <h2
+              style={{
+                fontFamily: 'var(--font-display), serif',
+                fontSize: 'clamp(1.6rem, 3.5vw, 2.25rem)',
+                fontWeight: 600,
+                color: 'var(--ink)',
+                lineHeight: 1.2,
+                margin: 0,
+                letterSpacing: '-0.01em',
+              }}
+            >
+              Manual work is quietly costing you time.
+            </h2>
+            <p
               style={{
                 fontFamily: 'var(--font-body), sans-serif',
                 fontSize: '17px',
                 color: 'var(--ink-soft)',
-                lineHeight: 1.72,
+                lineHeight: 1.7,
                 margin: 0,
-                maxWidth: '62ch',
+                maxWidth: '58ch',
               }}
             >
-              Most teams do not lose time in one big place. They lose it through repeated
-              emails, spreadsheet updates, reports, approvals, follow-ups, and manual data
-              entry.
-            </motion.p>
-          </div>
+              Most teams lose hours through repeated emails, spreadsheet updates,
+              reports, approvals, follow-ups, and data entry.
+            </p>
+          </motion.div>
 
-          {/* ── Pain cards grid ── */}
+          {/* Pain chips */}
           <motion.div
             variants={FADE_UP}
-            className="pain-grid"
-            style={{ width: '100%' }}
+            className="pain-chips"
+            style={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              gap: '10px',
+              justifyContent: 'center',
+            }}
           >
-            {PAIN_CARDS.map((card, i) => (
-              <PainCard key={card.label} label={card.label} index={i} />
+            {CHIPS.map((label) => (
+              <span
+                key={label}
+                style={{
+                  fontFamily: 'var(--font-body), sans-serif',
+                  fontSize: '14px',
+                  fontWeight: 500,
+                  color: 'var(--ink-soft)',
+                  background: 'rgba(255,255,255,0.52)',
+                  border: '1px solid var(--rule-strong)',
+                  borderRadius: 'var(--r-sm, 6px)',
+                  padding: '10px 18px',
+                  backdropFilter: 'blur(8px)',
+                  WebkitBackdropFilter: 'blur(8px)',
+                  whiteSpace: 'nowrap',
+                  letterSpacing: '0.01em',
+                }}
+              >
+                {label}
+              </span>
             ))}
           </motion.div>
 
-          {/* ── Quiet closing line ── */}
+          {/* Closing line */}
           <motion.p
             variants={FADE_UP}
             style={{
               fontFamily: 'var(--font-body), sans-serif',
-              fontSize: '13.5px',
-              letterSpacing: '0.08em',
-              textTransform: 'uppercase',
+              fontSize: '14px',
               color: 'var(--ink-faint)',
               margin: 0,
               textAlign: 'center',
+              fontStyle: 'italic',
             }}
           >
-            None of these tasks require a person. They require a system.
+            If it repeats every week, it may be worth automating.
           </motion.p>
         </motion.div>
       </div>

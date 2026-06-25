@@ -15,7 +15,7 @@ interface Step {
   ariaLabel: string
 }
 
-const GlyphDiscover = () => (
+const GlyphAudit = () => (
   <svg
     width="22"
     height="22"
@@ -59,34 +59,6 @@ const GlyphDiscover = () => (
       strokeWidth="1.2"
       strokeLinecap="round"
     />
-  </svg>
-)
-
-const GlyphDesign = () => (
-  <svg
-    width="22"
-    height="22"
-    viewBox="0 0 22 22"
-    fill="none"
-    aria-hidden="true"
-    focusable="false"
-  >
-    {/* Blueprint grid */}
-    <rect
-      x="2"
-      y="2"
-      width="18"
-      height="18"
-      rx="2"
-      stroke="currentColor"
-      strokeWidth="1.4"
-    />
-    <line x1="2" y1="8" x2="20" y2="8" stroke="currentColor" strokeWidth="0.9" strokeOpacity="0.5" />
-    <line x1="2" y1="14" x2="20" y2="14" stroke="currentColor" strokeWidth="0.9" strokeOpacity="0.5" />
-    <line x1="8" y1="2" x2="8" y2="20" stroke="currentColor" strokeWidth="0.9" strokeOpacity="0.5" />
-    <line x1="14" y1="2" x2="14" y2="20" stroke="currentColor" strokeWidth="0.9" strokeOpacity="0.5" />
-    {/* focal dot */}
-    <circle cx="11" cy="11" r="2" fill="currentColor" />
   </svg>
 )
 
@@ -149,31 +121,24 @@ const GlyphImprove = () => (
 const STEPS: Step[] = [
   {
     numeral: '01',
-    title: 'Discover',
-    body: 'We find the repetitive tasks wasting your time.',
-    glyph: <GlyphDiscover />,
-    ariaLabel: 'Step 1: Discover',
+    title: 'Audit',
+    body: 'We find the repetitive task worth automating first.',
+    glyph: <GlyphAudit />,
+    ariaLabel: 'Step 1: Audit',
   },
   {
     numeral: '02',
-    title: 'Design',
-    body: 'We map the workflow, tools, rules, risks, and ROI.',
-    glyph: <GlyphDesign />,
-    ariaLabel: 'Step 2: Design',
+    title: 'Build',
+    body: 'We create the workflow, dashboard, or internal tool around your real process.',
+    glyph: <GlyphBuild />,
+    ariaLabel: 'Step 2: Build',
   },
   {
     numeral: '03',
-    title: 'Build',
-    body: 'We create the automation, dashboard, ai agent, or internal tool.',
-    glyph: <GlyphBuild />,
-    ariaLabel: 'Step 3: Build',
-  },
-  {
-    numeral: '04',
     title: 'Improve',
-    body: 'We monitor, refine, and upgrade as your work changes.',
+    body: 'We refine the system as your work changes.',
     glyph: <GlyphImprove />,
-    ariaLabel: 'Step 4: Improve',
+    ariaLabel: 'Step 3: Improve',
   },
 ]
 
@@ -194,7 +159,7 @@ export default function HowItWorks() {
     >
       {/* ── Scoped styles ─────────────────────────────────────────── */}
       <style>{`
-        /* Connector track — desktop: full-width horizontal line through card mid-points */
+        /* Connector track — desktop: horizontal line through card mid-points */
         .hiw-connector-track {
           display: none;
         }
@@ -239,10 +204,10 @@ export default function HowItWorks() {
           }
         }
 
-        /* Desktop: 4-column grid, horizontal connector line */
+        /* Desktop: 3-column grid, horizontal connector line */
         @media (min-width: 780px) {
           .hiw-grid {
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: 18px;
           }
           .hiw-connector-v {
@@ -251,10 +216,9 @@ export default function HowItWorks() {
           .hiw-connector-track {
             display: block;
             position: absolute;
-            /* vertically centered at ~40% of card height where numerals sit */
-            top: calc(40px + 28px);  /* padding-top + numeral-center approx */
-            left: calc(25% - 0px);
-            right: calc(25% - 0px);
+            top: calc(40px + 28px);
+            left: calc(16.67% - 0px);
+            right: calc(16.67% - 0px);
             height: 1px;
             background: linear-gradient(
               to right,
@@ -307,9 +271,8 @@ export default function HowItWorks() {
             background: var(--paper-bright);
             z-index: 2;
           }
-          .hiw-dot-1 { left: calc(25% - 4px); }
-          .hiw-dot-2 { left: calc(50% - 4px); }
-          .hiw-dot-3 { left: calc(75% - 4px); }
+          .hiw-dot-1 { left: calc(33.33% - 4px); }
+          .hiw-dot-2 { left: calc(66.67% - 4px); }
         }
 
         /* Card glyph chip */
@@ -381,10 +344,10 @@ export default function HowItWorks() {
         >
           {/* ── Section heading ─────────────────────────────────── */}
           <SectionHeading
-            numeral="05"
+            numeral="03"
             eyebrow="HOW IT WORKS"
-            lead="How Verdorian builds"
-            accent="your automation system."
+            lead="How it"
+            accent="works."
             align="center"
           />
 
@@ -392,7 +355,7 @@ export default function HowItWorks() {
           <div
             style={{ position: 'relative' }}
             role="list"
-            aria-label="4-step automation process"
+            aria-label="3-step automation process"
           >
             {/* Horizontal connector track (desktop only) */}
             <div className="hiw-connector-track" aria-hidden="true">
@@ -402,7 +365,6 @@ export default function HowItWorks() {
             {/* Connector dots at column junctions (desktop only) */}
             <div className="hiw-dot hiw-dot-1" aria-hidden="true" />
             <div className="hiw-dot hiw-dot-2" aria-hidden="true" />
-            <div className="hiw-dot hiw-dot-3" aria-hidden="true" />
 
             {/* Grid of cards */}
             <div className="hiw-grid">

@@ -19,37 +19,23 @@ const STROKE = { stroke: 'currentColor', strokeWidth: 1.6, fill: 'none', strokeL
 
 const STEPS: FlowStep[] = [
   {
-    label: 'Email / Form',
-    status: 'Task captured',
+    label: 'Task In',
+    status: 'Captured',
     glyph: (
       <svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" {...STROKE} /><path d="M4 7l8 6 8-6" {...STROKE} /></svg>
     ),
   },
   {
-    label: 'AI Agent',
-    status: 'AI reads',
+    label: 'AI Workflow',
+    status: 'AI processes',
     accent: true,
     glyph: (
       <svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5" {...STROKE} /><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1" {...STROKE} /></svg>
     ),
   },
   {
-    label: 'CRM / Database',
-    status: 'Data updated',
-    glyph: (
-      <svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="6" rx="7" ry="3" {...STROKE} /><path d="M5 6v12c0 1.7 3.1 3 7 3s7-1.3 7-3V6M5 12c0 1.7 3.1 3 7 3s7-1.3 7-3" {...STROKE} /></svg>
-    ),
-  },
-  {
-    label: 'Dashboard',
-    status: 'Report generated',
-    glyph: (
-      <svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10M9 20V4M14 20v-7M19 20v-11" {...STROKE} /></svg>
-    ),
-  },
-  {
     label: 'Human Review',
-    status: 'Human approved',
+    status: 'You approve',
     accent: true,
     glyph: (
       <svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5" {...STROKE} /><path d="M5.5 20a6.5 6.5 0 0113 0" {...STROKE} /><path d="M15.5 13.5l1.6 1.6 3-3.2" {...STROKE} /></svg>
@@ -57,7 +43,7 @@ const STEPS: FlowStep[] = [
   },
   {
     label: 'Done',
-    status: 'Workflow complete',
+    status: 'Complete',
     done: true,
     glyph: (
       <svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" {...STROKE} /><path d="M8.2 12.2l2.6 2.6 5-5.2" {...STROKE} /></svg>
@@ -172,8 +158,8 @@ export default function Hero() {
             maxWidth: '17ch',
           }}
         >
-          AI Automation for the Work{' '}
-          <em className="gold-shimmer">You Shouldn&apos;t Be Doing Manually</em>
+          AI Automation for{' '}
+          <em className="gold-shimmer">Repetitive Business Work</em>
         </motion.h1>
 
         {/* Subhead */}
@@ -184,13 +170,13 @@ export default function Hero() {
             fontWeight: 400,
             fontSize: '18px',
             color: 'var(--ink-soft)',
-            maxWidth: '60ch',
+            maxWidth: '56ch',
             lineHeight: 1.66,
             margin: 0,
           }}
         >
-          Verdorian builds custom AI workflows, agents, dashboards, and internal tools that connect
-          your apps, documents, emails, and data — so you save hours, reduce errors, and run smarter.
+          Verdorian builds custom AI workflows, dashboards, and internal tools that remove
+          manual work, reduce errors, and help your team move faster.
         </motion.p>
 
         {/* CTAs */}
@@ -215,14 +201,14 @@ export default function Hero() {
             maxWidth: '52ch',
           }}
         >
-          Built for businesses, professionals, and teams drowning in repetitive digital work.
+          Tell us one task you repeat every week. We&apos;ll show you what can be automated.
         </motion.p>
 
         {/* ── Command-center workflow visual ── */}
         <motion.div
           variants={FADE_UP}
           className="figure-halo"
-          aria-label="How an automated workflow runs: a task is captured, an AI agent reads it, your database and dashboard update, a human approves, and the workflow completes."
+          aria-label="How an automated workflow runs: a task comes in, the AI workflow processes it, a human reviews and approves, and the workflow completes."
           style={{ width: '100%', marginTop: '34px' }}
         >
           <div

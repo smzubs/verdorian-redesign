@@ -7,12 +7,11 @@ import { scrollToSection } from '@/lib/utils'
 
 const NAV_LINKS = [
   { label: 'Solutions', id: 'automate' },
-  { label: 'For Business', id: 'for-business' },
-  { label: 'For Individuals', id: 'for-individuals' },
-  { label: 'How It Works', id: 'how-it-works' },
+  { label: 'Process', id: 'how-it-works' },
+  { label: 'Proof', id: 'trust' },
 ]
 
-const SECTION_IDS = ['hero', 'automate', 'solutions', 'how-it-works', 'trust', 'contact']
+const SECTION_IDS = ['hero', 'automate', 'how-it-works', 'trust', 'contact']
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false)

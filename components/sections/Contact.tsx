@@ -10,21 +10,15 @@ import { FADE_UP, STAGGER_CONTAINER } from '@/lib/motion'
 interface AuditForm {
   name: string
   email: string
-  accountType: 'Business' | 'Individual' | ''
   taskToAutomate: string
-  hoursPerWeek: string
   toolsCurrentlyUsed: string
-  message: string
 }
 
 const EMPTY_FORM: AuditForm = {
   name: '',
   email: '',
-  accountType: '',
   taskToAutomate: '',
-  hoursPerWeek: '',
   toolsCurrentlyUsed: '',
-  message: '',
 }
 
 /* ─── Input / label shared styles ───────────────────────────────── */
@@ -66,10 +60,6 @@ const INPUT_PLACEHOLDER_FIX = `
     outline: 2px solid var(--gold);
     outline-offset: 2px;
   }
-  .audit-select option {
-    background: #13161B;
-    color: var(--paper-bright);
-  }
 `
 
 /* ─── Component ─────────────────────────────────────────────────── */
@@ -77,13 +67,13 @@ export default function Contact() {
   const [form, setForm] = useState<AuditForm>(EMPTY_FORM)
 
   function handleChange(
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) {
     const { name, value } = e.target
     setForm((prev) => ({ ...prev, [name]: value }))
   }
 
-  // TODO: wire to backend (Supabase + Resend) — for now this composes a pre-filled mailto draft to sm@verdorian.com
+  // Composes a pre-filled mailto draft to sm@verdorian.com — no backend yet
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
 
@@ -92,11 +82,8 @@ export default function Contact() {
     const body = [
       `Name: ${form.name}`,
       `Email: ${form.email}`,
-      `Business or Individual: ${form.accountType || 'Not specified'}`,
       `Task to automate: ${form.taskToAutomate}`,
-      `Hours per week: ${form.hoursPerWeek || 'Not specified'}`,
       `Current tools: ${form.toolsCurrentlyUsed || 'Not specified'}`,
-      `Message: ${form.message || 'None'}`,
       ``,
       `---`,
       `Sent via verdorian.com/contact`,
@@ -244,8 +231,8 @@ export default function Contact() {
                   maxWidth: '420px',
                 }}
               >
-                Tell us what task wastes your time. Verdorian will help you
-                identify the fastest automation opportunity.
+                Tell us one task your team repeats every week. We&apos;ll help
+                you identify the fastest automation opportunity.
               </p>
 
               {/* Hairline rule */}
@@ -399,105 +386,35 @@ export default function Contact() {
                     />
                   </div>
 
-                  {/* Business or Individual */}
-                  <div>
-                    <label htmlFor="contact-account-type" style={LABEL_STYLE}>
-                      Business or Individual
-                    </label>
-                    <select
-                      id="contact-account-type"
-                      name="accountType"
-                      value={form.accountType}
-                      onChange={handleChange}
-                      className="audit-field audit-select"
-                      style={{
-                        ...INPUT_BASE,
-                        cursor: 'pointer',
-                        appearance: 'none',
-                        WebkitAppearance: 'none',
-                        backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(247,243,234,0.40)' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E")`,
-                        backgroundRepeat: 'no-repeat',
-                        backgroundPosition: 'right 14px center',
-                        paddingRight: '36px',
-                      }}
-                      aria-label="Account type — Business or Individual"
-                    >
-                      <option value="" disabled>
-                        Select one
-                      </option>
-                      <option value="Business">Business</option>
-                      <option value="Individual">Individual</option>
-                    </select>
-                  </div>
-
                   {/* Task to automate */}
                   <div>
                     <label htmlFor="contact-task" style={LABEL_STYLE}>
                       What task do you want to automate?{' '}
                       <span aria-hidden="true" style={{ color: 'var(--gold)' }}>*</span>
                     </label>
-                    <input
+                    <textarea
                       id="contact-task"
                       name="taskToAutomate"
-                      type="text"
                       required
+                      rows={3}
                       placeholder="e.g. Weekly client reports, invoice processing"
                       value={form.taskToAutomate}
                       onChange={handleChange}
                       className="audit-field"
-                      style={INPUT_BASE}
+                      style={{
+                        ...INPUT_BASE,
+                        minHeight: '96px',
+                        resize: 'vertical',
+                        lineHeight: 1.6,
+                      }}
                       aria-required="true"
                     />
                   </div>
 
-                  {/* Hours per week + Tools — two columns on wider form */}
-                  <div
-                    style={{
-                      display: 'grid',
-                      gridTemplateColumns: '1fr 1fr',
-                      gap: '16px',
-                    }}
-                  >
-                    <div>
-                      <label htmlFor="contact-hours" style={LABEL_STYLE}>
-                        Hours / week
-                      </label>
-                      <input
-                        id="contact-hours"
-                        name="hoursPerWeek"
-                        type="number"
-                        min="0"
-                        placeholder="e.g. 5"
-                        value={form.hoursPerWeek}
-                        onChange={handleChange}
-                        className="audit-field"
-                        style={INPUT_BASE}
-                        aria-label="Estimated hours per week spent on this task"
-                      />
-                    </div>
-
-                    <div>
-                      <label htmlFor="contact-tools" style={LABEL_STYLE}>
-                        Current tools
-                      </label>
-                      <input
-                        id="contact-tools"
-                        name="toolsCurrentlyUsed"
-                        type="text"
-                        placeholder="Gmail, Sheets, HubSpot"
-                        value={form.toolsCurrentlyUsed}
-                        onChange={handleChange}
-                        className="audit-field"
-                        style={INPUT_BASE}
-                        aria-label="Tools you currently use for this task"
-                      />
-                    </div>
-                  </div>
-
-                  {/* Message */}
+                  {/* Current tools */}
                   <div>
-                    <label htmlFor="contact-message" style={LABEL_STYLE}>
-                      Message{' '}
+                    <label htmlFor="contact-tools" style={LABEL_STYLE}>
+                      Current tools{' '}
                       <span
                         style={{
                           color: 'rgba(247,243,234,0.28)',
@@ -510,20 +427,16 @@ export default function Contact() {
                         optional
                       </span>
                     </label>
-                    <textarea
-                      id="contact-message"
-                      name="message"
-                      rows={3}
-                      placeholder="Any context that would help us understand your situation"
-                      value={form.message}
+                    <input
+                      id="contact-tools"
+                      name="toolsCurrentlyUsed"
+                      type="text"
+                      placeholder="Gmail, Sheets, HubSpot"
+                      value={form.toolsCurrentlyUsed}
                       onChange={handleChange}
                       className="audit-field"
-                      style={{
-                        ...INPUT_BASE,
-                        minHeight: '88px',
-                        resize: 'vertical',
-                        lineHeight: 1.6,
-                      }}
+                      style={INPUT_BASE}
+                      aria-label="Tools you currently use for this task (optional)"
                     />
                   </div>
 

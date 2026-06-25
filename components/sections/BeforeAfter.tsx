@@ -2,198 +2,25 @@
 
 import React from 'react'
 import { motion } from 'framer-motion'
-import { SectionHeading } from '@/components/ui/SectionHeading'
-import { FADE_UP, STAGGER_CONTAINER } from '@/lib/motion'
-
-// ─── Data types ──────────────────────────────────────────────────────────────
-
-interface WorkflowStep {
-  label: string
-  hint?: string
-}
+import { FADE_UP } from '@/lib/motion'
 
 // ─── Step data ────────────────────────────────────────────────────────────────
 
-const MANUAL_STEPS: WorkflowStep[] = [
-  { label: 'Form submitted' },
-  { label: 'Someone checks email', hint: '~hours later' },
-  { label: 'Data copied manually' },
-  { label: 'Spreadsheet updated', hint: 'if they remember' },
-  { label: 'Follow-up sent manually', hint: '~days later' },
-  { label: 'Report built later', hint: 'when time allows' },
+const MANUAL_STEPS: string[] = [
+  'Form submitted',
+  'Someone checks email',
+  'Data copied',
+  'Spreadsheet updated',
+  'Follow-up sent later',
 ]
 
-const AUTOMATED_STEPS: WorkflowStep[] = [
-  { label: 'Form submitted' },
-  { label: 'ai extracts key details' },
-  { label: 'CRM updates automatically' },
-  { label: 'Follow-up drafted or sent' },
-  { label: 'Dashboard refreshes' },
-  { label: 'Human gets notified' },
+const AUTOMATED_STEPS: string[] = [
+  'Form submitted',
+  'AI extracts details',
+  'System updates',
+  'Follow-up drafted',
+  'Human notified',
 ]
-
-// ─── SVG connector column dimensions ─────────────────────────────────────────
-// Each connector SVG is 2px wide (just the line), 32px tall.
-// We render them between steps.
-
-function StaticConnector() {
-  return (
-    <svg
-      width="2"
-      height="32"
-      viewBox="0 0 2 32"
-      fill="none"
-      aria-hidden="true"
-      style={{ display: 'block', margin: '0 auto', flexShrink: 0 }}
-    >
-      <line
-        x1="1"
-        y1="0"
-        x2="1"
-        y2="32"
-        className="vd-line-static"
-        strokeDasharray="3 5"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-      />
-    </svg>
-  )
-}
-
-function AnimatedConnector() {
-  return (
-    <svg
-      width="2"
-      height="32"
-      viewBox="0 0 2 32"
-      fill="none"
-      aria-hidden="true"
-      style={{ display: 'block', margin: '0 auto', flexShrink: 0 }}
-    >
-      <line
-        x1="1"
-        y1="0"
-        x2="1"
-        y2="32"
-        className="vd-line"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-      />
-    </svg>
-  )
-}
-
-// ─── Manual step chip ─────────────────────────────────────────────────────────
-
-interface ManualStepProps {
-  step: WorkflowStep
-  isLast: boolean
-  index: number
-}
-
-function ManualStep({ step, isLast, index }: ManualStepProps) {
-  const isPainPoint = index === 1 || index === 4  // email check + manual follow-up = peak pain
-
-  return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      {/* Node chip */}
-      <div
-        style={{
-          display: 'inline-flex',
-          alignItems: 'center',
-          gap: '8px',
-          padding: '9px 14px',
-          borderRadius: '10px',
-          background: isPainPoint
-            ? 'rgba(140, 58, 46, 0.06)'
-            : 'rgba(134, 140, 152, 0.10)',
-          border: isPainPoint
-            ? '1px solid rgba(140, 58, 46, 0.22)'
-            : '1px solid rgba(134, 140, 152, 0.28)',
-          boxShadow: '0 1px 3px rgba(20, 24, 32, 0.06)',
-          fontFamily: 'var(--font-body), sans-serif',
-          fontSize: '12px',
-          fontWeight: 500,
-          color: isPainPoint ? 'var(--red-fail)' : 'var(--ink-faint)',
-          whiteSpace: 'nowrap',
-          maxWidth: '100%',
-          flexWrap: 'nowrap',
-        }}
-      >
-        {/* Muted dot */}
-        <span
-          style={{
-            width: '7px',
-            height: '7px',
-            borderRadius: '50%',
-            background: isPainPoint
-              ? 'rgba(140, 58, 46, 0.45)'
-              : 'rgba(134, 140, 152, 0.45)',
-            flexShrink: 0,
-          }}
-          aria-hidden="true"
-        />
-        <span style={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>{step.label}</span>
-        {step.hint && (
-          <span
-            style={{
-              fontSize: '10px',
-              fontWeight: 400,
-              color: isPainPoint ? 'rgba(140, 58, 46, 0.65)' : 'var(--ink-faint)',
-              opacity: 0.8,
-              flexShrink: 0,
-            }}
-          >
-            {step.hint}
-          </span>
-        )}
-      </div>
-
-      {/* Connector below (not on last step) */}
-      {!isLast && (
-        <div style={{ paddingTop: '2px', paddingBottom: '2px' }}>
-          <StaticConnector />
-        </div>
-      )}
-    </div>
-  )
-}
-
-// ─── Automated step chip ──────────────────────────────────────────────────────
-
-interface AutomatedStepProps {
-  step: WorkflowStep
-  isLast: boolean
-  index: number
-}
-
-function AutomatedStep({ step, isLast, index }: AutomatedStepProps) {
-  const isAccent = index === 1 || index === 2   // ai extraction + CRM auto-update = key differentiators
-
-  return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      {/* Node chip */}
-      <div
-        className={isAccent ? 'vd-node vd-node-accent' : 'vd-node'}
-        style={{ maxWidth: '100%' }}
-      >
-        {/* Status dot: done (green) on last step, pulsing blue otherwise */}
-        <span
-          className={isLast ? 'vd-dot vd-dot-done' : 'vd-dot'}
-          aria-hidden="true"
-        />
-        <span style={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>{step.label}</span>
-      </div>
-
-      {/* Connector below (not on last step) */}
-      {!isLast && (
-        <div style={{ paddingTop: '2px', paddingBottom: '2px' }}>
-          <AnimatedConnector />
-        </div>
-      )}
-    </div>
-  )
-}
 
 // ─── Main component ───────────────────────────────────────────────────────────
 
@@ -210,55 +37,124 @@ export default function BeforeAfter() {
         borderTop: '1px solid var(--rule-strong)',
       }}
     >
-      {/* ── Scoped styles: lane layout + responsive stack ───────── */}
       <style>{`
+        .ba-wrap {
+          display: flex;
+          flex-direction: column;
+          gap: 48px;
+          align-items: center;
+        }
         .ba-lanes {
           display: grid;
-          grid-template-columns: 1fr 2px 1fr;
-          gap: 0;
+          grid-template-columns: 1fr auto 1fr;
+          gap: 0 24px;
           align-items: start;
+          width: 100%;
         }
-        .ba-divider {
-          width: 2px;
-          background: linear-gradient(
-            to bottom,
-            transparent 0%,
-            rgba(20, 24, 32, 0.12) 20%,
-            rgba(20, 24, 32, 0.12) 80%,
-            transparent 100%
-          );
-          align-self: stretch;
-          position: relative;
+        .ba-lane {
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
         }
-        .ba-divider::after {
-          content: 'vs';
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          background: var(--paper-deep);
-          border: 1px solid var(--rule-strong);
-          border-radius: 9999px;
-          padding: 4px 10px;
+        .ba-label {
           font-family: var(--font-body), sans-serif;
-          font-size: 10px;
-          font-weight: 600;
-          letter-spacing: 0.1em;
-          color: var(--ink-faint);
+          font-size: 10.5px;
+          font-weight: 700;
           text-transform: uppercase;
+          letter-spacing: 0.22em;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          margin-bottom: 4px;
+        }
+        .ba-label-dot {
+          width: 7px;
+          height: 7px;
+          border-radius: 50%;
+          flex-shrink: 0;
+        }
+        .ba-pills {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          flex-wrap: wrap;
+          gap: 6px;
+        }
+        .ba-pill {
+          display: inline-flex;
+          align-items: center;
+          padding: 7px 13px;
+          border-radius: 9999px;
+          font-family: var(--font-body), sans-serif;
+          font-size: 12.5px;
+          font-weight: 500;
           white-space: nowrap;
         }
-        @media (max-width: 720px) {
+        .ba-pill-manual {
+          background: rgba(134, 140, 152, 0.10);
+          border: 1px solid rgba(134, 140, 152, 0.28);
+          color: var(--ink-faint);
+        }
+        .ba-pill-auto {
+          background: rgba(24, 119, 242, 0.08);
+          border: 1px solid rgba(24, 119, 242, 0.22);
+          color: var(--gold);
+        }
+        .ba-arrow {
+          font-size: 13px;
+          color: var(--ink-faint);
+          opacity: 0.45;
+          flex-shrink: 0;
+        }
+        .ba-arrow-auto {
+          color: var(--gold-bright);
+          opacity: 0.7;
+          animation: ba-flow 1.8s ease-in-out infinite;
+        }
+        .ba-divider-vs {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding-top: 32px;
+        }
+        .ba-vs {
+          font-family: var(--font-body), sans-serif;
+          font-size: 10px;
+          font-weight: 700;
+          letter-spacing: 0.12em;
+          text-transform: uppercase;
+          color: var(--ink-faint);
+          background: var(--paper-deep, #F2F5FA);
+          border: 1px solid var(--rule-strong);
+          border-radius: 9999px;
+          padding: 5px 12px;
+        }
+        .ba-closing {
+          font-family: var(--font-body), sans-serif;
+          font-size: clamp(13px, 1.3vw, 14.5px);
+          color: var(--ink-faint);
+          text-align: center;
+          line-height: 1.65;
+          letter-spacing: 0.01em;
+        }
+        @keyframes ba-flow {
+          0%, 100% { opacity: 0.5; transform: translateX(0); }
+          50% { opacity: 1; transform: translateX(2px); }
+        }
+        @media (max-width: 640px) {
           .ba-lanes {
             grid-template-columns: 1fr;
-            gap: 32px;
+            gap: 24px 0;
           }
-          .ba-divider {
-            display: none;
+          .ba-divider-vs {
+            padding-top: 0;
+          }
+          .ba-pills {
+            flex-wrap: wrap;
           }
         }
         @media (prefers-reduced-motion: reduce) {
-          .ba-connector-animated line {
+          .ba-arrow-auto {
             animation: none !important;
           }
         }
@@ -266,211 +162,88 @@ export default function BeforeAfter() {
 
       <div
         style={{
-          maxWidth: '1100px',
+          maxWidth: '1040px',
           margin: '0 auto',
           paddingLeft: 'clamp(20px, 5vw, 48px)',
           paddingRight: 'clamp(20px, 5vw, 48px)',
         }}
       >
         <motion.div
-          variants={STAGGER_CONTAINER}
+          variants={FADE_UP}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-60px' }}
-          style={{ display: 'flex', flexDirection: 'column', gap: '72px' }}
+          className="ba-wrap"
         >
-          {/* ── Section header ──────────────────────────────────── */}
-          <SectionHeading
-            numeral="03"
-            eyebrow="BEFORE & AFTER"
-            lead="From manual chaos"
-            accent="to automated flow."
-            align="center"
-          />
-
-          {/* ── Two-lane grid ────────────────────────────────────── */}
-          <motion.div variants={FADE_UP} className="ba-lanes">
-
-            {/* LEFT — Manual lane */}
-            <motion.div
-              variants={FADE_UP}
-              custom={0}
-              className="glass-card"
-              style={{
-                padding: 'clamp(24px, 3vw, 36px)',
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '0',
-                borderRadius: '20px',
-                background: 'rgba(248, 245, 242, 0.52)',
-              }}
-            >
-              {/* Lane header */}
-              <div
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '10px',
-                  marginBottom: '28px',
-                }}
-              >
-                {/* Muted red attention marker */}
-                <span
-                  style={{
-                    width: '8px',
-                    height: '8px',
-                    borderRadius: '50%',
-                    background: 'rgba(140, 58, 46, 0.5)',
-                    flexShrink: 0,
-                  }}
-                  aria-hidden="true"
-                />
-                <span
-                  style={{
-                    fontFamily: 'var(--font-body), sans-serif',
-                    fontSize: '10.5px',
-                    fontWeight: 700,
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.22em',
-                    color: 'var(--ink-faint)',
-                  }}
-                >
-                  Manual — today
-                </span>
-              </div>
-
-              {/* Steps */}
-              <div
-                style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  gap: '0',
-                }}
-                aria-label="Manual workflow steps"
-              >
-                {MANUAL_STEPS.map((step, i) => (
-                  <ManualStep
-                    key={step.label}
-                    step={step}
-                    index={i}
-                    isLast={i === MANUAL_STEPS.length - 1}
-                  />
-                ))}
-              </div>
-
-              {/* Footer caption */}
-              <p
-                style={{
-                  marginTop: '24px',
-                  fontFamily: 'var(--font-body), sans-serif',
-                  fontSize: '11.5px',
-                  color: 'var(--ink-faint)',
-                  lineHeight: 1.6,
-                  textAlign: 'center',
-                }}
-              >
-                Hours lost. Things slip. Nobody blames the process — yet.
-              </p>
-            </motion.div>
-
-            {/* CENTER — Divider */}
-            <div className="ba-divider" aria-hidden="true" />
-
-            {/* RIGHT — Automated lane */}
-            <motion.div
-              variants={FADE_UP}
-              custom={1}
-              className="glass-card"
-              style={{
-                padding: 'clamp(24px, 3vw, 36px)',
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '0',
-                borderRadius: '20px',
-              }}
-            >
-              {/* Gold draw-in topline on hover */}
-              <span className="glass-topline" aria-hidden="true" />
-
-              {/* Lane header */}
-              <div
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '10px',
-                  marginBottom: '28px',
-                }}
-              >
-                {/* Live pulsing blue dot */}
-                <span className="vd-dot" aria-hidden="true" />
-                <span
-                  style={{
-                    fontFamily: 'var(--font-body), sans-serif',
-                    fontSize: '10.5px',
-                    fontWeight: 700,
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.22em',
-                    color: 'var(--gold)',
-                  }}
-                >
-                  With Verdorian — automated
-                </span>
-              </div>
-
-              {/* Steps */}
-              <div
-                style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  gap: '0',
-                }}
-                aria-label="Automated workflow steps"
-              >
-                {AUTOMATED_STEPS.map((step, i) => (
-                  <AutomatedStep
-                    key={step.label}
-                    step={step}
-                    index={i}
-                    isLast={i === AUTOMATED_STEPS.length - 1}
-                  />
-                ))}
-              </div>
-
-              {/* Footer caption */}
-              <p
-                style={{
-                  marginTop: '24px',
-                  fontFamily: 'var(--font-body), sans-serif',
-                  fontSize: '11.5px',
-                  color: 'var(--ink-soft)',
-                  lineHeight: 1.6,
-                  textAlign: 'center',
-                }}
-              >
-                Same trigger. No waiting. The right person notified immediately.
-              </p>
-            </motion.div>
-          </motion.div>
-
-          {/* ── Bottom proof line ────────────────────────────────── */}
-          <motion.p
-            variants={FADE_UP}
+          {/* ── Title ─────────────────────────────────────────────── */}
+          <h2
             style={{
-              fontFamily: 'var(--font-body), sans-serif',
-              fontSize: 'clamp(14px, 1.4vw, 15px)',
-              color: 'var(--ink-faint)',
+              fontFamily: 'var(--font-display), serif',
+              fontSize: 'clamp(26px, 3.5vw, 38px)',
+              fontWeight: 600,
+              color: 'var(--ink)',
               textAlign: 'center',
-              lineHeight: 1.7,
-              maxWidth: '52ch',
-              margin: '0 auto',
-              marginTop: '-32px',
+              lineHeight: 1.2,
+              letterSpacing: '-0.02em',
+              margin: 0,
             }}
           >
-            Every step on the right runs in seconds, not hours.
-            We build this for your actual workflow — not a generic template.
-          </motion.p>
+            From manual steps to automated flow
+          </h2>
+
+          {/* ── Two-lane grid ─────────────────────────────────────── */}
+          <div className="ba-lanes" role="region" aria-label="Workflow comparison">
+
+            {/* LEFT — Manual lane */}
+            <div className="ba-lane">
+              <div className="ba-label" style={{ color: 'var(--ink-faint)' }}>
+                <span
+                  className="ba-label-dot"
+                  style={{ background: 'rgba(134, 140, 152, 0.5)' }}
+                  aria-hidden="true"
+                />
+                Manual
+              </div>
+              <div className="ba-pills" aria-label="Manual workflow steps">
+                {MANUAL_STEPS.map((step, i) => (
+                  <React.Fragment key={step}>
+                    <span className="ba-pill ba-pill-manual">{step}</span>
+                    {i < MANUAL_STEPS.length - 1 && (
+                      <span className="ba-arrow" aria-hidden="true">→</span>
+                    )}
+                  </React.Fragment>
+                ))}
+              </div>
+            </div>
+
+            {/* CENTER — vs badge */}
+            <div className="ba-divider-vs" aria-hidden="true">
+              <span className="ba-vs">vs</span>
+            </div>
+
+            {/* RIGHT — Automated lane */}
+            <div className="ba-lane">
+              <div className="ba-label" style={{ color: 'var(--gold)' }}>
+                <span className="vd-dot" aria-hidden="true" />
+                Automated
+              </div>
+              <div className="ba-pills" aria-label="Automated workflow steps">
+                {AUTOMATED_STEPS.map((step, i) => (
+                  <React.Fragment key={step}>
+                    <span className="ba-pill ba-pill-auto">{step}</span>
+                    {i < AUTOMATED_STEPS.length - 1 && (
+                      <span className="ba-arrow ba-arrow-auto" aria-hidden="true">→</span>
+                    )}
+                  </React.Fragment>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* ── Closing line ───────────────────────────────────────── */}
+          <p className="ba-closing">
+            Same work. Fewer delays. Fewer mistakes.
+          </p>
         </motion.div>
       </div>
     </section>

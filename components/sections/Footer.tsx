@@ -4,10 +4,9 @@ import React from 'react'
 import { scrollToSection } from '@/lib/utils'
 
 const NAV_LINKS = [
-  { label: 'Solutions', id: 'automate' },
-  { label: 'For Business', id: 'for-business' },
-  { label: 'For Individuals', id: 'for-individuals' },
-  { label: 'How It Works', id: 'how-it-works' },
+  { label: 'What We Automate', id: 'automate' },
+  { label: 'Process', id: 'how-it-works' },
+  { label: 'Proof', id: 'trust' },
   { label: 'Contact', id: 'contact' },
 ]
 
@@ -86,7 +85,7 @@ export default function Footer() {
               maxWidth: '280px',
             }}
           >
-            Custom AI workflows, agents, dashboards, and internal tools — built around the work you already do.
+            Custom AI workflows, dashboards, and internal tools for repetitive business work.
           </span>
         </div>
 

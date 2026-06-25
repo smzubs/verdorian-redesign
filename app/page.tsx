@@ -19,7 +19,7 @@ export default function Home() {
       <main id="main-content">
         <Nav />
         <Hero />
-        {/* Clarity-first AI-automation flow: pain → what we automate → who it's for → before/after → ROI → how → trust → audit */}
+        {/* Simplified landing flow: pain snapshot -> 3 core offers -> audience strip -> before/after -> value card -> 3-step process -> trust -> audit */}
         <PainSection />
         <Capabilities />
         <BusinessVsIndividual />
