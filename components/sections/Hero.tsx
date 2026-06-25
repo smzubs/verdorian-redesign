@@ -133,12 +133,12 @@ export default function Hero() {
           0%, 64%, 100% { transform: translateY(0) scale(1); filter: brightness(1); }
           12%           { transform: translateY(-3px) scale(1.06); filter: brightness(1.14); }
         }
-        @keyframes lineFade {
-          0%   { opacity: 0; }
-          12%  { opacity: 1; }
-          50%  { opacity: 1; }
-          64%  { opacity: 0; }
-          100% { opacity: 0; }
+        @keyframes lineType {
+          0%   { clip-path: inset(0 0 0 100%); }   /* hidden — reveal will sweep in from the right */
+          30%  { clip-path: inset(0 0 0 0%); }     /* whole sentence revealed (right → left) */
+          60%  { clip-path: inset(0 0 0 0%); }     /* hold, fully readable */
+          88%  { clip-path: inset(0 100% 0 0); }   /* erased away letter-by-letter (right → left) */
+          100% { clip-path: inset(0 100% 0 0); }   /* hidden gap before next cycle */
         }
 
         .hero-wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
@@ -163,6 +163,7 @@ export default function Hero() {
             0 -6px 14px -8px rgba(24,119,242,0.18) inset,
             0 10px 26px -12px rgba(24,119,242,0.42),
             0 3px 10px -5px rgba(15,23,42,0.16);
+          animation: neonPowerOn 1.9s ease-out both;
         }
         /* refractive gradient edge */
         .hero-badge::before {
@@ -194,6 +195,21 @@ export default function Hero() {
         @keyframes badgeSheen {
           0%        { background-position: 135% 0; }
           55%, 100% { background-position: -55% 0; }
+        }
+        /* Neon-sign power-on: flickers awake, then settles to the stable glass pill (plays once on load) */
+        @keyframes neonPowerOn {
+          0%   { opacity: 0;    filter: brightness(0.4); }
+          6%   { opacity: 0.9;  filter: brightness(1.55); }
+          9%   { opacity: 0.12; filter: brightness(0.5); }
+          14%  { opacity: 1;    filter: brightness(1.6); }
+          17%  { opacity: 0.22; filter: brightness(0.55); }
+          22%  { opacity: 1;    filter: brightness(1.4); }
+          25%  { opacity: 0.45; filter: brightness(0.8); }
+          31%  { opacity: 1;    filter: brightness(1.6); }
+          35%  { opacity: 0.7;  filter: brightness(1.05); }
+          41%  { opacity: 1;    filter: brightness(1.3); }
+          47%  { opacity: 0.9;  filter: brightness(1.06); }
+          100% { opacity: 1;    filter: brightness(1); }
         }
         .hero-badge-dot {
           width: 8px; height: 8px; flex: 0 0 auto;
@@ -229,6 +245,7 @@ export default function Hero() {
           .hero-badge-text { font-size: 11.5px; letter-spacing: 0.1em; white-space: normal; text-align: center; line-height: 1.55; }
         }
         @media (prefers-reduced-motion: reduce) {
+          .hero-badge { animation: none !important; }
           .hero-badge-dot { animation: none; }
           .hero-badge::after { animation: none; opacity: 0; }
         }
@@ -256,9 +273,9 @@ export default function Hero() {
           letter-spacing: 0.02em;
           color: rgba(34, 112, 230, 0.92);
           text-shadow: 0 0 10px rgba(76, 154, 255, 0.45);
-          opacity: 0;
-          will-change: opacity;
-          animation-name: lineFade;
+          clip-path: inset(0 0 0 100%);
+          will-change: clip-path, transform;
+          animation-name: lineType;
           animation-timing-function: ease-in-out;
           animation-iteration-count: infinite;
         }
@@ -336,7 +353,7 @@ export default function Hero() {
         @media (prefers-reduced-motion: reduce) {
           .flow-binary > span, .flow-step .vd-node, .flow-conn::after, .matrix-line { animation: none !important; }
           .flow-conn::after { opacity: 0; }
-          .matrix-line { opacity: 0.3; }
+          .matrix-line { opacity: 0.3; clip-path: inset(0 0 0 0) !important; }
         }
       `}</style>
 
@@ -371,15 +388,15 @@ export default function Hero() {
         viewport={{ once: true }}
         style={{ position: 'relative', zIndex: 10, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '26px', textAlign: 'center' }}
       >
-        {/* Eyebrow — modern glass chip */}
-        <motion.div variants={FADE_UP}>
+        {/* Eyebrow — modern glass chip (neon power-on entrance) */}
+        <div>
           <span className="hero-badge">
             <span className="hero-badge-dot" aria-hidden="true" />
             <span className="hero-badge-text">
               <span className="hero-badge-hl">Smart</span> Automation for Growing Businesses
             </span>
           </span>
-        </motion.div>
+        </div>
 
         {/* H1 */}
         <motion.h1
