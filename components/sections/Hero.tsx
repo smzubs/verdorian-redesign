@@ -124,10 +124,55 @@ export default function Hero() {
         @keyframes matrixFall { from { transform: translateY(-85%); } to { transform: translateY(165%); } }
 
         .hero-wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
-        .hero-eyebrow { letter-spacing: 0.26em; }
+
+        /* ── Modern glass chip badge ── */
+        .hero-badge {
+          display: inline-flex;
+          align-items: center;
+          gap: 10px;
+          padding: 9px 20px;
+          border-radius: 999px;
+          background: rgba(255, 255, 255, 0.34);
+          -webkit-backdrop-filter: blur(22px) saturate(1.7);
+                  backdrop-filter: blur(22px) saturate(1.7);
+          border: 1px solid rgba(24, 119, 242, 0.24);
+          box-shadow: 0 1px 0 rgba(255,255,255,0.7) inset, 0 6px 20px -10px rgba(24,119,242,0.35);
+        }
+        .hero-badge-dot {
+          width: 8px; height: 8px; flex: 0 0 auto;
+          border-radius: 50%;
+          background: var(--gold);
+          box-shadow: 0 0 0 0 rgba(24,119,242,0.5);
+          animation: badgePulse 2.4s ease-out infinite;
+        }
+        @keyframes badgePulse {
+          0%   { box-shadow: 0 0 0 0 rgba(24,119,242,0.45); }
+          70%  { box-shadow: 0 0 0 8px rgba(24,119,242,0); }
+          100% { box-shadow: 0 0 0 0 rgba(24,119,242,0); }
+        }
+        .hero-badge-text {
+          font-family: var(--font-body), sans-serif;
+          font-size: 14.5px;
+          font-weight: 600;
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
+          color: var(--ink-soft);
+          white-space: nowrap;
+        }
+        .hero-badge-hl {
+          font-weight: 700;
+          background: linear-gradient(100deg, var(--gold) 0%, var(--gold-bright) 45%, #6FB0FF 100%);
+          -webkit-background-clip: text;
+                  background-clip: text;
+          -webkit-text-fill-color: transparent;
+          color: transparent;
+        }
         @media (max-width: 560px) {
-          .hero-eyebrow-rule { display: none; }
-          .hero-eyebrow { letter-spacing: 0.16em; text-indent: 0.16em; white-space: normal; text-align: center; line-height: 1.7; }
+          .hero-badge { padding: 8px 15px; gap: 8px; }
+          .hero-badge-text { font-size: 11.5px; letter-spacing: 0.1em; white-space: normal; text-align: center; line-height: 1.55; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .hero-badge-dot { animation: none; }
         }
         .hero-cta-row { display: flex; flex-direction: row; gap: 12px; align-items: center; justify-content: center; flex-wrap: wrap; }
 
@@ -260,11 +305,14 @@ export default function Hero() {
         viewport={{ once: true }}
         style={{ position: 'relative', zIndex: 10, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '26px', textAlign: 'center' }}
       >
-        {/* Eyebrow */}
-        <motion.div variants={FADE_UP} className="hero-eyebrow-row" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px', flexWrap: 'wrap' }}>
-          <span aria-hidden="true" className="hero-eyebrow-rule" style={{ width: '40px', height: '1px', background: 'var(--rule-strong)' }} />
-          <span className="eyebrow hero-eyebrow">Smart Automation for Growing Businesses</span>
-          <span aria-hidden="true" className="hero-eyebrow-rule" style={{ width: '40px', height: '1px', background: 'var(--rule-strong)' }} />
+        {/* Eyebrow — modern glass chip */}
+        <motion.div variants={FADE_UP}>
+          <span className="hero-badge">
+            <span className="hero-badge-dot" aria-hidden="true" />
+            <span className="hero-badge-text">
+              <span className="hero-badge-hl">Smart</span> Automation for Growing Businesses
+            </span>
+          </span>
         </motion.div>
 
         {/* H1 */}
@@ -274,12 +322,12 @@ export default function Hero() {
           style={{
             fontFamily: 'var(--font-display), Georgia, serif',
             fontWeight: 700,
-            fontSize: 'clamp(36px, 5.6vw, 82px)',
-            lineHeight: 1.06,
+            fontSize: 'clamp(32px, 4.5vw, 60px)',
+            lineHeight: 1.1,
             letterSpacing: '0.005em',
             margin: 0,
             color: 'var(--ink)',
-            maxWidth: '24ch',
+            maxWidth: 'none',
           }}
         >
           <span style={{ display: 'block' }}>Let automation handle the work</span>
