@@ -123,7 +123,13 @@ export default function Hero() {
           0%, 64%, 100% { transform: translateY(0) scale(1); filter: brightness(1); }
           12%           { transform: translateY(-3px) scale(1.06); filter: brightness(1.14); }
         }
-        @keyframes matrixFall { from { transform: translateY(-85%); } to { transform: translateY(165%); } }
+        @keyframes matrixReveal {
+          0%   { opacity: 0; transform: translateY(-22%); }
+          22%  { opacity: 1; }
+          50%  { opacity: 1; }
+          78%  { opacity: 1; }
+          100% { opacity: 0; transform: translateY(22%); }
+        }
 
         .hero-wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
 
@@ -241,14 +247,13 @@ export default function Hero() {
           line-height: 1.9;
           white-space: nowrap;
           user-select: none;
-          background: linear-gradient(to bottom, rgba(34,211,238,0) 0%, rgba(24,119,242,0.16) 38%, rgba(76,154,255,0.85) 86%, rgba(220,238,255,0.98) 100%);
-          -webkit-background-clip: text;
-                  background-clip: text;
-          color: transparent;
-          -webkit-text-fill-color: transparent;
-          filter: drop-shadow(0 0 8px rgba(34,211,238,0.45));
-          animation-name: matrixFall;
-          animation-timing-function: linear;
+          color: rgba(34, 112, 230, 0.92);
+          -webkit-text-fill-color: rgba(34, 112, 230, 0.92);
+          text-shadow: 0 0 10px rgba(76, 154, 255, 0.5);
+          opacity: 0;
+          will-change: opacity, transform;
+          animation-name: matrixReveal;
+          animation-timing-function: ease-in-out;
           animation-iteration-count: infinite;
         }
 
