@@ -322,16 +322,16 @@ export default function Hero() {
           style={{
             fontFamily: 'var(--font-display), Georgia, serif',
             fontWeight: 700,
-            fontSize: 'clamp(32px, 4.5vw, 60px)',
-            lineHeight: 1.1,
+            fontSize: 'clamp(38px, 5.4vw, 76px)',
+            lineHeight: 1.08,
             letterSpacing: '0.005em',
             margin: 0,
             color: 'var(--ink)',
             maxWidth: 'none',
           }}
         >
-          <span style={{ display: 'block' }}>Let automation handle the work</span>
-          <em className="gold-shimmer" style={{ display: 'block' }}>your team shouldn&apos;t have to.</em>
+          <span style={{ display: 'block' }}>Your daily tasks,</span>
+          <em className="gold-shimmer" style={{ display: 'block' }}>fully automated.</em>
         </motion.h1>
 
         {/* Subhead */}
@@ -347,9 +347,7 @@ export default function Hero() {
             margin: 0,
           }}
         >
-          Verdorian AI Studio builds smart, custom automation systems for small and mid-sized
-          businesses&mdash;helping you save time, reduce errors, cut costs, and grow faster with
-          less manual work.
+          Let AI handle the work so you can focus on what matters.
         </motion.p>
 
         {/* CTAs */}
