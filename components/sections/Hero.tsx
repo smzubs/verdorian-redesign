@@ -70,34 +70,6 @@ const STEPS: FlowStep[] = [
 const BINARY_BASE = '0110100101100001'
 const BINARY_STREAM = BINARY_BASE + BINARY_BASE
 
-// Cinematic "data stream" — hi-tech monospace lines that stream in from the right with a
-// bright flare, hold glowing, glitch, then erase. Only 3 SLOTS render at once; each slot
-// cycles through the sentence pool on every repeat (text swapped while hidden). SSR-safe.
-const MATRIX_SENTENCES = [
-  'Built with AI. Designed around your business.',
-  'Automate the work that slows you down.',
-  'Your workflow, your way — smarter, faster.',
-  'Repetitive tasks become reliable automation.',
-  'Less manual work. More time to grow.',
-  'Automation that fits how your team works.',
-  'Reclaim time. Reduce mistakes. Move faster.',
-  'Your partner for a smarter, simpler business.',
-  'Automate today. Grow faster tomorrow.',
-  'Less busywork. More business momentum.',
-  'Smart systems for smarter business growth.',
-  'Operations simplified by intelligent automation.',
-  'Turn daily tasks into automatic progress.',
-  'Workflows built to save real hours.',
-  'AI that supports how you operate.',
-  'Reduce manual work. Increase business clarity.',
-  'Automation designed for teams that grow.',
-  'Stop chasing tasks. Start scaling smarter.',
-]
-// Drum geometry scales with the line count so the cylinder, blue-sync, and ~4-line
-// window stay correct as sentences are added. Radius keeps ~42px row spacing at the front.
-const DRUM_PERIOD = 30 // seconds for one full rotation (must match the CSS animation durations)
-const DRUM_RADIUS = Math.round(21 / Math.sin(Math.PI / MATRIX_SENTENCES.length))
-
 function FlowConnector({ i }: { i: number }) {
   return (
     <span className="flow-conn" style={{ '--i': i } as React.CSSProperties} aria-hidden="true">
@@ -138,17 +110,6 @@ export default function Hero() {
           0%, 64%, 100% { transform: translateY(0) scale(1); filter: brightness(1); }
           12%           { transform: translateY(-3px) scale(1.06); filter: brightness(1.14); }
         }
-        @keyframes drumSpin {
-          from { transform: rotateX(0deg); }
-          to   { transform: rotateX(-360deg); }
-        }
-        /* Each row is black, glows blue only while it passes through the centre band (synced to drumSpin) */
-        @keyframes rowGlow {
-          0%, 43%   { color: #14181F; text-shadow: 0 0 3px rgba(40,120,235,0.18); }
-          47%, 53%  { color: #1E6FF0; text-shadow: 0 0 8px rgba(40,120,235,0.82), 0 0 18px rgba(24,119,242,0.5); }
-          57%, 100% { color: #14181F; text-shadow: 0 0 3px rgba(40,120,235,0.18); }
-        }
-
         .hero-wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
 
         /* ── iOS-26 Liquid Glass chip badge ── */
@@ -253,59 +214,6 @@ export default function Hero() {
         }
         .hero-cta-row { display: flex; flex-direction: row; gap: 12px; align-items: center; justify-content: center; flex-wrap: wrap; }
 
-        /* ── iOS-picker data-drum — a 3D rotating wheel of sentences on the right ── */
-        .matrix-rain {
-          position: absolute;
-          top: 40%; right: 0; left: 56%;
-          height: 200px;
-          perspective: 2000px;
-          overflow: hidden;
-          pointer-events: none;
-          z-index: 0;
-          -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 14%, #000 100%), linear-gradient(180deg, transparent 0%, #000 22%, #000 78%, transparent 100%);
-                  mask-image: linear-gradient(90deg, transparent 0%, #000 14%, #000 100%), linear-gradient(180deg, transparent 0%, #000 22%, #000 78%, transparent 100%);
-          -webkit-mask-composite: source-in;
-                  mask-composite: intersect;
-        }
-        /* transparent floating-ribbon selection band framing the focused line */
-        .matrix-rain::before {
-          content: '';
-          position: absolute; left: auto; right: 26px; width: 440px; top: 50%;
-          height: 32px; transform: translateY(-50%);
-          border-radius: 11px;
-          border: 1px solid rgba(120, 170, 255, 0.5);
-          background: rgba(255, 255, 255, 0.05);
-          box-shadow:
-            0 1px 0 rgba(255,255,255,0.5) inset,
-            0 8px 20px -10px rgba(15,23,42,0.22),
-            0 2px 7px -3px rgba(24,119,242,0.22);
-          pointer-events: none;
-          z-index: 2;
-        }
-        .picker-drum {
-          position: absolute;
-          top: 50%; left: 0; right: 0; height: 0;
-          transform-style: preserve-3d;
-          animation: drumSpin 30s linear infinite;
-        }
-        .picker-row {
-          position: absolute;
-          top: -16px; left: 0; right: 0; height: 32px;
-          display: flex; align-items: center; justify-content: flex-end;
-          padding-right: 52px;
-          backface-visibility: hidden;
-          -webkit-backface-visibility: hidden;
-          white-space: nowrap;
-          font-family: ui-monospace, 'SF Mono', Menlo, monospace;
-          font-size: 11px;
-          font-weight: 600;
-          letter-spacing: 0.02em;
-          color: #14181F;
-          text-shadow: 0 0 3px rgba(40,120,235,0.18);
-          will-change: color;
-          animation: rowGlow 30s linear infinite;
-        }
-
         /* ── Command-center flow rail ── */
         .flow-rail { display: flex; flex-direction: row; align-items: flex-start; justify-content: center; gap: 0; flex-wrap: nowrap; }
         .flow-step { display: flex; flex-direction: column; align-items: center; gap: 9px; flex: 0 0 auto; text-align: center; max-width: 128px; }
@@ -368,43 +276,15 @@ export default function Hero() {
             animation: connCometV 2s linear infinite;
             animation-delay: calc(var(--i, 0) * 0.4s);
           }
-          .matrix-rain { display: none; }
         }
         @media (min-width: 861px) {
           .flow-step .flow-text { display: flex; flex-direction: column; gap: 3px; align-items: center; }
         }
-        @media (max-width: 1480px) {
-          .picker-row { font-size: 10px; letter-spacing: 0.01em; }
-          .matrix-rain { left: 58%; }
-          .matrix-rain::before { width: 380px; }
-        }
-        @media (max-width: 1180px) {
-          .matrix-rain { display: none; }
-        }
         @media (prefers-reduced-motion: reduce) {
-          .flow-binary > span, .flow-step .vd-node, .flow-conn::after, .picker-drum, .picker-row { animation: none !important; }
+          .flow-binary > span, .flow-step .vd-node, .flow-conn::after { animation: none !important; }
           .flow-conn::after { opacity: 0; }
-          .picker-row { color: #14181F; }
         }
       `}</style>
-
-      {/* AI data-drum backdrop — iOS-picker-style 3D scroll wheel of sentences */}
-      <div className="matrix-rain" aria-hidden="true">
-        <div className="picker-drum">
-          {MATRIX_SENTENCES.map((s, i) => (
-            <span
-              key={i}
-              className="picker-row"
-              style={{
-                transform: `rotateX(${(i * 360) / MATRIX_SENTENCES.length}deg) translateZ(${DRUM_RADIUS}px)`,
-                animationDelay: `${(i * (DRUM_PERIOD / MATRIX_SENTENCES.length) - DRUM_PERIOD / 2).toFixed(2)}s`,
-              }}
-            >
-              {s}
-            </span>
-          ))}
-        </div>
-      </div>
 
       <motion.div
         className="hero-wrap"

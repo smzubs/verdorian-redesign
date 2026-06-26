@@ -1,5 +1,6 @@
 import Nav from '@/components/sections/Nav'
 import Hero from '@/components/sections/Hero'
+import MatrixBand from '@/components/sections/MatrixBand'
 import PainSection from '@/components/sections/PainSection'
 import Capabilities from '@/components/sections/Capabilities'
 import BusinessVsIndividual from '@/components/sections/BusinessVsIndividual'
@@ -19,6 +20,7 @@ export default function Home() {
       <main id="main-content">
         <Nav />
         <Hero />
+        <MatrixBand />
         {/* Simplified landing flow: pain snapshot -> 3 core offers -> audience strip -> before/after -> value card -> 3-step process -> trust -> audit */}
         <PainSection />
         <Capabilities />
