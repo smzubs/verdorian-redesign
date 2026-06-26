@@ -258,7 +258,7 @@ export default function Hero() {
           position: absolute;
           top: 40%; right: 0; left: 56%;
           height: 200px;
-          perspective: 1700px;
+          perspective: 2000px;
           overflow: hidden;
           pointer-events: none;
           z-index: 0;
@@ -270,7 +270,7 @@ export default function Hero() {
         /* transparent floating-ribbon selection band framing the focused line */
         .matrix-rain::before {
           content: '';
-          position: absolute; left: auto; right: 46px; width: 440px; top: 50%;
+          position: absolute; left: auto; right: 26px; width: 440px; top: 50%;
           height: 32px; transform: translateY(-50%);
           border-radius: 11px;
           border: 1px solid rgba(120, 170, 255, 0.5);
@@ -292,7 +292,7 @@ export default function Hero() {
           position: absolute;
           top: -16px; left: 0; right: 0; height: 32px;
           display: flex; align-items: center; justify-content: flex-end;
-          padding-right: 74px;
+          padding-right: 52px;
           backface-visibility: hidden;
           -webkit-backface-visibility: hidden;
           white-space: nowrap;
