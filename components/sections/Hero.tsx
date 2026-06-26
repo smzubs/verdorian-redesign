@@ -144,9 +144,9 @@ export default function Hero() {
         }
         /* Each row is black, glows blue only while it passes through the centre band (synced to drumSpin) */
         @keyframes rowGlow {
-          0%, 47%   { color: #14181F; text-shadow: 0 0 3px rgba(40,120,235,0.18); }
-          50%       { color: #1E6FF0; text-shadow: 0 0 8px rgba(40,120,235,0.82), 0 0 18px rgba(24,119,242,0.5); }
-          53%, 100% { color: #14181F; text-shadow: 0 0 3px rgba(40,120,235,0.18); }
+          0%, 43%   { color: #14181F; text-shadow: 0 0 3px rgba(40,120,235,0.18); }
+          47%, 53%  { color: #1E6FF0; text-shadow: 0 0 8px rgba(40,120,235,0.82), 0 0 18px rgba(24,119,242,0.5); }
+          57%, 100% { color: #14181F; text-shadow: 0 0 3px rgba(40,120,235,0.18); }
         }
 
         .hero-wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
@@ -270,8 +270,8 @@ export default function Hero() {
         /* transparent floating-ribbon selection band framing the focused line */
         .matrix-rain::before {
           content: '';
-          position: absolute; left: 44%; right: 44px; top: 50%;
-          height: 30px; transform: translateY(-50%);
+          position: absolute; left: auto; right: 54px; width: 430px; top: 50%;
+          height: 32px; transform: translateY(-50%);
           border-radius: 11px;
           border: 1px solid rgba(120, 170, 255, 0.5);
           background: rgba(255, 255, 255, 0.05);
@@ -376,6 +376,7 @@ export default function Hero() {
         @media (max-width: 1480px) {
           .picker-row { font-size: 10px; letter-spacing: 0.01em; }
           .matrix-rain { left: 58%; }
+          .matrix-rain::before { width: 360px; }
         }
         @media (max-width: 1180px) {
           .matrix-rain { display: none; }
