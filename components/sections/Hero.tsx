@@ -258,7 +258,7 @@ export default function Hero() {
           position: absolute;
           top: 40%; right: 0; left: 56%;
           height: 200px;
-          perspective: 1300px;
+          perspective: 1700px;
           overflow: hidden;
           pointer-events: none;
           z-index: 0;
