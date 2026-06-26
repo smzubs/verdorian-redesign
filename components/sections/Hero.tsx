@@ -258,7 +258,7 @@ export default function Hero() {
           position: absolute;
           top: 40%; right: 0; left: 56%;
           height: 200px;
-          perspective: 820px;
+          perspective: 1300px;
           overflow: hidden;
           pointer-events: none;
           z-index: 0;
@@ -270,7 +270,7 @@ export default function Hero() {
         /* transparent floating-ribbon selection band framing the focused line */
         .matrix-rain::before {
           content: '';
-          position: absolute; left: auto; right: 54px; width: 430px; top: 50%;
+          position: absolute; left: auto; right: 46px; width: 440px; top: 50%;
           height: 32px; transform: translateY(-50%);
           border-radius: 11px;
           border: 1px solid rgba(120, 170, 255, 0.5);
@@ -376,7 +376,7 @@ export default function Hero() {
         @media (max-width: 1480px) {
           .picker-row { font-size: 10px; letter-spacing: 0.01em; }
           .matrix-rain { left: 58%; }
-          .matrix-rain::before { width: 360px; }
+          .matrix-rain::before { width: 380px; }
         }
         @media (max-width: 1180px) {
           .matrix-rain { display: none; }
