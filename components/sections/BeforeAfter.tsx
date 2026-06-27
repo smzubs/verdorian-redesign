@@ -8,18 +8,18 @@ import { FADE_UP } from '@/lib/motion'
 
 const MANUAL_STEPS: string[] = [
   'Form submitted',
-  'Someone checks email',
-  'Data copied',
-  'Spreadsheet updated',
-  'Follow-up sent later',
+  'Check inbox',
+  'Copy to spreadsheet',
+  'Update records',
+  'Send follow-up',
 ]
 
 const AUTOMATED_STEPS: string[] = [
   'Form submitted',
-  'AI extracts details',
-  'System updates',
-  'Follow-up drafted',
-  'Human notified',
+  'AI parses fields',
+  'Records updated',
+  'Draft prepared',
+  'You review & send',
 ]
 
 // ─── Main component ───────────────────────────────────────────────────────────
@@ -176,20 +176,23 @@ export default function BeforeAfter() {
           className="ba-wrap"
         >
           {/* ── Title ─────────────────────────────────────────────── */}
-          <h2
-            style={{
-              fontFamily: 'var(--font-display), serif',
-              fontSize: 'clamp(26px, 3.5vw, 38px)',
-              fontWeight: 600,
-              color: 'var(--ink)',
-              textAlign: 'center',
-              lineHeight: 1.2,
-              letterSpacing: '-0.02em',
-              margin: 0,
-            }}
-          >
-            From manual steps to automated flow
-          </h2>
+          <div style={{ textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px' }}>
+            <span className="eyebrow">Before &amp; After</span>
+            <h2
+              style={{
+                fontFamily: 'var(--font-display), serif',
+                fontSize: 'clamp(26px, 3.5vw, 38px)',
+                fontWeight: 600,
+                color: 'var(--ink)',
+                textAlign: 'center',
+                lineHeight: 1.2,
+                letterSpacing: '-0.02em',
+                margin: 0,
+              }}
+            >
+              The same task. Two very different paths.
+            </h2>
+          </div>
 
           {/* ── Two-lane grid ─────────────────────────────────────── */}
           <div className="ba-lanes" role="region" aria-label="Workflow comparison">
@@ -242,7 +245,7 @@ export default function BeforeAfter() {
 
           {/* ── Closing line ───────────────────────────────────────── */}
           <p className="ba-closing">
-            Same work. Fewer delays. Fewer mistakes.
+            Same outcome. Less delay. You stay in control.
           </p>
         </motion.div>
       </div>

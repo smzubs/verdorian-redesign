@@ -8,10 +8,10 @@ import { FADE_UP, STAGGER_CONTAINER } from '@/lib/motion'
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
 const TRUST_POINTS: readonly string[] = [
-  'Human review where it matters',
-  'Secure workflow design',
-  'Clear logs and validation',
-  'Built around your existing tools',
+  'Human sign-off at every critical step',
+  'Security built in, not bolted on',
+  'Auditable logs and clear validation',
+  'Works with your existing stack',
 ]
 
 interface ProofItem {
@@ -23,16 +23,16 @@ interface ProofItem {
 const PROOF_ITEMS: readonly ProofItem[] = [
   {
     name: 'QRSafePro',
-    description: 'QR-based equipment inspection and inventory',
+    description: 'QR-powered equipment inspection and inventory SaaS',
     href: 'https://qrsafepro.com',
   },
   {
     name: 'VoicePencil',
-    description: 'Voice notes into organized text',
+    description: 'AI voice notes app for iOS — speech to structured text',
   },
   {
     name: 'Knight Electric',
-    description: 'Modern business website',
+    description: 'Website for an electrical contractor',
     href: 'https://knightelectric.net',
   },
 ]
@@ -116,7 +116,7 @@ export default function Trust() {
           display: flex;
           align-items: baseline;
           gap: 12px;
-          padding: 10px 0;
+          padding: 14px 0;
           border-bottom: 1px solid var(--rule-faint);
           font-family: var(--font-body), sans-serif;
           font-size: 14px;
@@ -225,8 +225,8 @@ export default function Trust() {
             className="trust-support-sentence"
             variants={FADE_UP}
           >
-            We design automation with checkpoints, rules, and review steps so
-            your team stays in control.
+            Every workflow we build includes review checkpoints and clear audit
+            trails — your team stays in control, not just informed.
           </motion.p>
         </motion.div>
 
@@ -242,7 +242,7 @@ export default function Trust() {
             className="trust-proof-heading"
             variants={FADE_UP}
           >
-            Real systems shipped:
+            Work we&apos;ve shipped:
           </motion.p>
 
           <motion.ul

@@ -14,7 +14,7 @@ export default function PainSection() {
   return (
     <section
       id="problem"
-      aria-label="Where your team loses time"
+      aria-label="The cost of repetitive work"
       style={{
         scrollMarginTop: '84px',
         paddingTop: '96px',
@@ -82,24 +82,28 @@ export default function PainSection() {
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
-              gap: '16px',
+              gap: '20px',
               textAlign: 'center',
             }}
           >
-            <h2
-              style={{
-                fontFamily: 'var(--font-display), serif',
-                fontSize: 'clamp(1.6rem, 3.5vw, 2.25rem)',
-                fontWeight: 600,
-                color: 'var(--ink)',
-                lineHeight: 1.2,
-                margin: 0,
-                letterSpacing: '-0.01em',
-              }}
-            >
-              Manual work is quietly costing you time.{' '}
-              <em style={{ fontStyle: 'italic', color: 'var(--gold)' }}>Let automation handle the work.</em>
-            </h2>
+            {/* Eyebrow + heading grouped tightly */}
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px' }}>
+              <span className="eyebrow">THE PROBLEM</span>
+              <h2
+                style={{
+                  fontFamily: 'var(--font-display), serif',
+                  fontSize: 'clamp(1.6rem, 3.5vw, 2.25rem)',
+                  fontWeight: 600,
+                  color: 'var(--ink)',
+                  lineHeight: 1.2,
+                  margin: 0,
+                  letterSpacing: '-0.01em',
+                }}
+              >
+                Repetitive tasks quietly drain your team&apos;s capacity.{' '}
+                <em style={{ fontStyle: 'italic', color: 'var(--gold)' }}>We build software that handles them.</em>
+              </h2>
+            </div>
             <p
               style={{
                 fontFamily: 'var(--font-body), sans-serif',
@@ -110,8 +114,8 @@ export default function PainSection() {
                 maxWidth: '58ch',
               }}
             >
-              Most teams lose hours through repeated emails, spreadsheet updates,
-              reports, approvals, follow-ups, and data entry.
+              Data entry, follow-ups, reports, approvals — every business runs on
+              small manual tasks that add up to real lost time. We eliminate them.
             </p>
           </motion.div>
 
@@ -161,7 +165,7 @@ export default function PainSection() {
               fontStyle: 'italic',
             }}
           >
-            If it repeats every week, it may be worth automating.
+            If it repeats every week, it can be automated.
           </motion.p>
         </motion.div>
       </div>

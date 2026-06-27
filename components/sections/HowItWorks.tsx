@@ -122,23 +122,23 @@ const STEPS: Step[] = [
   {
     numeral: '01',
     title: 'Audit',
-    body: 'We find the repetitive task worth automating first.',
+    body: 'We map your workflows and pinpoint the highest-return automation opportunity — no guesswork, no generic playbook.',
     glyph: <GlyphAudit />,
-    ariaLabel: 'Step 1: Audit',
+    ariaLabel: 'Step 1: Audit — we identify the best automation opportunity',
   },
   {
     numeral: '02',
     title: 'Build',
-    body: 'We create the workflow, dashboard, or internal tool around your real process.',
+    body: 'We build the workflow, dashboard, or internal tool that fits your actual process — not a template.',
     glyph: <GlyphBuild />,
-    ariaLabel: 'Step 2: Build',
+    ariaLabel: 'Step 2: Build — we create the automation around your real process',
   },
   {
     numeral: '03',
     title: 'Improve',
-    body: 'We refine the system as your work changes.',
+    body: 'We monitor, adjust, and expand the system as your operation evolves.',
     glyph: <GlyphImprove />,
-    ariaLabel: 'Step 3: Improve',
+    ariaLabel: 'Step 3: Improve — we refine the system over time',
   },
 ]
 

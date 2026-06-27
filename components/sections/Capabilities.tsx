@@ -219,7 +219,7 @@ const CAPABILITIES: CapabilityItem[] = [
   {
     id: 'reports',
     title: 'Reports & Dashboards',
-    description: 'Live numbers, invoices, and KPIs, built for you automatically.',
+    description: 'Live dashboards, invoices, and KPIs — assembled and delivered without manual effort.',
     gradFrom: '#4F46E5',
     gradTo: '#6366F1',
     Icon: IconReports,
@@ -227,7 +227,7 @@ const CAPABILITIES: CapabilityItem[] = [
   {
     id: 'connected',
     title: 'Connected Systems',
-    description: 'Your apps and spreadsheets linked, so data moves on its own.',
+    description: 'Your apps and tools linked so data moves between them automatically.',
     gradFrom: '#1877F2',
     gradTo: '#22D3EE',
     Icon: IconConnected,
@@ -235,7 +235,7 @@ const CAPABILITIES: CapabilityItem[] = [
   {
     id: 'bi',
     title: 'Business Intelligence',
-    description: 'Messy data turned into clear trends, forecasts, and answers.',
+    description: 'Raw data turned into clear trends, forecasts, and decisions.',
     gradFrom: '#6366F1',
     gradTo: '#8B5CF6',
     Icon: IconBI,
@@ -243,7 +243,7 @@ const CAPABILITIES: CapabilityItem[] = [
   {
     id: 'custom-software',
     title: 'Custom Business Software',
-    description: 'The exact internal tool your team needs — built fast.',
+    description: 'The exact internal tool your team needs, built to your workflow.',
     gradFrom: '#2563EB',
     gradTo: '#1877F2',
     Icon: IconCustomSoftware,
@@ -251,7 +251,7 @@ const CAPABILITIES: CapabilityItem[] = [
   {
     id: 'website',
     title: 'Website Development',
-    description: 'Fast, modern websites that turn visitors into customers.',
+    description: 'Fast, conversion-focused websites built to grow with your business.',
     gradFrom: '#0EA5E9',
     gradTo: '#1877F2',
     Icon: IconWebsite,
@@ -259,7 +259,7 @@ const CAPABILITIES: CapabilityItem[] = [
   {
     id: 'saas',
     title: 'Custom SaaS',
-    description: 'Your product idea, built into a full SaaS platform.',
+    description: 'Your product idea, shipped as a scalable SaaS platform.',
     gradFrom: '#1877F2',
     gradTo: '#4F46E5',
     Icon: IconSaaS,
@@ -267,7 +267,7 @@ const CAPABILITIES: CapabilityItem[] = [
   {
     id: 'accurate',
     title: 'Accurate by Design',
-    description: 'Checks built into every step, so you can trust the output.',
+    description: 'Validation built into every step — outputs stay trustworthy without manual checking.',
     gradFrom: '#1877F2',
     gradTo: '#6366F1',
     Icon: IconAccurate,
@@ -403,7 +403,7 @@ export default function Capabilities() {
   return (
     <section
       id="automate"
-      aria-label="What Verdorian does — capabilities"
+      aria-label="What We Automate"
       className="glass-stage"
       style={{
         scrollMarginTop: '84px',
@@ -625,7 +625,7 @@ export default function Capabilities() {
           <motion.div variants={FADE_UP}>
             <SectionHeading
               numeral="01"
-              eyebrow="WHAT WE DO"
+              eyebrow="WHAT WE AUTOMATE"
               lead="We turn repetitive work into"
               accent="software that runs itself."
               align="left"
@@ -640,9 +640,9 @@ export default function Capabilities() {
                 maxWidth: '60ch',
               }}
             >
-              Every business runs on small tasks that eat hours and invite mistakes. We find them,
-              automate them, and build the custom software your team actually needs — shaped to how
-              you already work.
+              Every business runs on repetitive tasks that compound into lost time and accumulated
+              errors. We find them, automate them, and build tools your team actually uses —
+              shaped around how you already work.
             </p>
           </motion.div>
 
@@ -669,7 +669,7 @@ export default function Capabilities() {
             }}
           >
             <strong style={{ color: 'var(--ink-soft)', fontWeight: 600 }}>Also available:</strong>{' '}
-            CRM automation, customer support workflows, and personal AI systems.
+            CRM automation, customer support workflows, and AI-powered internal tools.
           </motion.p>
         </motion.div>
       </div>

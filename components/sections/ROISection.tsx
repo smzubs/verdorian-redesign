@@ -111,7 +111,7 @@ export default function ROISection() {
             numeral="02"
             eyebrow="THE MATH"
             lead="Small repeated tasks become"
-            accent="expensive."
+            accent="a hidden cost."
             align="center"
           />
         </motion.div>
@@ -129,6 +129,9 @@ export default function ROISection() {
             role="region"
             aria-labelledby="roi-heading"
           >
+            {/* Premium hover line-draw — consistent with other glass-card surfaces */}
+            <span className="glass-topline" aria-hidden="true" />
+
             {/* Visually-hidden h2 — the SectionHeading above is the visible title; this labels the region for screen readers */}
             <h2
               id="roi-heading"
@@ -157,7 +160,7 @@ export default function ROISection() {
                 margin: 0,
               }}
             >
-              A 30-minute task does not look expensive until several people repeat it every week.
+              A 30-minute task looks harmless — until three people do it every week, every month.
             </p>
 
             {/* ── Formula display ──────────────────────────── */}
@@ -190,7 +193,7 @@ export default function ROISection() {
             size="lg"
             onClick={() => scrollToSection('contact')}
           >
-            Find My Best Automation
+            Get Free Automation Audit
           </GlowButton>
         </motion.div>
       </div>

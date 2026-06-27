@@ -10,7 +10,7 @@ export default function BusinessVsIndividual() {
   return (
     <section
       id="audience"
-      aria-label="Who it&apos;s for"
+      aria-label="Who we help"
       className="glass-stage"
       style={{ scrollMarginTop: '84px', paddingTop: '72px', paddingBottom: '72px' }}
     >
@@ -75,7 +75,7 @@ export default function BusinessVsIndividual() {
           font-weight: 700;
           text-transform: uppercase;
           letter-spacing: 0.22em;
-          margin-bottom: 12px;
+          margin: 0 0 12px;
           padding: 3px 8px;
           border-radius: 4px;
         }
@@ -104,6 +104,16 @@ export default function BusinessVsIndividual() {
       `}</style>
 
       <div className="aud-container">
+        <motion.div
+          variants={FADE_UP}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          style={{ textAlign: 'center', marginBottom: '12px' }}
+        >
+          <span className="eyebrow">Who We Help</span>
+        </motion.div>
+
         <motion.h2
           className="aud-title"
           variants={FADE_UP}
@@ -111,7 +121,7 @@ export default function BusinessVsIndividual() {
           whileInView="visible"
           viewport={{ once: true }}
         >
-          Built for teams. Useful for individuals.
+          For businesses and the people who run them.
         </motion.h2>
 
         <div className="aud-grid">
@@ -123,9 +133,9 @@ export default function BusinessVsIndividual() {
             whileInView="visible"
             viewport={{ once: true }}
           >
-            <span className="aud-label aud-label--business">Business</span>
+            <h3 className="aud-label aud-label--business">For Businesses</h3>
             <p className="aud-copy">
-              For businesses that need fewer manual steps, faster follow-ups, cleaner reports, and better visibility.
+              We eliminate the repetitive operations that slow your team down — data entry, follow-ups, scheduling, reports — so your people spend time on work that actually moves the business forward.
             </p>
           </motion.div>
 
@@ -137,9 +147,9 @@ export default function BusinessVsIndividual() {
             whileInView="visible"
             viewport={{ once: true }}
           >
-            <span className="aud-label aud-label--individuals">Individuals</span>
+            <h3 className="aud-label aud-label--individuals">For Professionals</h3>
             <p className="aud-copy">
-              For professionals who want help organizing email, files, tasks, notes, job search, learning, or content workflows.
+              We automate the personal workflows that eat your most productive hours — email triage, task management, research, content — so you can focus on the work that matters.
             </p>
           </motion.div>
         </div>

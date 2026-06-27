@@ -5,8 +5,8 @@ import { scrollToSection } from '@/lib/utils'
 
 const NAV_LINKS = [
   { label: 'What We Automate', id: 'automate' },
-  { label: 'Process', id: 'how-it-works' },
-  { label: 'Proof', id: 'trust' },
+  { label: 'How It Works', id: 'how-it-works' },
+  { label: 'Our Work', id: 'trust' },
   { label: 'Contact', id: 'contact' },
 ]
 
@@ -35,7 +35,7 @@ export default function Footer() {
         }
         .footer-link {
           background: none; border: none; cursor: pointer;
-          padding: 6px 0; min-height: 40px;
+          padding: 10px 0; min-height: 44px;
           font-family: var(--font-body), sans-serif;
           font-size: 13px; letter-spacing: 0.04em;
           color: rgba(247,243,234,0.5);
@@ -85,7 +85,7 @@ export default function Footer() {
               maxWidth: '280px',
             }}
           >
-            Custom AI workflows, dashboards, and internal tools for repetitive business work.
+            AI workflows, dashboards, and internal tools — built for the business work you shouldn&apos;t be doing manually.
           </span>
         </div>
 

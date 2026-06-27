@@ -208,7 +208,7 @@ export default function Contact() {
                 }}
               >
                 <span style={{ display: 'block', color: 'var(--paper-bright)' }}>
-                  Ready to automate
+                  Ready to hand off
                 </span>
                 <span
                   style={{
@@ -217,7 +217,7 @@ export default function Contact() {
                     color: 'var(--gold)',
                   }}
                 >
-                  your first workflow?
+                  the work slowing you down?
                 </span>
               </h2>
 
@@ -231,8 +231,8 @@ export default function Contact() {
                   maxWidth: '420px',
                 }}
               >
-                Tell us one task your team repeats every week. We&apos;ll help
-                you identify the fastest automation opportunity.
+                Describe one task your team repeats each week — we&apos;ll
+                identify the right automation path for it.
               </p>
 
               {/* Hairline rule */}
@@ -454,7 +454,6 @@ export default function Contact() {
                         justifyContent: 'center',
                         cursor: 'pointer',
                       }}
-                      aria-label="Submit automation audit request"
                     >
                       Get Free Automation Audit
                       <svg
