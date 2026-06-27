@@ -132,8 +132,9 @@ export default function ROISection() {
             {/* Premium hover line-draw — consistent with other glass-card surfaces */}
             <span className="glass-topline" aria-hidden="true" />
 
-            {/* Visually-hidden h2 — the SectionHeading above is the visible title; this labels the region for screen readers */}
-            <h2
+            {/* Visually-hidden label for the region — SectionHeading above is the visible title.
+                Uses a span (not a 2nd h2) to keep the heading outline clean; text matches the visible heading. */}
+            <span
               id="roi-heading"
               style={{
                 position: 'absolute',
@@ -147,8 +148,8 @@ export default function ROISection() {
                 border: 0,
               }}
             >
-              Small repeated tasks become expensive.
-            </h2>
+              Small repeated tasks become a hidden cost.
+            </span>
 
             <p
               style={{

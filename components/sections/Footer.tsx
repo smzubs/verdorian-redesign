@@ -112,15 +112,9 @@ export default function Footer() {
           <span style={{ fontFamily: 'var(--font-body), sans-serif', fontSize: '12px', color: 'rgba(247, 243, 234, 0.35)' }}>
             &copy; 2026 Verdorian Technologies LLC
           </span>
-          <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
-            <a href="/privacy" className="gold-link" style={{ fontFamily: 'var(--font-body), sans-serif', fontSize: '12px', color: 'rgba(247, 243, 234, 0.35)' }}>
-              Privacy Policy
-            </a>
-            <span style={{ color: 'rgba(247, 243, 234, 0.22)', fontSize: '12px' }}>·</span>
-            <a href="/terms" className="gold-link" style={{ fontFamily: 'var(--font-body), sans-serif', fontSize: '12px', color: 'rgba(247, 243, 234, 0.35)' }}>
-              Terms
-            </a>
-          </div>
+          <a href="mailto:sm@verdorian.com" className="gold-link" style={{ fontFamily: 'var(--font-body), sans-serif', fontSize: '12px', color: 'rgba(247, 243, 234, 0.35)' }}>
+            sm@verdorian.com
+          </a>
         </div>
       </div>
     </footer>
