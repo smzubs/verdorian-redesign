@@ -34,11 +34,15 @@ export default function MatrixBand() {
       <style>{`
         @keyframes mbSpin { from { transform: rotateX(0deg); } to { transform: rotateX(-360deg); } }
         @keyframes mbGlow {
-          0%, 43%   { color: #14181F; text-shadow: 0 0 3px rgba(40,120,235,0.18); }
-          47%, 53%  { color: #1E6FF0; text-shadow: 0 0 8px rgba(40,120,235,0.82), 0 0 18px rgba(24,119,242,0.5); }
-          57%, 100% { color: #14181F; text-shadow: 0 0 3px rgba(40,120,235,0.18); }
+          0%, 43%   { color: #14181F; }
+          47%, 53%  { color: #1E6FF0; }
+          57%, 100% { color: #14181F; }
         }
-        .mb-section { position: relative; background: var(--paper); padding: 14px 0 30px; overflow: hidden; }
+        .mb-section {
+          position: relative; background: var(--paper); padding: 14px 0 30px; overflow: hidden;
+          content-visibility: auto;
+          contain-intrinsic-size: auto 230px;
+        }
         .mb-stage {
           position: relative;
           height: 176px;
@@ -66,6 +70,7 @@ export default function MatrixBand() {
         .mb-drum {
           position: absolute; top: 50%; left: 0; right: 0; height: 0;
           transform-style: preserve-3d;
+          will-change: transform;
           animation: mbSpin 30s linear infinite;
         }
         .mb-row {

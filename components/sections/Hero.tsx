@@ -1,7 +1,7 @@
 'use client'
 
-import React, { useRef } from 'react'
-import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion'
+import React from 'react'
+import { motion } from 'framer-motion'
 import { GlowButton } from '@/components/ui/GlowButton'
 import { FADE_UP, STAGGER_CONTAINER } from '@/lib/motion'
 import { scrollToSection } from '@/lib/utils'
@@ -79,13 +79,6 @@ function FlowConnector({ i }: { i: number }) {
 }
 
 export default function Hero() {
-  const cardRef = useRef<HTMLDivElement>(null)
-  const reduce = useReducedMotion()
-  // iOS-style 3D scroll: the workflow card tilts back as it rises, flattening at center.
-  const { scrollYProgress } = useScroll({ target: cardRef, offset: ['start end', 'end start'] })
-  const rotateXRaw = useTransform(scrollYProgress, [0, 0.45, 1], [7, 0, -4])
-  const rotateX = reduce ? 0 : rotateXRaw
-
   return (
     <section
       id="hero"
@@ -388,10 +381,9 @@ export default function Hero() {
           variants={FADE_UP}
           className="figure-halo"
           aria-label="A sample business-intelligence automation: data from sales, emails, forms, invoices and tasks is collected, AI organizes it, a smart dashboard shows live numbers, AI surfaces insights, a human makes the decision, and the right action is taken."
-          style={{ width: '100%', marginTop: '34px', perspective: '1400px' }}
+          style={{ width: '100%', marginTop: '34px' }}
         >
-          <motion.div ref={cardRef} style={{ rotateX, transformStyle: 'preserve-3d', willChange: 'transform' }}>
-            <div className="glass-card" style={{ padding: '30px 26px', borderRadius: '24px' }}>
+          <div className="glass-card" style={{ padding: '30px 26px', borderRadius: '24px' }}>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '24px', flexWrap: 'wrap', gap: '10px' }}>
                 <span style={{ display: 'inline-flex', alignItems: 'center', gap: '11px' }}>
                   <span className="vd-dot" />
@@ -427,7 +419,6 @@ export default function Hero() {
                 ))}
               </div>
             </div>
-          </motion.div>
         </motion.div>
       </motion.div>
     </section>
