@@ -336,12 +336,12 @@ export default function Hero() {
           variants={FADE_UP}
           style={{
             fontFamily: 'var(--font-display), Georgia, serif',
-            fontWeight: 500,
-            fontSize: 'clamp(20px, 1.8vw, 24px)',
-            color: 'var(--ink-soft)',
-            maxWidth: '42ch',
-            lineHeight: 1.5,
-            letterSpacing: '0.01em',
+            fontWeight: 300,
+            fontSize: 'clamp(22px, 2vw, 27px)',
+            color: 'var(--ink)',
+            maxWidth: '40ch',
+            lineHeight: 1.42,
+            letterSpacing: '0.018em',
             margin: 0,
             textWrap: 'balance',
           } as React.CSSProperties}
@@ -349,7 +349,7 @@ export default function Hero() {
           <span style={{ display: 'block' }}>
             Let us autopilot your busywork&mdash;
           </span>
-          <em style={{ display: 'block' }}>
+          <em style={{ display: 'block', fontWeight: 300 }}>
             so you can grow your business and enjoy your life.
           </em>
         </motion.p>
