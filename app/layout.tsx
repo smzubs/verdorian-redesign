@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { Geist, Cormorant_Garamond } from 'next/font/google'
+import { Geist, Cormorant_Garamond, Fraunces } from 'next/font/google'
 import { LenisProvider } from '@/lib/lenis-provider'
 import './globals.css'
 
@@ -17,6 +17,15 @@ const cormorant = Cormorant_Garamond({
   weight: ['300', '400', '500', '600', '700'],
   style: ['normal', 'italic'],
   variable: '--font-cormorant',
+  display: 'swap',
+})
+
+// Characterful premium serif — used for the hero sub-promise
+const fraunces = Fraunces({
+  subsets: ['latin'],
+  weight: ['400', '500', '600'],
+  style: ['normal', 'italic'],
+  variable: '--font-fraunces',
   display: 'swap',
 })
 
@@ -68,7 +77,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="en"
-      className={`${geist.variable} ${cormorant.variable}`}
+      className={`${geist.variable} ${cormorant.variable} ${fraunces.variable}`}
       suppressHydrationWarning
     >
       <body className="font-[family-name:var(--font-body)]">
