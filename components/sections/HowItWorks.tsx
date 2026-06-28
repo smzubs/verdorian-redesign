@@ -344,7 +344,7 @@ export default function HowItWorks() {
         >
           {/* ── Section heading ─────────────────────────────────── */}
           <SectionHeading
-            numeral="03"
+            numeral="02"
             eyebrow="HOW IT WORKS"
             lead="How it"
             accent="works."

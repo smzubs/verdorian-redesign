@@ -108,7 +108,7 @@ export default function ROISection() {
           style={{ width: '100%', textAlign: 'center' }}
         >
           <SectionHeading
-            numeral="02"
+            numeral="04"
             eyebrow="THE MATH"
             lead="Small repeated tasks become"
             accent="a hidden cost."

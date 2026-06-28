@@ -21,14 +21,15 @@ export default function Home() {
         <Nav />
         <Hero />
         <MatrixBand />
-        {/* Simplified landing flow: pain snapshot -> 3 core offers -> audience strip -> before/after -> value card -> 3-step process -> trust -> audit */}
+        {/* Conversion narrative: problem -> what we automate -> who it's for -> the transformation
+            -> how it works (simple process) -> proof/trust -> the cost of waiting (ROI) -> CTA */}
         <PainSection />
         <Capabilities />
         <BusinessVsIndividual />
         <BeforeAfter />
-        <ROISection />
         <HowItWorks />
         <Trust />
+        <ROISection />
         <Contact />
         <Footer />
       </main>

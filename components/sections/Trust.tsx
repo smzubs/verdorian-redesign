@@ -199,7 +199,7 @@ export default function Trust() {
         >
           <div id="trust-heading">
             <SectionHeading
-              numeral="04"
+              numeral="03"
               eyebrow="BUILT WITH CONTROL"
               lead="Built with control,"
               accent="not hype."
