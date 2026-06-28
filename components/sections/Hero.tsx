@@ -337,14 +337,19 @@ export default function Hero() {
           style={{
             fontFamily: 'var(--font-body), sans-serif',
             fontWeight: 400,
-            fontSize: '17px',
+            fontSize: 'clamp(19px, 1.8vw, 23px)',
             color: 'var(--ink-soft)',
-            maxWidth: 'none',
-            lineHeight: 1.6,
+            maxWidth: '46ch',
+            lineHeight: 1.68,
+            letterSpacing: '0.008em',
             margin: 0,
-          }}
+            textWrap: 'balance',
+          } as React.CSSProperties}
         >
-          Let us autopilot your busywork&mdash;so you can grow your business and enjoy your life.
+          Let us autopilot your busywork&mdash;so you can{' '}
+          <strong style={{ fontWeight: 600, color: 'var(--gold)' }}>
+            grow your business and enjoy your life.
+          </strong>
         </motion.p>
 
         {/* CTAs */}
