@@ -1,6 +1,14 @@
 # Verdorian Technologies — verdorian.com (Premium Liquid Glass Redesign)
 
-> ## ⚡ LATEST (2026-07-04 late) — USER HERO FEEDBACK + FULL AUDIT, LIVE HEAD `2ab2f99` (verdorian.com 200) — read first
+> ## ⚡ LATEST (2026-07-04 end-of-session) — LEGAL PAGES + SESSION CLOSED, LIVE HEAD `460af76` (all 4 routes 200) — read first
+> **Session closed clean: tree committed+pushed+deployed.** Added **/privacy + /terms** (route group `app/(legal)/` with shared quiet shell) + footer Privacy/Terms links. Routes verified: `/` `/trades` `/privacy` `/terms` all 200.
+> **RESUME NEXT SESSION (in priority order):**
+> 1. **RESEND_API_KEY** — ask Zobayer for a fresh Resend API key (MCP's stored key is invalid) + verify verdorian.com domain in Resend; then `vercel env add RESEND_API_KEY production` + redeploy → the contact form (`app/actions/send-lead.ts`) goes live-delivery (currently graceful mailto fallback).
+> 2. **Knight Electric case study** — `docs/knight-electric-case-study-draft.md` has [CONFIRM:] placeholders; needs his real numbers + owner sign-off + 3 named referral intros, then publish on /trades.
+> 3. **Business execution (90-day plan)** — memory `project_verdorian_ai_business_strategy.md`: ABC Greater TN Tech Committee, ELECTRICAL CONTRACTOR byline pitch (ecmag@necanet.org), cold-email infra (2 secondary domains), Loom of KE workflow.
+> - Rollback tags (newest first): `checkpoint-pre-pro-polish` · `checkpoint-pre-elegance-pass` · `checkpoint-pre-full-overhaul` · `checkpoint-pre-pilot-offer`.
+
+> ## ⚡ PREVIOUS (2026-07-04 late) — USER HERO FEEDBACK + FULL AUDIT, `2ab2f99`
 > Per user: H1 accent = **"on autopilot."** (user rejected "off your plate"); **blue highlighter swipe on the pay-line REMOVED** (plain 600 weight now); **.gold-shimmer glyph-clipping FIXED** (background-clip:text left italic-Cormorant overhang transparent → padding 0.12em/0.1em + equal negative margin — keep this pattern for any clip-text element); **Lenis retuned** to duration 1.15 + expo-out easing (was lerp 0.08). Full-site audit fixes: Trust "a clear audit **trail**" grammar; **Contact submit button btn-ink → btn-blue** (was dark-on-dark, the page's most important button). All verified live 1280+375.
 
 > ## ⚡ PREVIOUS (2026-07-04 night) — PRO POLISH, `8eb21ed`
