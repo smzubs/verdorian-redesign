@@ -600,7 +600,6 @@ export default function Capabilities() {
           {/* Section heading — unchanged */}
           <motion.div variants={FADE_UP}>
             <SectionHeading
-              numeral="01"
               eyebrow="WHAT WE AUTOMATE"
               lead="We turn repetitive work into"
               accent="software your team barely has to think about."
