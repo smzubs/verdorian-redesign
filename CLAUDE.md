@@ -1,6 +1,18 @@
 # Verdorian Technologies — verdorian.com (Premium Liquid Glass Redesign)
 
-> ## ⚡ LATEST (2026-07-04) — TEST-DRIVE PILOT OFFER, LIVE HEAD `e7ff409` (verdorian.com 200) — read first
+> ## ⚡ LATEST (2026-07-04 pm) — FULL-SITE OVERHAUL (3-agent audit applied), LIVE HEAD `68e3721` (verdorian.com 200) — read first
+> Whole-site restructure from parallel landing-page-architect + product-copywriter + ui-ux-design-engineer audits. **Homepage is now 6 content sections** (was 10): Nav → Hero → PainSection(#problem) → Capabilities(#automate) → MatrixBand → Pricing(#pricing) → Trust(#trust) → Contact(#contact) → Footer.
+> - **DELETED sections** (files removed; recover via tag): BusinessVsIndividual (audience fork diluted ICP), BeforeAfter + ROISection (merged INTO PainSection as lanes sub-widget + formula caption), HowItWorks (duplicated Pricing's PILOT_STEPS).
+> - **Hero:** H1 **"Your busywork, _off your plate._"** (replaced "fully automated" — honesty contradiction with human-in-loop positioning); subhead now states the pilot mechanic ("You run it on real work for two weeks — and you only pay if it hits the number we agreed on."); micro-line = WHO ("Built for busy owners and teams — no IT department needed."); flow steps renamed Data Organized / Insights Found.
+> - **CTA standard:** "Start Your $500 Test-Drive" everywhere scrolling to #contact (Hero, Nav mobile, Pricing); "Request My Test-Drive" only on the form submit.
+> - **Nav + Footer synced:** What We Automate(#automate) / Pricing(#pricing) / Our Work(#trust).
+> - **Capabilities:** 8 cards (dropped 9th "Accurate by Design" — was a trust claim); retitled jargon → plain (Approvals & Follow-Ups, Apps That Talk to Each Other, Numbers You Can Actually Use, Turn Your Idea Into a Product); heading "…software your team barely has to think about."
+> - **MatrixBand:** moved between Capabilities and Pricing; **glow-desync FIXED** (mbGlow window 48–52%, must stay < per-row stagger ≈1.67s); sentences rewritten concrete, lowercase ai.
+> - **Design polish:** all mid-page sections normalized to `clamp(80px,10vw,104px)` padding; `.btn-blue:hover` adds fast translateY(-1px) lift; 72px light→dark gradient bridge div before Contact (in page.tsx).
+> - **Sitewide lowercase-`ai` sweep** incl. all layout.tsx metadata (title/OG/twitter/keywords, "agents" dropped from descriptions).
+> - Rollback tags: `checkpoint-pre-full-overhaul` (`25bf73c`, pilot offer but 10 sections) · `checkpoint-pre-pilot-offer` (`b850b1c`).
+
+> ## ⚡ PREVIOUS (2026-07-04) — TEST-DRIVE PILOT OFFER, `e7ff409`
 > **Business model shipped (3-agent research, see memory `project_verdorian_ai_business_strategy.md`): the FREE-AUDIT CTA is RETIRED → "Test-Drive Pilot"** — $500 to start (credited toward build), we build one automation in ~2 weeks, client tests it live on real data 14 days on OUR infrastructure, pays only if it hits the agreed number. Published fixed pricing: builds **from $5,000 fixed quote never hourly**, retainer **from $1,500/mo cancel anytime**.
 > - **NEW `Pricing.tsx`** (#pricing, between HowItWorks and Trust): pilot feature glass card ($500 engraved numeral + italic-blue risk-reversal line + 4-step journey) + Build & Own / Run & Improve tier pair. Verified 1280 + 375 (no overflow).
 > - **NEW `/trades` page** (`app/trades/page.tsx`): vertical wedge for specialty trade contractors (electrical/HVAC/plumbing/mechanical) — for cold-outreach links. Minimal own header (no scrollspy Nav), 6 trade capabilities, proof plates (QRSafePro/ChangeOrderAI/Knight Electric, qualitative only per honesty rules), CTAs → /#contact + /#pricing. Footer now links "For Trade Contractors".
