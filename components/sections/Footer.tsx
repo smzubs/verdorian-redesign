@@ -5,7 +5,7 @@ import { scrollToSection } from '@/lib/utils'
 
 const NAV_LINKS = [
   { label: 'What We Automate', id: 'automate' },
-  { label: 'How It Works', id: 'how-it-works' },
+  { label: 'Pricing', id: 'pricing' },
   { label: 'Our Work', id: 'trust' },
   { label: 'Contact', id: 'contact' },
 ]
@@ -74,7 +74,7 @@ export default function Footer() {
               color: 'var(--gold)',
             }}
           >
-            AI Automation Studio
+            ai Automation Studio
           </span>
           <span
             style={{
@@ -85,7 +85,7 @@ export default function Footer() {
               maxWidth: '280px',
             }}
           >
-            AI workflows, dashboards, and internal tools — built for the business work you shouldn&apos;t be doing manually.
+            ai-built tools and dashboards for the business work you shouldn&apos;t be doing manually.
           </span>
         </div>
 

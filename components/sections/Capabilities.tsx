@@ -202,7 +202,7 @@ interface CapabilityItem {
 const CAPABILITIES: CapabilityItem[] = [
   {
     id: 'workflow',
-    title: 'Workflow Automation',
+    title: 'Approvals & Follow-Ups',
     description: 'Approvals, hand-offs, and reminders that run themselves — no chasing.',
     gradFrom: '#1877F2',
     gradTo: '#0F5CD4',
@@ -226,7 +226,7 @@ const CAPABILITIES: CapabilityItem[] = [
   },
   {
     id: 'connected',
-    title: 'Connected Systems',
+    title: 'Apps That Talk to Each Other',
     description: 'Your apps and tools linked so data moves between them automatically.',
     gradFrom: '#1877F2',
     gradTo: '#22D3EE',
@@ -234,7 +234,7 @@ const CAPABILITIES: CapabilityItem[] = [
   },
   {
     id: 'bi',
-    title: 'Business Intelligence',
+    title: 'Numbers You Can Actually Use',
     description: 'Raw data turned into clear trends, forecasts, and decisions.',
     gradFrom: '#6366F1',
     gradTo: '#8B5CF6',
@@ -258,19 +258,11 @@ const CAPABILITIES: CapabilityItem[] = [
   },
   {
     id: 'saas',
-    title: 'Custom SaaS',
-    description: 'Your product idea, shipped as a scalable SaaS platform.',
+    title: 'Turn Your Idea Into a Product',
+    description: 'Have a business idea of your own? We build it as a real product you can sell.',
     gradFrom: '#1877F2',
     gradTo: '#4F46E5',
     Icon: IconSaaS,
-  },
-  {
-    id: 'accurate',
-    title: 'Accurate by Design',
-    description: 'Validation built into every step — outputs stay trustworthy without manual checking.',
-    gradFrom: '#1877F2',
-    gradTo: '#6366F1',
-    Icon: IconAccurate,
   },
 ]
 
@@ -407,8 +399,8 @@ export default function Capabilities() {
       className="glass-stage"
       style={{
         scrollMarginTop: '84px',
-        paddingTop: '104px',
-        paddingBottom: '96px',
+        paddingTop: 'clamp(80px, 10vw, 104px)',
+        paddingBottom: 'clamp(80px, 10vw, 104px)',
         borderTop: '1px solid var(--rule-strong)',
       }}
     >
@@ -627,7 +619,7 @@ export default function Capabilities() {
               numeral="01"
               eyebrow="WHAT WE AUTOMATE"
               lead="We turn repetitive work into"
-              accent="software that runs itself."
+              accent="software your team barely has to think about."
               align="left"
             />
             <p
@@ -669,7 +661,7 @@ export default function Capabilities() {
             }}
           >
             <strong style={{ color: 'var(--ink-soft)', fontWeight: 600 }}>Also available:</strong>{' '}
-            CRM automation, customer support workflows, and AI-powered internal tools.
+            CRM automation, customer support tools, and ai-powered internal software.
           </motion.p>
         </motion.div>
       </div>

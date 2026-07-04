@@ -6,24 +6,24 @@ import React from 'react'
 // Each row sits on a rotating cylinder; rows are black and glow blue only while passing
 // through the centre glass ribbon. Geometry auto-scales with the line count.
 const MATRIX_SENTENCES = [
-  'Built with AI. Designed around your business.',
+  'Built with ai. Designed around your business.',
   'Automate the work that slows you down.',
-  'Your workflow, your way — smarter, faster.',
+  'Your process, your way — no software degree required.',
   'Repetitive tasks become reliable automation.',
-  'Less manual work. More time to grow.',
+  'Less retyping. More time on the phone with clients.',
   'Automation that fits how your team works.',
-  'Reclaim time. Reduce mistakes. Move faster.',
+  'Fewer typos in invoices. Fewer late follow-ups.',
   'Your partner for a smarter, simpler business.',
   'Automate today. Grow faster tomorrow.',
   'Less busywork. More business momentum.',
-  'Smart systems for smarter business growth.',
-  'Operations simplified by intelligent automation.',
+  'The paperwork gets done while you’re on the job.',
+  'The reports that used to take you a Saturday.',
   'Turn daily tasks into automatic progress.',
-  'Workflows built to save real hours.',
-  'AI that supports how you operate.',
+  'Built around how your team already works.',
+  'The ai that supports how you operate.',
   'Reduce manual work. Increase business clarity.',
-  'Automation designed for teams that grow.',
-  'Stop chasing tasks. Start scaling smarter.',
+  'Test it working before you ever buy it.',
+  'Stop chasing follow-ups. Start closing them.',
 ]
 const DRUM_PERIOD = 30 // seconds per full rotation (must match the CSS animation durations)
 const DRUM_RADIUS = Math.round(21 / Math.sin(Math.PI / MATRIX_SENTENCES.length))
@@ -34,9 +34,11 @@ export default function MatrixBand() {
       <style>{`
         @keyframes mbSpin { from { transform: rotateX(0deg); } to { transform: rotateX(-360deg); } }
         @keyframes mbGlow {
-          0%, 43%   { color: #14181F; }
-          47%, 53%  { color: #1E6FF0; }
-          57%, 100% { color: #14181F; }
+          /* Glow window must stay shorter than the per-row stagger (period / row count,
+             ≈1.67s at 30s/18 rows) or two rows light up at once outside the ribbon. */
+          0%, 48%   { color: #14181F; }
+          50%       { color: #1E6FF0; }
+          52%, 100% { color: #14181F; }
         }
         .mb-section {
           position: relative; background: var(--paper); padding: 14px 0 30px; overflow: hidden;

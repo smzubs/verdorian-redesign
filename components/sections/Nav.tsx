@@ -7,8 +7,8 @@ import { scrollToSection } from '@/lib/utils'
 
 const NAV_LINKS = [
   { label: 'What We Automate', id: 'automate' },
-  { label: 'How We Automate', id: 'how-it-works' },
-  { label: 'Our Best Bits', id: 'trust' },
+  { label: 'Pricing', id: 'pricing' },
+  { label: 'Our Work', id: 'trust' },
 ]
 
 export default function Nav() {
@@ -292,7 +292,7 @@ export default function Nav() {
               style={{ marginTop: '24px' }}
             >
               <GlowButton variant="ink" size="lg" onClick={() => handleNavLink('contact')}>
-                Test-Drive an Automation
+                Start Your $500 Test-Drive
               </GlowButton>
             </motion.div>
           </motion.div>

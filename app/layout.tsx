@@ -30,39 +30,39 @@ const fraunces = Fraunces({
 })
 
 export const metadata: Metadata = {
-  title: 'Verdorian — Custom AI Automation for Businesses & Individuals',
+  title: 'Verdorian — Custom ai Automation for Businesses & Individuals',
   description:
-    'Verdorian builds custom AI workflows, agents, dashboards, and internal tools that automate repetitive work — and you test-drive the automation on your real work before you buy it.',
+    'Verdorian builds custom ai automation, dashboards, and internal tools that eliminate repetitive work — and you test-drive it on your real work before you buy it.',
   keywords: [
     'Verdorian',
-    'AI automation studio',
-    'AI workflow automation',
-    'AI agents',
+    'ai automation studio',
+    'ai workflow automation',
+    'ai automation services',
     'business process automation',
     'document automation',
     'CRM automation',
     'customer support automation',
     'business intelligence dashboards',
     'internal tools',
-    'personal AI systems',
+    'personal ai systems',
     'workflow automation partner',
   ],
   authors: [{ name: 'Verdorian' }],
   openGraph: {
-    title: 'Verdorian — Custom AI Automation for Businesses & Individuals',
+    title: 'Verdorian — Custom ai Automation for Businesses & Individuals',
     description:
-      'Custom AI workflows, agents, dashboards, and internal tools that connect your apps, documents, emails, and data — so you save hours, reduce errors, and run smarter.',
+      'Custom ai automation, dashboards, and internal tools that connect your apps, documents, emails, and data — and you test-drive it before you buy it.',
     url: 'https://verdorian.com',
     siteName: 'Verdorian',
-    images: [{ url: '/og-image.svg', width: 1200, height: 630, alt: 'Verdorian — Custom AI Automation for Businesses & Individuals' }],
+    images: [{ url: '/og-image.svg', width: 1200, height: 630, alt: 'Verdorian — Custom ai Automation for Businesses & Individuals' }],
     locale: 'en_US',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Verdorian — Custom AI Automation for Businesses & Individuals',
+    title: 'Verdorian — Custom ai Automation for Businesses & Individuals',
     description:
-      'Custom AI workflows, agents, dashboards, and internal tools that connect your apps, documents, emails, and data — so you save hours and reduce errors.',
+      'Custom ai automation, dashboards, and internal tools that connect your apps, documents, emails, and data — and you test-drive it before you buy it.',
     images: ['/og-image.svg'],
   },
   metadataBase: new URL('https://verdorian.com'),

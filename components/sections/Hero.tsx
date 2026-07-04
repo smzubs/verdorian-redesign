@@ -26,7 +26,7 @@ const STEPS: FlowStep[] = [
     ),
   },
   {
-    label: 'AI Organizes',
+    label: 'Data Organized',
     status: 'Data cleaned, sorted & updated automatically',
     accent: true,
     glyph: (
@@ -41,7 +41,7 @@ const STEPS: FlowStep[] = [
     ),
   },
   {
-    label: 'AI Insights',
+    label: 'Insights Found',
     status: 'Trends, problems & opportunities detected',
     accent: true,
     glyph: (
@@ -82,7 +82,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      aria-label="Hero — Verdorian AI Automation Studio"
+      aria-label="Hero — Verdorian ai Automation Studio"
       style={{
         position: 'relative',
         overflow: 'hidden',
@@ -312,8 +312,8 @@ export default function Hero() {
             maxWidth: 'none',
           }}
         >
-          <span style={{ display: 'block' }}>Your daily tasks,</span>
-          <em className="gold-shimmer" style={{ display: 'block' }}>fully automated.</em>
+          <span style={{ display: 'block' }}>Your busywork,</span>
+          <em className="gold-shimmer" style={{ display: 'block' }}>off your plate.</em>
         </motion.h1>
 
         {/* Studio credit line */}
@@ -328,7 +328,7 @@ export default function Hero() {
             margin: '-14px 0 0',
           }}
         >
-          — with <span style={{ color: 'var(--gold)' }}>Verdorian AI Studio</span>
+          — with <span style={{ color: 'var(--gold)' }}>Verdorian ai Studio</span>
         </motion.p>
 
         {/* Subhead */}
@@ -347,7 +347,7 @@ export default function Hero() {
           } as React.CSSProperties}
         >
           <span style={{ display: 'block' }}>
-            Let us autopilot your busywork&mdash;
+            We build the automation. You run it on real work for two weeks&mdash;
           </span>
           <span style={{ display: 'block', marginTop: '4px' }}>
             <span
@@ -361,7 +361,7 @@ export default function Hero() {
                 borderRadius: '2px',
               } as React.CSSProperties}
             >
-              so you can grow your business and enjoy your life.
+              and you only pay if it hits the number we agreed on.
             </span>
           </span>
         </motion.p>
@@ -369,7 +369,7 @@ export default function Hero() {
         {/* CTAs */}
         <motion.div variants={FADE_UP} className="hero-cta-row" style={{ marginTop: '4px' }}>
           <GlowButton variant="blue" size="lg" onClick={() => scrollToSection('contact')}>
-            Test-Drive an Automation
+            Start Your $500 Test-Drive
           </GlowButton>
         </motion.div>
 
@@ -390,8 +390,8 @@ export default function Hero() {
             <path d="M13 2.5L5.5 13H11l-1 8.5L18.5 10H13z" fill="none" stroke="var(--gold)" strokeWidth="1.7" strokeLinejoin="round" strokeLinecap="round" />
           </svg>
           <span style={{ fontFamily: 'var(--font-body), sans-serif', fontSize: '13.5px', lineHeight: 1.5, color: 'var(--ink-faint)' }}>
-            Tell us one task you repeat every week — we build it,{' '}
-            <span style={{ color: 'var(--gold)', fontWeight: 600 }}>you test it before you buy it.</span>
+            Built for busy owners and teams — no IT department needed.{' '}
+            <span style={{ color: 'var(--gold)', fontWeight: 600 }}>Fully credited toward your build.</span>
           </span>
         </motion.div>
 
@@ -399,7 +399,7 @@ export default function Hero() {
         <motion.div
           variants={FADE_UP}
           className="figure-halo"
-          aria-label="A sample business-intelligence automation: data from sales, emails, forms, invoices and tasks is collected, AI organizes it, a smart dashboard shows live numbers, AI surfaces insights, a human makes the decision, and the right action is taken."
+          aria-label="A sample business-intelligence automation: data from sales, emails, forms, invoices and tasks is collected, it gets organized, a smart dashboard shows live numbers, insights surface, a human makes the decision, and the right action is taken."
           style={{ width: '100%', marginTop: '34px' }}
         >
           <div className="glass-card" style={{ padding: '30px 26px', borderRadius: '24px' }}>

@@ -11,7 +11,7 @@ const TRUST_POINTS: readonly string[] = [
   'Human sign-off at every critical step',
   'Security built in, not bolted on',
   'Auditable logs and clear validation',
-  'Works with your existing stack',
+  'Works with the tools you already use',
 ]
 
 interface ProofItem {
@@ -28,7 +28,7 @@ const PROOF_ITEMS: readonly ProofItem[] = [
   },
   {
     name: 'VoicePencil',
-    description: 'AI voice notes app for iOS — speech to structured text',
+    description: 'ai voice notes app for iOS — speech to structured text',
   },
   {
     name: 'Knight Electric',
@@ -49,8 +49,8 @@ export default function Trust() {
       className="glass-stage"
       style={{
         scrollMarginTop: '84px',
-        paddingTop: '104px',
-        paddingBottom: '80px',
+        paddingTop: 'clamp(80px, 10vw, 104px)',
+        paddingBottom: 'clamp(80px, 10vw, 104px)',
         borderTop: '1px solid var(--rule-strong)',
       }}
     >
@@ -225,7 +225,7 @@ export default function Trust() {
             className="trust-support-sentence"
             variants={FADE_UP}
           >
-            Every workflow we build includes review checkpoints and clear audit
+            Every automation we build includes review checkpoints and a clear audit
             trails — your team stays in control, not just informed.
           </motion.p>
         </motion.div>

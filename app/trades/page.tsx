@@ -32,7 +32,7 @@ const CAPABILITIES: TradeCapability[] = [
     body: 'Scope changes captured in the field, priced, documented, and sent for signature — before the extra work gets done for free.',
   },
   {
-    title: 'Inspections & compliance docs',
+    title: 'Inspections & compliance',
     body: 'Equipment inspections, safety records, and compliance paperwork logged by QR scan — audit-ready without the binder chase.',
   },
   {

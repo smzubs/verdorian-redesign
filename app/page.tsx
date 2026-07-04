@@ -3,10 +3,6 @@ import Hero from '@/components/sections/Hero'
 import MatrixBand from '@/components/sections/MatrixBand'
 import PainSection from '@/components/sections/PainSection'
 import Capabilities from '@/components/sections/Capabilities'
-import BusinessVsIndividual from '@/components/sections/BusinessVsIndividual'
-import BeforeAfter from '@/components/sections/BeforeAfter'
-import ROISection from '@/components/sections/ROISection'
-import HowItWorks from '@/components/sections/HowItWorks'
 import Pricing from '@/components/sections/Pricing'
 import Trust from '@/components/sections/Trust'
 import Contact from '@/components/sections/Contact'
@@ -21,17 +17,18 @@ export default function Home() {
       <main id="main-content">
         <Nav />
         <Hero />
-        <MatrixBand />
-        {/* Conversion narrative: problem -> what we automate -> who it's for -> the transformation
-            -> how it works (simple process) -> proof/trust -> the cost of waiting (ROI) -> CTA */}
+        {/* Conversion narrative (6 sections): problem (pain + before/after + cost formula)
+            -> what we automate -> rhythm break -> offer/pricing -> proof -> CTA */}
         <PainSection />
         <Capabilities />
-        <BusinessVsIndividual />
-        <BeforeAfter />
-        <HowItWorks />
+        <MatrixBand />
         <Pricing />
         <Trust />
-        <ROISection />
+        {/* Light→dark bridge — eases the eye into the contact band instead of a hard seam */}
+        <div
+          aria-hidden="true"
+          style={{ height: '72px', background: 'linear-gradient(to bottom, var(--paper), var(--ink))' }}
+        />
         <Contact />
         <Footer />
       </main>

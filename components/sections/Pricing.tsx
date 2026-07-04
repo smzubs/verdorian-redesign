@@ -53,7 +53,7 @@ const TIERS: Tier[] = [
     title: 'Run & Improve',
     price: 'from $1,500/mo',
     priceNote: 'cancel anytime',
-    body: 'We monitor what we built, fix anything that drifts, and keep adding workflows as your operation evolves — with human review where it matters.',
+    body: 'We monitor what we built, fix anything that drifts, and keep adding automations as your business changes — with human review where it matters.',
   },
 ]
 
@@ -210,7 +210,7 @@ export default function Pricing() {
 
                 <div style={{ marginTop: '8px' }}>
                   <GlowButton variant="blue" size="md" onClick={() => scrollToSection('contact')}>
-                    Start Your Test-Drive
+                    Start Your $500 Test-Drive
                   </GlowButton>
                 </div>
               </div>
