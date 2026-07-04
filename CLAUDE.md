@@ -1,6 +1,9 @@
 # Verdorian Technologies — verdorian.com (Premium Liquid Glass Redesign)
 
-> ## ⚡ LATEST (2026-07-04 eve) — ELEGANCE PASS, LIVE HEAD `55ca6fe` (verdorian.com 200) — read first
+> ## ⚡ LATEST (2026-07-04 night) — PRO POLISH, LIVE HEAD `8eb21ed` (verdorian.com 200) — read first
+> **Cool-tone unification:** every remaining warm-ivory value swept cool — `rgba(247,243,234,…)` → `rgba(244,247,252,…)`, `rgba(252,250,244,…)` → `rgba(251,252,254,…)`, `themeColor #F7F3EA → #F2F5FA` — across Nav ribbon (was visibly beige vs the cool page), Contact dark-band text, Footer, globals (.nav-glass, no-backdrop fallbacks, plate-dark, btn-ghost-light). The palette is now a single cool family (#F2F5FA/#13161B/#1877F2). **Typography unified:** PainSection heading converted to shared `SectionHeading` (Cormorant --t-h2 lead+accent) — all light sections now share one heading voice. Mobile nav verified: hamburger → Pricing tap scrolls to target, no overflow. Rollback: `checkpoint-pre-pro-polish` (`fbba722`).
+
+> ## ⚡ PREVIOUS (2026-07-04 eve) — ELEGANCE PASS, `55ca6fe`
 > One-idea-per-screen simplification on top of the overhaul below. **Order now: Hero → MatrixBand (signature drum, back under hero per user) → PainSection(#problem) → Pricing(#pricing, eyebrow "HOW IT WORKS & PRICING") → Capabilities(#automate) → Trust(#trust) → bridge → Contact.** Problem section: chips row CUT (heading + lanes + formula only). Capabilities: **6 cards** (Website Dev + product-idea cards folded into the extras line). Nav/Footer tab order = page order: Pricing / What We Automate / Our Work. Section numerals removed (were stale 01/03). Rollback: `checkpoint-pre-elegance-pass` (`62df766`).
 
 > ## ⚡ PREVIOUS (2026-07-04 pm) — FULL-SITE OVERHAUL (3-agent audit applied), `68e3721`
