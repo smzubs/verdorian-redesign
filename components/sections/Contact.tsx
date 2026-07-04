@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 import { GlowButton } from '@/components/ui/GlowButton'
 import { SectionLabel } from '@/components/ui/SectionLabel'
 import { FADE_UP, STAGGER_CONTAINER } from '@/lib/motion'
+import { sendLead } from '@/app/actions/send-lead'
 
 /* ─── Form state ─────────────────────────────────────────────────── */
 interface AuditForm {
@@ -63,8 +64,11 @@ const INPUT_PLACEHOLDER_FIX = `
 `
 
 /* ─── Component ─────────────────────────────────────────────────── */
+type SubmitStatus = 'idle' | 'sending' | 'sent' | 'fallback'
+
 export default function Contact() {
   const [form, setForm] = useState<AuditForm>(EMPTY_FORM)
+  const [status, setStatus] = useState<SubmitStatus>('idle')
 
   function handleChange(
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -73,11 +77,10 @@ export default function Contact() {
     setForm((prev) => ({ ...prev, [name]: value }))
   }
 
-  // Composes a pre-filled mailto draft to sm@verdorian.com — no backend yet
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault()
-
-    const subject = `Automation audit request — ${form.name}`
+  // Composes a pre-filled mailto draft to sm@verdorian.com — used when
+  // server-side delivery is unavailable so the form never dead-ends.
+  function openMailtoDraft() {
+    const subject = `Test-drive request — ${form.name}`
 
     const body = [
       `Name: ${form.name}`,
@@ -92,10 +95,26 @@ export default function Contact() {
     window.location.href = `mailto:sm@verdorian.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
   }
 
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault()
+    if (status === 'sending') return
+
+    setStatus('sending')
+    const { ok } = await sendLead(form)
+
+    if (ok) {
+      setStatus('sent')
+      setForm(EMPTY_FORM)
+    } else {
+      setStatus('fallback')
+      openMailtoDraft()
+    }
+  }
+
   return (
     <section
       id="contact"
-      aria-label="Request a free automation audit from Verdorian Technologies"
+      aria-label="Start your automation test-drive with Verdorian Technologies"
       style={{
         scrollMarginTop: '84px',
         padding: '120px 0 100px',
@@ -186,7 +205,7 @@ export default function Contact() {
         >
           {/* Section eyebrow */}
           <motion.div variants={FADE_UP} style={{ marginBottom: '56px' }}>
-            <SectionLabel>Get Your Free Automation Audit</SectionLabel>
+            <SectionLabel>Start Your Test-Drive</SectionLabel>
           </motion.div>
 
           {/* Two-column layout */}
@@ -208,7 +227,7 @@ export default function Contact() {
                 }}
               >
                 <span style={{ display: 'block', color: 'var(--paper-bright)' }}>
-                  Ready to hand off
+                  Test-drive it working —
                 </span>
                 <span
                   style={{
@@ -217,7 +236,7 @@ export default function Contact() {
                     color: 'var(--gold)',
                   }}
                 >
-                  the work slowing you down?
+                  before you ever buy it.
                 </span>
               </h2>
 
@@ -231,8 +250,9 @@ export default function Contact() {
                   maxWidth: '420px',
                 }}
               >
-                Describe one task your team repeats each week — we&apos;ll
-                identify the right automation path for it.
+                Describe one task your team repeats each week. We&apos;ll reply
+                personally to book a free 20-minute fit call — then build the
+                automation so you can test it on your real work first.
               </p>
 
               {/* Hairline rule */}
@@ -254,9 +274,9 @@ export default function Contact() {
                 }}
               >
                 {[
-                  'We reply personally — no auto-responders.',
-                  'No spam, no sales pressure.',
-                  'Honest answer: if automation won’t help, we’ll say so.',
+                  'Free fit call — no spam, no sales pressure.',
+                  '$500 starts the pilot, fully credited toward your build.',
+                  'Honest answer: if automation won’t pay for itself, we’ll say so.',
                 ].map((line) => (
                   <p
                     key={line}
@@ -342,9 +362,30 @@ export default function Contact() {
                 <form
                   onSubmit={handleSubmit}
                   noValidate
-                  aria-label="Automation audit request form"
+                  aria-label="Automation test-drive request form"
                   style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}
                 >
+
+                  {/* Success state */}
+                  {status === 'sent' && (
+                    <p
+                      role="status"
+                      style={{
+                        margin: 0,
+                        padding: '12px 14px',
+                        borderRadius: '3px',
+                        border: '1px solid rgba(24,119,242,0.40)',
+                        background: 'rgba(24,119,242,0.10)',
+                        fontFamily: 'var(--font-body), sans-serif',
+                        fontSize: '13.5px',
+                        lineHeight: 1.55,
+                        color: 'var(--paper-bright)',
+                      }}
+                    >
+                      Request received — we&apos;ll reply personally within one
+                      business day to book your fit call.
+                    </p>
+                  )}
 
                   {/* Name */}
                   <div>
@@ -445,6 +486,7 @@ export default function Contact() {
                     <button
                       type="submit"
                       className="btn-ink audit-submit-btn"
+                      disabled={status === 'sending'}
                       style={{
                         minHeight: '52px',
                         padding: '14px 28px',
@@ -452,10 +494,11 @@ export default function Contact() {
                         letterSpacing: '0.18em',
                         width: '100%',
                         justifyContent: 'center',
-                        cursor: 'pointer',
+                        cursor: status === 'sending' ? 'wait' : 'pointer',
+                        opacity: status === 'sending' ? 0.7 : 1,
                       }}
                     >
-                      Get Free Automation Audit
+                      {status === 'sending' ? 'Sending…' : 'Request My Test-Drive'}
                       <svg
                         width="7"
                         height="11"
@@ -484,7 +527,9 @@ export default function Contact() {
                         lineHeight: 1.5,
                       }}
                     >
-                      Opens your email client with a pre-filled draft to sm@verdorian.com
+                      {status === 'fallback'
+                        ? 'We opened a pre-filled email draft to sm@verdorian.com — hit send and it reaches us directly.'
+                        : 'We reply personally to every request — no auto-responders.'}
                     </p>
                   </div>
 

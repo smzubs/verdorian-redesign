@@ -102,6 +102,14 @@ export default function Footer() {
               {link.label}
             </button>
           ))}
+          <a
+            href="/trades"
+            aria-label="ai operations for specialty trade contractors"
+            className="footer-link"
+            style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center' }}
+          >
+            For Trade Contractors
+          </a>
         </nav>
 
         {/* Right: legal */}

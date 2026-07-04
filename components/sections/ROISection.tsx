@@ -194,7 +194,7 @@ export default function ROISection() {
             size="lg"
             onClick={() => scrollToSection('contact')}
           >
-            Get Free Automation Audit
+            Start Your $500 Test-Drive
           </GlowButton>
         </motion.div>
       </div>

@@ -369,7 +369,7 @@ export default function Hero() {
         {/* CTAs */}
         <motion.div variants={FADE_UP} className="hero-cta-row" style={{ marginTop: '4px' }}>
           <GlowButton variant="blue" size="lg" onClick={() => scrollToSection('contact')}>
-            Get Free Automation Audit
+            Test-Drive an Automation
           </GlowButton>
         </motion.div>
 
@@ -390,8 +390,8 @@ export default function Hero() {
             <path d="M13 2.5L5.5 13H11l-1 8.5L18.5 10H13z" fill="none" stroke="var(--gold)" strokeWidth="1.7" strokeLinejoin="round" strokeLinecap="round" />
           </svg>
           <span style={{ fontFamily: 'var(--font-body), sans-serif', fontSize: '13.5px', lineHeight: 1.5, color: 'var(--ink-faint)' }}>
-            Tell us one task you repeat every week —{' '}
-            <span style={{ color: 'var(--gold)', fontWeight: 600 }}>we&apos;ll show you what can be automated.</span>
+            Tell us one task you repeat every week — we build it,{' '}
+            <span style={{ color: 'var(--gold)', fontWeight: 600 }}>you test it before you buy it.</span>
           </span>
         </motion.div>
 

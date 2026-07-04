@@ -292,7 +292,7 @@ export default function Nav() {
               style={{ marginTop: '24px' }}
             >
               <GlowButton variant="ink" size="lg" onClick={() => handleNavLink('contact')}>
-                Get Free Automation Audit
+                Test-Drive an Automation
               </GlowButton>
             </motion.div>
           </motion.div>

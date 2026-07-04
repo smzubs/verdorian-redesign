@@ -7,6 +7,7 @@ import BusinessVsIndividual from '@/components/sections/BusinessVsIndividual'
 import BeforeAfter from '@/components/sections/BeforeAfter'
 import ROISection from '@/components/sections/ROISection'
 import HowItWorks from '@/components/sections/HowItWorks'
+import Pricing from '@/components/sections/Pricing'
 import Trust from '@/components/sections/Trust'
 import Contact from '@/components/sections/Contact'
 import Footer from '@/components/sections/Footer'
@@ -28,6 +29,7 @@ export default function Home() {
         <BusinessVsIndividual />
         <BeforeAfter />
         <HowItWorks />
+        <Pricing />
         <Trust />
         <ROISection />
         <Contact />

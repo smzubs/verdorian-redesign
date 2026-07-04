@@ -32,7 +32,7 @@ const fraunces = Fraunces({
 export const metadata: Metadata = {
   title: 'Verdorian — Custom AI Automation for Businesses & Individuals',
   description:
-    'Verdorian builds custom AI workflows, agents, dashboards, and internal tools that automate repetitive work, connect your apps, and save time — with human review where it matters.',
+    'Verdorian builds custom AI workflows, agents, dashboards, and internal tools that automate repetitive work — and you test-drive the automation on your real work before you buy it.',
   keywords: [
     'Verdorian',
     'AI automation studio',
