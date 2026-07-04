@@ -1,6 +1,9 @@
 # Verdorian Technologies — verdorian.com (Premium Liquid Glass Redesign)
 
-> ## ⚡ LATEST (2026-07-04 pm) — FULL-SITE OVERHAUL (3-agent audit applied), LIVE HEAD `68e3721` (verdorian.com 200) — read first
+> ## ⚡ LATEST (2026-07-04 eve) — ELEGANCE PASS, LIVE HEAD `55ca6fe` (verdorian.com 200) — read first
+> One-idea-per-screen simplification on top of the overhaul below. **Order now: Hero → MatrixBand (signature drum, back under hero per user) → PainSection(#problem) → Pricing(#pricing, eyebrow "HOW IT WORKS & PRICING") → Capabilities(#automate) → Trust(#trust) → bridge → Contact.** Problem section: chips row CUT (heading + lanes + formula only). Capabilities: **6 cards** (Website Dev + product-idea cards folded into the extras line). Nav/Footer tab order = page order: Pricing / What We Automate / Our Work. Section numerals removed (were stale 01/03). Rollback: `checkpoint-pre-elegance-pass` (`62df766`).
+
+> ## ⚡ PREVIOUS (2026-07-04 pm) — FULL-SITE OVERHAUL (3-agent audit applied), `68e3721`
 > Whole-site restructure from parallel landing-page-architect + product-copywriter + ui-ux-design-engineer audits. **Homepage is now 6 content sections** (was 10): Nav → Hero → PainSection(#problem) → Capabilities(#automate) → MatrixBand → Pricing(#pricing) → Trust(#trust) → Contact(#contact) → Footer.
 > - **DELETED sections** (files removed; recover via tag): BusinessVsIndividual (audience fork diluted ICP), BeforeAfter + ROISection (merged INTO PainSection as lanes sub-widget + formula caption), HowItWorks (duplicated Pricing's PILOT_STEPS).
 > - **Hero:** H1 **"Your busywork, _off your plate._"** (replaced "fully automated" — honesty contradiction with human-in-loop positioning); subhead now states the pilot mechanic ("You run it on real work for two weeks — and you only pay if it hits the number we agreed on."); micro-line = WHO ("Built for busy owners and teams — no IT department needed."); flow steps renamed Data Organized / Insights Found.
