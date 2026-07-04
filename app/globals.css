@@ -656,6 +656,11 @@ html {
   color: transparent;
   font-style: italic;
   animation: goldShimmer 7s ease-in-out infinite;
+  /* Italic Cormorant overhangs the line box; background-clip:text renders the
+     overhang transparent (letters look cut). Pad the paint box, pull back with
+     negative margin so layout is unchanged. */
+  padding: 0.12em 0.1em;
+  margin: -0.12em -0.1em;
 }
 
 /* Optional ambient orb for dark bands */

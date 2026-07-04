@@ -313,7 +313,7 @@ export default function Hero() {
           }}
         >
           <span style={{ display: 'block' }}>Your busywork,</span>
-          <em className="gold-shimmer" style={{ display: 'block' }}>off your plate.</em>
+          <em className="gold-shimmer" style={{ display: 'block' }}>on autopilot.</em>
         </motion.h1>
 
         {/* Studio credit line */}
@@ -350,17 +350,7 @@ export default function Hero() {
             We build the automation. You run it on real work for two weeks&mdash;
           </span>
           <span style={{ display: 'block', marginTop: '4px' }}>
-            <span
-              style={{
-                fontWeight: 600,
-                padding: '0.04em 0.18em',
-                background:
-                  'linear-gradient(180deg, transparent 0 56%, rgba(24,119,242,0.18) 56% 94%, transparent 94%)',
-                boxDecorationBreak: 'clone',
-                WebkitBoxDecorationBreak: 'clone',
-                borderRadius: '2px',
-              } as React.CSSProperties}
-            >
+            <span style={{ fontWeight: 600 }}>
               and you only pay if it hits the number we agreed on.
             </span>
           </span>
