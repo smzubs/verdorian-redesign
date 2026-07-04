@@ -135,7 +135,7 @@ export default function Pricing() {
         >
           {/* ── Section heading ─────────────────────────────────── */}
           <SectionHeading
-            eyebrow="PRICING — TEST-DRIVE FIRST"
+            eyebrow="HOW IT WORKS & PRICING"
             lead="Try it working."
             accent="Pay when it works."
             align="center"

@@ -248,22 +248,6 @@ const CAPABILITIES: CapabilityItem[] = [
     gradTo: '#1877F2',
     Icon: IconCustomSoftware,
   },
-  {
-    id: 'website',
-    title: 'Website Development',
-    description: 'Fast, conversion-focused websites built to grow with your business.',
-    gradFrom: '#0EA5E9',
-    gradTo: '#1877F2',
-    Icon: IconWebsite,
-  },
-  {
-    id: 'saas',
-    title: 'Turn Your Idea Into a Product',
-    description: 'Have a business idea of your own? We build it as a real product you can sell.',
-    gradFrom: '#1877F2',
-    gradTo: '#4F46E5',
-    Icon: IconSaaS,
-  },
 ]
 
 /* ──────────────────────────────────────────────────────────────────────────
@@ -661,7 +645,7 @@ export default function Capabilities() {
             }}
           >
             <strong style={{ color: 'var(--ink-soft)', fontWeight: 600 }}>Also available:</strong>{' '}
-            CRM automation, customer support tools, and ai-powered internal software.
+            Also: fast marketing websites, CRM and customer-support tools — and if you have a product idea of your own, we build that too.
           </motion.p>
         </motion.div>
       </div>

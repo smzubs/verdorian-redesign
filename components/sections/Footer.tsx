@@ -4,8 +4,8 @@ import React from 'react'
 import { scrollToSection } from '@/lib/utils'
 
 const NAV_LINKS = [
-  { label: 'What We Automate', id: 'automate' },
   { label: 'Pricing', id: 'pricing' },
+  { label: 'What We Automate', id: 'automate' },
   { label: 'Our Work', id: 'trust' },
   { label: 'Contact', id: 'contact' },
 ]

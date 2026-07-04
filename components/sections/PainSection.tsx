@@ -4,13 +4,6 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import { FADE_UP, STAGGER_CONTAINER } from '@/lib/motion'
 
-const CHIPS = [
-  'Copy-pasting data',
-  'Chasing follow-ups',
-  'Building reports by hand',
-  'Updating spreadsheets and CRMs',
-] as const
-
 // Merged from the former BeforeAfter section — one problem story, told once.
 const MANUAL_STEPS: string[] = [
   'Form submitted',
@@ -48,13 +41,8 @@ export default function PainSection() {
             padding-left: 20px !important;
             padding-right: 20px !important;
           }
-          .pain-chips {
-            flex-direction: column !important;
-            align-items: stretch !important;
-          }
         }
         @media (prefers-reduced-motion: reduce) {
-          .pain-chips * { animation: none !important; }
           .ba-arrow-auto { animation: none !important; }
         }
 
@@ -223,40 +211,6 @@ export default function PainSection() {
               Data entry, follow-ups, reports, approvals — every business runs on
               small manual tasks that add up to real lost time. We eliminate them.
             </p>
-          </motion.div>
-
-          {/* Pain chips */}
-          <motion.div
-            variants={FADE_UP}
-            className="pain-chips"
-            style={{
-              display: 'flex',
-              flexWrap: 'wrap',
-              gap: '10px',
-              justifyContent: 'center',
-            }}
-          >
-            {CHIPS.map((label) => (
-              <span
-                key={label}
-                style={{
-                  fontFamily: 'var(--font-body), sans-serif',
-                  fontSize: '14px',
-                  fontWeight: 500,
-                  color: 'var(--ink-soft)',
-                  background: 'rgba(255,255,255,0.52)',
-                  border: '1px solid var(--rule-strong)',
-                  borderRadius: 'var(--r-sm, 6px)',
-                  padding: '10px 18px',
-                  backdropFilter: 'blur(8px)',
-                  WebkitBackdropFilter: 'blur(8px)',
-                  whiteSpace: 'nowrap',
-                  letterSpacing: '0.01em',
-                }}
-              >
-                {label}
-              </span>
-            ))}
           </motion.div>
 
           {/* Before/After comparison — the same task, two paths */}
