@@ -1,6 +1,9 @@
 # Verdorian Technologies — verdorian.com (Premium Liquid Glass Redesign)
 
-> ## ⚡ LATEST (2026-07-04 night) — PRO POLISH, LIVE HEAD `8eb21ed` (verdorian.com 200) — read first
+> ## ⚡ LATEST (2026-07-04 late) — USER HERO FEEDBACK + FULL AUDIT, LIVE HEAD `2ab2f99` (verdorian.com 200) — read first
+> Per user: H1 accent = **"on autopilot."** (user rejected "off your plate"); **blue highlighter swipe on the pay-line REMOVED** (plain 600 weight now); **.gold-shimmer glyph-clipping FIXED** (background-clip:text left italic-Cormorant overhang transparent → padding 0.12em/0.1em + equal negative margin — keep this pattern for any clip-text element); **Lenis retuned** to duration 1.15 + expo-out easing (was lerp 0.08). Full-site audit fixes: Trust "a clear audit **trail**" grammar; **Contact submit button btn-ink → btn-blue** (was dark-on-dark, the page's most important button). All verified live 1280+375.
+
+> ## ⚡ PREVIOUS (2026-07-04 night) — PRO POLISH, `8eb21ed`
 > **Cool-tone unification:** every remaining warm-ivory value swept cool — `rgba(247,243,234,…)` → `rgba(244,247,252,…)`, `rgba(252,250,244,…)` → `rgba(251,252,254,…)`, `themeColor #F7F3EA → #F2F5FA` — across Nav ribbon (was visibly beige vs the cool page), Contact dark-band text, Footer, globals (.nav-glass, no-backdrop fallbacks, plate-dark, btn-ghost-light). The palette is now a single cool family (#F2F5FA/#13161B/#1877F2). **Typography unified:** PainSection heading converted to shared `SectionHeading` (Cormorant --t-h2 lead+accent) — all light sections now share one heading voice. Mobile nav verified: hamburger → Pricing tap scrolls to target, no overflow. Rollback: `checkpoint-pre-pro-polish` (`fbba722`).
 
 > ## ⚡ PREVIOUS (2026-07-04 eve) — ELEGANCE PASS, `55ca6fe`
