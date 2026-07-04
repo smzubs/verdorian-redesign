@@ -225,7 +225,7 @@ export default function Trust() {
             variants={FADE_UP}
           >
             Every automation we build includes review checkpoints and a clear audit
-            trails — your team stays in control, not just informed.
+            trail — your team stays in control, not just informed.
           </motion.p>
         </motion.div>
 

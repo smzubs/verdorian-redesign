@@ -485,7 +485,7 @@ export default function Contact() {
                   <div style={{ marginTop: '4px' }}>
                     <button
                       type="submit"
-                      className="btn-ink audit-submit-btn"
+                      className="btn-blue audit-submit-btn"
                       disabled={status === 'sending'}
                       style={{
                         minHeight: '52px',
