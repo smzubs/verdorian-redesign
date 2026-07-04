@@ -16,7 +16,7 @@ export default function Footer() {
       aria-label="Site footer"
       style={{
         background: 'var(--ink)',
-        borderTop: '1px solid rgba(247, 243, 234, 0.10)',
+        borderTop: '1px solid rgba(244, 247, 252, 0.10)',
         paddingTop: '48px',
         paddingBottom: '48px',
       }}
@@ -38,7 +38,7 @@ export default function Footer() {
           padding: 10px 0; min-height: 44px;
           font-family: var(--font-body), sans-serif;
           font-size: 13px; letter-spacing: 0.04em;
-          color: rgba(247,243,234,0.5);
+          color: rgba(244, 247, 252,0.5);
           transition: color 0.25s var(--ease-prospectus);
           text-align: left;
         }
@@ -80,7 +80,7 @@ export default function Footer() {
             style={{
               fontFamily: 'var(--font-body), sans-serif',
               fontSize: '13px',
-              color: 'rgba(247, 243, 234, 0.42)',
+              color: 'rgba(244, 247, 252, 0.42)',
               lineHeight: 1.6,
               maxWidth: '280px',
             }}
@@ -117,10 +117,10 @@ export default function Footer() {
           className="footer-legal"
           style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '8px', textAlign: 'right' }}
         >
-          <span style={{ fontFamily: 'var(--font-body), sans-serif', fontSize: '12px', color: 'rgba(247, 243, 234, 0.35)' }}>
+          <span style={{ fontFamily: 'var(--font-body), sans-serif', fontSize: '12px', color: 'rgba(244, 247, 252, 0.35)' }}>
             &copy; 2026 Verdorian Technologies LLC
           </span>
-          <a href="mailto:sm@verdorian.com" className="gold-link" style={{ fontFamily: 'var(--font-body), sans-serif', fontSize: '12px', color: 'rgba(247, 243, 234, 0.35)' }}>
+          <a href="mailto:sm@verdorian.com" className="gold-link" style={{ fontFamily: 'var(--font-body), sans-serif', fontSize: '12px', color: 'rgba(244, 247, 252, 0.35)' }}>
             sm@verdorian.com
           </a>
         </div>

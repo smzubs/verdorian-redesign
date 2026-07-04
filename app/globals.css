@@ -276,7 +276,7 @@ html {
   background: rgba(255, 255, 255, 0.03);
   border-color: rgba(24, 119, 242, 0.24);
 }
-.plate-dark::after { border-color: rgba(247, 243, 234, 0.10); }
+.plate-dark::after { border-color: rgba(244, 247, 252, 0.10); }
 
 /* Dark ink button with shine sweep */
 .btn-ink {
@@ -399,7 +399,7 @@ html {
 /* On dark bands: light ghost button (paper outline, inverts to paper fill) */
 .btn-ghost-light {
   color: var(--paper-bright);
-  border-color: rgba(247, 243, 234, 0.5);
+  border-color: rgba(244, 247, 252, 0.5);
 }
 .btn-ghost-light:hover { background: var(--paper-bright); color: var(--ink); border-color: var(--paper-bright); }
 
@@ -612,7 +612,7 @@ html {
 
 /* Nav glass — floating document header, deepens on scroll (data-scrolled) */
 .nav-glass {
-  background: rgba(247, 243, 234, 0.72);
+  background: rgba(244, 247, 252, 0.72);
   -webkit-backdrop-filter: blur(8px) saturate(1.0);
           backdrop-filter: blur(8px) saturate(1.0);
   border-bottom: 1px solid var(--rule-strong);
@@ -637,8 +637,8 @@ html {
 
 /* Graceful degradation — no backdrop-filter (older Firefox/Android) */
 @supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
-  .glass-card, .glass-mock { background: rgba(252, 250, 244, 0.95); }
-  .nav-glass { background: rgba(247, 243, 234, 0.96); }
+  .glass-card, .glass-mock { background: rgba(251, 252, 254, 0.95); }
+  .nav-glass { background: rgba(244, 247, 252, 0.96); }
 }
 
 /* ─── KEYFRAMES ─────────────────────────────────────────────── */

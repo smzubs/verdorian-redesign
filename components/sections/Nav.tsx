@@ -77,7 +77,7 @@ export default function Nav() {
           right: '16px',
           zIndex: 1000,
           borderRadius: '20px',
-          background: scrolled ? 'rgba(247, 243, 234, 0.9)' : 'rgba(247, 243, 234, 0.72)',
+          background: scrolled ? 'rgba(244, 247, 252, 0.9)' : 'rgba(244, 247, 252, 0.72)',
           border: '1px solid rgba(255, 255, 255, 0.6)',
           boxShadow: scrolled
             ? '0 1px 0 rgba(255,255,255,0.7) inset, 0 10px 28px -12px rgba(15,23,42,0.3), 0 2px 8px -4px rgba(15,23,42,0.12)'

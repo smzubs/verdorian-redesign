@@ -30,7 +30,7 @@ const LABEL_STYLE: React.CSSProperties = {
   fontWeight: 700,
   textTransform: 'uppercase',
   letterSpacing: '0.22em',
-  color: 'rgba(247,243,234,0.60)',
+  color: 'rgba(244, 247, 252,0.60)',
   marginBottom: '6px',
 }
 
@@ -51,7 +51,7 @@ const INPUT_BASE: React.CSSProperties = {
 }
 
 const INPUT_PLACEHOLDER_FIX = `
-  .audit-field::placeholder { color: rgba(247,243,234,0.28); }
+  .audit-field::placeholder { color: rgba(244, 247, 252,0.28); }
   .audit-field:focus {
     border-color: rgba(24,119,242,0.55);
     background: rgba(255,255,255,0.09);
@@ -243,7 +243,7 @@ export default function Contact() {
               <p
                 style={{
                   fontFamily: 'var(--font-body), sans-serif',
-                  color: 'rgba(247,243,234,0.60)',
+                  color: 'rgba(244, 247, 252,0.60)',
                   fontSize: '17px',
                   lineHeight: 1.65,
                   margin: 0,
@@ -283,7 +283,7 @@ export default function Contact() {
                     style={{
                       fontFamily: 'var(--font-body), sans-serif',
                       fontSize: '13px',
-                      color: 'rgba(247,243,234,0.44)',
+                      color: 'rgba(244, 247, 252,0.44)',
                       lineHeight: 1.5,
                       margin: 0,
                       display: 'flex',
@@ -322,7 +322,7 @@ export default function Contact() {
                     fontSize: '11px',
                     letterSpacing: '0.18em',
                     textTransform: 'uppercase',
-                    color: 'rgba(247,243,234,0.28)',
+                    color: 'rgba(244, 247, 252,0.28)',
                   }}
                 >
                   or fill the form
@@ -336,7 +336,7 @@ export default function Contact() {
                   fontSize: '11px',
                   letterSpacing: '0.22em',
                   textTransform: 'uppercase',
-                  color: 'rgba(247,243,234,0.24)',
+                  color: 'rgba(244, 247, 252,0.24)',
                   margin: 0,
                   marginTop: '4px',
                 }}
@@ -458,7 +458,7 @@ export default function Contact() {
                       Current tools{' '}
                       <span
                         style={{
-                          color: 'rgba(247,243,234,0.28)',
+                          color: 'rgba(244, 247, 252,0.28)',
                           fontSize: '9px',
                           letterSpacing: '0.14em',
                           fontWeight: 400,
@@ -522,7 +522,7 @@ export default function Contact() {
                         marginTop: '12px',
                         fontFamily: 'var(--font-body), sans-serif',
                         fontSize: '11px',
-                        color: 'rgba(247,243,234,0.32)',
+                        color: 'rgba(244, 247, 252,0.32)',
                         textAlign: 'center',
                         lineHeight: 1.5,
                       }}

@@ -2,6 +2,7 @@
 
 import React from 'react'
 import { motion } from 'framer-motion'
+import { SectionHeading } from '@/components/ui/SectionHeading'
 import { FADE_UP, STAGGER_CONTAINER } from '@/lib/motion'
 
 // Merged from the former BeforeAfter section — one problem story, told once.
@@ -180,24 +181,12 @@ export default function PainSection() {
               textAlign: 'center',
             }}
           >
-            {/* Eyebrow + heading grouped tightly */}
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px' }}>
-              <span className="eyebrow">THE PROBLEM</span>
-              <h2
-                style={{
-                  fontFamily: 'var(--font-display), serif',
-                  fontSize: 'clamp(1.6rem, 3.5vw, 2.25rem)',
-                  fontWeight: 600,
-                  color: 'var(--ink)',
-                  lineHeight: 1.2,
-                  margin: 0,
-                  letterSpacing: '-0.01em',
-                }}
-              >
-                Repetitive tasks quietly drain your team&apos;s capacity.{' '}
-                <em style={{ fontStyle: 'italic', color: 'var(--gold)' }}>We build software that handles them.</em>
-              </h2>
-            </div>
+            <SectionHeading
+              eyebrow="THE PROBLEM"
+              lead="Repetitive tasks quietly drain your team."
+              accent="We build software that handles them."
+              align="center"
+            />
             <p
               style={{
                 fontFamily: 'var(--font-body), sans-serif',
