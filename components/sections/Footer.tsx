@@ -123,6 +123,14 @@ export default function Footer() {
           <a href="mailto:sm@verdorian.com" className="gold-link" style={{ fontFamily: 'var(--font-body), sans-serif', fontSize: '12px', color: 'rgba(244, 247, 252, 0.35)' }}>
             sm@verdorian.com
           </a>
+          <span style={{ display: 'flex', gap: '14px' }}>
+            <a href="/privacy" style={{ fontFamily: 'var(--font-body), sans-serif', fontSize: '12px', color: 'rgba(244, 247, 252, 0.35)', textDecoration: 'none' }}>
+              Privacy
+            </a>
+            <a href="/terms" style={{ fontFamily: 'var(--font-body), sans-serif', fontSize: '12px', color: 'rgba(244, 247, 252, 0.35)', textDecoration: 'none' }}>
+              Terms
+            </a>
+          </span>
         </div>
       </div>
     </footer>
