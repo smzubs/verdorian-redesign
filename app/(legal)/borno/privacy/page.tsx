@@ -1,21 +1,21 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'WordDuel Privacy Policy — Verdorian',
+  title: 'Borno Privacy Policy — Verdorian',
   description:
-    'How the WordDuel iOS game handles your data. The short version: it is an offline game and your progress stays on your device.',
-  alternates: { canonical: 'https://verdorian.com/wordduel/privacy' },
+    'How the Borno iOS game handles your data. The short version: it is an offline game and your progress stays on your device.',
+  alternates: { canonical: 'https://verdorian.com/borno/privacy' },
 }
 
-export default function WordDuelPrivacyPage() {
+export default function BornoPrivacyPage() {
   return (
     <>
-      <h1>WordDuel Privacy Policy</h1>
+      <h1>Borno Privacy Policy</h1>
       <p className="legal-updated">Last updated: July 12, 2026</p>
 
       <p>
-        WordDuel is a game published by Verdorian Technologies LLC
-        (&ldquo;Verdorian,&rdquo; &ldquo;we,&rdquo; &ldquo;us&rdquo;). The short version: WordDuel
+        Borno is a game published by Verdorian Technologies LLC
+        (&ldquo;Verdorian,&rdquo; &ldquo;we,&rdquo; &ldquo;us&rdquo;). The short version: Borno
         is an offline game. Your progress &mdash; scores, streaks, badges, coins, and word history
         &mdash; is stored only on your device. We collect no analytics, show no ads, and run no
         tracking of any kind.
@@ -23,7 +23,7 @@ export default function WordDuelPrivacyPage() {
 
       <h2>What we collect</h2>
       <p>
-        In its standard offline form, WordDuel collects nothing. There is no account, no sign-up,
+        In its standard offline form, Borno collects nothing. There is no account, no sign-up,
         and no personal information gathered or transmitted to us. Everything you earn lives on
         your device and never leaves it.
       </p>
@@ -55,13 +55,13 @@ export default function WordDuelPrivacyPage() {
       <h2>Deleting your data</h2>
       <p>
         In the app, <strong>Settings &rarr; Danger zone &rarr; &ldquo;Reset all progress&rdquo;</strong>{' '}
-        erases everything WordDuel has stored on your device. Deleting the app removes all local
+        erases everything Borno has stored on your device. Deleting the app removes all local
         data as well.
       </p>
 
       <h2>Children</h2>
       <p>
-        WordDuel does not knowingly collect personal information from anyone, including children.
+        Borno does not knowingly collect personal information from anyone, including children.
       </p>
 
       <h2>Contact</h2>
