@@ -7,7 +7,7 @@ import { scrollToSection } from '@/lib/utils'
 
 const NAV_LINKS = [
   { label: 'Pricing', id: 'pricing' },
-  { label: 'What We Automate', id: 'automate' },
+  { label: 'What We Do', id: 'automate' },
   { label: 'Our Work', id: 'trust' },
 ]
 

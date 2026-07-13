@@ -114,37 +114,16 @@ function IconReports() {
   )
 }
 
-function IconConnected() {
-  return (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <circle cx="5" cy="12" r="2.5" stroke={ICON_STROKE} strokeWidth={SW} />
-      <circle cx="19" cy="6" r="2.5" stroke={ICON_STROKE} strokeWidth={SW} />
-      <circle cx="19" cy="18" r="2.5" stroke={ICON_STROKE} strokeWidth={SW} />
-      <path d="M7.2 11.1L16.5 7" stroke={ICON_STROKE} strokeWidth={SW} strokeLinecap="round" />
-      <path d="M7.2 12.9L16.5 17" stroke={ICON_STROKE} strokeWidth={SW} strokeLinecap="round" />
-    </svg>
-  )
-}
-
 function IconBI() {
   return (
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path
-        d="M12 3l2.5 5H20l-4.5 3.5 1.5 5.5L12 14 7 17l1.5-5.5L4 8h5.5L12 3z"
-        stroke={ICON_STROKE}
-        strokeWidth={SW}
-        strokeLinejoin="round"
-      />
-    </svg>
-  )
-}
-
-function IconCustomSoftware() {
-  return (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <polyline points="16 18 22 12 16 6" stroke={ICON_STROKE} strokeWidth={SW} strokeLinecap="round" strokeLinejoin="round" />
-      <polyline points="8 6 2 12 8 18" stroke={ICON_STROKE} strokeWidth={SW} strokeLinecap="round" strokeLinejoin="round" />
-      <line x1="14" y1="4" x2="10" y2="20" stroke={ICON_STROKE} strokeWidth={SW} strokeLinecap="round" />
+      <path d="M4.5 16.5a7.5 7.5 0 0115 0" stroke={ICON_STROKE} strokeWidth={SW} strokeLinecap="round" />
+      <path d="M12 5.5V7.5" stroke={ICON_STROKE} strokeWidth={SW} strokeLinecap="round" />
+      <path d="M6.2 8.2l1.4 1.4" stroke={ICON_STROKE} strokeWidth={SW} strokeLinecap="round" />
+      <path d="M17.8 8.2l-1.4 1.4" stroke={ICON_STROKE} strokeWidth={SW} strokeLinecap="round" />
+      <path d="M12 16.5l3.4-4.2" stroke={ICON_STROKE} strokeWidth={SW} strokeLinecap="round" />
+      <circle cx="12" cy="16.5" r="1.3" fill={ICON_STROKE} />
+      <path d="M5 20h14" stroke={ICON_STROKE} strokeWidth={SW} strokeLinecap="round" />
     </svg>
   )
 }
@@ -172,28 +151,16 @@ function IconSaaS() {
   )
 }
 
-function IconAccurate() {
-  return (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path
-        d="M12 3L4 7v5c0 4.4 3.4 8.5 8 9.5 4.6-1 8-5.1 8-9.5V7l-8-4z"
-        stroke={ICON_STROKE}
-        strokeWidth={SW}
-        strokeLinejoin="round"
-      />
-      <path d="M9 12l2.5 2.5L15 9" stroke={ICON_STROKE} strokeWidth={SW} strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  )
-}
-
 /* ──────────────────────────────────────────────────────────────────────────
-   DATA — 9 capability cards (iOS App Development removed)
+   DATA — 6 service cards
    ────────────────────────────────────────────────────────────────────────── */
 
 interface CapabilityItem {
   id: string
+  num: string
   title: string
   description: string
+  payoff: string
   gradFrom: string
   gradTo: string
   Icon: React.FC
@@ -201,52 +168,70 @@ interface CapabilityItem {
 
 const CAPABILITIES: CapabilityItem[] = [
   {
+    id: 'website',
+    num: '01',
+    title: 'Website Development',
+    description:
+      'A fast, modern website that makes your business look as good as it is — designed, built, and launched for you.',
+    payoff: 'Look premium. Load fast. Win work.',
+    gradFrom: '#1877F2',
+    gradTo: '#22D3EE',
+    Icon: IconWebsite,
+  },
+  {
+    id: 'bi',
+    num: '02',
+    title: 'Business Intelligence',
+    description:
+      'Your sales, costs, and jobs pulled into one live picture of the business — so decisions stop being guesses.',
+    payoff: 'See your whole business at a glance.',
+    gradFrom: '#6366F1',
+    gradTo: '#8B5CF6',
+    Icon: IconBI,
+  },
+  {
+    id: 'data-analysis',
+    num: '03',
+    title: 'Data Analysis & Visualization',
+    description:
+      'We take the data you already have and turn it into clear charts and plain answers — what’s working, what isn’t, and what to do next.',
+    payoff: 'Answers, not spreadsheets.',
+    gradFrom: '#4F46E5',
+    gradTo: '#6366F1',
+    Icon: IconReports,
+  },
+  {
+    id: 'custom-software',
+    num: '04',
+    title: 'Custom Software & SaaS',
+    description:
+      'The exact tool your business needs — or the product you want to launch — built from the ground up, and it’s yours.',
+    payoff: 'Built around how you work.',
+    gradFrom: '#2563EB',
+    gradTo: '#1877F2',
+    Icon: IconSaaS,
+  },
+  {
     id: 'workflow',
-    title: 'Approvals & Follow-Ups',
-    description: 'Approvals, hand-offs, and reminders that run themselves — no chasing.',
+    num: '05',
+    title: 'Workflow Automation',
+    description:
+      'Approvals, hand-offs, notifications and routine multi-step processes — wired together so they run end-to-end without anyone chasing them.',
+    payoff: 'Nobody has to chase anything.',
     gradFrom: '#1877F2',
     gradTo: '#0F5CD4',
     Icon: IconWorkflow,
   },
   {
     id: 'data-entry',
+    num: '06',
     title: 'Data Entry & Processing',
-    description: 'Copy-paste and re-typing, done automatically — faster, with no typos.',
+    description:
+      'The copy-paste, re-typing and reconciliation work that burns your team’s day — replaced by automation that’s faster and never mistypes.',
+    payoff: 'Faster than typing. Never mistypes.',
     gradFrom: '#2563EB',
     gradTo: '#6366F1',
     Icon: IconDataEntry,
-  },
-  {
-    id: 'reports',
-    title: 'Reports & Dashboards',
-    description: 'Live dashboards, invoices, and KPIs — assembled and delivered without manual effort.',
-    gradFrom: '#4F46E5',
-    gradTo: '#6366F1',
-    Icon: IconReports,
-  },
-  {
-    id: 'connected',
-    title: 'Apps That Talk to Each Other',
-    description: 'Your apps and tools linked so data moves between them automatically.',
-    gradFrom: '#1877F2',
-    gradTo: '#22D3EE',
-    Icon: IconConnected,
-  },
-  {
-    id: 'bi',
-    title: 'Numbers You Can Actually Use',
-    description: 'Raw data turned into clear trends, forecasts, and decisions.',
-    gradFrom: '#6366F1',
-    gradTo: '#8B5CF6',
-    Icon: IconBI,
-  },
-  {
-    id: 'custom-software',
-    title: 'Custom Business Software',
-    description: 'The exact internal tool your team needs, built to your workflow.',
-    gradFrom: '#2563EB',
-    gradTo: '#1877F2',
-    Icon: IconCustomSoftware,
   },
 ]
 
@@ -300,6 +285,26 @@ function CapabilityCard({ item, index }: { item: CapabilityItem; index: number }
 
       {/* Top-edge breathing specular — opacity + slight vertical drift */}
       <span className="cap-specular" aria-hidden="true" />
+
+      {/* Engraved index numeral — faint editorial marker, top-right */}
+      <span
+        aria-hidden="true"
+        style={{
+          position: 'absolute',
+          top: '22px',
+          right: '26px',
+          fontFamily: 'var(--font-display), serif',
+          fontWeight: 300,
+          fontSize: '38px',
+          lineHeight: 1,
+          letterSpacing: '0.02em',
+          color: 'rgba(19, 22, 27, 0.10)',
+          userSelect: 'none',
+          pointerEvents: 'none',
+        }}
+      >
+        {item.num}
+      </span>
 
       {/* Icon tile */}
       <div style={{ marginBottom: '20px' }}>
@@ -356,7 +361,7 @@ function CapabilityCard({ item, index }: { item: CapabilityItem; index: number }
       <p
         style={{
           fontFamily: 'var(--font-body), sans-serif',
-          fontSize: '14.5px',
+          fontSize: '15px',
           color: 'var(--ink-soft)',
           lineHeight: 1.62,
           margin: 0,
@@ -366,6 +371,37 @@ function CapabilityCard({ item, index }: { item: CapabilityItem; index: number }
         }}
       >
         {item.description}
+      </p>
+
+      {/* Payoff punchline — pinned to the card's bottom edge so all six align */}
+      <p
+        style={{
+          fontFamily: 'var(--font-body), sans-serif',
+          fontSize: '13px',
+          fontWeight: 650,
+          color: 'var(--gold)',
+          lineHeight: 1.4,
+          letterSpacing: '0.01em',
+          margin: 'auto 0 0',
+          paddingTop: '18px',
+          position: 'relative',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '8px',
+        }}
+      >
+        <span
+          aria-hidden="true"
+          style={{
+            width: '14px',
+            height: '1.5px',
+            borderRadius: '1px',
+            background: 'currentColor',
+            opacity: 0.7,
+            flexShrink: 0,
+          }}
+        />
+        {item.payoff}
       </p>
     </motion.article>
   )
@@ -379,7 +415,7 @@ export default function Capabilities() {
   return (
     <section
       id="automate"
-      aria-label="What We Automate"
+      aria-label="What We Do"
       className="glass-stage"
       style={{
         scrollMarginTop: '84px',
@@ -600,7 +636,7 @@ export default function Capabilities() {
           {/* Section heading — unchanged */}
           <motion.div variants={FADE_UP}>
             <SectionHeading
-              eyebrow="WHAT WE AUTOMATE"
+              eyebrow="WHAT WE DO"
               lead="We turn repetitive work into"
               accent="software your team barely has to think about."
               align="left"
@@ -615,13 +651,13 @@ export default function Capabilities() {
                 maxWidth: '60ch',
               }}
             >
-              Every business runs on repetitive tasks that compound into lost time and accumulated
-              errors. We find them, automate them, and build tools your team actually uses —
-              shaped around how you already work.
+              Six things we build, in plain words — from the website that wins you the customer
+              to the automation that quietly runs the busywork behind it. All of it shaped
+              around how you already work.
             </p>
           </motion.div>
 
-          {/* 9-card grid — clean 3×3 on desktop */}
+          {/* 6-card grid — clean 3×2 on desktop */}
           <motion.div
             className="cap-grid"
             variants={STAGGER_CONTAINER}
@@ -644,7 +680,8 @@ export default function Capabilities() {
             }}
           >
             <strong style={{ color: 'var(--ink-soft)', fontWeight: 600 }}>Also available:</strong>{' '}
-            Also: fast marketing websites, CRM and customer-support tools — and if you have a product idea of your own, we build that too.
+            iOS apps, CRM and customer-support automation, and personal ai systems — if you have
+            a product idea of your own, we build that too.
           </motion.p>
         </motion.div>
       </div>
