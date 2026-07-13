@@ -2,9 +2,7 @@
 
 import React from 'react'
 import { motion } from 'framer-motion'
-import { GlowButton } from '@/components/ui/GlowButton'
 import { FADE_UP, STAGGER_CONTAINER } from '@/lib/motion'
-import { scrollToSection } from '@/lib/utils'
 
 // ─── Command-center flow steps ────────────────────────────────────────────────
 interface FlowStep {
@@ -347,43 +345,15 @@ export default function Hero() {
           } as React.CSSProperties}
         >
           <span style={{ display: 'block' }}>
-            We build the automation. You run it on real work for two weeks&mdash;
+            We build custom automation and software for small &amp; medium enterprises&mdash;
           </span>
           <span style={{ display: 'block', marginTop: '4px' }}>
-            <span style={{ fontWeight: 600 }}>
-              and you only pay if it hits the number we agreed on.
+            eliminating repetitive office work so your team runs{' '}
+            <span style={{ fontWeight: 600, color: 'var(--gold)' }}>
+              fast, smart, and right.
             </span>
           </span>
         </motion.p>
-
-        {/* CTAs */}
-        <motion.div variants={FADE_UP} className="hero-cta-row" style={{ marginTop: '4px' }}>
-          <GlowButton variant="blue" size="lg" onClick={() => scrollToSection('contact')}>
-            Start Your $500 Test-Drive
-          </GlowButton>
-        </motion.div>
-
-        {/* Micro-trust line */}
-        <motion.div
-          variants={FADE_UP}
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: '9px',
-            flexWrap: 'wrap',
-            margin: '-6px 0 0',
-            maxWidth: '56ch',
-          }}
-        >
-          <svg width="15" height="15" viewBox="0 0 24 24" aria-hidden="true" style={{ flexShrink: 0 }}>
-            <path d="M13 2.5L5.5 13H11l-1 8.5L18.5 10H13z" fill="none" stroke="var(--gold)" strokeWidth="1.7" strokeLinejoin="round" strokeLinecap="round" />
-          </svg>
-          <span style={{ fontFamily: 'var(--font-body), sans-serif', fontSize: '13.5px', lineHeight: 1.5, color: 'var(--ink-faint)' }}>
-            Built for busy owners and teams — no IT department needed.{' '}
-            <span style={{ color: 'var(--gold)', fontWeight: 600 }}>Fully credited toward your build.</span>
-          </span>
-        </motion.div>
 
         {/* ── Command-center workflow visual (iOS 3D scroll tilt) ── */}
         <motion.div
