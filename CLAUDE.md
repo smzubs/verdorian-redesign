@@ -1,5 +1,8 @@
 # Verdorian Technologies — verdorian.com (Premium Liquid Glass Redesign)
 
+> ## ⚡ LATEST (2026-07-12) — SERVICES CARDS REBUILT, LIVE HEAD `74162b2` — read first
+> **Capabilities (#automate) is now the 6-service catalog** (user-directed): Website Development · Business Intelligence · Data Analysis & Visualization · Custom Software & SaaS · Workflow Automation · Data Entry & Processing (last two carry Zobayer's verbatim descriptions). Card anatomy: gradient icon tile → title → plain-words description → **blue payoff punchline pinned bottom via mt-auto** (rows baseline-align) + faint engraved Cormorant numeral 01–06 top-right. New gauge glyph for BI; IconConnected/IconCustomSoftware/IconAccurate deleted. **Eyebrow + Nav + Footer tab renamed "What We Do"** (id `#automate` unchanged — scrollspy/anchors intact). Extras line now: iOS apps, CRM/support automation, personal ai systems. QA: tsc+build clean, Playwright live 1280+375, 0 console errors, no overflow. Prior resume items (Resend key, KE case study, 90-day plan) still open — see next banner.
+
 > ## ⚡ LATEST (2026-07-04 end-of-session) — LEGAL PAGES + SESSION CLOSED, LIVE HEAD `460af76` (all 4 routes 200) — read first
 > **Session closed clean: tree committed+pushed+deployed.** Added **/privacy + /terms** (route group `app/(legal)/` with shared quiet shell) + footer Privacy/Terms links. Routes verified: `/` `/trades` `/privacy` `/terms` all 200.
 > **RESUME NEXT SESSION (in priority order):**
