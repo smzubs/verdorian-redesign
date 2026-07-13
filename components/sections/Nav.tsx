@@ -6,8 +6,8 @@ import { GlowButton } from '@/components/ui/GlowButton'
 import { scrollToSection } from '@/lib/utils'
 
 const NAV_LINKS = [
-  { label: 'Pricing', id: 'pricing' },
   { label: 'What We Do', id: 'automate' },
+  { label: 'Pricing', id: 'pricing' },
   { label: 'Our Work', id: 'trust' },
 ]
 

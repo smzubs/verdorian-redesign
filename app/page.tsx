@@ -17,12 +17,12 @@ export default function Home() {
       <main id="main-content">
         <Nav />
         <Hero />
-        {/* Conversion narrative: signature drum -> problem (one idea) -> how it works + offer
-            -> what we automate -> proof -> CTA. One idea per screen; the drum is the signature. */}
+        {/* Conversion narrative: signature drum -> problem (one idea) -> what we do
+            -> how it works + offer -> proof -> CTA. One idea per screen; the drum is the signature. */}
         <MatrixBand />
         <PainSection />
-        <Pricing />
         <Capabilities />
+        <Pricing />
         <Trust />
         {/* Light→dark bridge — eases the eye into the contact band instead of a hard seam */}
         <div
