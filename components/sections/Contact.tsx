@@ -275,7 +275,7 @@ export default function Contact() {
               >
                 {[
                   'Free fit call — no spam, no sales pressure.',
-                  '$500 starts the pilot, fully credited toward your build.',
+                  'The pilot fee is fully credited toward your build.',
                   'Honest answer: if automation won’t pay for itself, we’ll say so.',
                 ].map((line) => (
                   <p

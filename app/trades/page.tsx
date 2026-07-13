@@ -202,7 +202,7 @@ export default function TradesPage() {
               color: 'var(--ink-faint)',
             }}
           >
-            $500 starts the pilot, credited toward your build. If it doesn&apos;t hit the
+            The pilot fee is credited toward your build. If it doesn&apos;t hit the
             number we agree on, you don&apos;t buy it.
           </p>
         </section>

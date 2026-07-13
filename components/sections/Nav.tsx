@@ -292,7 +292,7 @@ export default function Nav() {
               style={{ marginTop: '24px' }}
             >
               <GlowButton variant="ink" size="lg" onClick={() => handleNavLink('contact')}>
-                Start Your $500 Test-Drive
+                Start Your Test-Drive
               </GlowButton>
             </motion.div>
           </motion.div>
