@@ -41,7 +41,7 @@ export default function MatrixBand() {
           52%, 100% { color: #14181F; }
         }
         .mb-section {
-          position: relative; background: var(--paper); padding: 14px 0 30px; overflow: hidden;
+          position: relative; padding: 14px 0 30px; overflow: hidden;
           content-visibility: auto;
           contain-intrinsic-size: auto 230px;
         }

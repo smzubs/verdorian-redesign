@@ -112,7 +112,8 @@ body {
   overflow-x: hidden;
   min-height: 100svh;
   font-family: var(--font-body), system-ui, -apple-system, sans-serif;
-  background: var(--paper);
+  /* Transparent on purpose: an opaque body would paint over the fixed canvas layers below */
+  background: transparent;
 }
 
 /* Ultra-strict mobile guardrails — no horizontal scroll/cutoff ever */
@@ -128,22 +129,96 @@ body {
   }
 }
 
-/* ─── PAPER BACKGROUND — static gold crown + faint laid-paper chain lines ── */
+/* ─── AURORA CANVAS — one continuous fixed field behind the whole site.
+   Two gradient sheets drift against each other (transform-only, so no repaint);
+   a dot lattice sits above them, masked away from the centre so copy stays clean. ── */
+html::before,
 body::before {
   content: '';
   position: fixed;
-  inset: 0;
+  inset: -30%;
+  pointer-events: none;
+  will-change: transform;
+}
+html::before {
+  z-index: -3;
+  background:
+    radial-gradient(ellipse 34% 30% at 24% 22%, rgba(24, 119, 242, 0.30) 0%, transparent 70%),
+    radial-gradient(ellipse 28% 26% at 78% 30%, rgba(34, 211, 238, 0.24) 0%, transparent 72%),
+    radial-gradient(ellipse 30% 26% at 62% 78%, rgba(76, 154, 255, 0.20) 0%, transparent 72%);
+  animation: auroraDriftA 46s ease-in-out infinite alternate;
+}
+body::before {
   z-index: -2;
+  background:
+    radial-gradient(ellipse 30% 28% at 68% 18%, rgba(129, 140, 248, 0.26) 0%, transparent 72%),
+    radial-gradient(ellipse 26% 24% at 30% 66%, rgba(167, 139, 250, 0.18) 0%, transparent 72%),
+    radial-gradient(ellipse 24% 22% at 84% 70%, rgba(34, 211, 238, 0.14) 0%, transparent 72%);
+  animation: auroraDriftB 62s ease-in-out infinite alternate;
+}
+html::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: radial-gradient(rgba(19, 44, 96, 0.20) 1px, transparent 1.3px);
+  background-size: 26px 26px;
+  -webkit-mask-image: radial-gradient(ellipse 72% 66% at 50% 44%, transparent 42%, #000 100%);
+          mask-image: radial-gradient(ellipse 72% 66% at 50% 44%, transparent 42%, #000 100%);
+}
+@keyframes auroraDriftA {
+  from { transform: translate3d(-5%, -3%, 0) rotate(-3deg) scale(1); }
+  to   { transform: translate3d(6%, 4%, 0) rotate(4deg) scale(1.08); }
+}
+@keyframes auroraDriftB {
+  from { transform: translate3d(6%, 3%, 0) rotate(3deg) scale(1.06); }
+  to   { transform: translate3d(-6%, -4%, 0) rotate(-4deg) scale(1); }
+}
+
+/* ─── HERO HORIZON — luminous planetary arc cresting above the headline ── */
+#hero::before {
+  content: '';
+  position: absolute;
+  top: 92px;
+  left: 50%;
+  width: max(1320px, 128vw);
+  aspect-ratio: 1;
+  transform: translateX(-50%);
+  z-index: -1;
+  border-radius: 50%;
   pointer-events: none;
   background:
-    /* warm gold "crown" radiating from the top */
-    radial-gradient(ellipse 62% 42% at 50% -6%, rgba(24, 119, 242, 0.10) 0%, transparent 62%),
-    /* faint vertical chain lines (laid paper) */
-    repeating-linear-gradient(90deg, transparent 0 26px, var(--rule-faint) 26px 27px),
-    /* base ivory + soft bottom vignette */
-    radial-gradient(ellipse 120% 60% at 50% 116%, rgba(20, 24, 32, 0.03) 0%, transparent 66%),
-    var(--paper);
-  background-size: cover;
+    radial-gradient(closest-side, transparent 98.6%, rgba(255, 255, 255, 0.95) 99.3%, transparent 100%),
+    conic-gradient(from 270deg at 50% 50%, rgba(34, 211, 238, 0.85), rgba(24, 119, 242, 0.95) 12%, rgba(129, 140, 248, 0) 26%, rgba(129, 140, 248, 0) 74%, rgba(129, 140, 248, 0.85) 88%, rgba(34, 211, 238, 0.85));
+  -webkit-mask-image:
+    radial-gradient(closest-side, transparent 98.2%, #000 99%, #000 99.7%, transparent 100%),
+    linear-gradient(180deg, #000 0%, #000 8%, transparent 26%);
+          mask-image:
+    radial-gradient(closest-side, transparent 98.2%, #000 99%, #000 99.7%, transparent 100%),
+    linear-gradient(180deg, #000 0%, #000 8%, transparent 26%);
+  -webkit-mask-composite: source-in;
+          mask-composite: intersect;
+  filter: drop-shadow(0 -8px 26px rgba(24, 119, 242, 0.45));
+  animation: horizonBreathe 9s ease-in-out infinite;
+}
+/* soft dawn light spilling beneath the arc, behind the headline */
+#hero::after {
+  content: '';
+  position: absolute;
+  top: 92px;
+  left: 50%;
+  width: min(1180px, 150vw);
+  height: 520px;
+  transform: translateX(-50%);
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 62% 56% at 50% 0%, rgba(255, 255, 255, 0.86) 0%, rgba(255, 255, 255, 0.34) 46%, transparent 74%);
+}
+@keyframes horizonBreathe {
+  0%, 100% { opacity: 0.78; }
+  50%      { opacity: 1; }
 }
 
 /* ─── FINE GRAIN OVERLAY — static paper tactility ── */
@@ -539,28 +614,71 @@ html {
 /* Deeper warm glass variant (panels / larger surfaces) */
 .glass-panel { background: var(--glass-fill-deep); border-radius: 24px; }
 
-/* GLASS STAGE — warm depth behind glass-card sections so the frost actually reads
-   (the light-theme equivalent of scientificquran's dark cosmos). Keeps our ivory/gold palette. */
+/* GLASS STAGE — a tinted field behind glass-card sections so the frost actually reads.
+   Opaque in the middle on purpose: glass cards then sample a STATIC backdrop instead of
+   re-blurring the drifting aurora every frame. The mask dissolves its edges into the canvas,
+   so sections have no seams. Each section sets its own colour temperature below. */
 .glass-stage {
+  --stage-a: rgba(24, 119, 242, 0.24);
+  --stage-b: rgba(34, 211, 238, 0.18);
+  --stage-c: rgba(129, 140, 248, 0.16);
+  --stage-base-top: #EAF1FC;
+  --stage-base-bottom: #E1EBFA;
   position: relative;
-  background:
-    radial-gradient(ellipse 70% 55% at 18% 0%, rgba(24, 119, 242, 0.20) 0%, transparent 58%),
-    radial-gradient(ellipse 64% 50% at 88% 108%, rgba(99, 102, 241, 0.16) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 40% at 60% 50%, rgba(76, 154, 255, 0.10) 0%, transparent 64%),
-    linear-gradient(180deg, var(--paper-deep) 0%, #DDE6F2 100%);
 }
-.glass-stage::before {        /* soft floating blue bloom, GPU-cheap, behind the glass */
+.glass-stage::before {
   content: '';
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background:
-    radial-gradient(ellipse 44% 36% at 32% 38%, rgba(24, 119, 242, 0.14) 0%, transparent 70%),
-    radial-gradient(ellipse 40% 34% at 74% 64%, rgba(99, 102, 241, 0.12) 0%, transparent 70%);
-  filter: blur(36px);
   z-index: 0;
+  background:
+    radial-gradient(ellipse 54% 42% at 14% 18%, var(--stage-a) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 40% at 88% 40%, var(--stage-b) 0%, transparent 70%),
+    radial-gradient(ellipse 58% 40% at 42% 92%, var(--stage-c) 0%, transparent 70%),
+    radial-gradient(ellipse 42% 30% at 58% 58%, rgba(255, 255, 255, 0.62) 0%, transparent 72%),
+    linear-gradient(180deg, var(--stage-base-top) 0%, var(--stage-base-bottom) 100%);
+  -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 110px, #000 calc(100% - 110px), transparent 100%);
+          mask-image: linear-gradient(180deg, transparent 0, #000 110px, #000 calc(100% - 110px), transparent 100%);
 }
 .glass-stage > * { position: relative; z-index: 1; }
+#pricing.glass-stage {
+  --stage-a: rgba(129, 140, 248, 0.26);
+  --stage-b: rgba(24, 119, 242, 0.20);
+  --stage-c: rgba(167, 139, 250, 0.18);
+  --stage-base-top: #EDEFFC;
+  --stage-base-bottom: #E6E9FB;
+}
+#trust.glass-stage {
+  --stage-a: rgba(34, 211, 238, 0.22);
+  --stage-b: rgba(24, 119, 242, 0.20);
+  --stage-c: rgba(20, 184, 166, 0.13);
+  --stage-base-top: #E9F4FB;
+  --stage-base-bottom: #E3EFF9;
+}
+
+/* MIDNIGHT FINALE — the contact band + footer. Separate from --ink, which is also text colour. */
+:root {
+  --midnight:      #0A1124;
+  --midnight-deep: #050813;
+}
+.midnight-field {
+  background:
+    radial-gradient(ellipse 70% 46% at 50% -4%, rgba(24, 119, 242, 0.34) 0%, transparent 70%),
+    radial-gradient(ellipse 44% 38% at 92% 28%, rgba(34, 211, 238, 0.13) 0%, transparent 72%),
+    radial-gradient(ellipse 46% 40% at 6% 58%, rgba(129, 140, 248, 0.18) 0%, transparent 72%),
+    linear-gradient(180deg, var(--midnight) 0%, var(--midnight-deep) 100%);
+}
+.midnight-field::after {       /* faint star lattice, dissolving away from the form */
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(rgba(190, 215, 255, 0.20) 1px, transparent 1.3px);
+  background-size: 26px 26px;
+  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, transparent 46%, #000 100%);
+          mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, transparent 46%, #000 100%);
+}
 
 /* Per-tier ambient temperature (Services 3-tier ladder) — all warm, no cyan */
 .glass-amber::before { background: radial-gradient(ellipse 72% 54% at 82% -8%, rgba(24, 119, 242, 0.10) 0%, transparent 68%); }
@@ -1053,6 +1171,7 @@ p, li, button, a, label, input, textarea {
     color: var(--gold) !important;
   }
   .landing-orb { animation: none !important; }
+  html::before, body::before, #hero::before { animation: none !important; will-change: auto; }
   .btn-ink::after, .btn-blue::after { display: none !important; }
   .btn-blue:hover { transform: none; }
   .plate:hover { transform: none !important; }

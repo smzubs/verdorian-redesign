@@ -115,10 +115,10 @@ export default function Contact() {
     <section
       id="contact"
       aria-label="Start your automation test-drive with Verdorian Technologies"
+      className="midnight-field"
       style={{
         scrollMarginTop: '84px',
         padding: '120px 0 100px',
-        background: 'var(--ink)',
         position: 'relative',
         overflow: 'hidden',
         borderTop: '1px solid rgba(24,119,242,0.20)',

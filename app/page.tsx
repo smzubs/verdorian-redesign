@@ -27,7 +27,7 @@ export default function Home() {
         {/* Light→dark bridge — eases the eye into the contact band instead of a hard seam */}
         <div
           aria-hidden="true"
-          style={{ height: '72px', background: 'linear-gradient(to bottom, var(--paper), var(--ink))' }}
+          style={{ height: '72px', background: 'linear-gradient(to bottom, transparent, rgba(10,17,36,0.18) 38%, rgba(10,17,36,0.62) 72%, var(--midnight))' }}
         />
         <Contact />
         <Footer />

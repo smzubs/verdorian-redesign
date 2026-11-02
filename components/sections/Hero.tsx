@@ -84,7 +84,6 @@ export default function Hero() {
       style={{
         position: 'relative',
         overflow: 'hidden',
-        background: 'var(--paper)',
         paddingTop: '150px',
         paddingBottom: '104px',
       }}

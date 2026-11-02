@@ -15,7 +15,6 @@ export default function PainSection() {
         scrollMarginTop: '84px',
         paddingTop: 'clamp(88px, 11vw, 128px)',
         paddingBottom: 'clamp(88px, 11vw, 128px)',
-        background: 'var(--paper)',
         position: 'relative',
         overflow: 'hidden',
       }}
@@ -27,7 +26,7 @@ export default function PainSection() {
           position: 'absolute',
           inset: 0,
           backgroundImage:
-            'radial-gradient(ellipse 70% 55% at 50% 45%, rgba(24,119,242,0.05) 0%, transparent 70%)',
+            'radial-gradient(ellipse 70% 55% at 50% 45%, rgba(255,255,255,0.72) 0%, rgba(255,255,255,0.28) 46%, transparent 72%)',
           pointerEvents: 'none',
         }}
       />

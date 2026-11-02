@@ -15,7 +15,7 @@ export default function Footer() {
     <footer
       aria-label="Site footer"
       style={{
-        background: 'var(--ink)',
+        background: 'var(--midnight-deep)',
         borderTop: '1px solid rgba(244, 247, 252, 0.10)',
         paddingTop: '48px',
         paddingBottom: '48px',

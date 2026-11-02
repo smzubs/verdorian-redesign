@@ -51,7 +51,6 @@ export default function Trust() {
         scrollMarginTop: '84px',
         paddingTop: 'clamp(80px, 10vw, 104px)',
         paddingBottom: 'clamp(80px, 10vw, 104px)',
-        borderTop: '1px solid var(--rule-strong)',
       }}
     >
       <style>{`
