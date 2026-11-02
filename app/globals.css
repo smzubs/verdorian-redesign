@@ -177,7 +177,8 @@ html::after {
 }
 
 /* ─── HERO HORIZON — luminous planetary arc cresting above the headline ── */
-#hero::before {
+#hero::before,
+#local::before {
   content: '';
   position: absolute;
   top: 92px;
@@ -203,18 +204,19 @@ html::after {
   animation: horizonBreathe 9s ease-in-out infinite;
 }
 /* soft dawn light spilling beneath the arc, behind the headline */
-#hero::after {
+#hero::after,
+#local::after {
   content: '';
   position: absolute;
-  top: 92px;
+  top: 24px;
   left: 50%;
   width: min(1180px, 150vw);
-  height: 520px;
+  height: 620px;
   transform: translateX(-50%);
   z-index: -1;
   pointer-events: none;
   background:
-    radial-gradient(ellipse 62% 56% at 50% 0%, rgba(255, 255, 255, 0.86) 0%, rgba(255, 255, 255, 0.34) 46%, transparent 74%);
+    radial-gradient(ellipse 62% 50% at 50% 48%, rgba(255, 255, 255, 0.82) 0%, rgba(255, 255, 255, 0.32) 52%, transparent 90%);
 }
 @keyframes horizonBreathe {
   0%, 100% { opacity: 0.78; }
@@ -664,7 +666,7 @@ html {
 }
 .midnight-field {
   background:
-    radial-gradient(ellipse 70% 46% at 50% -4%, rgba(24, 119, 242, 0.34) 0%, transparent 70%),
+    radial-gradient(ellipse 70% 40% at 50% 30%, rgba(24, 119, 242, 0.26) 0%, transparent 70%),
     radial-gradient(ellipse 44% 38% at 92% 28%, rgba(34, 211, 238, 0.13) 0%, transparent 72%),
     radial-gradient(ellipse 46% 40% at 6% 58%, rgba(129, 140, 248, 0.18) 0%, transparent 72%),
     linear-gradient(180deg, var(--midnight) 0%, var(--midnight-deep) 100%);
@@ -1171,7 +1173,7 @@ p, li, button, a, label, input, textarea {
     color: var(--gold) !important;
   }
   .landing-orb { animation: none !important; }
-  html::before, body::before, #hero::before { animation: none !important; will-change: auto; }
+  html::before, body::before, #hero::before, #local::before { animation: none !important; will-change: auto; }
   .btn-ink::after, .btn-blue::after { display: none !important; }
   .btn-blue:hover { transform: none; }
   .plate:hover { transform: none !important; }

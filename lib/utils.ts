@@ -174,7 +174,10 @@ export const TECH_STACK = [
 
 export function scrollToSection(id: string) {
   const el = document.getElementById(id)
-  if (!el) return
+  if (!el) {
+    window.location.href = `/#${id}`
+    return
+  }
 
   const lenis = (window as unknown as Record<string, unknown>).__lenis as
     | { scrollTo: (target: HTMLElement, options: { offset: number }) => void }

@@ -1,14 +1,19 @@
 'use client'
 
 import React, { useState, useEffect, useRef, useCallback } from 'react'
+import { usePathname } from 'next/navigation'
 import { AnimatePresence, motion } from 'framer-motion'
 import { GlowButton } from '@/components/ui/GlowButton'
 import { scrollToSection } from '@/lib/utils'
+
+// This tab is a page of its own (/grow-your-business); the others scroll within the homepage.
+const GROW_ID = 'grow-your-business'
 
 const NAV_LINKS = [
   { label: 'What We Do', id: 'automate' },
   { label: 'Pricing', id: 'pricing' },
   { label: 'Our Work', id: 'trust' },
+  { label: 'Grow Your Business', id: GROW_ID },
 ]
 
 export default function Nav() {
@@ -16,6 +21,7 @@ export default function Nav() {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [activeSection, setActiveSection] = useState<string>('hero')
   const ticking = useRef(false)
+  const activeId = usePathname() === `/${GROW_ID}` ? GROW_ID : activeSection
 
   useEffect(() => {
     const handleScroll = () => {
@@ -61,10 +67,16 @@ export default function Nav() {
     return () => { document.body.style.overflow = '' }
   }, [mobileOpen])
 
+  const navigate = useCallback((id: string) => {
+    // Full load on purpose: client routing focuses the new page's first element, which pops open the skip link
+    if (id === GROW_ID) window.location.href = `/${GROW_ID}`
+    else scrollToSection(id)
+  }, [])
+
   const handleNavLink = useCallback((id: string) => {
     setMobileOpen(false)
-    setTimeout(() => scrollToSection(id), 100)
-  }, [])
+    setTimeout(() => navigate(id), 100)
+  }, [navigate])
 
   return (
     <>
@@ -162,13 +174,13 @@ export default function Nav() {
             }}
           >
             {NAV_LINKS.map((link) => {
-              const isActive = activeSection === link.id
+              const isActive = activeId === link.id
               return (
                 <button
                   key={link.id}
                   type="button"
                   className="nav-tab"
-                  onClick={() => scrollToSection(link.id)}
+                  onClick={() => navigate(link.id)}
                   aria-label={`Navigate to ${link.label} section`}
                   aria-current={isActive ? 'true' : undefined}
                 >
@@ -277,7 +289,7 @@ export default function Nav() {
                   fontFamily: 'var(--font-display), serif',
                   fontWeight: 600,
                   fontSize: '28px',
-                  color: activeSection === link.id ? 'var(--gold)' : 'var(--ink)',
+                  color: activeId === link.id ? 'var(--gold)' : 'var(--ink)',
                   letterSpacing: '0.04em',
                 }}
               >

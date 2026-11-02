@@ -1,5 +1,11 @@
 # Verdorian Technologies — verdorian.com (Premium Liquid Glass Redesign)
 
+> ## ⚡ LATEST (2026-11-01) — PREMIUM BACKGROUNDS + GROW YOUR BUSINESS PAGE — read first
+> **Backgrounds:** one fixed aurora canvas (`html::before`, `body::before`, dot lattice `html::after`) behind transparent sections; `body` must stay transparent or it hides the canvas. `.glass-stage` is opaque mid-section on purpose (glass samples a static backdrop, not the drifting aurora) with masked edges; per-section colour via `--stage-*`. Horizon arc = `#hero::before` / `#local::before`. Contact + Footer = `--midnight` / `--midnight-deep` (`--ink` stays text colour).
+> **/grow-your-business** (`components/sections/LocalOffer.tsx`): web version of the Business Owner handout ($299 setup + $49/mo). Copy, prices and fine print mirror the handout; 47%/54% verified against BrightLocal's 2026 report. Nav tab does a full page load on purpose (client routing focuses the first element, popping the skip link). `scrollToSection` falls back to `/#id` when the section is not on the page.
+> **Open:** /terms only covers the $500 pilot, not this offer — add before taking payments. **Local dev:** `bun run dev` fails resolving tailwindcss from `~` (stray `~/package.json`); preview with `bun run build && bun run start`.
+> Rollback tags: `checkpoint-pre-premium-backgrounds` (pre-redesign) · `checkpoint-pre-local-offer-section` (backgrounds only).
+
 > ## ⚡ LATEST (2026-07-12 end-of-session) — SIMPLIFICATION SWEEP, SESSION CLOSED CLEAN, LIVE HEAD `8216e48` — read first
 > **Tree committed+pushed+deployed; every change QA'd live (Playwright 1280+375, 0 console errors, no overflow).** Five user-directed passes this session:
 > 1. **Capabilities(#automate) = 6-service catalog:** Website Development · Business Intelligence · Data Analysis & Visualization · Custom Software & SaaS · Workflow Automation · Data Entry & Processing (last two carry Zobayer's verbatim copy). Card anatomy: gradient icon tile → title → plain-words desc → **blue payoff punchline pinned bottom (mt-auto, rows align)** + faint engraved Cormorant numeral 01–06 top-right. New gauge glyph for BI; IconConnected/IconCustomSoftware/IconAccurate deleted. **Eyebrow + Nav/Footer tab renamed "What We Do"** (id `#automate` unchanged).

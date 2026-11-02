@@ -103,6 +103,13 @@ export default function Footer() {
             </button>
           ))}
           <a
+            href="/grow-your-business"
+            className="footer-link"
+            style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center' }}
+          >
+            Grow Your Business
+          </a>
+          <a
             href="/trades"
             aria-label="ai operations for specialty trade contractors"
             className="footer-link"

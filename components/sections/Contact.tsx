@@ -121,7 +121,6 @@ export default function Contact() {
         padding: '120px 0 100px',
         position: 'relative',
         overflow: 'hidden',
-        borderTop: '1px solid rgba(24,119,242,0.20)',
       }}
     >
       {/* Scoped styles */}
@@ -167,7 +166,7 @@ export default function Contact() {
           transform: 'translateX(-50%)',
           width: '900px',
           height: '380px',
-          background: 'radial-gradient(ellipse 58% 72% at 50% 0%, rgba(24,119,242,0.20) 0%, transparent 68%)',
+          background: 'radial-gradient(ellipse 58% 50% at 50% 56%, rgba(24,119,242,0.16) 0%, transparent 68%)',
           pointerEvents: 'none',
         }}
       />
