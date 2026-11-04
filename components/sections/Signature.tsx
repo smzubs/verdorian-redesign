@@ -17,7 +17,7 @@ export default function Signature() {
         .sig {
           position: relative;
           overflow: hidden;
-          padding: clamp(72px, 9vw, 120px) 0 clamp(56px, 7vw, 96px);
+          padding: clamp(16px, 2vw, 32px) 0 clamp(40px, 4vw, 56px);
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -26,8 +26,11 @@ export default function Signature() {
         }
         .sig-stage {
           position: relative;
-          width: min(660px, 112vw);
-          margin: -4% 0;
+          --sig-w: min(500px, 92vw);
+          width: var(--sig-w);
+          /* the ring field is mostly padding around the mark — pull it in so the V isn't floating in empty space.
+             Sized off the stage width (a % margin would track the full page width instead). */
+          margin: calc(var(--sig-w) * -0.16) 0 calc(var(--sig-w) * -0.2);
         }
         .sig-stage::before {            /* rose bloom behind the mark */
           content: '';
@@ -72,7 +75,7 @@ export default function Signature() {
         .sig-word { position: relative; display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center; }
         .sig-name {
           font-family: var(--font-tech), system-ui, sans-serif;
-          font-size: clamp(20px, 2.8vw, 36px);
+          font-size: clamp(18px, 2.4vw, 30px);
           letter-spacing: 0.42em;
           padding-left: 0.42em;           /* balance the trailing tracking so the word sits centred */
           color: var(--ink);
