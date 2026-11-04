@@ -1,6 +1,7 @@
 'use client'
 
 import React from 'react'
+import Image from 'next/image'
 import { scrollToSection } from '@/lib/utils'
 
 const NAV_LINKS = [
@@ -16,7 +17,7 @@ export default function Footer() {
       aria-label="Site footer"
       style={{
         background: 'var(--midnight-deep)',
-        borderTop: '1px solid rgba(244, 247, 252, 0.10)',
+        borderTop: '1px solid rgba(244, 238, 229, 0.1)',
         paddingTop: '48px',
         paddingBottom: '48px',
       }}
@@ -38,7 +39,7 @@ export default function Footer() {
           padding: 10px 0; min-height: 44px;
           font-family: var(--font-body), sans-serif;
           font-size: 13px; letter-spacing: 0.04em;
-          color: rgba(244, 247, 252,0.5);
+          color: rgba(244, 238, 229, 0.5);
           transition: color 0.25s var(--ease-prospectus);
           text-align: left;
         }
@@ -52,18 +53,13 @@ export default function Footer() {
       <div className="footer-inner">
         {/* Left: wordmark */}
         <div className="footer-wordmark" style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-          <span
-            style={{
-              fontFamily: 'var(--font-display), serif',
-              fontWeight: 600,
-              fontSize: '22px',
-              color: 'var(--paper-bright)',
-              letterSpacing: '0.14em',
-              textTransform: 'uppercase',
-            }}
-          >
-            Verdorian
-          </span>
+          <Image
+            src="/brand/verdorian-lockup-light.webp"
+            alt="Verdorian Technologies"
+            width={720}
+            height={124}
+            style={{ height: '34px', width: 'auto', display: 'block' }}
+          />
           <span
             style={{
               fontFamily: 'var(--font-body), sans-serif',
@@ -80,7 +76,7 @@ export default function Footer() {
             style={{
               fontFamily: 'var(--font-body), sans-serif',
               fontSize: '13px',
-              color: 'rgba(244, 247, 252, 0.42)',
+              color: 'rgba(244, 238, 229, 0.42)',
               lineHeight: 1.6,
               maxWidth: '280px',
             }}
@@ -124,17 +120,17 @@ export default function Footer() {
           className="footer-legal"
           style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '8px', textAlign: 'right' }}
         >
-          <span style={{ fontFamily: 'var(--font-body), sans-serif', fontSize: '12px', color: 'rgba(244, 247, 252, 0.35)' }}>
+          <span style={{ fontFamily: 'var(--font-body), sans-serif', fontSize: '12px', color: 'rgba(244, 238, 229, 0.35)' }}>
             &copy; 2026 Verdorian Technologies LLC
           </span>
-          <a href="mailto:sm@verdorian.com" className="gold-link" style={{ fontFamily: 'var(--font-body), sans-serif', fontSize: '12px', color: 'rgba(244, 247, 252, 0.35)' }}>
+          <a href="mailto:sm@verdorian.com" className="gold-link" style={{ fontFamily: 'var(--font-body), sans-serif', fontSize: '12px', color: 'rgba(244, 238, 229, 0.35)' }}>
             sm@verdorian.com
           </a>
           <span style={{ display: 'flex', gap: '14px' }}>
-            <a href="/privacy" style={{ fontFamily: 'var(--font-body), sans-serif', fontSize: '12px', color: 'rgba(244, 247, 252, 0.35)', textDecoration: 'none' }}>
+            <a href="/privacy" style={{ fontFamily: 'var(--font-body), sans-serif', fontSize: '12px', color: 'rgba(244, 238, 229, 0.35)', textDecoration: 'none' }}>
               Privacy
             </a>
-            <a href="/terms" style={{ fontFamily: 'var(--font-body), sans-serif', fontSize: '12px', color: 'rgba(244, 247, 252, 0.35)', textDecoration: 'none' }}>
+            <a href="/terms" style={{ fontFamily: 'var(--font-body), sans-serif', fontSize: '12px', color: 'rgba(244, 238, 229, 0.35)', textDecoration: 'none' }}>
               Terms
             </a>
           </span>

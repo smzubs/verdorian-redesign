@@ -1,0 +1,277 @@
+/* Grow Your Business keeps the pre-rebrand light theme (owner's call, 2026-11-04).
+   Copied from the live site at 9487936 and scoped under .theme-classic; only the logo changed. */
+.theme-classic {
+  /* ── Paper / ink / rule scale ── */
+  --paper:        #F2F5FA;   /* primary ivory */
+  --paper-deep:   #E7ECF4;   /* alt section bands */
+  --paper-bright: #FBFCFE;   /* plate fills, elevated */
+  --ink:          #13161B;   /* main text + dark bands */
+  --ink-soft:     #474B54;   /* body */
+  --ink-faint:    #868C98;   /* meta / captions */
+  --rule-strong:  rgba(20, 24, 32, 0.16);   /* standard hairline */
+  --rule:         rgba(20, 24, 32, 0.09);   /* soft divider */
+  --rule-faint:   rgba(20, 24, 32, 0.05);   /* chain lines / barely-there */
+
+  /* ── Gold + semantic ── */
+  --gold:        #1877F2;
+  --gold-bright: #4C9AFF;
+  --gold-pale:   rgba(24, 119, 242, 0.12);
+  --green-pass:  #2F5D3A;
+  --red-fail:    #8C3A2E;
+
+  /* ── Typography (display = Cormorant Garamond, body = Geist) ── */
+  --font-display: var(--font-cormorant);
+  --font-body:    var(--font-geist);
+  --font-mono:    var(--font-geist);
+  /* Compatibility aliases so any lingering section refs still resolve cleanly */
+  --font-fraunces:    var(--font-cormorant);
+  --font-outfit:      var(--font-geist);
+  --font-dm-sans:     var(--font-geist);
+  --font-spline-mono: var(--font-geist);
+  --font-jetbrains:   var(--font-geist);
+
+  /* ── Legacy palette names repointed (sections read these — inherit the new look) ── */
+  --c-bg-base:     var(--paper);
+  --c-bg-hero:     var(--paper);
+  --c-bg-alt:      var(--paper-deep);
+  --c-bg-card:     var(--paper-bright);
+  --c-bg-elevated: var(--paper-bright);
+  --c-bg-dark:     var(--ink);
+  --c-gold:        var(--gold);
+  --c-gold-light:  var(--gold-bright);
+  --c-ink:         var(--ink);
+  --c-text-1:      var(--ink);
+  --c-text-2:      var(--ink-soft);
+  --c-text-3:      var(--ink-faint);
+  --c-border:      var(--rule-strong);
+  --c-border-hover: rgba(24, 119, 242, 0.30);
+  --c-ghost:       var(--gold-pale);
+
+  /* ── Tracking ── */
+  --track-hero:    -0.018em;
+  --track-display: -0.015em;
+  --track-h2:      -0.012em;
+  --track-h3:      -0.005em;
+  --track-body:    0em;
+  --track-label:   0.18em;
+  --track-eyebrow: 0.3em;
+  --track-btn:     0.18em;
+
+  /* ── Spacing (8pt rhythm) ── */
+  --sp-1: 8px;  --sp-2: 16px; --sp-3: 24px; --sp-4: 32px;
+  --sp-6: 48px; --sp-8: 64px; --sp-12: 96px;
+
+  /* ── Radii — near-square prospectus plates ── */
+  --r-sm: 2px;
+  --r-md: 3px;
+  --r-lg: 4px;
+  --r-xl: 4px;
+  --r-pill: 9999px;
+
+  /* ── Easings — one prospectus ease everywhere ── */
+  --ease-prospectus: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-glass: cubic-bezier(0.16, 1, 0.3, 1);   /* smoother, softer settle for liquid-glass motion */
+  --ease-expo: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-back: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-silk: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* ── Type scale (serif masthead, confident) ── */
+  --t-hero:    clamp(44px, 7vw, 104px);
+  --t-h2:      clamp(34px, 5vw, 64px);
+  --t-h3:      clamp(20px, 2.4vw, 28px);
+  --t-body-lg: 18px;
+  --t-body:    16px;
+  --t-sm:      13px;
+  --t-label:   11px;
+
+  /* ── Soft prospectus drop shadow ── */
+  --shadow-sm:    0 1px 2px rgba(20, 24, 32, 0.04);
+  --shadow-card:  0 1px 2px rgba(20, 24, 32, 0.04), 0 24px 64px -32px rgba(20, 24, 32, 0.30);
+  --shadow-card-hover: 0 1px 2px rgba(20, 24, 32, 0.05), 0 32px 80px -36px rgba(20, 24, 32, 0.38);
+
+  --glass-fill:        rgba(255, 255, 255, 0.30);   /* wetter, more see-through — the cool/blue stage shows through (iOS 26 Liquid Glass / water) */
+  --glass-fill-deep:   rgba(255, 255, 255, 0.40);   /* slightly denser glass */
+  --glass-border:      rgba(255, 255, 255, 0.70);   /* bright specular edge */
+  --glass-border-hover: rgba(24, 119, 242, 0.50);   /* lights to blue on hover */
+  --glass-ambient: radial-gradient(ellipse 80% 60% at 80% -10%, rgba(24, 119, 242, 0.16) 0%, transparent 64%);
+  /* Diagonal specular sheen — the "liquid glass" lit-from-above tell */
+  --glass-sheen: linear-gradient(133deg, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.10) 20%, rgba(255,255,255,0) 46%);
+  --glass-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.80) inset,
+    0 0 0 0.5px rgba(255, 255, 255, 0.35) inset,
+    0 2px 6px rgba(20, 24, 32, 0.05),
+    0 14px 34px -10px rgba(20, 24, 32, 0.16),
+    0 34px 80px -28px rgba(31, 64, 122, 0.24);
+  --glass-shadow-hover:
+    0 1px 0 rgba(255, 255, 255, 0.90) inset,
+    0 0 0 0.5px rgba(255, 255, 255, 0.45) inset,
+    0 2px 6px rgba(20, 24, 32, 0.06),
+    0 18px 44px -10px rgba(20, 24, 32, 0.20),
+    0 44px 96px -28px rgba(24, 119, 242, 0.30),
+    0 0 0 1px rgba(24, 119, 242, 0.14) inset;
+
+  --midnight:      #0A1124;
+  --midnight-deep: #050813;
+}
+
+/* Light canvas above the site's dark topographic layer: base, two drifting aurora sheets, dot lattice */
+.classic-canvas { position: fixed; inset: 0; z-index: -1; pointer-events: none; background: #F2F5FA; overflow: hidden; }
+.classic-canvas > span { position: absolute; inset: -30%; will-change: transform; }
+.classic-canvas > .cc-lattice { inset: 0; will-change: auto; }
+.classic-canvas > .cc-a {
+  background:
+    radial-gradient(ellipse 34% 30% at 24% 22%, rgba(24, 119, 242, 0.30) 0%, transparent 70%),
+    radial-gradient(ellipse 28% 26% at 78% 30%, rgba(34, 211, 238, 0.24) 0%, transparent 72%),
+    radial-gradient(ellipse 30% 26% at 62% 78%, rgba(76, 154, 255, 0.20) 0%, transparent 72%);
+  animation: auroraDriftA 46s ease-in-out infinite alternate;
+}
+.classic-canvas > .cc-b {
+  background:
+    radial-gradient(ellipse 30% 28% at 68% 18%, rgba(129, 140, 248, 0.26) 0%, transparent 72%),
+    radial-gradient(ellipse 26% 24% at 30% 66%, rgba(167, 139, 250, 0.18) 0%, transparent 72%),
+    radial-gradient(ellipse 24% 22% at 84% 70%, rgba(34, 211, 238, 0.14) 0%, transparent 72%);
+  animation: auroraDriftB 62s ease-in-out infinite alternate;
+}
+.classic-canvas > .cc-lattice {
+  background-image: radial-gradient(rgba(19, 44, 96, 0.20) 1px, transparent 1.3px);
+  background-size: 26px 26px;
+  -webkit-mask-image: radial-gradient(ellipse 72% 66% at 50% 44%, transparent 42%, #000 100%);
+          mask-image: radial-gradient(ellipse 72% 66% at 50% 44%, transparent 42%, #000 100%);
+}
+@keyframes auroraDriftA {
+  from { transform: translate3d(-5%, -3%, 0) rotate(-3deg) scale(1); }
+  to   { transform: translate3d(6%, 4%, 0) rotate(4deg) scale(1.08); }
+}
+@keyframes auroraDriftB {
+  from { transform: translate3d(6%, 3%, 0) rotate(3deg) scale(1.06); }
+  to   { transform: translate3d(-6%, -4%, 0) rotate(-4deg) scale(1); }
+}
+
+.theme-classic #local::before {
+  content: '';
+  position: absolute;
+  top: 92px;
+  left: 50%;
+  width: max(1320px, 128vw);
+  aspect-ratio: 1;
+  transform: translateX(-50%);
+  z-index: -1;
+  border-radius: 50%;
+  pointer-events: none;
+  background:
+    radial-gradient(closest-side, transparent 98.6%, rgba(255, 255, 255, 0.95) 99.3%, transparent 100%),
+    conic-gradient(from 270deg at 50% 50%, rgba(34, 211, 238, 0.85), rgba(24, 119, 242, 0.95) 12%, rgba(129, 140, 248, 0) 26%, rgba(129, 140, 248, 0) 74%, rgba(129, 140, 248, 0.85) 88%, rgba(34, 211, 238, 0.85));
+  -webkit-mask-image:
+    radial-gradient(closest-side, transparent 98.2%, #000 99%, #000 99.7%, transparent 100%),
+    linear-gradient(180deg, #000 0%, #000 8%, transparent 26%);
+          mask-image:
+    radial-gradient(closest-side, transparent 98.2%, #000 99%, #000 99.7%, transparent 100%),
+    linear-gradient(180deg, #000 0%, #000 8%, transparent 26%);
+  -webkit-mask-composite: source-in;
+          mask-composite: intersect;
+  filter: drop-shadow(0 -8px 26px rgba(24, 119, 242, 0.45));
+  animation: horizonBreathe 9s ease-in-out infinite;
+}
+/* soft dawn light spilling beneath the arc, behind the headline */
+.theme-classic #local::after {
+  content: '';
+  position: absolute;
+  top: 24px;
+  left: 50%;
+  width: min(1180px, 150vw);
+  height: 620px;
+  transform: translateX(-50%);
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 62% 50% at 50% 48%, rgba(255, 255, 255, 0.82) 0%, rgba(255, 255, 255, 0.32) 52%, transparent 90%);
+}
+@keyframes horizonBreathe {
+  0%, 100% { opacity: 0.78; }
+  50%      { opacity: 1; }
+}
+
+.theme-classic .btn-blue {
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: linear-gradient(115deg, #3A8DFF 0%, #1877F2 38%, #0E63DB 70%, #2280F6 100%);
+  background-size: 220% 100%;
+  background-position: 0% 50%;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: var(--r-sm);
+  padding: 14px 28px;
+  font-family: var(--font-body), sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--track-btn);
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.40) inset,
+    0 -9px 18px -10px rgba(6, 36, 92, 0.55) inset,
+    0 10px 24px -12px rgba(24, 119, 242, 0.5),
+    0 2px 6px -3px rgba(24, 119, 242, 0.4);
+  transition: background-position 0.8s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.55s cubic-bezier(0.22, 1, 0.36, 1), transform 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.theme-classic .btn-blue:hover {
+  background-position: 100% 50%;
+  transform: translateY(-1px);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.5) inset,
+    0 -9px 18px -10px rgba(6, 36, 92, 0.6) inset,
+    0 16px 34px -12px rgba(24, 119, 242, 0.68),
+    0 3px 9px -3px rgba(24, 119, 242, 0.45);
+}
+.theme-classic .nav-tab:hover { color: var(--ink); background: rgba(20, 30, 55, 0.05); }
+.theme-classic .glass-stage {
+  --stage-a: rgba(24, 119, 242, 0.24);
+  --stage-b: rgba(34, 211, 238, 0.18);
+  --stage-c: rgba(129, 140, 248, 0.16);
+  --stage-base-top: #EAF1FC;
+  --stage-base-bottom: #E1EBFA;
+  position: relative;
+}
+.theme-classic .glass-stage::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse 54% 42% at 14% 18%, var(--stage-a) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 40% at 88% 40%, var(--stage-b) 0%, transparent 70%),
+    radial-gradient(ellipse 58% 40% at 42% 92%, var(--stage-c) 0%, transparent 70%),
+    radial-gradient(ellipse 42% 30% at 58% 58%, rgba(255, 255, 255, 0.62) 0%, transparent 72%),
+    linear-gradient(180deg, var(--stage-base-top) 0%, var(--stage-base-bottom) 100%);
+  -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 110px, #000 calc(100% - 110px), transparent 100%);
+          mask-image: linear-gradient(180deg, transparent 0, #000 110px, #000 calc(100% - 110px), transparent 100%);
+}
+.theme-classic .gold-shimmer {
+  background: linear-gradient(100deg, var(--gold) 0%, var(--gold-bright) 25%, #9DC8FF 50%, var(--gold-bright) 75%, var(--gold) 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+          background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  font-style: italic;
+  animation: goldShimmer 7s ease-in-out infinite;
+  /* Italic Cormorant overhangs the line box; background-clip:text renders the
+     overhang transparent (letters look cut). Pad the paint box, pull back with
+     negative margin so layout is unchanged. */
+  padding: 0.12em 0.1em;
+  margin: -0.12em -0.1em;
+}
+
+.theme-classic h1, .theme-classic h2, .theme-classic h3 { font-family: var(--font-display), Georgia, serif; }
+.theme-classic h1 em, .theme-classic h2 em, .theme-classic h3 em { font-style: italic; }
+
+@media (prefers-reduced-motion: reduce) {
+  .classic-canvas > span, .theme-classic #local::before { animation: none !important; }
+  .theme-classic .gold-shimmer { animation: none !important; background: none !important; -webkit-text-fill-color: var(--gold) !important; color: var(--gold) !important; }
+}

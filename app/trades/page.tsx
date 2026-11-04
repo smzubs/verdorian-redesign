@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import Image from 'next/image'
 import Footer from '@/components/sections/Footer'
 
 export const metadata: Metadata = {
@@ -115,17 +116,15 @@ export default function TradesPage() {
         <Link
           href="/"
           aria-label="Verdorian home"
-          style={{
-            fontFamily: 'var(--font-display), serif',
-            fontWeight: 600,
-            fontSize: '19px',
-            letterSpacing: '0.14em',
-            textTransform: 'uppercase',
-            color: 'var(--ink)',
-            textDecoration: 'none',
-          }}
+          style={{ display: 'inline-flex', textDecoration: 'none' }}
         >
-          Verdorian
+          <Image
+            src="/brand/verdorian-lockup-light.webp"
+            alt="Verdorian Technologies"
+            width={720}
+            height={124}
+            style={{ height: '30px', width: 'auto', display: 'block' }}
+          />
         </Link>
         <Link
           href="/#contact"
@@ -164,7 +163,7 @@ export default function TradesPage() {
             }}
           >
             The office work is stealing your field hours.
-            <span style={{ display: 'block', fontStyle: 'italic', color: 'var(--gold)' }}>
+            <span style={{ display: 'block', color: 'var(--gold)' }}>
               We automate it — you test it before you buy.
             </span>
           </h1>
@@ -239,7 +238,7 @@ export default function TradesPage() {
                 }}
               >
                 The paperwork between{' '}
-                <span style={{ fontStyle: 'italic', color: 'var(--gold)' }}>
+                <span style={{ color: 'var(--gold)' }}>
                   the job and the money.
                 </span>
               </h2>
@@ -320,7 +319,7 @@ export default function TradesPage() {
                 }}
               >
                 These systems already run{' '}
-                <span style={{ fontStyle: 'italic', color: 'var(--gold)' }}>
+                <span style={{ color: 'var(--gold)' }}>
                   inside a real shop.
                 </span>
               </h2>
@@ -398,7 +397,7 @@ export default function TradesPage() {
               }}
             >
               Pick the one task your office hates most.
-              <span style={{ display: 'block', fontStyle: 'italic', color: 'var(--gold)' }}>
+              <span style={{ display: 'block', color: 'var(--gold)' }}>
                 We&apos;ll build it. You test-drive it.
               </span>
             </h2>

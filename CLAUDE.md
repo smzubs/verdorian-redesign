@@ -1,5 +1,11 @@
 # Verdorian Technologies — verdorian.com (Premium Liquid Glass Redesign)
 
+> ## ⚡ LATEST (2026-11-04) — DARK PLUM REBRAND — read first; supersedes the light-glass notes below
+> **Brand:** plum-black `--paper #0E0A0D`, cream `--ink #F4EEE5`, rose accent `--gold #C37080` / `--gold-bright #E3A3B0`, raised surfaces `--surface #1A1317` (`--paper-bright` is now cream TEXT, never a fill). Headings = Poppins (`--font-display` → `--font-poppins`), body = Geist; heading accents are upright, colour only. Background = generated contour field `public/brand/topo.svg` (fixed `html::before`, slow drift) + rose bloom/vignette. Logos in `public/brand/` (lockup light/dark, V mark); favicon/icon from the V mark.
+> **Exception:** `/grow-your-business` deliberately keeps the pre-rebrand light theme (owner's call): `app/grow-your-business/classic.css` scopes the old tokens under `.theme-classic`, with `components/classic/NavClassic.tsx` + `FooterClassic.tsx` (copies of the pre-rebrand nav/footer, logo swapped). `LocalOffer.tsx` is the unchanged pre-rebrand component.
+> **Open:** `public/og-image.svg` (social share card) is still the old blue/purple. Terms draft for the $299 offer parked in `git stash` ("terms draft"), awaiting owner sign-off.
+> Rollback tag: `checkpoint-pre-dark-rebrand` (site before this rebrand).
+
 > ## ⚡ LATEST (2026-11-01) — PREMIUM BACKGROUNDS + GROW YOUR BUSINESS PAGE — read first
 > **Backgrounds:** one fixed aurora canvas (`html::before`, `body::before`, dot lattice `html::after`) behind transparent sections; `body` must stay transparent or it hides the canvas. `.glass-stage` is opaque mid-section on purpose (glass samples a static backdrop, not the drifting aurora) with masked edges; per-section colour via `--stage-*`. Horizon arc = `#hero::before` / `#local::before`. Contact + Footer = `--midnight` / `--midnight-deep` (`--ink` stays text colour).
 > **/grow-your-business** (`components/sections/LocalOffer.tsx`): web version of the Business Owner handout ($299 setup + $49/mo). Copy, prices and fine print mirror the handout; 47%/54% verified against BrightLocal's 2026 report. Nav tab does a full page load on purpose (client routing focuses the first element, popping the skip link). `scrollToSection` falls back to `/#id` when the section is not on the page.

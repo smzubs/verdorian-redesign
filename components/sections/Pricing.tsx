@@ -103,8 +103,8 @@ export default function Pricing() {
           width: 26px; height: 26px;
           display: inline-flex; align-items: center; justify-content: center;
           border-radius: 9999px;
-          border: 1.5px solid rgba(24, 119, 242, 0.45);
-          background: rgba(24, 119, 242, 0.07);
+          border: 1.5px solid rgba(195, 112, 128, 0.45);
+          background: rgba(195, 112, 128, 0.07);
           font-family: var(--font-body), sans-serif;
           font-size: 11px; font-weight: 700;
           color: var(--gold);
@@ -197,7 +197,6 @@ export default function Pricing() {
                 <p
                   style={{
                     fontFamily: 'var(--font-display), Georgia, serif',
-                    fontStyle: 'italic',
                     fontSize: 'clamp(19px, 2.2vw, 24px)',
                     color: 'var(--gold)',
                     lineHeight: 1.35,

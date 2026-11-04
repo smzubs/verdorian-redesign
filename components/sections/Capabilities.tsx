@@ -36,9 +36,9 @@ function IconTile({ gradFrom, gradTo, cardIndex, children }: IconTileProps) {
           flexShrink: 0,
           position: 'relative',
           background: `linear-gradient(140deg, ${gradFrom} 0%, ${gradTo} 100%)`,
-          border: '1px solid rgba(255,255,255,0.62)',
+          border: '1px solid rgba(255, 255, 255, 0.099)',
           boxShadow:
-            '0 1px 0 0 rgba(255,255,255,0.52) inset, 0 0 0 1px rgba(255,255,255,0.14) inset, 0 4px 16px rgba(24,119,242,0.30), 0 1px 4px rgba(24,119,242,0.18)',
+            '0 1px 0 0 rgba(255, 255, 255, 0.083) inset, 0 0 0 1px rgba(255, 255, 255, 0.022) inset, 0 4px 16px rgba(195, 112, 128, 0.3), 0 1px 4px rgba(195, 112, 128, 0.18)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
@@ -54,7 +54,7 @@ function IconTile({ gradFrom, gradTo, cardIndex, children }: IconTileProps) {
           inset: 0,
           borderRadius: '14px',
           background:
-            'linear-gradient(135deg, rgba(255,255,255,0.28) 0%, transparent 52%)',
+            'linear-gradient(135deg, rgba(255, 255, 255, 0.045) 0%, transparent 52%)',
           pointerEvents: 'none',
         }}
       />
@@ -74,7 +74,7 @@ function IconTile({ gradFrom, gradTo, cardIndex, children }: IconTileProps) {
    SVG GLYPHS — stroke-only, 24×24, no fill clutter.
    ────────────────────────────────────────────────────────────────────────── */
 
-const ICON_STROKE = 'rgba(255,255,255,0.95)'
+const ICON_STROKE = 'rgba(255, 255, 255, 0.152)'
 const SW = '1.6'
 
 function IconWorkflow() {
@@ -174,8 +174,8 @@ const CAPABILITIES: CapabilityItem[] = [
     description:
       'A fast, modern website that makes your business look as good as it is — designed, built, and launched for you.',
     payoff: 'Look premium. Load fast. Win work.',
-    gradFrom: '#1877F2',
-    gradTo: '#22D3EE',
+    gradFrom: '#C37080',
+    gradTo: '#E3A3B0',
     Icon: IconWebsite,
   },
   {
@@ -185,8 +185,8 @@ const CAPABILITIES: CapabilityItem[] = [
     description:
       'Your sales, costs, and jobs pulled into one live picture of the business — so decisions stop being guesses.',
     payoff: 'See your whole business at a glance.',
-    gradFrom: '#6366F1',
-    gradTo: '#8B5CF6',
+    gradFrom: '#7E3042',
+    gradTo: '#9B4A63',
     Icon: IconBI,
   },
   {
@@ -196,8 +196,8 @@ const CAPABILITIES: CapabilityItem[] = [
     description:
       'We take the data you already have and turn it into clear charts and plain answers — what’s working, what isn’t, and what to do next.',
     payoff: 'Answers, not spreadsheets.',
-    gradFrom: '#4F46E5',
-    gradTo: '#6366F1',
+    gradFrom: '#622735',
+    gradTo: '#7E3042',
     Icon: IconReports,
   },
   {
@@ -207,8 +207,8 @@ const CAPABILITIES: CapabilityItem[] = [
     description:
       'The exact tool your business needs — or the product you want to launch — built from the ground up, and it’s yours.',
     payoff: 'Built around how you work.',
-    gradFrom: '#2563EB',
-    gradTo: '#1877F2',
+    gradFrom: '#A75465',
+    gradTo: '#C37080',
     Icon: IconSaaS,
   },
   {
@@ -218,8 +218,8 @@ const CAPABILITIES: CapabilityItem[] = [
     description:
       'Approvals, hand-offs, notifications and routine multi-step processes — wired together so they run end-to-end without anyone chasing them.',
     payoff: 'Nobody has to chase anything.',
-    gradFrom: '#1877F2',
-    gradTo: '#0F5CD4',
+    gradFrom: '#C37080',
+    gradTo: '#8E3A4E',
     Icon: IconWorkflow,
   },
   {
@@ -229,8 +229,8 @@ const CAPABILITIES: CapabilityItem[] = [
     description:
       'The copy-paste, re-typing and reconciliation work that burns your team’s day — replaced by automation that’s faster and never mistypes.',
     payoff: 'Faster than typing. Never mistypes.',
-    gradFrom: '#2563EB',
-    gradTo: '#6366F1',
+    gradFrom: '#A75465',
+    gradTo: '#7E3042',
     Icon: IconDataEntry,
   },
 ]
@@ -298,7 +298,7 @@ function CapabilityCard({ item, index }: { item: CapabilityItem; index: number }
           fontSize: '38px',
           lineHeight: 1,
           letterSpacing: '0.02em',
-          color: 'rgba(19, 22, 27, 0.10)',
+          color: 'rgba(0, 0, 0, 0.22)',
           userSelect: 'none',
           pointerEvents: 'none',
         }}
@@ -322,7 +322,7 @@ function CapabilityCard({ item, index }: { item: CapabilityItem; index: number }
           left: 0,
           right: 0,
           height: '72%',
-          background: 'linear-gradient(to bottom, transparent 0%, rgba(232,239,252,0.18) 100%)',
+          background: 'linear-gradient(to bottom, transparent 0%, rgba(26, 19, 23, 0.18) 100%)',
           pointerEvents: 'none',
           borderRadius: '0 0 24px 24px',
         }}
@@ -434,20 +434,20 @@ export default function Capabilities() {
         /* More translucent fill, stronger blur, rounder, layered inset light */
         .cap-card {
           border-radius: 24px;
-          background: rgba(255, 255, 255, 0.30);
+          background: rgba(255, 255, 255, 0.048);
           backdrop-filter: blur(32px) saturate(1.80) brightness(1.04);
           -webkit-backdrop-filter: blur(32px) saturate(1.80) brightness(1.04);
-          border: 1px solid rgba(255, 255, 255, 0.62);
+          border: 1px solid rgba(255, 255, 255, 0.099);
           box-shadow:
             /* curved top-edge specular — mimics a glass lens rim */
-            0 2px 0 0 rgba(255, 255, 255, 0.58) inset,
+            0 2px 0 0 rgba(255, 255, 255, 0.093) inset,
             /* inner side-light refraction */
-            -1px 0 0 0 rgba(255, 255, 255, 0.22) inset,
-            1px 0 0 0 rgba(255, 255, 255, 0.14) inset,
+            -1px 0 0 0 rgba(255, 255, 255, 0.035) inset,
+            1px 0 0 0 rgba(255, 255, 255, 0.022) inset,
             /* outer blue-tinted glow from the glass-stage behind */
-            0 8px 36px rgba(24, 119, 242, 0.14),
-            0 2px 10px rgba(99, 102, 241, 0.10),
-            0 1px 2px rgba(0, 0, 0, 0.05);
+            0 8px 36px rgba(195, 112, 128, 0.14),
+            0 2px 10px rgba(126, 48, 66, 0.14),
+            0 1px 2px rgba(0, 0, 0, 0.11);
           transition:
             box-shadow 0.5s ease,
             border-color 0.5s ease;
@@ -456,20 +456,20 @@ export default function Capabilities() {
         /* Fallback: no backdrop-filter support */
         @supports not (backdrop-filter: blur(1px)) {
           .cap-card {
-            background: rgba(235, 241, 252, 0.96);
+            background: rgba(26, 19, 23, 0.96);
           }
         }
 
         /* Hover: caustic pools a touch brighter, border luminance up */
         .cap-card:hover {
           box-shadow:
-            0 2px 0 0 rgba(255, 255, 255, 0.68) inset,
-            -1px 0 0 0 rgba(255, 255, 255, 0.26) inset,
-            1px 0 0 0 rgba(255, 255, 255, 0.18) inset,
-            0 14px 48px rgba(24, 119, 242, 0.24),
-            0 4px 18px rgba(99, 102, 241, 0.16),
-            0 1px 3px rgba(0, 0, 0, 0.07);
-          border-color: rgba(255, 255, 255, 0.78);
+            0 2px 0 0 rgba(255, 255, 255, 0.109) inset,
+            -1px 0 0 0 rgba(255, 255, 255, 0.042) inset,
+            1px 0 0 0 rgba(255, 255, 255, 0.029) inset,
+            0 14px 48px rgba(195, 112, 128, 0.24),
+            0 4px 18px rgba(126, 48, 66, 0.224),
+            0 1px 3px rgba(0, 0, 0, 0.154);
+          border-color: rgba(255, 255, 255, 0.125);
         }
 
         /* ── Blue top-rule ── */
@@ -480,7 +480,7 @@ export default function Capabilities() {
           right: 12%;
           height: 2px;
           border-radius: 0 0 2px 2px;
-          background: linear-gradient(90deg, transparent, var(--gold, #1877F2), transparent);
+          background: linear-gradient(90deg, transparent, var(--gold, #C37080), transparent);
           transform: scaleX(0);
           transform-origin: center;
           transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
@@ -512,9 +512,9 @@ export default function Capabilities() {
           border-radius: 50%;
           background: radial-gradient(
             ellipse 68% 58% at 50% 50%,
-            rgba(24, 119, 242, 0.22) 0%,
-            rgba(99, 102, 241, 0.14) 40%,
-            rgba(34, 211, 238, 0.06) 70%,
+            rgba(195, 112, 128, 0.22) 0%,
+            rgba(126, 48, 66, 0.196) 40%,
+            rgba(187, 150, 165, 0.06) 70%,
             transparent 100%
           );
           filter: blur(28px);
@@ -546,9 +546,9 @@ export default function Capabilities() {
           background: linear-gradient(
             90deg,
             transparent 0%,
-            rgba(255, 255, 255, 0.72) 35%,
-            rgba(255, 255, 255, 0.90) 50%,
-            rgba(255, 255, 255, 0.72) 65%,
+            rgba(255, 255, 255, 0.115) 35%,
+            rgba(255, 255, 255, 0.144) 50%,
+            rgba(255, 255, 255, 0.115) 65%,
             transparent 100%
           );
           filter: blur(0.8px);

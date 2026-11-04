@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { Geist, Cormorant_Garamond, Fraunces } from 'next/font/google'
+import { Geist, Poppins } from 'next/font/google'
 import { LenisProvider } from '@/lib/lenis-provider'
 import './globals.css'
 
@@ -11,21 +11,12 @@ const geist = Geist({
   display: 'swap',
 })
 
-// Display serif — heritage prospectus headlines (matches QRSafePro)
-const cormorant = Cormorant_Garamond({
+// Display sans — matches the geometric VERDORIAN wordmark
+const poppins = Poppins({
   subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700'],
+  weight: ['400', '500', '600', '700'],
   style: ['normal', 'italic'],
-  variable: '--font-cormorant',
-  display: 'swap',
-})
-
-// Characterful premium serif — used for the hero sub-promise
-const fraunces = Fraunces({
-  subsets: ['latin'],
-  weight: ['400', '500', '600'],
-  style: ['normal', 'italic'],
-  variable: '--font-fraunces',
+  variable: '--font-poppins',
   display: 'swap',
 })
 
@@ -69,15 +60,15 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  themeColor: '#F2F5FA',
-  colorScheme: 'light',
+  themeColor: '#0E0A0D',
+  colorScheme: 'dark',
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html
       lang="en"
-      className={`${geist.variable} ${cormorant.variable} ${fraunces.variable}`}
+      className={`${geist.variable} ${poppins.variable}`}
       suppressHydrationWarning
     >
       <body className="font-[family-name:var(--font-body)]">

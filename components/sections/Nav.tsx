@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState, useEffect, useRef, useCallback } from 'react'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { AnimatePresence, motion } from 'framer-motion'
 import { GlowButton } from '@/components/ui/GlowButton'
@@ -89,11 +90,11 @@ export default function Nav() {
           right: '16px',
           zIndex: 1000,
           borderRadius: '20px',
-          background: scrolled ? 'rgba(244, 247, 252, 0.9)' : 'rgba(244, 247, 252, 0.72)',
-          border: '1px solid rgba(255, 255, 255, 0.6)',
+          background: scrolled ? 'rgba(16, 11, 14, 0.9)' : 'rgba(16, 11, 14, 0.72)',
+          border: '1px solid rgba(255, 255, 255, 0.096)',
           boxShadow: scrolled
-            ? '0 1px 0 rgba(255,255,255,0.7) inset, 0 10px 28px -12px rgba(15,23,42,0.3), 0 2px 8px -4px rgba(15,23,42,0.12)'
-            : '0 1px 0 rgba(255,255,255,0.6) inset, 0 16px 38px -16px rgba(15,23,42,0.24), 0 2px 8px -5px rgba(15,23,42,0.1)',
+            ? '0 1px 0 rgba(255, 255, 255, 0.112) inset, 0 10px 28px -12px rgba(0, 0, 0, 0.66), 0 2px 8px -4px rgba(0, 0, 0, 0.264)'
+            : '0 1px 0 rgba(255, 255, 255, 0.096) inset, 0 16px 38px -16px rgba(0, 0, 0, 0.528), 0 2px 8px -5px rgba(0, 0, 0, 0.22)',
           backdropFilter: 'blur(18px) saturate(1.2)',
           WebkitBackdropFilter: 'blur(18px) saturate(1.2)',
           transition: 'top 0.4s var(--ease-prospectus), background 0.4s var(--ease-prospectus), box-shadow 0.4s var(--ease-prospectus)',
@@ -128,34 +129,14 @@ export default function Nav() {
               flexShrink: 0,
             }}
           >
-            <span
-              style={{
-                fontFamily: 'var(--font-display), serif',
-                fontWeight: 600,
-                fontSize: '20px',
-                color: 'var(--ink)',
-                lineHeight: 1,
-                letterSpacing: '0.14em',
-                textTransform: 'uppercase',
-                whiteSpace: 'nowrap',
-              }}
-            >
-              Verdorian
-            </span>
-            <span
-              style={{
-                fontFamily: 'var(--font-body), sans-serif',
-                fontWeight: 600,
-                fontSize: '8px',
-                color: 'var(--ink-faint)',
-                letterSpacing: '0.3em',
-                textTransform: 'uppercase',
-                lineHeight: 1,
-                whiteSpace: 'nowrap',
-              }}
-            >
-              Technologies
-            </span>
+            <Image
+              src="/brand/verdorian-lockup-light.webp"
+              alt="Verdorian Technologies"
+              width={720}
+              height={124}
+              preload
+              style={{ height: '30px', width: 'auto', display: 'block' }}
+            />
           </button>
 
           {/* Center tabs — modern frosted segmented control with a sliding glass pill */}
@@ -166,11 +147,11 @@ export default function Nav() {
               gap: '2px',
               padding: '4px',
               borderRadius: '999px',
-              background: 'rgba(255, 255, 255, 0.45)',
+              background: 'rgba(255, 255, 255, 0.072)',
               backdropFilter: 'blur(14px) saturate(1.6)',
               WebkitBackdropFilter: 'blur(14px) saturate(1.6)',
-              border: '1px solid rgba(255, 255, 255, 0.6)',
-              boxShadow: '0 1px 0 rgba(255,255,255,0.7) inset, 0 6px 18px -12px rgba(15,23,42,0.3)',
+              border: '1px solid rgba(255, 255, 255, 0.096)',
+              boxShadow: '0 1px 0 rgba(255, 255, 255, 0.112) inset, 0 6px 18px -12px rgba(0, 0, 0, 0.66)',
             }}
           >
             {NAV_LINKS.map((link) => {
@@ -191,9 +172,9 @@ export default function Nav() {
                         position: 'absolute',
                         inset: 0,
                         borderRadius: '999px',
-                        background: 'linear-gradient(180deg, rgba(46,136,255,0.18), rgba(24,119,242,0.12))',
-                        border: '1px solid rgba(24,119,242,0.24)',
-                        boxShadow: '0 1px 0 rgba(255,255,255,0.6) inset, 0 4px 12px -6px rgba(24,119,242,0.45)',
+                        background: 'linear-gradient(180deg, rgba(214, 138, 154, 0.18), rgba(195, 112, 128, 0.12))',
+                        border: '1px solid rgba(195, 112, 128, 0.24)',
+                        boxShadow: '0 1px 0 rgba(255, 255, 255, 0.096) inset, 0 4px 12px -6px rgba(195, 112, 128, 0.45)',
                         zIndex: 0,
                       }}
                       transition={{ type: 'spring', stiffness: 380, damping: 32 }}

@@ -26,7 +26,7 @@ export default function PainSection() {
           position: 'absolute',
           inset: 0,
           backgroundImage:
-            'radial-gradient(ellipse 70% 55% at 50% 45%, rgba(255,255,255,0.72) 0%, rgba(255,255,255,0.28) 46%, transparent 72%)',
+            'radial-gradient(ellipse 70% 55% at 50% 45%, rgba(195,112,128,0.12) 0%, rgba(126,48,66,0.06) 46%, transparent 72%)',
           pointerEvents: 'none',
         }}
       />

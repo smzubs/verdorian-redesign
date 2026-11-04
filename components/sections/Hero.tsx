@@ -113,15 +113,15 @@ export default function Hero() {
           padding: 10px 22px;
           border-radius: 999px;
           background:
-            linear-gradient(180deg, rgba(255,255,255,0.62) 0%, rgba(255,255,255,0.20) 100%),
-            radial-gradient(120% 160% at 18% 0%, rgba(111,176,255,0.18) 0%, rgba(255,255,255,0) 60%);
+            linear-gradient(180deg, rgba(255, 255, 255, 0.099) 0%, rgba(255, 255, 255, 0.032) 100%),
+            radial-gradient(120% 160% at 18% 0%, rgba(214, 138, 154, 0.18) 0%, rgba(255, 255, 255, 0) 60%);
           -webkit-backdrop-filter: blur(20px) saturate(185%) brightness(1.08);
                   backdrop-filter: blur(20px) saturate(185%) brightness(1.08);
           box-shadow:
-            0 1px 1px rgba(255,255,255,0.95) inset,
-            0 -6px 14px -8px rgba(24,119,242,0.18) inset,
-            0 10px 26px -12px rgba(24,119,242,0.42),
-            0 3px 10px -5px rgba(15,23,42,0.16);
+            0 1px 1px rgba(255, 255, 255, 0.152) inset,
+            0 -6px 14px -8px rgba(195, 112, 128, 0.18) inset,
+            0 10px 26px -12px rgba(195, 112, 128, 0.42),
+            0 3px 10px -5px rgba(0, 0, 0, 0.352);
           animation: neonPowerOn 4s ease-in-out both;
         }
         /* refractive gradient edge */
@@ -130,7 +130,7 @@ export default function Hero() {
           position: absolute; inset: 0;
           border-radius: inherit;
           padding: 1px;
-          background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(24,119,242,0.30) 38%, rgba(255,255,255,0.10) 64%, rgba(111,176,255,0.65) 100%);
+          background: linear-gradient(135deg, rgba(255, 255, 255, 0.152) 0%, rgba(195, 112, 128, 0.3) 38%, rgba(255, 255, 255, 0.02) 64%, rgba(214, 138, 154, 0.65) 100%);
           -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
                   mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
           -webkit-mask-composite: xor;
@@ -143,7 +143,7 @@ export default function Hero() {
           content: '';
           position: absolute; inset: 0;
           border-radius: inherit;
-          background: linear-gradient(115deg, transparent 36%, rgba(255,255,255,0.6) 50%, transparent 64%);
+          background: linear-gradient(115deg, transparent 36%, rgba(255, 255, 255, 0.096) 50%, transparent 64%);
           background-size: 220% 100%;
           background-position: 135% 0;
           animation: badgeSheen 7s ease-in-out infinite;
@@ -158,23 +158,23 @@ export default function Hero() {
         /* Neon-sign power-on: flickers awake, then settles to the stable glass pill (plays once on load) */
         @keyframes neonPowerOn {
           0%   { opacity: 0;    filter: brightness(0.7) blur(3px) drop-shadow(0 0 0 transparent); }
-          20%  { opacity: 0.9;  filter: brightness(1.3) blur(1px) hue-rotate(-60deg) drop-shadow(0 0 16px rgba(255,0,170,0.6)); }  /* dreamy magenta bloom */
-          40%  { opacity: 1;    filter: brightness(1.32) blur(0.4px) hue-rotate(95deg) drop-shadow(0 0 18px rgba(0,225,255,0.6)); } /* cyan */
-          60%  { opacity: 1;    filter: brightness(1.28) hue-rotate(-30deg) drop-shadow(0 0 18px rgba(150,80,255,0.55)); }          /* violet */
-          80%  { opacity: 1;    filter: brightness(1.16) hue-rotate(18deg) drop-shadow(0 0 14px rgba(24,119,242,0.55)); }           /* settling into blue */
+          20%  { opacity: 0.9;  filter: brightness(1.3) blur(1px) drop-shadow(0 0 16px rgba(255,0,170,0.6)); }  /* dreamy magenta bloom */
+          40%  { opacity: 1;    filter: brightness(1.32) blur(0.4px) drop-shadow(0 0 18px rgba(227,163,176,0.6)); } /* cyan */
+          60%  { opacity: 1;    filter: brightness(1.28) drop-shadow(0 0 18px rgba(126, 48, 66, 0.6)); }          /* violet */
+          80%  { opacity: 1;    filter: brightness(1.16) drop-shadow(0 0 14px rgba(195, 112, 128, 0.55)); }           /* settling into blue */
           100% { opacity: 1;    filter: brightness(1) blur(0) drop-shadow(0 0 0 transparent); }
         }
         .hero-badge-dot {
           width: 8px; height: 8px; flex: 0 0 auto;
           border-radius: 50%;
           background: var(--gold);
-          box-shadow: 0 0 0 0 rgba(24,119,242,0.5);
+          box-shadow: 0 0 0 0 rgba(195, 112, 128, 0.5);
           animation: badgePulse 2.4s ease-out infinite;
         }
         @keyframes badgePulse {
-          0%   { box-shadow: 0 0 0 0 rgba(24,119,242,0.45); }
-          70%  { box-shadow: 0 0 0 8px rgba(24,119,242,0); }
-          100% { box-shadow: 0 0 0 0 rgba(24,119,242,0); }
+          0%   { box-shadow: 0 0 0 0 rgba(195, 112, 128, 0.45); }
+          70%  { box-shadow: 0 0 0 8px rgba(195, 112, 128, 0); }
+          100% { box-shadow: 0 0 0 0 rgba(195, 112, 128, 0); }
         }
         .hero-badge-text {
           font-family: var(--font-body), sans-serif;
@@ -187,7 +187,7 @@ export default function Hero() {
         }
         .hero-badge-hl {
           font-weight: 700;
-          background: linear-gradient(100deg, var(--gold) 0%, var(--gold-bright) 45%, #6FB0FF 100%);
+          background: linear-gradient(100deg, var(--gold) 0%, var(--gold-bright) 45%, #EBB8C2 100%);
           -webkit-background-clip: text;
                   background-clip: text;
           -webkit-text-fill-color: transparent;
@@ -216,7 +216,7 @@ export default function Hero() {
           height: 2px;
           margin-top: 17px;
           border-radius: 2px;
-          background: linear-gradient(90deg, rgba(24,119,242,0.10), rgba(24,119,242,0.30) 50%, rgba(24,119,242,0.10));
+          background: linear-gradient(90deg, rgba(195, 112, 128, 0.1), rgba(195, 112, 128, 0.3) 50%, rgba(195, 112, 128, 0.1));
         }
         .flow-binary {
           position: absolute;
@@ -254,7 +254,7 @@ export default function Hero() {
           .flow-step .flow-text { display: flex; flex-direction: column; gap: 2px; align-items: flex-start; }
           .flow-conn {
             width: 2px; height: 20px; min-width: 0; max-width: none; margin-top: 0; margin-left: 19px;
-            background: linear-gradient(180deg, rgba(24,119,242,0.10), rgba(24,119,242,0.30) 50%, rgba(24,119,242,0.10));
+            background: linear-gradient(180deg, rgba(195, 112, 128, 0.1), rgba(195, 112, 128, 0.3) 50%, rgba(195, 112, 128, 0.1));
           }
           .flow-binary { display: none; }
           .flow-conn::after {
@@ -262,7 +262,7 @@ export default function Hero() {
             position: absolute; top: -5px; left: 50%;
             width: 14px; height: 14px; margin-left: -7px;
             border-radius: 50%; pointer-events: none;
-            background: radial-gradient(circle, rgba(76,154,255,0.95) 0%, rgba(24,119,242,0.55) 38%, rgba(24,119,242,0) 72%);
+            background: radial-gradient(circle, rgba(227, 163, 176, 0.95) 0%, rgba(195, 112, 128, 0.55) 38%, rgba(195, 112, 128, 0) 72%);
             animation: connCometV 2s linear infinite;
             animation-delay: calc(var(--i, 0) * 0.4s);
           }

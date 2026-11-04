@@ -51,7 +51,7 @@ export function SectionHeading({
         }}
       >
         <span style={{ display: 'block', color: invert ? 'var(--paper-bright)' : 'var(--ink)' }}>{lead}</span>
-        <span style={{ display: 'block', fontStyle: 'italic', color: 'var(--gold)' }}>{accent}</span>
+        <span style={{ display: 'block', color: 'var(--gold)' }}>{accent}</span>
       </motion.h2>
     </div>
   )

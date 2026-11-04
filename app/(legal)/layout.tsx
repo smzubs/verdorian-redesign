@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import Footer from '@/components/sections/Footer'
 
 // Shared shell for the legal pages — quiet, readable, on-theme.
@@ -15,17 +16,15 @@ export default function LegalLayout({ children }: { children: React.ReactNode })
         <Link
           href="/"
           aria-label="Verdorian home"
-          style={{
-            fontFamily: 'var(--font-display), serif',
-            fontWeight: 600,
-            fontSize: '19px',
-            letterSpacing: '0.14em',
-            textTransform: 'uppercase',
-            color: 'var(--ink)',
-            textDecoration: 'none',
-          }}
+          style={{ display: 'inline-flex', textDecoration: 'none' }}
         >
-          Verdorian
+          <Image
+            src="/brand/verdorian-lockup-light.webp"
+            alt="Verdorian Technologies"
+            width={720}
+            height={124}
+            style={{ height: '30px', width: 'auto', display: 'block' }}
+          />
         </Link>
       </header>
       <main

@@ -36,9 +36,9 @@ export default function MatrixBand() {
         @keyframes mbGlow {
           /* Glow window must stay shorter than the per-row stagger (period / row count,
              ≈1.67s at 30s/18 rows) or two rows light up at once outside the ribbon. */
-          0%, 48%   { color: #14181F; }
-          50%       { color: #1E6FF0; }
-          52%, 100% { color: #14181F; }
+          0%, 48%   { color: #9A8D93; }
+          50%       { color: #E39AA8; }
+          52%, 100% { color: #9A8D93; }
         }
         .mb-section {
           position: relative; padding: 14px 0 30px; overflow: hidden;
@@ -60,12 +60,12 @@ export default function MatrixBand() {
           width: min(470px, 90vw);
           height: 32px;
           border-radius: 11px;
-          border: 1px solid rgba(120,170,255,0.5);
-          background: rgba(255,255,255,0.05);
+          border: 1px solid rgba(214, 138, 154, 0.5);
+          background: rgba(255, 255, 255, 0.025);
           box-shadow:
-            0 1px 0 rgba(255,255,255,0.5) inset,
-            0 8px 20px -10px rgba(15,23,42,0.22),
-            0 2px 7px -3px rgba(24,119,242,0.22);
+            0 1px 0 rgba(255, 255, 255, 0.08) inset,
+            0 8px 20px -10px rgba(0, 0, 0, 0.484),
+            0 2px 7px -3px rgba(195, 112, 128, 0.22);
           pointer-events: none;
           z-index: 2;
         }
@@ -84,14 +84,14 @@ export default function MatrixBand() {
           font-size: clamp(9.5px, 1.4vw, 13px);
           font-weight: 600;
           letter-spacing: 0.02em;
-          color: #14181F;
-          text-shadow: 0 0 3px rgba(40,120,235,0.18);
+          color: #9A8D93;
+          text-shadow: 0 0 3px rgba(214, 138, 154, 0.18);
           will-change: color;
           animation: mbGlow 30s linear infinite;
         }
         @media (prefers-reduced-motion: reduce) {
           .mb-drum, .mb-row { animation: none !important; }
-          .mb-row { color: #14181F; }
+          .mb-row { color: #9A8D93; }
         }
       `}</style>
       <div className="mb-stage">

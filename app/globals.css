@@ -3,29 +3,30 @@
 /* ─── DESIGN SYSTEM: HERITAGE PROSPECTUS — warm ivory paper, hairline rules, gold leaf, ink (matches QRSafePro) ─── */
 :root {
   /* ── Paper / ink / rule scale ── */
-  --paper:        #F2F5FA;   /* primary ivory */
-  --paper-deep:   #E7ECF4;   /* alt section bands */
-  --paper-bright: #FBFCFE;   /* plate fills, elevated */
-  --ink:          #13161B;   /* main text + dark bands */
-  --ink-soft:     #474B54;   /* body */
-  --ink-faint:    #868C98;   /* meta / captions */
-  --rule-strong:  rgba(20, 24, 32, 0.16);   /* standard hairline */
-  --rule:         rgba(20, 24, 32, 0.09);   /* soft divider */
-  --rule-faint:   rgba(20, 24, 32, 0.05);   /* chain lines / barely-there */
+  --paper:        #0E0A0D;   /* plum-black canvas (brand) */
+  --paper-deep:   #160F13;   /* alt bands */
+  --paper-bright: #FBF7F1;   /* brightest cream — text on dark */
+  --surface:      #1A1317;   /* raised plates */
+  --ink:          #F4EEE5;   /* brand cream — main text */
+  --ink-soft:     #C9BDC1;   /* body */
+  --ink-faint:    #9C8F95;   /* meta / captions */
+  --rule-strong:  rgba(244, 238, 229, 0.16);   /* standard hairline */
+  --rule:         rgba(244, 238, 229, 0.09);   /* soft divider */
+  --rule-faint:   rgba(244, 238, 229, 0.05);   /* chain lines / barely-there */
 
   /* ── Gold + semantic ── */
-  --gold:        #1877F2;
-  --gold-bright: #4C9AFF;
-  --gold-pale:   rgba(24, 119, 242, 0.12);
-  --green-pass:  #2F5D3A;
-  --red-fail:    #8C3A2E;
+  --gold:        #C37080;   /* brand rose */
+  --gold-bright: #E3A3B0;
+  --gold-pale:   rgba(195, 112, 128, 0.12);
+  --green-pass:  #7DB892;
+  --red-fail:    #E58A7E;
 
   /* ── Typography (display = Cormorant Garamond, body = Geist) ── */
-  --font-display: var(--font-cormorant);
+  --font-display: var(--font-poppins);
   --font-body:    var(--font-geist);
   --font-mono:    var(--font-geist);
   /* Compatibility aliases so any lingering section refs still resolve cleanly */
-  --font-fraunces:    var(--font-cormorant);
+  --font-fraunces:    var(--font-poppins);
   --font-outfit:      var(--font-geist);
   --font-dm-sans:     var(--font-geist);
   --font-spline-mono: var(--font-geist);
@@ -45,7 +46,7 @@
   --c-text-2:      var(--ink-soft);
   --c-text-3:      var(--ink-faint);
   --c-border:      var(--rule-strong);
-  --c-border-hover: rgba(24, 119, 242, 0.30);
+  --c-border-hover: rgba(195, 112, 128, 0.3);
   --c-ghost:       var(--gold-pale);
 
   /* ── Tracking ── */
@@ -86,9 +87,9 @@
   --t-label:   11px;
 
   /* ── Soft prospectus drop shadow ── */
-  --shadow-sm:    0 1px 2px rgba(20, 24, 32, 0.04);
-  --shadow-card:  0 1px 2px rgba(20, 24, 32, 0.04), 0 24px 64px -32px rgba(20, 24, 32, 0.30);
-  --shadow-card-hover: 0 1px 2px rgba(20, 24, 32, 0.05), 0 32px 80px -36px rgba(20, 24, 32, 0.38);
+  --shadow-sm:    0 1px 2px rgba(0, 0, 0, 0.088);
+  --shadow-card:  0 1px 2px rgba(0, 0, 0, 0.088), 0 24px 64px -32px rgba(0, 0, 0, 0.66);
+  --shadow-card-hover: 0 1px 2px rgba(0, 0, 0, 0.11), 0 32px 80px -36px rgba(0, 0, 0, 0.7);
 }
 
 /* ─── BASE RESET ─────────────────────────────────────────────── */
@@ -129,81 +130,36 @@ body {
   }
 }
 
-/* ─── AURORA CANVAS — one continuous fixed field behind the whole site.
-   Two gradient sheets drift against each other (transform-only, so no repaint);
-   a dot lattice sits above them, masked away from the centre so copy stays clean. ── */
-html::before,
-body::before {
+/* ─── TOPOGRAPHIC CANVAS — the brand's contour field, fixed behind the whole site.
+   The lines drift a few percent (transform-only, no repaint); a rose bloom and a
+   vignette sit above them so copy stays legible. ── */
+html::before {
   content: '';
   position: fixed;
-  inset: -30%;
-  pointer-events: none;
-  will-change: transform;
-}
-html::before {
+  inset: -4%;
   z-index: -3;
-  background:
-    radial-gradient(ellipse 34% 30% at 24% 22%, rgba(24, 119, 242, 0.30) 0%, transparent 70%),
-    radial-gradient(ellipse 28% 26% at 78% 30%, rgba(34, 211, 238, 0.24) 0%, transparent 72%),
-    radial-gradient(ellipse 30% 26% at 62% 78%, rgba(76, 154, 255, 0.20) 0%, transparent 72%);
-  animation: auroraDriftA 46s ease-in-out infinite alternate;
+  pointer-events: none;
+  background: url('/brand/topo.svg') center / cover no-repeat;
+  opacity: 0.42;
+  will-change: transform;
+  animation: topoDrift 70s ease-in-out infinite alternate;
 }
 body::before {
-  z-index: -2;
-  background:
-    radial-gradient(ellipse 30% 28% at 68% 18%, rgba(129, 140, 248, 0.26) 0%, transparent 72%),
-    radial-gradient(ellipse 26% 24% at 30% 66%, rgba(167, 139, 250, 0.18) 0%, transparent 72%),
-    radial-gradient(ellipse 24% 22% at 84% 70%, rgba(34, 211, 238, 0.14) 0%, transparent 72%);
-  animation: auroraDriftB 62s ease-in-out infinite alternate;
-}
-html::after {
   content: '';
   position: fixed;
   inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  background-image: radial-gradient(rgba(19, 44, 96, 0.20) 1px, transparent 1.3px);
-  background-size: 26px 26px;
-  -webkit-mask-image: radial-gradient(ellipse 72% 66% at 50% 44%, transparent 42%, #000 100%);
-          mask-image: radial-gradient(ellipse 72% 66% at 50% 44%, transparent 42%, #000 100%);
-}
-@keyframes auroraDriftA {
-  from { transform: translate3d(-5%, -3%, 0) rotate(-3deg) scale(1); }
-  to   { transform: translate3d(6%, 4%, 0) rotate(4deg) scale(1.08); }
-}
-@keyframes auroraDriftB {
-  from { transform: translate3d(6%, 3%, 0) rotate(3deg) scale(1.06); }
-  to   { transform: translate3d(-6%, -4%, 0) rotate(-4deg) scale(1); }
-}
-
-/* ─── HERO HORIZON — luminous planetary arc cresting above the headline ── */
-#hero::before,
-#local::before {
-  content: '';
-  position: absolute;
-  top: 92px;
-  left: 50%;
-  width: max(1320px, 128vw);
-  aspect-ratio: 1;
-  transform: translateX(-50%);
-  z-index: -1;
-  border-radius: 50%;
+  z-index: -2;
   pointer-events: none;
   background:
-    radial-gradient(closest-side, transparent 98.6%, rgba(255, 255, 255, 0.95) 99.3%, transparent 100%),
-    conic-gradient(from 270deg at 50% 50%, rgba(34, 211, 238, 0.85), rgba(24, 119, 242, 0.95) 12%, rgba(129, 140, 248, 0) 26%, rgba(129, 140, 248, 0) 74%, rgba(129, 140, 248, 0.85) 88%, rgba(34, 211, 238, 0.85));
-  -webkit-mask-image:
-    radial-gradient(closest-side, transparent 98.2%, #000 99%, #000 99.7%, transparent 100%),
-    linear-gradient(180deg, #000 0%, #000 8%, transparent 26%);
-          mask-image:
-    radial-gradient(closest-side, transparent 98.2%, #000 99%, #000 99.7%, transparent 100%),
-    linear-gradient(180deg, #000 0%, #000 8%, transparent 26%);
-  -webkit-mask-composite: source-in;
-          mask-composite: intersect;
-  filter: drop-shadow(0 -8px 26px rgba(24, 119, 242, 0.45));
-  animation: horizonBreathe 9s ease-in-out infinite;
+    radial-gradient(ellipse 46% 40% at 50% 30%, rgba(195, 112, 128, 0.13) 0%, transparent 70%),
+    radial-gradient(ellipse 120% 90% at 50% 40%, transparent 55%, rgba(4, 2, 4, 0.62) 100%);
 }
-/* soft dawn light spilling beneath the arc, behind the headline */
+@keyframes topoDrift {
+  from { transform: translate3d(-1.5%, -1%, 0) scale(1); }
+  to   { transform: translate3d(1.5%, 1%, 0) scale(1.04); }
+}
+
+/* ─── HERO BLOOM — soft rose light behind each page's first headline ── */
 #hero::after,
 #local::after {
   content: '';
@@ -216,12 +172,9 @@ html::after {
   z-index: -1;
   pointer-events: none;
   background:
-    radial-gradient(ellipse 62% 50% at 50% 48%, rgba(255, 255, 255, 0.82) 0%, rgba(255, 255, 255, 0.32) 52%, transparent 90%);
+    radial-gradient(ellipse 58% 46% at 50% 46%, rgba(195, 112, 128, 0.16) 0%, rgba(126, 48, 66, 0.08) 50%, transparent 86%);
 }
-@keyframes horizonBreathe {
-  0%, 100% { opacity: 0.78; }
-  50%      { opacity: 1; }
-}
+
 
 /* ─── FINE GRAIN OVERLAY — static paper tactility ── */
 body::after {
@@ -230,8 +183,8 @@ body::after {
   inset: 0;
   z-index: 9999;
   pointer-events: none;
-  opacity: 0.032;
-  mix-blend-mode: multiply;
+  opacity: 0.05;
+  mix-blend-mode: soft-light;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
   background-size: 200px 200px;
 }
@@ -239,24 +192,24 @@ body::after {
 /* ─── SCROLLBAR — refined gold on ivory ── */
 html {
   scrollbar-width: thin;
-  scrollbar-color: rgba(24, 119, 242, 0.34) transparent;
+  scrollbar-color: rgba(195, 112, 128, 0.34) transparent;
 }
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb {
-  background: rgba(24, 119, 242, 0.34);
+  background: rgba(195, 112, 128, 0.34);
   border-radius: 9999px;
   border: 2px solid transparent;
   background-clip: content-box;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(24, 119, 242, 0.5);
+  background: rgba(195, 112, 128, 0.5);
   background-clip: content-box;
 }
 
 /* ─── SELECTION / FOCUS / SKIP LINK ── */
 ::selection {
-  background: rgba(24, 119, 242, 0.18);
+  background: rgba(195, 112, 128, 0.18);
   color: var(--ink);
 }
 :focus-visible {
@@ -326,7 +279,7 @@ html {
 /* Framed "plate" card (NOT glass) */
 .plate {
   position: relative;
-  background: var(--paper-bright);
+  background: var(--surface);
   border: 1px solid var(--rule-strong);
   border-radius: var(--r-md);
   box-shadow: var(--shadow-card);
@@ -350,10 +303,10 @@ html {
 }
 /* plate rendered on a dark band */
 .plate-dark {
-  background: rgba(255, 255, 255, 0.03);
-  border-color: rgba(24, 119, 242, 0.24);
+  background: rgba(255, 255, 255, 0.015);
+  border-color: rgba(195, 112, 128, 0.24);
 }
-.plate-dark::after { border-color: rgba(244, 247, 252, 0.10); }
+.plate-dark::after { border-color: rgba(244, 238, 229, 0.1); }
 
 /* Dark ink button with shine sweep */
 .btn-ink {
@@ -365,7 +318,7 @@ html {
   justify-content: center;
   gap: 8px;
   background: var(--ink);
-  color: var(--paper-bright);
+  color: var(--paper);
   border: 1px solid var(--ink);
   border-radius: var(--r-sm);
   padding: 14px 28px;
@@ -383,7 +336,7 @@ html {
   position: absolute;
   inset: 0;
   transform: translateX(-120%);
-  background: linear-gradient(105deg, transparent 40%, rgba(255, 255, 255, 0.25) 50%, transparent 60%);
+  background: linear-gradient(105deg, transparent 40%, rgba(255, 255, 255, 0.04) 50%, transparent 60%);
   transition: transform 0.65s var(--ease-prospectus);
   pointer-events: none;
 }
@@ -398,11 +351,11 @@ html {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  background: linear-gradient(115deg, #3A8DFF 0%, #1877F2 38%, #0E63DB 70%, #2280F6 100%);
+  background: linear-gradient(115deg, #D08292 0%, #C37080 38%, #7E3042 70%, #A75465 100%);
   background-size: 220% 100%;
   background-position: 0% 50%;
   color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.22);
+  border: 1px solid rgba(255, 255, 255, 0.035);
   border-radius: var(--r-sm);
   padding: 14px 28px;
   font-family: var(--font-body), sans-serif;
@@ -413,20 +366,20 @@ html {
   text-decoration: none;
   cursor: pointer;
   box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.40) inset,
-    0 -9px 18px -10px rgba(6, 36, 92, 0.55) inset,
-    0 10px 24px -12px rgba(24, 119, 242, 0.5),
-    0 2px 6px -3px rgba(24, 119, 242, 0.4);
+    0 1px 0 rgba(255, 255, 255, 0.064) inset,
+    0 -9px 18px -10px rgba(60, 14, 28, 0.55) inset,
+    0 10px 24px -12px rgba(195, 112, 128, 0.5),
+    0 2px 6px -3px rgba(195, 112, 128, 0.4);
   transition: background-position 0.8s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.55s cubic-bezier(0.22, 1, 0.36, 1), transform 0.2s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .btn-blue:hover {
   background-position: 100% 50%;
   transform: translateY(-1px);
   box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.5) inset,
-    0 -9px 18px -10px rgba(6, 36, 92, 0.6) inset,
-    0 16px 34px -12px rgba(24, 119, 242, 0.68),
-    0 3px 9px -3px rgba(24, 119, 242, 0.45);
+    0 1px 0 rgba(255, 255, 255, 0.08) inset,
+    0 -9px 18px -10px rgba(60, 14, 28, 0.6) inset,
+    0 16px 34px -12px rgba(195, 112, 128, 0.68),
+    0 3px 9px -3px rgba(195, 112, 128, 0.45);
 }
 
 /* Modern frosted segmented-control nav tab */
@@ -445,7 +398,7 @@ html {
   color: var(--ink-soft);
   transition: color 0.25s var(--ease-prospectus), background 0.25s var(--ease-prospectus);
 }
-.nav-tab:hover { color: var(--ink); background: rgba(20, 30, 55, 0.05); }
+.nav-tab:hover { color: var(--ink); background: rgba(255, 255, 255, 0.03); }
 .nav-tab[aria-current='true'] { color: var(--gold); }
 .nav-tab[aria-current='true']:hover { background: transparent; }
 
@@ -471,14 +424,14 @@ html {
   cursor: pointer;
   transition: background 0.4s var(--ease-prospectus), color 0.4s var(--ease-prospectus), border-color 0.4s var(--ease-prospectus);
 }
-.btn-ghost:hover { background: var(--ink); color: var(--paper-bright); }
+.btn-ghost:hover { background: var(--ink); color: var(--paper); }
 
 /* On dark bands: light ghost button (paper outline, inverts to paper fill) */
 .btn-ghost-light {
   color: var(--paper-bright);
-  border-color: rgba(244, 247, 252, 0.5);
+  border-color: rgba(244, 238, 229, 0.5);
 }
-.btn-ghost-light:hover { background: var(--paper-bright); color: var(--ink); border-color: var(--paper-bright); }
+.btn-ghost-light:hover { background: var(--paper-bright); color: var(--paper); border-color: var(--paper-bright); }
 
 /* PASS / FAIL / LIVE wet-seal stamp */
 .stamp {
@@ -494,8 +447,8 @@ html {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.18em;
-  -webkit-mask-image: radial-gradient(ellipse 120% 100% at 50% 50%, #000 60%, rgba(0, 0, 0, 0.72) 100%);
-          mask-image: radial-gradient(ellipse 120% 100% at 50% 50%, #000 60%, rgba(0, 0, 0, 0.72) 100%);
+  -webkit-mask-image: radial-gradient(ellipse 120% 100% at 50% 50%, #000 60%, rgba(0, 0, 0, 0.7) 100%);
+          mask-image: radial-gradient(ellipse 120% 100% at 50% 50%, #000 60%, rgba(0, 0, 0, 0.7) 100%);
   opacity: 0.9;
 }
 .stamp-pass { color: var(--green-pass); }
@@ -518,7 +471,7 @@ html {
 /* Gold hairline (decorative, kept for section dividers) */
 .gold-hairline {
   height: 1px;
-  background: linear-gradient(to right, transparent, rgba(24, 119, 242, 0.32), transparent);
+  background: linear-gradient(to right, transparent, rgba(195, 112, 128, 0.32), transparent);
 }
 
 /* Gold animated underline link */
@@ -547,26 +500,26 @@ html {
    cyan, never a colored tint. Keep ≤ ~6 glass surfaces visible at once (GPU).
    ════════════════════════════════════════════════════════════════ */
 :root {
-  --glass-fill:        rgba(255, 255, 255, 0.30);   /* wetter, more see-through — the cool/blue stage shows through (iOS 26 Liquid Glass / water) */
-  --glass-fill-deep:   rgba(255, 255, 255, 0.40);   /* slightly denser glass */
-  --glass-border:      rgba(255, 255, 255, 0.70);   /* bright specular edge */
-  --glass-border-hover: rgba(24, 119, 242, 0.50);   /* lights to blue on hover */
-  --glass-ambient: radial-gradient(ellipse 80% 60% at 80% -10%, rgba(24, 119, 242, 0.16) 0%, transparent 64%);
+  --glass-fill:        rgba(255, 255, 255, 0.048);   /* wetter, more see-through — the cool/blue stage shows through (iOS 26 Liquid Glass / water) */
+  --glass-fill-deep:   rgba(255, 255, 255, 0.064);   /* slightly denser glass */
+  --glass-border:      rgba(255, 255, 255, 0.112);   /* bright specular edge */
+  --glass-border-hover: rgba(195, 112, 128, 0.5);   /* lights to blue on hover */
+  --glass-ambient: radial-gradient(ellipse 80% 60% at 80% -10%, rgba(195, 112, 128, 0.16) 0%, transparent 64%);
   /* Diagonal specular sheen — the "liquid glass" lit-from-above tell */
-  --glass-sheen: linear-gradient(133deg, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.10) 20%, rgba(255,255,255,0) 46%);
+  --glass-sheen: linear-gradient(133deg, rgba(255, 255, 255, 0.088) 0%, rgba(255, 255, 255, 0.02) 20%, rgba(255, 255, 255, 0) 46%);
   --glass-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.80) inset,
-    0 0 0 0.5px rgba(255, 255, 255, 0.35) inset,
-    0 2px 6px rgba(20, 24, 32, 0.05),
-    0 14px 34px -10px rgba(20, 24, 32, 0.16),
-    0 34px 80px -28px rgba(31, 64, 122, 0.24);
+    0 1px 0 rgba(255, 255, 255, 0.128) inset,
+    0 0 0 0.5px rgba(255, 255, 255, 0.056) inset,
+    0 2px 6px rgba(0, 0, 0, 0.11),
+    0 14px 34px -10px rgba(0, 0, 0, 0.352),
+    0 34px 80px -28px rgba(0, 0, 0, 0.528);
   --glass-shadow-hover:
-    0 1px 0 rgba(255, 255, 255, 0.90) inset,
-    0 0 0 0.5px rgba(255, 255, 255, 0.45) inset,
-    0 2px 6px rgba(20, 24, 32, 0.06),
-    0 18px 44px -10px rgba(20, 24, 32, 0.20),
-    0 44px 96px -28px rgba(24, 119, 242, 0.30),
-    0 0 0 1px rgba(24, 119, 242, 0.14) inset;
+    0 1px 0 rgba(255, 255, 255, 0.144) inset,
+    0 0 0 0.5px rgba(255, 255, 255, 0.072) inset,
+    0 2px 6px rgba(0, 0, 0, 0.132),
+    0 18px 44px -10px rgba(0, 0, 0, 0.44),
+    0 44px 96px -28px rgba(195, 112, 128, 0.3),
+    0 0 0 1px rgba(195, 112, 128, 0.14) inset;
 }
 
 /* Frosted glass card — the offered/live surface */
@@ -621,11 +574,11 @@ html {
    re-blurring the drifting aurora every frame. The mask dissolves its edges into the canvas,
    so sections have no seams. Each section sets its own colour temperature below. */
 .glass-stage {
-  --stage-a: rgba(24, 119, 242, 0.24);
-  --stage-b: rgba(34, 211, 238, 0.18);
-  --stage-c: rgba(129, 140, 248, 0.16);
-  --stage-base-top: #EAF1FC;
-  --stage-base-bottom: #E1EBFA;
+  --stage-a: rgba(195, 112, 128, 0.24);
+  --stage-b: rgba(187, 150, 165, 0.18);
+  --stage-c: rgba(126, 48, 66, 0.224);
+  --stage-base-top: #150E12;
+  --stage-base-bottom: #110B0E;
   position: relative;
 }
 .glass-stage::before {
@@ -638,37 +591,37 @@ html {
     radial-gradient(ellipse 54% 42% at 14% 18%, var(--stage-a) 0%, transparent 70%),
     radial-gradient(ellipse 50% 40% at 88% 40%, var(--stage-b) 0%, transparent 70%),
     radial-gradient(ellipse 58% 40% at 42% 92%, var(--stage-c) 0%, transparent 70%),
-    radial-gradient(ellipse 42% 30% at 58% 58%, rgba(255, 255, 255, 0.62) 0%, transparent 72%),
+    radial-gradient(ellipse 42% 30% at 58% 58%, rgba(195, 112, 128, 0.06) 0%, transparent 72%),
     linear-gradient(180deg, var(--stage-base-top) 0%, var(--stage-base-bottom) 100%);
   -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 110px, #000 calc(100% - 110px), transparent 100%);
           mask-image: linear-gradient(180deg, transparent 0, #000 110px, #000 calc(100% - 110px), transparent 100%);
 }
 .glass-stage > * { position: relative; z-index: 1; }
 #pricing.glass-stage {
-  --stage-a: rgba(129, 140, 248, 0.26);
-  --stage-b: rgba(24, 119, 242, 0.20);
-  --stage-c: rgba(167, 139, 250, 0.18);
-  --stage-base-top: #EDEFFC;
-  --stage-base-bottom: #E6E9FB;
+  --stage-a: rgba(126, 48, 66, 0.364);
+  --stage-b: rgba(195, 112, 128, 0.2);
+  --stage-c: rgba(126, 48, 66, 0.252);
+  --stage-base-top: #160D13;
+  --stage-base-bottom: #120A10;
 }
 #trust.glass-stage {
-  --stage-a: rgba(34, 211, 238, 0.22);
-  --stage-b: rgba(24, 119, 242, 0.20);
-  --stage-c: rgba(20, 184, 166, 0.13);
-  --stage-base-top: #E9F4FB;
-  --stage-base-bottom: #E3EFF9;
+  --stage-a: rgba(187, 150, 165, 0.22);
+  --stage-b: rgba(195, 112, 128, 0.2);
+  --stage-c: rgba(187, 150, 165, 0.13);
+  --stage-base-top: #140F12;
+  --stage-base-bottom: #100C0F;
 }
 
 /* MIDNIGHT FINALE — the contact band + footer. Separate from --ink, which is also text colour. */
 :root {
-  --midnight:      #0A1124;
-  --midnight-deep: #050813;
+  --midnight:      #120B10;
+  --midnight-deep: #0A0709;
 }
 .midnight-field {
   background:
-    radial-gradient(ellipse 70% 40% at 50% 30%, rgba(24, 119, 242, 0.26) 0%, transparent 70%),
-    radial-gradient(ellipse 44% 38% at 92% 28%, rgba(34, 211, 238, 0.13) 0%, transparent 72%),
-    radial-gradient(ellipse 46% 40% at 6% 58%, rgba(129, 140, 248, 0.18) 0%, transparent 72%),
+    radial-gradient(ellipse 70% 40% at 50% 30%, rgba(195, 112, 128, 0.26) 0%, transparent 70%),
+    radial-gradient(ellipse 44% 38% at 92% 28%, rgba(187, 150, 165, 0.13) 0%, transparent 72%),
+    radial-gradient(ellipse 46% 40% at 6% 58%, rgba(126, 48, 66, 0.252) 0%, transparent 72%),
     linear-gradient(180deg, var(--midnight) 0%, var(--midnight-deep) 100%);
 }
 .midnight-field::after {       /* faint star lattice, dissolving away from the form */
@@ -676,15 +629,15 @@ html {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background-image: radial-gradient(rgba(190, 215, 255, 0.20) 1px, transparent 1.3px);
+  background-image: radial-gradient(rgba(187, 150, 165, 0.2) 1px, transparent 1.3px);
   background-size: 26px 26px;
   -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, transparent 46%, #000 100%);
           mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, transparent 46%, #000 100%);
 }
 
 /* Per-tier ambient temperature (Services 3-tier ladder) — all warm, no cyan */
-.glass-amber::before { background: radial-gradient(ellipse 72% 54% at 82% -8%, rgba(24, 119, 242, 0.10) 0%, transparent 68%); }
-.glass-sage::before  { background: radial-gradient(ellipse 72% 54% at 82% -8%, rgba(99, 102, 241, 0.09) 0%, transparent 68%); }
+.glass-amber::before { background: radial-gradient(ellipse 72% 54% at 82% -8%, rgba(195, 112, 128, 0.1) 0%, transparent 68%); }
+.glass-sage::before  { background: radial-gradient(ellipse 72% 54% at 82% -8%, rgba(126, 48, 66, 0.126) 0%, transparent 68%); }
 .glass-care::before  { background: radial-gradient(ellipse 72% 54% at 82% -8%, rgba(90, 84, 76, 0.08) 0%, transparent 68%); }
 .glass-care:hover { border-color: rgba(47, 93, 58, 0.24); }   /* Care = system health */
 
@@ -724,7 +677,7 @@ html {
   content: '';
   position: absolute;
   inset: -20% -10%;
-  background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(24, 119, 242, 0.07) 0%, transparent 70%);
+  background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(195, 112, 128, 0.07) 0%, transparent 70%);
   filter: blur(32px);
   pointer-events: none;
   z-index: -1;
@@ -732,7 +685,7 @@ html {
 
 /* Nav glass — floating document header, deepens on scroll (data-scrolled) */
 .nav-glass {
-  background: rgba(244, 247, 252, 0.72);
+  background: rgba(16, 11, 14, 0.72);
   -webkit-backdrop-filter: blur(8px) saturate(1.0);
           backdrop-filter: blur(8px) saturate(1.0);
   border-bottom: 1px solid var(--rule-strong);
@@ -741,7 +694,7 @@ html {
 .nav-glass[data-scrolled='true'] {
   -webkit-backdrop-filter: blur(18px) saturate(1.18);
           backdrop-filter: blur(18px) saturate(1.18);
-  border-bottom-color: rgba(24, 119, 242, 0.14);
+  border-bottom-color: rgba(195, 112, 128, 0.14);
 }
 
 /* Editorial body measure — the single biggest "designed, not templated" tell */
@@ -757,8 +710,8 @@ html {
 
 /* Graceful degradation — no backdrop-filter (older Firefox/Android) */
 @supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
-  .glass-card, .glass-mock { background: rgba(251, 252, 254, 0.95); }
-  .nav-glass { background: rgba(244, 247, 252, 0.96); }
+  .glass-card, .glass-mock { background: rgba(26, 19, 23, 0.95); }
+  .nav-glass { background: rgba(16, 11, 14, 0.96); }
 }
 
 /* ─── KEYFRAMES ─────────────────────────────────────────────── */
@@ -768,13 +721,13 @@ html {
   50%      { background-position: 100% 50%; }
 }
 .gold-shimmer {
-  background: linear-gradient(100deg, var(--gold) 0%, var(--gold-bright) 25%, #9DC8FF 50%, var(--gold-bright) 75%, var(--gold) 100%);
+  background: linear-gradient(100deg, var(--gold) 0%, var(--gold-bright) 25%, #F4D7DD 50%, var(--gold-bright) 75%, var(--gold) 100%);
   background-size: 200% auto;
   -webkit-background-clip: text;
           background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
-  font-style: italic;
+  font-style: normal;
   animation: goldShimmer 7s ease-in-out infinite;
   /* Italic Cormorant overhangs the line box; background-clip:text renders the
      overhang transparent (letters look cut). Pad the paint box, pull back with
@@ -800,7 +753,7 @@ html {
 /* ════════════════════════════════════════════════════════════════
    WORKFLOW / COMMAND-CENTER VISUAL LAYER — shared primitives for the
    hero flow + before/after lanes + service-card mini-diagrams.
-   Light theme: blue (--gold = #1877F2) glow on glass. Keep GPU-cheap.
+   Light theme: blue (--gold = #C37080) glow on glass. Keep GPU-cheap.
    ════════════════════════════════════════════════════════════════ */
 
 /* Animated dashed connector (SVG stroke-dashoffset travels along the path) */
@@ -831,13 +784,13 @@ html {
   gap: 8px;
   padding: 9px 13px;
   border-radius: 13px;
-  background: rgba(255, 255, 255, 0.58);
+  background: rgba(255, 255, 255, 0.093);
   -webkit-backdrop-filter: blur(16px) saturate(1.5);
           backdrop-filter: blur(16px) saturate(1.5);
-  border: 1px solid rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.8) inset,
-    0 6px 18px -8px rgba(31, 64, 122, 0.28);
+    0 1px 0 rgba(255, 255, 255, 0.128) inset,
+    0 6px 18px -8px rgba(0, 0, 0, 0.616);
   font-family: var(--font-body), sans-serif;
   font-size: 12px;
   font-weight: 600;
@@ -845,11 +798,11 @@ html {
   white-space: nowrap;
 }
 .vd-node-accent {
-  border-color: rgba(24, 119, 242, 0.45);
+  border-color: rgba(195, 112, 128, 0.45);
   box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.85) inset,
-    0 0 0 1px rgba(24, 119, 242, 0.16) inset,
-    0 8px 22px -8px rgba(24, 119, 242, 0.42);
+    0 1px 0 rgba(255, 255, 255, 0.136) inset,
+    0 0 0 1px rgba(195, 112, 128, 0.16) inset,
+    0 8px 22px -8px rgba(195, 112, 128, 0.42);
 }
 
 /* Glowing status dot */
@@ -858,7 +811,7 @@ html {
   height: 8px;
   border-radius: 50%;
   background: var(--gold);
-  box-shadow: 0 0 0 3px rgba(24, 119, 242, 0.18), 0 0 10px 1px rgba(24, 119, 242, 0.55);
+  box-shadow: 0 0 0 3px rgba(195, 112, 128, 0.18), 0 0 10px 1px rgba(195, 112, 128, 0.55);
   flex-shrink: 0;
   animation: vdPulse 2.4s var(--ease-glass) infinite;
 }
@@ -867,7 +820,7 @@ html {
 /* SVG connector stroke (apply to <path>/<line>) */
 .vd-line {
   fill: none;
-  stroke: rgba(24, 119, 242, 0.5);
+  stroke: rgba(195, 112, 128, 0.5);
   stroke-width: 1.5;
   stroke-linecap: round;
   stroke-dasharray: 5 6;
@@ -881,8 +834,9 @@ html {
 
 /* ─── TYPOGRAPHY ACTIVATION ── */
 h1, h2, h3, .display, .hero-h1 {
-  font-family: var(--font-display), Georgia, serif;
+  font-family: var(--font-display), system-ui, sans-serif;
 }
+h1 em, h2 em, h3 em { font-style: normal; }
 p, li, button, a, label, input, textarea {
   font-family: var(--font-body), system-ui, -apple-system, sans-serif;
 }
@@ -918,8 +872,8 @@ p, li, button, a, label, input, textarea {
 .band-dark {
   position: relative;
   background: var(--ink);
-  border-top: 1px solid rgba(24, 119, 242, 0.24);
-  border-bottom: 1px solid rgba(24, 119, 242, 0.24);
+  border-top: 1px solid rgba(195, 112, 128, 0.24);
+  border-bottom: 1px solid rgba(195, 112, 128, 0.24);
   overflow: hidden;
 }
 .band-dark::before {           /* faint gold crown from the top */
@@ -927,7 +881,7 @@ p, li, button, a, label, input, textarea {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: radial-gradient(ellipse 64% 54% at 50% -12%, rgba(24, 119, 242, 0.11) 0%, transparent 62%);
+  background: radial-gradient(ellipse 64% 54% at 50% -12%, rgba(195, 112, 128, 0.11) 0%, transparent 62%);
 }
 
 /* ─── PULL-QUOTE — big editorial italic conviction ── */
@@ -966,7 +920,7 @@ p, li, button, a, label, input, textarea {
   font-size: 11px;
   letter-spacing: 0.04em;
   color: var(--ink-faint);
-  background: var(--paper-bright);
+  background: var(--surface);
   border: 1px solid var(--rule);
   border-radius: var(--r-pill);
   padding: 4px 14px;
@@ -1041,7 +995,7 @@ p, li, button, a, label, input, textarea {
   border: 1px solid var(--rule-strong);
   color: var(--ink-soft);
 }
-.mock-stage-bound { color: var(--gold); border-color: rgba(24, 119, 242, 0.4); }
+.mock-stage-bound { color: var(--gold); border-color: rgba(195, 112, 128, 0.4); }
 
 /* ─── PLATE CAPTION — "Plate I. — italic caption" under a figure ── */
 .plate-caption {
@@ -1121,7 +1075,7 @@ p, li, button, a, label, input, textarea {
   width: 78%;
   height: 64%;
   transform: translate(-50%, -50%);
-  background: radial-gradient(ellipse at center, rgba(24, 119, 242, 0.16) 0%, transparent 70%);
+  background: radial-gradient(ellipse at center, rgba(195, 112, 128, 0.16) 0%, transparent 70%);
   filter: blur(46px);
   pointer-events: none;
   z-index: 0;
@@ -1130,7 +1084,7 @@ p, li, button, a, label, input, textarea {
   position: relative;
   border-radius: 28px;
   border: 1px solid var(--rule-strong);
-  background: var(--paper-bright);
+  background: var(--surface);
   box-shadow: var(--shadow-card);
   padding: 12px;
 }
@@ -1173,7 +1127,7 @@ p, li, button, a, label, input, textarea {
     color: var(--gold) !important;
   }
   .landing-orb { animation: none !important; }
-  html::before, body::before, #hero::before, #local::before { animation: none !important; will-change: auto; }
+  html::before { animation: none !important; will-change: auto; }
   .btn-ink::after, .btn-blue::after { display: none !important; }
   .btn-blue:hover { transform: none; }
   .plate:hover { transform: none !important; }
