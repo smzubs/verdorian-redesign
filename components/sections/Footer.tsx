@@ -16,8 +16,8 @@ export default function Footer() {
     <footer
       aria-label="Site footer"
       style={{
-        background: 'var(--midnight-deep)',
-        borderTop: '1px solid rgba(244, 238, 229, 0.1)',
+        background: 'linear-gradient(180deg, #0C070A 0%, var(--midnight-deep) 100%)',
+        borderTop: '1px solid rgba(195, 112, 128, 0.14)',
         paddingTop: '48px',
         paddingBottom: '48px',
       }}
@@ -26,8 +26,8 @@ export default function Footer() {
         .footer-inner {
           max-width: 1200px;
           margin: 0 auto;
-          padding-left: 24px;
-          padding-right: 24px;
+          padding-left: clamp(20px, 5vw, 48px);
+          padding-right: clamp(20px, 5vw, 48px);
           display: flex;
           align-items: flex-start;
           justify-content: space-between;
@@ -39,7 +39,7 @@ export default function Footer() {
           padding: 10px 0; min-height: 44px;
           font-family: var(--font-body), sans-serif;
           font-size: 13px; letter-spacing: 0.04em;
-          color: rgba(244, 238, 229, 0.5);
+          color: rgba(244, 238, 229, 0.7);
           transition: color 0.25s var(--ease-prospectus);
           text-align: left;
         }
@@ -47,7 +47,7 @@ export default function Footer() {
         @media (max-width: 640px) {
           .footer-inner { flex-direction: column; align-items: center; text-align: center; padding-left: 20px !important; padding-right: 20px !important; }
           .footer-wordmark, .footer-legal { align-items: center !important; text-align: center !important; }
-          .footer-nav { align-items: center !important; }
+          .footer-nav { justify-items: center; }
         }
       `}</style>
       <div className="footer-inner">
@@ -81,12 +81,12 @@ export default function Footer() {
               maxWidth: '280px',
             }}
           >
-            ai-native software and smart automation — work done faster, and done right.
+            Ai-native software and smart automation — work done faster, and done right.
           </span>
         </div>
 
         {/* Center: ruled link column */}
-        <nav aria-label="Footer navigation" className="footer-nav" style={{ display: 'flex', flexDirection: 'column' }}>
+        <nav aria-label="Footer navigation" className="footer-nav" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, auto)', columnGap: '40px' }}>
           {NAV_LINKS.map((link) => (
             <button
               key={link.id}
@@ -120,17 +120,17 @@ export default function Footer() {
           className="footer-legal"
           style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '8px', textAlign: 'right' }}
         >
-          <span style={{ fontFamily: 'var(--font-body), sans-serif', fontSize: '12px', color: 'rgba(244, 238, 229, 0.35)' }}>
+          <span style={{ fontFamily: 'var(--font-body), sans-serif', fontSize: '12px', color: 'rgba(244, 238, 229, 0.6)' }}>
             &copy; 2026 Verdorian Technologies LLC
           </span>
-          <a href="mailto:sm@verdorian.com" className="gold-link" style={{ fontFamily: 'var(--font-body), sans-serif', fontSize: '12px', color: 'rgba(244, 238, 229, 0.35)' }}>
+          <a href="mailto:sm@verdorian.com" className="gold-link" style={{ fontFamily: 'var(--font-body), sans-serif', fontSize: '12px', color: 'rgba(244, 238, 229, 0.6)' }}>
             sm@verdorian.com
           </a>
           <span style={{ display: 'flex', gap: '14px' }}>
-            <a href="/privacy" style={{ fontFamily: 'var(--font-body), sans-serif', fontSize: '12px', color: 'rgba(244, 238, 229, 0.35)', textDecoration: 'none' }}>
+            <a href="/privacy" style={{ fontFamily: 'var(--font-body), sans-serif', fontSize: '12px', color: 'rgba(244, 238, 229, 0.6)', textDecoration: 'none' }}>
               Privacy
             </a>
-            <a href="/terms" style={{ fontFamily: 'var(--font-body), sans-serif', fontSize: '12px', color: 'rgba(244, 238, 229, 0.35)', textDecoration: 'none' }}>
+            <a href="/terms" style={{ fontFamily: 'var(--font-body), sans-serif', fontSize: '12px', color: 'rgba(244, 238, 229, 0.6)', textDecoration: 'none' }}>
               Terms
             </a>
           </span>

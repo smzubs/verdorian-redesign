@@ -588,7 +588,7 @@ export default function Capabilities() {
         }
         @media (max-width: 639px) {
           .cap-grid { grid-template-columns: 1fr; gap: 14px; }
-          .cap-container { padding-left: 16px !important; padding-right: 16px !important; }
+          .cap-container { padding-left: 20px !important; padding-right: 20px !important; }
         }
         @media (max-width: 390px) {
           .cap-card { padding: 22px 18px 20px !important; }
@@ -623,7 +623,7 @@ export default function Capabilities() {
 
       <div
         className="cap-container"
-        style={{ maxWidth: '1240px', margin: '0 auto', paddingLeft: '24px', paddingRight: '24px' }}
+        style={{ maxWidth: '1200px', margin: '0 auto', paddingLeft: 'clamp(20px, 5vw, 48px)', paddingRight: 'clamp(20px, 5vw, 48px)' }}
       >
         <motion.div
           variants={STAGGER_CONTAINER}

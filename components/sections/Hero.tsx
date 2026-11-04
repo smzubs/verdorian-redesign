@@ -101,7 +101,7 @@ export default function Hero() {
           0%, 64%, 100% { transform: translateY(0) scale(1); filter: brightness(1); }
           12%           { transform: translateY(-3px) scale(1.06); filter: brightness(1.14); }
         }
-        .hero-wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+        .hero-wrap { max-width: 1200px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 48px); }
 
         /* ── iOS-26 Liquid Glass chip badge ── */
         .hero-badge {
@@ -310,7 +310,7 @@ export default function Hero() {
             maxWidth: 'none',
           }}
         >
-          <span style={{ display: 'block' }}>ai-native software,</span>
+          <span style={{ display: 'block' }}>Ai-native software,</span>
           <em className="gold-shimmer" style={{ display: 'block' }}>built for real business.</em>
         </motion.h1>
 
@@ -330,7 +330,7 @@ export default function Hero() {
           } as React.CSSProperties}
         >
           <span style={{ display: 'block' }}>
-            We build software with ai at its core&mdash;
+            We build software exactly the way your business needs it&mdash;
           </span>
           <span style={{ display: 'block', marginTop: '4px' }}>
             and automate the manual work that slows your team down, so it gets done{' '}

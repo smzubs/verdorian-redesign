@@ -111,7 +111,7 @@ export default function Ventures() {
       }}
     >
       <style>{`
-        .vt-wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+        .vt-wrap { max-width: 1200px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 48px); }
         .vt-intro { font-size: 16px; line-height: 1.62; color: var(--ink-soft); margin-top: 20px; max-width: 60ch; }
         .vt-grid {
           display: grid;

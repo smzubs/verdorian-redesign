@@ -54,7 +54,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Verdorian Technologies — ai-native software & automation',
     description:
-      'ai-native software and smart automation that saves your team time and gets the work right. Parent company of QRSafePro.',
+      'Ai-native software and smart automation that saves your team time and gets the work right. Parent company of QRSafePro.',
     url: 'https://verdorian.com',
     siteName: 'Verdorian',
     images: [OG_IMAGE],
@@ -65,7 +65,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Verdorian Technologies — ai-native software & automation',
     description:
-      'ai-native software and smart automation that saves your team time and gets the work right. Parent company of QRSafePro.',
+      'Ai-native software and smart automation that saves your team time and gets the work right. Parent company of QRSafePro.',
     images: [OG_IMAGE.url],
   },
   metadataBase: new URL('https://verdorian.com'),

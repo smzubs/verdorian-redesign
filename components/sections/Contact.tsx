@@ -189,9 +189,9 @@ export default function Contact() {
       <div
         className="contact-wrap"
         style={{
-          maxWidth: '1120px',
+          maxWidth: '1200px',
           margin: '0 auto',
-          padding: '0 32px',
+          padding: '0 clamp(20px, 5vw, 48px)',
           position: 'relative',
           zIndex: 1,
         }}
@@ -203,7 +203,7 @@ export default function Contact() {
           viewport={{ once: true, margin: '-64px' }}
         >
           {/* Section eyebrow */}
-          <motion.div variants={FADE_UP} style={{ marginBottom: '56px' }}>
+          <motion.div variants={FADE_UP} style={{ marginBottom: '24px' }}>
             <SectionLabel>Start Your Test-Drive</SectionLabel>
           </motion.div>
 
@@ -327,20 +327,6 @@ export default function Contact() {
                 </span>
               </div>
 
-              {/* Entity footnote */}
-              <p
-                style={{
-                  fontFamily: 'var(--font-body), sans-serif',
-                  fontSize: '11px',
-                  letterSpacing: '0.22em',
-                  textTransform: 'uppercase',
-                  color: 'rgba(244, 238, 229, 0.6)',
-                  margin: 0,
-                  marginTop: '4px',
-                }}
-              >
-                Verdorian Technologies LLC
-              </p>
             </motion.div>
 
             {/* ── RIGHT: glass form card ── */}
