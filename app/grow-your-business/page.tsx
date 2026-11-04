@@ -1,3 +1,4 @@
+import { OG_IMAGE } from '@/lib/og'
 import type { Metadata, Viewport } from 'next'
 import { Cormorant_Garamond } from 'next/font/google'
 import NavClassic from '@/components/classic/NavClassic'
@@ -24,6 +25,7 @@ export const metadata: Metadata = {
     description:
       'A professional web page + tap-to-review stand, built and managed for you. Request a free check of how your business compares.',
     url: 'https://verdorian.com/grow-your-business',
+    images: [OG_IMAGE],
   },
 }
 

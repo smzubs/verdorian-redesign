@@ -3,7 +3,7 @@
 > ## ⚡ LATEST (2026-11-04) — DARK PLUM REBRAND — read first; supersedes the light-glass notes below
 > **Brand:** plum-black `--paper #0E0A0D`, cream `--ink #F4EEE5`, rose accent `--gold #C37080` / `--gold-bright #E3A3B0`, raised surfaces `--surface #1A1317` (`--paper-bright` is now cream TEXT, never a fill). Headings = Poppins (`--font-display` → `--font-poppins`), body = Geist; heading accents are upright, colour only. Background = generated contour field `public/brand/topo.svg` (fixed `html::before`, slow drift) + rose bloom/vignette. Logos in `public/brand/` (lockup light/dark, V mark); favicon/icon from the V mark.
 > **Exception:** `/grow-your-business` deliberately keeps the pre-rebrand light theme (owner's call): `app/grow-your-business/classic.css` scopes the old tokens under `.theme-classic`, with `components/classic/NavClassic.tsx` + `FooterClassic.tsx` (copies of the pre-rebrand nav/footer, logo swapped). `LocalOffer.tsx` is the unchanged pre-rebrand component.
-> **Open:** `public/og-image.svg` (social share card) is still the old blue/purple. Terms draft for the $299 offer parked in `git stash` ("terms draft"), awaiting owner sign-off.
+> **Share image:** `public/og-image.jpg` (brand poster, 1200x630; `lib/og.ts`) on home, /trades, /grow-your-business. **Open:** Terms draft for the $299 offer parked in `git stash` ("terms draft"), awaiting owner sign-off.
 > Rollback tag: `checkpoint-pre-dark-rebrand` (site before this rebrand).
 
 > ## ⚡ LATEST (2026-11-01) — PREMIUM BACKGROUNDS + GROW YOUR BUSINESS PAGE — read first

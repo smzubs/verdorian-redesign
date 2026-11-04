@@ -1,3 +1,4 @@
+import { OG_IMAGE } from '@/lib/og'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -13,6 +14,7 @@ export const metadata: Metadata = {
     description:
       'We build the systems a real electrical contractor runs on every day. Test-drive your first automation on your own jobs — pay only if it hits the number we agree on.',
     url: 'https://verdorian.com/trades',
+    images: [OG_IMAGE],
   },
 }
 

@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import { Geist, Poppins } from 'next/font/google'
 import { LenisProvider } from '@/lib/lenis-provider'
+import { OG_IMAGE } from '@/lib/og'
 import './globals.css'
 
 // Body / UI sans
@@ -45,7 +46,7 @@ export const metadata: Metadata = {
       'Custom ai automation, dashboards, and internal tools that connect your apps, documents, emails, and data — and you test-drive it before you buy it.',
     url: 'https://verdorian.com',
     siteName: 'Verdorian',
-    images: [{ url: '/og-image.svg', width: 1200, height: 630, alt: 'Verdorian — Custom ai Automation for Businesses & Individuals' }],
+    images: [OG_IMAGE],
     locale: 'en_US',
     type: 'website',
   },
@@ -54,7 +55,7 @@ export const metadata: Metadata = {
     title: 'Verdorian — Custom ai Automation for Businesses & Individuals',
     description:
       'Custom ai automation, dashboards, and internal tools that connect your apps, documents, emails, and data — and you test-drive it before you buy it.',
-    images: ['/og-image.svg'],
+    images: [OG_IMAGE.url],
   },
   metadataBase: new URL('https://verdorian.com'),
 }
