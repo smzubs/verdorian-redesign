@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { Geist, Poppins } from 'next/font/google'
+import { Geist, Poppins, Michroma } from 'next/font/google'
 import { LenisProvider } from '@/lib/lenis-provider'
 import { OG_IMAGE } from '@/lib/og'
 import './globals.css'
@@ -21,13 +21,24 @@ const poppins = Poppins({
   display: 'swap',
 })
 
+// Headline face — extended, high-tech; used large with generous tracking
+const michroma = Michroma({
+  subsets: ['latin'],
+  weight: '400',
+  variable: '--font-michroma',
+  display: 'swap',
+})
+
 export const metadata: Metadata = {
-  title: 'Verdorian — Custom ai Automation for Businesses & Individuals',
+  title: 'Verdorian Technologies — ai-native software & automation',
   description:
-    'Verdorian builds custom ai automation, dashboards, and internal tools that eliminate repetitive work — and you test-drive it on your real work before you buy it.',
+    'Verdorian builds ai-native software and automates the manual work that slows teams down — so it gets done faster, smarter and more accurately. Parent company of QRSafePro.',
   keywords: [
     'Verdorian',
+    'ai-native software',
+    'software development company',
     'ai automation studio',
+    'QRSafePro',
     'ai workflow automation',
     'ai automation services',
     'business process automation',
@@ -41,9 +52,9 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: 'Verdorian' }],
   openGraph: {
-    title: 'Verdorian — Custom ai Automation for Businesses & Individuals',
+    title: 'Verdorian Technologies — ai-native software & automation',
     description:
-      'Custom ai automation, dashboards, and internal tools that connect your apps, documents, emails, and data — and you test-drive it before you buy it.',
+      'ai-native software and smart automation that saves your team time and gets the work right. Parent company of QRSafePro.',
     url: 'https://verdorian.com',
     siteName: 'Verdorian',
     images: [OG_IMAGE],
@@ -52,9 +63,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Verdorian — Custom ai Automation for Businesses & Individuals',
+    title: 'Verdorian Technologies — ai-native software & automation',
     description:
-      'Custom ai automation, dashboards, and internal tools that connect your apps, documents, emails, and data — and you test-drive it before you buy it.',
+      'ai-native software and smart automation that saves your team time and gets the work right. Parent company of QRSafePro.',
     images: [OG_IMAGE.url],
   },
   metadataBase: new URL('https://verdorian.com'),
@@ -69,7 +80,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="en"
-      className={`${geist.variable} ${poppins.variable}`}
+      className={`${geist.variable} ${poppins.variable} ${michroma.variable}`}
       suppressHydrationWarning
     >
       <body className="font-[family-name:var(--font-body)]">

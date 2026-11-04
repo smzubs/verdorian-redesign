@@ -154,14 +154,14 @@ export default function TradesPage() {
 
           <h1
             style={{
-              fontFamily: 'var(--font-display), Georgia, serif',
-              fontWeight: 500,
-              fontSize: 'clamp(38px, 6.4vw, 76px)',
-              lineHeight: 1.04,
-              letterSpacing: '0.006em',
+              fontFamily: 'var(--font-tech), system-ui, sans-serif',
+              fontWeight: 400,
+              fontSize: 'clamp(25px, 4.2vw, 50px)',
+              lineHeight: 1.22,
+              letterSpacing: '0.04em',
               color: 'var(--ink)',
               margin: 0,
-              maxWidth: '17ch',
+              maxWidth: '23ch',
             }}
           >
             The office work is stealing your field hours.
@@ -188,11 +188,11 @@ export default function TradesPage() {
               Test-Drive an Automation
             </Link>
             <Link
-              href="/#pricing"
+              href="/#automate"
               className="btn-ghost"
               style={{ padding: '16px 32px', fontSize: '13px', textDecoration: 'none' }}
             >
-              See Pricing
+              See What We Build
             </Link>
           </div>
 
@@ -231,10 +231,10 @@ export default function TradesPage() {
               <span style={EYEBROW}>What We Automate</span>
               <h2
                 style={{
-                  fontFamily: 'var(--font-display), Georgia, serif',
+                  fontFamily: 'var(--font-tech), system-ui, sans-serif',
                   fontWeight: 400,
-                  fontSize: 'clamp(30px, 4.4vw, 52px)',
-                  lineHeight: 1.08,
+                  fontSize: 'clamp(20px, 2.9vw, 34px)',
+                  lineHeight: 1.22,
                   color: 'var(--ink)',
                   margin: 0,
                 }}
@@ -311,13 +311,13 @@ export default function TradesPage() {
               <span style={EYEBROW}>Not Theory — Production</span>
               <h2
                 style={{
-                  fontFamily: 'var(--font-display), Georgia, serif',
+                  fontFamily: 'var(--font-tech), system-ui, sans-serif',
                   fontWeight: 400,
-                  fontSize: 'clamp(30px, 4.4vw, 52px)',
-                  lineHeight: 1.08,
+                  fontSize: 'clamp(20px, 2.9vw, 34px)',
+                  lineHeight: 1.22,
                   color: 'var(--ink)',
                   margin: 0,
-                  maxWidth: '20ch',
+                  maxWidth: '26ch',
                 }}
               >
                 These systems already run{' '}
@@ -390,10 +390,10 @@ export default function TradesPage() {
           >
             <h2
               style={{
-                fontFamily: 'var(--font-display), Georgia, serif',
+                fontFamily: 'var(--font-tech), system-ui, sans-serif',
                 fontWeight: 400,
-                fontSize: 'clamp(30px, 4.6vw, 54px)',
-                lineHeight: 1.08,
+                fontSize: 'clamp(20px, 3.0vw, 36px)',
+                lineHeight: 1.22,
                 color: 'var(--ink)',
                 margin: 0,
               }}

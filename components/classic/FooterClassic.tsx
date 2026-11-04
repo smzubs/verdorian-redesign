@@ -6,8 +6,8 @@ import Image from 'next/image'
 import { scrollToSection } from '@/lib/utils'
 
 const NAV_LINKS = [
-  { label: 'What We Do', id: 'automate' },
-  { label: 'Pricing', id: 'pricing' },
+  { label: 'What We Build', id: 'automate' },
+  { label: 'Ventures', id: 'ventures' },
   { label: 'Our Work', id: 'trust' },
   { label: 'Contact', id: 'contact' },
 ]
@@ -71,7 +71,7 @@ export default function FooterClassic() {
               color: 'var(--gold)',
             }}
           >
-            ai Automation Studio
+            ai-native software
           </span>
           <span
             style={{
@@ -82,7 +82,7 @@ export default function FooterClassic() {
               maxWidth: '280px',
             }}
           >
-            ai-built tools and dashboards for the business work you shouldn&apos;t be doing manually.
+            ai-native software and smart automation — work done faster, and done right.
           </span>
         </div>
 

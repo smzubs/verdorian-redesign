@@ -23,6 +23,7 @@
 
   /* ── Typography (display = Cormorant Garamond, body = Geist) ── */
   --font-display: var(--font-poppins);
+  --font-tech:    var(--font-michroma);   /* display headlines (h1 / section h2) */
   --font-body:    var(--font-geist);
   --font-mono:    var(--font-geist);
   /* Compatibility aliases so any lingering section refs still resolve cleanly */
@@ -79,7 +80,7 @@
 
   /* ── Type scale (serif masthead, confident) ── */
   --t-hero:    clamp(44px, 7vw, 104px);
-  --t-h2:      clamp(34px, 5vw, 64px);
+  --t-h2:      clamp(26px, 3.4vw, 48px);   /* sized for the extended Michroma face */
   --t-h3:      clamp(20px, 2.4vw, 28px);
   --t-body-lg: 18px;
   --t-body:    16px;
@@ -837,6 +838,7 @@ h1, h2, h3, .display, .hero-h1 {
   font-family: var(--font-display), system-ui, sans-serif;
 }
 h1 em, h2 em, h3 em { font-style: normal; }
+h1, h2 { text-wrap: balance; }
 p, li, button, a, label, input, textarea {
   font-family: var(--font-body), system-ui, -apple-system, sans-serif;
 }

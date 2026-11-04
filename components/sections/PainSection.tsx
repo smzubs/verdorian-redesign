@@ -48,11 +48,11 @@ export default function PainSection() {
           viewport={{ once: true, margin: '-60px' }}
           style={
             {
-              fontFamily: 'var(--font-display), Georgia, serif',
-              fontWeight: 500,
-              fontSize: 'clamp(34px, 5vw, 64px)',
-              lineHeight: 1.18,
-              letterSpacing: '0.005em',
+              fontFamily: 'var(--font-tech), system-ui, sans-serif',
+              fontWeight: 400,
+              fontSize: 'clamp(26px, 4.4vw, 60px)',
+              lineHeight: 1.25,
+              letterSpacing: '0.05em',
               color: 'var(--ink)',
               margin: 0,
               textAlign: 'center',

@@ -3,7 +3,7 @@ import Hero from '@/components/sections/Hero'
 import MatrixBand from '@/components/sections/MatrixBand'
 import PainSection from '@/components/sections/PainSection'
 import Capabilities from '@/components/sections/Capabilities'
-import Pricing from '@/components/sections/Pricing'
+import Ventures from '@/components/sections/Ventures'
 import Trust from '@/components/sections/Trust'
 import Contact from '@/components/sections/Contact'
 import Footer from '@/components/sections/Footer'
@@ -22,7 +22,7 @@ export default function Home() {
         <MatrixBand />
         <PainSection />
         <Capabilities />
-        <Pricing />
+        <Ventures />
         <Trust />
         {/* Light→dark bridge — eases the eye into the contact band instead of a hard seam */}
         <div

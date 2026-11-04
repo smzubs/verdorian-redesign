@@ -3,6 +3,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { FADE_UP, STAGGER_CONTAINER } from '@/lib/motion'
+import { scrollToSection } from '@/lib/utils'
 
 // ─── Command-center flow steps ────────────────────────────────────────────────
 interface FlowStep {
@@ -80,7 +81,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      aria-label="Hero — Verdorian ai Automation Studio"
+      aria-label="Hero — Verdorian, ai-native software"
       style={{
         position: 'relative',
         overflow: 'hidden',
@@ -289,7 +290,7 @@ export default function Hero() {
           <span className="hero-badge">
             <span className="hero-badge-dot" aria-hidden="true" />
             <span className="hero-badge-text">
-              <span className="hero-badge-hl">Smart</span> Automation for Growing Businesses
+              <span className="hero-badge-hl">ai-native</span>{' '}software &amp; automation
             </span>
           </span>
         </div>
@@ -299,34 +300,19 @@ export default function Hero() {
           variants={FADE_UP}
           className="hero-h1"
           style={{
-            fontFamily: 'var(--font-display), Georgia, serif',
-            fontWeight: 700,
-            fontSize: 'clamp(38px, 5.4vw, 76px)',
-            lineHeight: 1.08,
-            letterSpacing: '0.005em',
+            fontFamily: 'var(--font-tech), system-ui, sans-serif',
+            fontWeight: 400,
+            fontSize: 'clamp(28px, 4.8vw, 68px)',
+            lineHeight: 1.18,
+            letterSpacing: '0.05em',
             margin: 0,
             color: 'var(--ink)',
             maxWidth: 'none',
           }}
         >
-          <span style={{ display: 'block' }}>Your busywork,</span>
-          <em className="gold-shimmer" style={{ display: 'block' }}>on autopilot.</em>
+          <span style={{ display: 'block' }}>ai-native software,</span>
+          <em className="gold-shimmer" style={{ display: 'block' }}>built for real business.</em>
         </motion.h1>
-
-        {/* Studio credit line */}
-        <motion.p
-          variants={FADE_UP}
-          style={{
-            fontFamily: 'var(--font-body), sans-serif',
-            fontWeight: 600,
-            fontSize: '15px',
-            letterSpacing: '0.04em',
-            color: 'var(--ink-soft)',
-            margin: '-14px 0 0',
-          }}
-        >
-          — with <span style={{ color: 'var(--gold)' }}>Verdorian ai Studio</span>
-        </motion.p>
 
         {/* Subhead */}
         <motion.p
@@ -344,15 +330,25 @@ export default function Hero() {
           } as React.CSSProperties}
         >
           <span style={{ display: 'block' }}>
-            We build custom automation and software for small &amp; medium enterprises&mdash;
+            We build software with ai at its core&mdash;
           </span>
           <span style={{ display: 'block', marginTop: '4px' }}>
-            eliminating repetitive office work so your team runs{' '}
+            and automate the manual work that slows your team down, so it gets done{' '}
             <span style={{ fontWeight: 600, color: 'var(--gold)' }}>
-              fast, smart, and right.
+              faster, smarter, and more accurately.
             </span>
           </span>
         </motion.p>
+
+        {/* Primary actions */}
+        <motion.div variants={FADE_UP} style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', justifyContent: 'center' }}>
+          <button type="button" className="btn-blue" onClick={() => scrollToSection('contact')}>
+            Start a project
+          </button>
+          <button type="button" className="btn-ghost" onClick={() => scrollToSection('ventures')}>
+            Explore our ventures
+          </button>
+        </motion.div>
 
         {/* ── Command-center workflow visual (iOS 3D scroll tilt) ── */}
         <motion.div

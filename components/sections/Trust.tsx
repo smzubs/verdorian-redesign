@@ -100,7 +100,7 @@ export default function Trust() {
           font-weight: 600;
           text-transform: uppercase;
           letter-spacing: 0.22em;
-          color: var(--ink-faint);
+          color: var(--ink-soft);
           margin: 0 0 20px;
         }
         .trust-proof-list {
@@ -240,7 +240,7 @@ export default function Trust() {
             className="trust-proof-heading"
             variants={FADE_UP}
           >
-            Work we&apos;ve shipped:
+            Work we&apos;ve shipped
           </motion.p>
 
           <motion.ul

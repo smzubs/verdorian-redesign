@@ -51,7 +51,7 @@ const INPUT_BASE: React.CSSProperties = {
 }
 
 const INPUT_PLACEHOLDER_FIX = `
-  .audit-field::placeholder { color: rgba(244, 238, 229, 0.28); }
+  .audit-field::placeholder { color: rgba(244, 238, 229, 0.5); }
   .audit-field:focus {
     border-color: rgba(195, 112, 128, 0.55);
     background: rgba(255,255,255,0.09);
@@ -217,11 +217,11 @@ export default function Contact() {
             >
               <h2
                 style={{
-                  fontFamily: 'var(--font-display), Georgia, serif',
-                  fontWeight: 500,
+                  fontFamily: 'var(--font-tech), system-ui, sans-serif',
+                  fontWeight: 400,
                   fontSize: 'var(--t-h2)',
-                  letterSpacing: 'var(--track-h2)',
-                  lineHeight: 1.06,
+                  letterSpacing: '0.05em',
+                  lineHeight: 1.2,
                   margin: 0,
                 }}
               >
@@ -320,7 +320,7 @@ export default function Contact() {
                     fontSize: '11px',
                     letterSpacing: '0.18em',
                     textTransform: 'uppercase',
-                    color: 'rgba(244, 238, 229, 0.28)',
+                    color: 'rgba(244, 238, 229, 0.62)',
                   }}
                 >
                   or fill the form
@@ -334,7 +334,7 @@ export default function Contact() {
                   fontSize: '11px',
                   letterSpacing: '0.22em',
                   textTransform: 'uppercase',
-                  color: 'rgba(244, 238, 229, 0.24)',
+                  color: 'rgba(244, 238, 229, 0.6)',
                   margin: 0,
                   marginTop: '4px',
                 }}
@@ -456,7 +456,7 @@ export default function Contact() {
                       Current tools{' '}
                       <span
                         style={{
-                          color: 'rgba(244, 238, 229, 0.28)',
+                          color: 'rgba(244, 238, 229, 0.62)',
                           fontSize: '9px',
                           letterSpacing: '0.14em',
                           fontWeight: 400,

@@ -41,7 +41,7 @@ export default function MatrixBand() {
           52%, 100% { color: #9A8D93; }
         }
         .mb-section {
-          position: relative; padding: 14px 0 30px; overflow: hidden;
+          position: relative; padding: 4px 0 12px; overflow: hidden;
           content-visibility: auto;
           contain-intrinsic-size: auto 230px;
         }
@@ -50,6 +50,8 @@ export default function MatrixBand() {
           height: 176px;
           margin: 0 auto;
           perspective: 1700px;
+          /* scrim keeps the topo lines from running through the type */
+          background: radial-gradient(ellipse 46% 62% at 50% 50%, rgba(14, 10, 13, 0.88) 0%, transparent 72%);
           -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 26%, #000 74%, transparent 100%);
                   mask-image: linear-gradient(180deg, transparent 0%, #000 26%, #000 74%, transparent 100%);
         }
@@ -57,8 +59,8 @@ export default function MatrixBand() {
         .mb-ribbon {
           position: absolute; left: 50%; top: 50%;
           transform: translate(-50%, -50%);
-          width: min(470px, 90vw);
-          height: 32px;
+          width: min(560px, calc(100vw - 48px));
+          height: 34px;
           border-radius: 11px;
           border: 1px solid rgba(214, 138, 154, 0.5);
           background: rgba(255, 255, 255, 0.025);
@@ -80,10 +82,10 @@ export default function MatrixBand() {
           display: flex; align-items: center; justify-content: center;
           backface-visibility: hidden; -webkit-backface-visibility: hidden;
           white-space: nowrap;
-          font-family: ui-monospace, 'SF Mono', Menlo, monospace;
-          font-size: clamp(9.5px, 1.4vw, 13px);
-          font-weight: 600;
-          letter-spacing: 0.02em;
+          font-family: var(--font-body), system-ui, sans-serif;
+          font-size: clamp(13px, 1.2vw, 16px);
+          font-weight: 500;
+          letter-spacing: 0.04em;
           color: #9A8D93;
           text-shadow: 0 0 3px rgba(214, 138, 154, 0.18);
           will-change: color;

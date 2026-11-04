@@ -1,5 +1,12 @@
 # Verdorian Technologies — verdorian.com (Premium Liquid Glass Redesign)
 
+> ## ⚡ LATEST (2026-11-04 pm) — AI-NATIVE PARENT-COMPANY REPOSITION — read first
+> **Positioning:** Verdorian = ai-native software developer and parent company; automation stays as the proof ("faster, smarter, and more accurately"). Hero H1 "ai-native software, built for real business." + CTAs Start a project (#contact) / Explore our ventures (#ventures).
+> **Type:** display headlines (h1, section h2, trades/legal titles) use Michroma via `--font-tech`, letter-spacing .05em, `--t-h2 clamp(26px,3.4vw,48px)`; Poppins stays for subheads/h3, Geist for body. `h1, h2 { text-wrap: balance }`.
+> **Structure:** Nav → Hero → MatrixBand → Pain(#problem) → Capabilities(#automate, "WHAT WE BUILD") → **Ventures(#ventures: QRSafePro featured/live, Grow Your Business, VoicePencil "In development")** → Trust(#trust) → Contact → Footer. **Pricing section REMOVED from homepage** (owner's call); the $500 pilot lives in Contact copy and /terms. Nav tabs: What We Build / Ventures / Our Work / Grow Your Business.
+> **Open polish (from design review):** unify section container widths (one 1200px shell), rebuild Trust proof strip + shipped list, footer links as grid, Contact eyebrow→H2 gap. JSX gotcha: text containing an entity (&amp; / &apos;) after an element can lose its leading space — use {' '}.
+> Rollback tag: `checkpoint-pre-ai-native` (dark plum site before the reposition).
+
 > ## ⚡ LATEST (2026-11-04) — DARK PLUM REBRAND — read first; supersedes the light-glass notes below
 > **Brand:** plum-black `--paper #0E0A0D`, cream `--ink #F4EEE5`, rose accent `--gold #C37080` / `--gold-bright #E3A3B0`, raised surfaces `--surface #1A1317` (`--paper-bright` is now cream TEXT, never a fill). Headings = Poppins (`--font-display` → `--font-poppins`), body = Geist; heading accents are upright, colour only. Background = generated contour field `public/brand/topo.svg` (fixed `html::before`, slow drift) + rose bloom/vignette. Logos in `public/brand/` (lockup light/dark, V mark); favicon/icon from the V mark.
 > **Exception:** `/grow-your-business` deliberately keeps the pre-rebrand light theme (owner's call): `app/grow-your-business/classic.css` scopes the old tokens under `.theme-classic`, with `components/classic/NavClassic.tsx` + `FooterClassic.tsx` (copies of the pre-rebrand nav/footer, logo swapped). `LocalOffer.tsx` is the unchanged pre-rebrand component.

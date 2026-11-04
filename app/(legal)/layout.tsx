@@ -36,9 +36,10 @@ export default function LegalLayout({ children }: { children: React.ReactNode })
       >
         <style>{`
           .legal-prose h1 {
-            font-family: var(--font-display), Georgia, serif;
-            font-weight: 500;
-            font-size: clamp(34px, 5vw, 52px);
+            font-family: var(--font-tech), system-ui, sans-serif;
+            font-weight: 400;
+            letter-spacing: 0.04em;
+            font-size: clamp(24px, 3.4vw, 36px);
             line-height: 1.08;
             color: var(--ink);
             margin: 0 0 8px;

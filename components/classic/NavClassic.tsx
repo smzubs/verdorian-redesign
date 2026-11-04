@@ -12,8 +12,8 @@ import { scrollToSection } from '@/lib/utils'
 const GROW_ID = 'grow-your-business'
 
 const NAV_LINKS = [
-  { label: 'What We Do', id: 'automate' },
-  { label: 'Pricing', id: 'pricing' },
+  { label: 'What We Build', id: 'automate' },
+  { label: 'Ventures', id: 'ventures' },
   { label: 'Our Work', id: 'trust' },
   { label: 'Grow Your Business', id: GROW_ID },
 ]
@@ -286,7 +286,7 @@ export default function NavClassic() {
               style={{ marginTop: '24px' }}
             >
               <GlowButton variant="ink" size="lg" onClick={() => handleNavLink('contact')}>
-                Start Your Test-Drive
+                Start a Project
               </GlowButton>
             </motion.div>
           </motion.div>

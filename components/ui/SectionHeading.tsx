@@ -16,7 +16,7 @@ interface SectionHeadingProps {
   invert?: boolean
 }
 
-/** Prospectus section header: gold eyebrow + "No. 0X" numeral, then a Cormorant headline with an italic-gold accent line. */
+/** Prospectus section header: gold eyebrow + "No. 0X" numeral, then a wide Michroma headline with a rose accent line. */
 export function SectionHeading({
   numeral,
   eyebrow,
@@ -41,13 +41,13 @@ export function SectionHeading({
       <motion.h2
         variants={FADE_UP}
         style={{
-          fontFamily: 'var(--font-display), Georgia, serif',
+          fontFamily: 'var(--font-tech), system-ui, sans-serif',
           fontWeight: 400,
           fontSize: 'var(--t-h2)',
-          letterSpacing: '0.008em',
+          letterSpacing: '0.05em',
           margin: 0,
-          lineHeight: 1.08,
-          maxWidth: '18ch',
+          lineHeight: 1.2,
+          maxWidth: '24ch',
         }}
       >
         <span style={{ display: 'block', color: invert ? 'var(--paper-bright)' : 'var(--ink)' }}>{lead}</span>

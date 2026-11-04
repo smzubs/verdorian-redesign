@@ -379,7 +379,7 @@ function CapabilityCard({ item, index }: { item: CapabilityItem; index: number }
           fontFamily: 'var(--font-body), sans-serif',
           fontSize: '13px',
           fontWeight: 650,
-          color: 'var(--gold)',
+          color: 'var(--gold-bright)',
           lineHeight: 1.4,
           letterSpacing: '0.01em',
           margin: 'auto 0 0',
@@ -635,7 +635,7 @@ export default function Capabilities() {
           {/* Section heading — unchanged */}
           <motion.div variants={FADE_UP}>
             <SectionHeading
-              eyebrow="WHAT WE DO"
+              eyebrow="WHAT WE BUILD"
               lead="We turn repetitive work into"
               accent="software your team barely has to think about."
               align="left"
