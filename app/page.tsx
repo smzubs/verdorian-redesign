@@ -1,7 +1,5 @@
 import Nav from '@/components/sections/Nav'
 import Hero from '@/components/sections/Hero'
-import MatrixBand from '@/components/sections/MatrixBand'
-import PainSection from '@/components/sections/PainSection'
 import Capabilities from '@/components/sections/Capabilities'
 import Ventures from '@/components/sections/Ventures'
 import Trust from '@/components/sections/Trust'
@@ -18,10 +16,7 @@ export default function Home() {
       <main id="main-content">
         <Nav />
         <Hero />
-        {/* Conversion narrative: signature drum -> problem (one idea) -> what we do
-            -> how it works + offer -> proof -> CTA. One idea per screen; the drum is the signature. */}
-        <MatrixBand />
-        <PainSection />
+        {/* Narrative: promise -> what we build -> ventures we run -> how we work -> signature -> contact */}
         <Capabilities />
         <Ventures />
         <Trust />

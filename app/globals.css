@@ -848,13 +848,13 @@ p, li, button, a, label, input, textarea {
 
 /* ─── RESPONSIVE SECTION PADDING ── */
 @media (max-width: 767px) {
-  #products, #services, #how-i-build, #about, #contact, #problem, #proof, #automate {
+  #products, #services, #how-i-build, #about, #contact, #proof, #automate {
     padding-top: 80px !important;
     padding-bottom: 80px !important;
   }
 }
 @media (max-width: 390px) {
-  #products, #services, #how-i-build, #about, #contact, #problem, #proof, #automate {
+  #products, #services, #how-i-build, #about, #contact, #proof, #automate {
     padding-top: 64px !important;
     padding-bottom: 64px !important;
   }

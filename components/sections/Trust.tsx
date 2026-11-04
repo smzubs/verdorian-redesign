@@ -28,16 +28,8 @@ interface ProofItem {
   href?: string
 }
 
+// Client work only — our own products are presented in the Ventures section
 const PROOF_ITEMS: readonly ProofItem[] = [
-  {
-    name: 'QRSafePro',
-    description: 'QR-powered equipment inspection and inventory SaaS',
-    href: 'https://qrsafepro.com',
-  },
-  {
-    name: 'VoicePencil',
-    description: 'ai voice notes app for iOS — speech to structured text',
-  },
   {
     name: 'Knight Electric',
     description: 'Website for an electrical contractor',
@@ -262,13 +254,13 @@ export default function Trust() {
             className="trust-proof-heading"
             variants={FADE_UP}
           >
-            Work we&apos;ve shipped
+            Client work
           </motion.p>
 
           <motion.ul
             className="trust-proof-list"
             variants={STAGGER_CONTAINER}
-            aria-label="Shipped products"
+            aria-label="Client work"
           >
             {PROOF_ITEMS.map((item) => {
               if (item.href) {

@@ -26,7 +26,7 @@ export default function Signature() {
         }
         .sig-stage {
           position: relative;
-          width: min(860px, 128vw);
+          width: min(660px, 112vw);
           margin: -4% 0;
         }
         .sig-stage::before {            /* rose bloom behind the mark */
@@ -72,7 +72,7 @@ export default function Signature() {
         .sig-word { position: relative; display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center; }
         .sig-name {
           font-family: var(--font-tech), system-ui, sans-serif;
-          font-size: clamp(24px, 3.6vw, 46px);
+          font-size: clamp(20px, 2.8vw, 36px);
           letter-spacing: 0.42em;
           padding-left: 0.42em;           /* balance the trailing tracking so the word sits centred */
           color: var(--ink);
