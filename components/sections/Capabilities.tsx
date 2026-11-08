@@ -12,13 +12,11 @@ import { FADE_UP, STAGGER_CONTAINER, CARD_ENTRANCE } from '@/lib/motion'
    ────────────────────────────────────────────────────────────────────────── */
 
 interface IconTileProps {
-  gradFrom: string
-  gradTo: string
   cardIndex: number
   children: React.ReactNode
 }
 
-function IconTile({ gradFrom, gradTo, cardIndex, children }: IconTileProps) {
+function IconTile({ cardIndex, children }: IconTileProps) {
   // Each tile floats at a slightly different phase so they feel independent
   const floatDelay = (cardIndex * 0.9).toFixed(1)
 
@@ -30,15 +28,14 @@ function IconTile({ gradFrom, gradTo, cardIndex, children }: IconTileProps) {
       transition={{ type: 'spring', stiffness: 260, damping: 26 }}
       style={
         {
-          width: '54px',
-          height: '54px',
-          borderRadius: '14px',
+          width: '48px',
+          height: '48px',
+          borderRadius: '12px',
           flexShrink: 0,
           position: 'relative',
-          background: `linear-gradient(140deg, ${gradFrom} 0%, ${gradTo} 100%)`,
-          border: '1px solid rgba(255, 255, 255, 0.099)',
-          boxShadow:
-            '0 1px 0 0 rgba(255, 255, 255, 0.083) inset, 0 0 0 1px rgba(255, 255, 255, 0.022) inset, 0 4px 16px rgba(195, 112, 128, 0.3), 0 1px 4px rgba(195, 112, 128, 0.18)',
+          background: 'rgba(233, 189, 184, 0.05)',
+          border: '1px solid rgba(233, 189, 184, 0.22)',
+          boxShadow: '0 1px 0 rgba(255, 255, 255, 0.05) inset',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
@@ -74,8 +71,8 @@ function IconTile({ gradFrom, gradTo, cardIndex, children }: IconTileProps) {
    SVG GLYPHS — stroke-only, 24×24, no fill clutter.
    ────────────────────────────────────────────────────────────────────────── */
 
-const ICON_STROKE = 'rgba(255, 255, 255, 0.152)'
-const SW = '1.6'
+const ICON_STROKE = '#E9BDB8'
+const SW = '1.75'
 
 function IconWorkflow() {
   return (
@@ -161,8 +158,6 @@ interface CapabilityItem {
   title: string
   description: string
   payoff: string
-  gradFrom: string
-  gradTo: string
   Icon: React.FC
 }
 
@@ -174,8 +169,6 @@ const CAPABILITIES: CapabilityItem[] = [
     description:
       'A fast, modern website that makes your business look as good as it is — designed, built, and launched for you.',
     payoff: 'Look premium. Load fast. Win work.',
-    gradFrom: '#C37080',
-    gradTo: '#E3A3B0',
     Icon: IconWebsite,
   },
   {
@@ -185,8 +178,6 @@ const CAPABILITIES: CapabilityItem[] = [
     description:
       'Your sales, costs, and jobs pulled into one live picture of the business — so decisions stop being guesses.',
     payoff: 'See your whole business at a glance.',
-    gradFrom: '#7E3042',
-    gradTo: '#9B4A63',
     Icon: IconBI,
   },
   {
@@ -196,8 +187,6 @@ const CAPABILITIES: CapabilityItem[] = [
     description:
       'We take the data you already have and turn it into clear charts and plain answers — what’s working, what isn’t, and what to do next.',
     payoff: 'Answers, not spreadsheets.',
-    gradFrom: '#622735',
-    gradTo: '#7E3042',
     Icon: IconReports,
   },
   {
@@ -207,8 +196,6 @@ const CAPABILITIES: CapabilityItem[] = [
     description:
       'The exact tool your business needs — or the product you want to launch — built from the ground up, and it’s yours.',
     payoff: 'Built around how you work.',
-    gradFrom: '#A75465',
-    gradTo: '#C37080',
     Icon: IconSaaS,
   },
   {
@@ -218,8 +205,6 @@ const CAPABILITIES: CapabilityItem[] = [
     description:
       'Approvals, hand-offs, notifications and routine multi-step processes — wired together so they run end-to-end without anyone chasing them.',
     payoff: 'Nobody has to chase anything.',
-    gradFrom: '#C37080',
-    gradTo: '#8E3A4E',
     Icon: IconWorkflow,
   },
   {
@@ -229,8 +214,6 @@ const CAPABILITIES: CapabilityItem[] = [
     description:
       'The copy-paste, re-typing and reconciliation work that burns your team’s day — replaced by automation that’s faster and never mistypes.',
     payoff: 'Faster than typing. Never mistypes.',
-    gradFrom: '#A75465',
-    gradTo: '#7E3042',
     Icon: IconDataEntry,
   },
 ]
@@ -243,8 +226,6 @@ function CapabilityCard({ item, index }: { item: CapabilityItem; index: number }
   const { Icon } = item
   const prefersReducedMotion = useReducedMotion()
 
-  // Stagger caustic drift phase so each card is at a different point in the loop
-  const causticDelay = `-${(index * 2.1).toFixed(1)}s`
   const specularDelay = `-${(index * 1.4).toFixed(1)}s`
 
   return (
@@ -272,7 +253,6 @@ function CapabilityCard({ item, index }: { item: CapabilityItem; index: number }
           cursor: 'default',
           position: 'relative',
           overflow: 'hidden',
-          '--caustic-delay': causticDelay,
           '--specular-delay': specularDelay,
         } as React.CSSProperties
       }
@@ -281,7 +261,6 @@ function CapabilityCard({ item, index }: { item: CapabilityItem; index: number }
       <span className="glass-topline" aria-hidden="true" />
 
       {/* Caustic light blob — slow radial-gradient drift, like light through water */}
-      <span className="cap-caustic" aria-hidden="true" />
 
       {/* Top-edge breathing specular — opacity + slight vertical drift */}
       <span className="cap-specular" aria-hidden="true" />
@@ -293,12 +272,12 @@ function CapabilityCard({ item, index }: { item: CapabilityItem; index: number }
           position: 'absolute',
           top: '22px',
           right: '26px',
-          fontFamily: 'var(--font-display), serif',
-          fontWeight: 300,
-          fontSize: '38px',
+          fontFamily: 'var(--font-tech), system-ui, sans-serif',
+          fontWeight: 400,
+          fontSize: '24px',
           lineHeight: 1,
-          letterSpacing: '0.02em',
-          color: 'rgba(0, 0, 0, 0.22)',
+          letterSpacing: '0.1em',
+          color: 'rgba(244, 238, 229, 0.16)',
           userSelect: 'none',
           pointerEvents: 'none',
         }}
@@ -308,12 +287,12 @@ function CapabilityCard({ item, index }: { item: CapabilityItem; index: number }
 
       {/* Icon tile */}
       <div style={{ marginBottom: '20px' }}>
-        <IconTile gradFrom={item.gradFrom} gradTo={item.gradTo} cardIndex={index}>
+        <IconTile cardIndex={index}>
           <Icon />
         </IconTile>
       </div>
 
-      {/* Faint inner text-scrim so copy stays readable over caustic blob */}
+      {/* Faint inner text-scrim so copy stays readable */}
       <div
         aria-hidden="true"
         style={{
@@ -434,42 +413,14 @@ export default function Capabilities() {
         /* More translucent fill, stronger blur, rounder, layered inset light */
         .cap-card {
           border-radius: 24px;
-          background: rgba(255, 255, 255, 0.048);
-          backdrop-filter: blur(32px) saturate(1.80) brightness(1.04);
-          -webkit-backdrop-filter: blur(32px) saturate(1.80) brightness(1.04);
-          border: 1px solid rgba(255, 255, 255, 0.099);
-          box-shadow:
-            /* curved top-edge specular — mimics a glass lens rim */
-            0 2px 0 0 rgba(255, 255, 255, 0.093) inset,
-            /* inner side-light refraction */
-            -1px 0 0 0 rgba(255, 255, 255, 0.035) inset,
-            1px 0 0 0 rgba(255, 255, 255, 0.022) inset,
-            /* outer blue-tinted glow from the glass-stage behind */
-            0 8px 36px rgba(195, 112, 128, 0.14),
-            0 2px 10px rgba(126, 48, 66, 0.14),
-            0 1px 2px rgba(0, 0, 0, 0.11);
-          transition:
-            box-shadow 0.5s ease,
-            border-color 0.5s ease;
+          background: linear-gradient(180deg, rgba(245, 225, 230, 0.045), rgba(245, 225, 230, 0.015)), var(--surface-2);
+          border: 1px solid rgba(245, 239, 230, 0.1);
+          box-shadow: 0 1px 0 rgba(255, 255, 255, 0.04) inset, 0 28px 56px -32px rgba(0, 0, 0, 0.75);
+          transition: box-shadow 0.5s ease, border-color 0.5s ease;
         }
-
-        /* Fallback: no backdrop-filter support */
-        @supports not (backdrop-filter: blur(1px)) {
-          .cap-card {
-            background: rgba(26, 19, 23, 0.96);
-          }
-        }
-
-        /* Hover: caustic pools a touch brighter, border luminance up */
         .cap-card:hover {
-          box-shadow:
-            0 2px 0 0 rgba(255, 255, 255, 0.109) inset,
-            -1px 0 0 0 rgba(255, 255, 255, 0.042) inset,
-            1px 0 0 0 rgba(255, 255, 255, 0.029) inset,
-            0 14px 48px rgba(195, 112, 128, 0.24),
-            0 4px 18px rgba(126, 48, 66, 0.224),
-            0 1px 3px rgba(0, 0, 0, 0.154);
-          border-color: rgba(255, 255, 255, 0.125);
+          border-color: rgba(233, 189, 184, 0.28);
+          box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06) inset, 0 36px 70px -34px rgba(0, 0, 0, 0.85);
         }
 
         /* ── Blue top-rule ── */
@@ -487,41 +438,6 @@ export default function Capabilities() {
         }
         .cap-card:hover .glass-topline {
           transform: scaleX(1);
-        }
-
-        /* ── CAUSTIC LIGHT BLOB
-           A soft, large radial gradient in blue/cyan/indigo that drifts very
-           slowly around the card interior — like sunlight rippling under water.
-           Opacity ~0.08–0.11, huge blur via filter, 15–20s ease-in-out loop.
-           Each card gets a negative delay so they start mid-animation (all different).
-        ── */
-        @keyframes causticDrift {
-          0%   { transform: translate(-18%, -22%) scale(1.0);    opacity: 0.08; }
-          25%  { transform: translate(12%, -8%)  scale(1.12);   opacity: 0.11; }
-          50%  { transform: translate(20%, 18%)  scale(0.94);   opacity: 0.07; }
-          75%  { transform: translate(-8%, 24%)  scale(1.08);   opacity: 0.10; }
-          100% { transform: translate(-18%, -22%) scale(1.0);   opacity: 0.08; }
-        }
-
-        .cap-caustic {
-          position: absolute;
-          top: -30%;
-          left: -20%;
-          width: 140%;
-          height: 140%;
-          border-radius: 50%;
-          background: radial-gradient(
-            ellipse 68% 58% at 50% 50%,
-            rgba(195, 112, 128, 0.22) 0%,
-            rgba(126, 48, 66, 0.196) 40%,
-            rgba(187, 150, 165, 0.06) 70%,
-            transparent 100%
-          );
-          filter: blur(28px);
-          animation: causticDrift 18s ease-in-out infinite;
-          animation-delay: var(--caustic-delay, 0s);
-          pointer-events: none;
-          will-change: transform, opacity;
         }
 
         /* ── SPECULAR HIGHLIGHT
@@ -595,15 +511,13 @@ export default function Capabilities() {
         }
 
         /* ── Reduced motion: freeze all drift to a calm static state ── */
+        /* Phones: drop the always-running decorative loops (battery, jank) */
+        @media (max-width: 767px) {
+          .icon-tile, .cap-specular { animation: none !important; }
+        }
         @media (prefers-reduced-motion: reduce) {
           .icon-tile {
             animation: none !important;
-          }
-          .cap-caustic {
-            animation: none !important;
-            /* Leave the blob in a neutral position as a soft static accent */
-            transform: translate(0%, 0%) scale(1.0);
-            opacity: 0.07;
           }
           .cap-specular {
             animation: none !important;

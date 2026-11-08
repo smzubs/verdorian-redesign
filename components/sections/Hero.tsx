@@ -101,6 +101,10 @@ export default function Hero() {
           0%, 64%, 100% { transform: translateY(0) scale(1); filter: brightness(1); }
           12%           { transform: translateY(-3px) scale(1.06); filter: brightness(1.14); }
         }
+        @media (max-width: 560px) {
+          .hero-cta { width: 100%; flex-direction: column; align-items: center; }
+          .hero-cta > * { width: 100%; max-width: 320px; }
+        }
         .hero-wrap { max-width: 1200px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 48px); }
 
         /* ── iOS-26 Liquid Glass chip badge ── */
@@ -159,7 +163,7 @@ export default function Hero() {
         /* Neon-sign power-on: flickers awake, then settles to the stable glass pill (plays once on load) */
         @keyframes neonPowerOn {
           0%   { opacity: 0;    filter: brightness(0.7) blur(3px) drop-shadow(0 0 0 transparent); }
-          20%  { opacity: 0.9;  filter: brightness(1.3) blur(1px) drop-shadow(0 0 16px rgba(255,0,170,0.6)); }  /* dreamy magenta bloom */
+          20%  { opacity: 0.9;  filter: brightness(1.3) blur(1px) drop-shadow(0 0 16px rgba(201,138,145,0.5)); }  /* dreamy magenta bloom */
           40%  { opacity: 1;    filter: brightness(1.32) blur(0.4px) drop-shadow(0 0 18px rgba(227,163,176,0.6)); } /* cyan */
           60%  { opacity: 1;    filter: brightness(1.28) drop-shadow(0 0 18px rgba(126, 48, 66, 0.6)); }          /* violet */
           80%  { opacity: 1;    filter: brightness(1.16) drop-shadow(0 0 14px rgba(195, 112, 128, 0.55)); }           /* settling into blue */
@@ -322,26 +326,20 @@ export default function Hero() {
             fontWeight: 500,
             fontSize: 'clamp(20px, 1.85vw, 25px)',
             color: 'var(--ink)',
-            maxWidth: '44ch',
-            lineHeight: 1.5,
+            maxWidth: '46ch',
+            lineHeight: 1.55,
             letterSpacing: '0',
             margin: 0,
-            textWrap: 'balance',
+            textWrap: 'pretty',
           } as React.CSSProperties}
         >
-          <span style={{ display: 'block' }}>
-            We build software exactly the way your business needs it&mdash;
-          </span>
-          <span style={{ display: 'block', marginTop: '4px' }}>
-            and automate the manual work that slows your team down, so it gets done{' '}
-            <span style={{ fontWeight: 600, color: 'var(--gold)' }}>
-              faster, smarter, and more accurately.
-            </span>
-          </span>
+          We build software exactly the way your business needs it&mdash;and automate the manual work that
+          slows your team down, so it gets done{' '}
+          <span style={{ fontWeight: 500, color: 'var(--gold-bright)' }}>faster, smarter, and more accurately.</span>
         </motion.p>
 
         {/* Primary actions */}
-        <motion.div variants={FADE_UP} style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', justifyContent: 'center' }}>
+        <motion.div variants={FADE_UP} className="hero-cta" style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', justifyContent: 'center' }}>
           <button type="button" className="btn-blue" onClick={() => scrollToSection('contact')}>
             Start a project
           </button>

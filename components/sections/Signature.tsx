@@ -1,6 +1,7 @@
 'use client'
 
 import React from 'react'
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { SIG_RINGS, SIG_VIEWBOX as VB } from '@/components/signature/rings'
 import { EASE_PROSPECTUS } from '@/lib/motion'
@@ -56,11 +57,11 @@ export default function Signature() {
         .sig-rings { -webkit-mask-image: radial-gradient(closest-side, #000 62%, transparent 100%); mask-image: radial-gradient(closest-side, #000 62%, transparent 100%); }
         @keyframes sigRipple {
           0%, 100% { opacity: 0.14; }
-          35%      { opacity: 0.62; stroke: #E3A3B0; }
+          35%      { opacity: 0.45; stroke: #E3A3B0; }
           60%      { opacity: 0.22; }
         }
 
-        .sig-mark { filter: drop-shadow(0 18px 40px rgba(126, 48, 66, 0.55)) drop-shadow(0 0 24px rgba(195, 112, 128, 0.25)); }
+        .sig-mark { filter: drop-shadow(0 24px 48px rgba(0, 0, 0, 0.6)) drop-shadow(0 0 1px rgba(246, 223, 216, 0.35)); }
         .sig-sheen { animation: sigSheen 6.5s cubic-bezier(0.45, 0, 0.25, 1) infinite; }
         @keyframes sigSheen {
           0%, 30% { transform: translateX(-110%); }
@@ -72,23 +73,8 @@ export default function Signature() {
           50%      { transform: translateY(-8px); }
         }
 
-        .sig-word { position: relative; display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center; }
-        .sig-name {
-          font-family: var(--font-tech), system-ui, sans-serif;
-          font-size: clamp(18px, 2.4vw, 30px);
-          letter-spacing: 0.42em;
-          padding-left: 0.42em;           /* balance the trailing tracking so the word sits centred */
-          color: var(--ink);
-          line-height: 1;
-        }
-        .sig-tech {
-          font-size: clamp(11px, 1vw, 13px);
-          font-weight: 500;
-          letter-spacing: 0.62em;
-          padding-left: 0.62em;
-          text-transform: uppercase;
-          color: var(--ink-soft);
-        }
+        .sig-word { position: relative; display: flex; justify-content: center; }
+        .sig-wordmark { width: clamp(200px, 22vw, 280px); height: auto; display: block; }
 
         @media (prefers-reduced-motion: reduce) {
           .sig-rings path, .sig-sheen, .sig-float { animation: none !important; }
@@ -151,8 +137,7 @@ export default function Signature() {
         viewport={{ once: true, margin: '-60px' }}
         transition={{ duration: 0.9, delay: 0.25, ease: EASE_PROSPECTUS }}
       >
-        <span className="sig-name">VERDORIAN</span>
-        <span className="sig-tech">Technologies</span>
+        <Image className="sig-wordmark" src="/brand/verdorian-wordmark-light.webp" alt="Verdorian Technologies" width={533} height={100} />
       </motion.div>
     </section>
   )

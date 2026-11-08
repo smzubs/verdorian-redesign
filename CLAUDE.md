@@ -1,5 +1,11 @@
 # Verdorian Technologies — verdorian.com (Premium Liquid Glass Redesign)
 
+> ## ⚡ LATEST (2026-11-08) — ULTRA-PREMIUM PASS — read first
+> **Tokens (app/globals.css :root):** paper `#0B070B`, surface `#150F14` / `--surface-2 #1B1319`, ink `#F5EFE6`, accent `--gold #C98A91` (champagne rose), `--rose-text #D9A0A6`, `--gold-bright #E9BDB8`. Grow page re-declares old tokens under `.theme-classic`, so :root token edits are safe.
+> **Premium layer** (end of globals.css): every structural override is scoped `body:not(:has(.theme-classic))` / `html:not(:has(.theme-classic))::before` so /grow-your-business never changes — keep that rule for any new global style. Champagne-gradient `.btn-blue` (dark text), solid `.glass-card` with gradient hairline (no backdrop blur), hairline eyebrows, quieter topo + grain.
+> **Logos:** nav uses `public/brand/verdorian-lockup-compact.webp` (32px desktop / 26px mobile); Signature uses `verdorian-wordmark-light.webp`; footer lockup 52px. Capabilities icons are flat outline tiles (no caustic blobs). Nav scrollspy clears past #signature; mobile menu stops Lenis + closes on Escape.
+> Rollback tag: `checkpoint-pre-premium-pass`.
+
 > ## ⚡ LATEST (2026-11-04 pm) — AI-NATIVE PARENT-COMPANY REPOSITION — read first
 > **Positioning:** Verdorian = ai-native software developer and parent company; automation stays as the proof ("faster, smarter, and more accurately"). Hero H1 "ai-native software, built for real business." + CTAs Start a project (#contact) / Explore our ventures (#ventures).
 > **Type:** display headlines (h1, section h2, trades/legal titles) use Michroma via `--font-tech`, letter-spacing .05em, `--t-h2 clamp(26px,3.4vw,48px)`; Poppins stays for subheads/h3, Geist for body. `h1, h2 { text-wrap: balance }`.

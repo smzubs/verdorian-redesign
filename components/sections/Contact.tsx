@@ -26,19 +26,19 @@ const EMPTY_FORM: AuditForm = {
 const LABEL_STYLE: React.CSSProperties = {
   display: 'block',
   fontFamily: 'var(--font-body), sans-serif',
-  fontSize: '10px',
-  fontWeight: 700,
+  fontSize: '11px',
+  fontWeight: 600,
   textTransform: 'uppercase',
-  letterSpacing: '0.22em',
-  color: 'rgba(244, 238, 229, 0.6)',
+  letterSpacing: '0.2em',
+  color: 'rgba(244, 238, 229, 0.76)',
   marginBottom: '6px',
 }
 
 const INPUT_BASE: React.CSSProperties = {
   width: '100%',
-  background: 'rgba(255,255,255,0.06)',
-  border: '1px solid rgba(255,255,255,0.14)',
-  borderRadius: '3px',
+  background: 'rgba(0,0,0,0.28)',
+  border: '1px solid rgba(255,255,255,0.16)',
+  borderRadius: '10px',
   padding: '13px 14px',
   fontFamily: 'var(--font-body), sans-serif',
   fontSize: '14px',
@@ -280,8 +280,8 @@ export default function Contact() {
                     key={line}
                     style={{
                       fontFamily: 'var(--font-body), sans-serif',
-                      fontSize: '13px',
-                      color: 'rgba(244, 238, 229, 0.44)',
+                      fontSize: '14px',
+                      color: 'rgba(244, 238, 229, 0.66)',
                       lineHeight: 1.5,
                       margin: 0,
                       display: 'flex',
@@ -335,11 +335,11 @@ export default function Contact() {
                 className="glass-card"
                 style={{
                   padding: '40px 36px',
-                  background: 'rgba(255,255,255,0.07)',
-                  backdropFilter: 'blur(28px) saturate(1.6)',
-                  WebkitBackdropFilter: 'blur(28px) saturate(1.6)',
-                  border: '1px solid rgba(255,255,255,0.12)',
-                  borderRadius: '16px',
+                  background: 'rgba(26,19,23,0.72)',
+                  backdropFilter: 'blur(28px) saturate(1.3)',
+                  WebkitBackdropFilter: 'blur(28px) saturate(1.3)',
+                  border: '1px solid rgba(255,255,255,0.1)',
+                  borderRadius: '24px',
                   boxShadow: '0 1px 0 rgba(255,255,255,0.12) inset, 0 2px 8px rgba(20,24,32,0.18), 0 24px 64px -20px rgba(20,24,32,0.40)',
                 }}
               >
@@ -443,7 +443,7 @@ export default function Contact() {
                       <span
                         style={{
                           color: 'rgba(244, 238, 229, 0.62)',
-                          fontSize: '9px',
+                          fontSize: '11px',
                           letterSpacing: '0.14em',
                           fontWeight: 400,
                           textTransform: 'none',
@@ -473,9 +473,10 @@ export default function Contact() {
                       disabled={status === 'sending'}
                       style={{
                         minHeight: '52px',
-                        padding: '14px 28px',
+                        padding: '14px 20px',
                         fontSize: '12px',
-                        letterSpacing: '0.18em',
+                        letterSpacing: '0.12em',
+                        whiteSpace: 'nowrap',
                         width: '100%',
                         justifyContent: 'center',
                         cursor: status === 'sending' ? 'wait' : 'pointer',
@@ -505,8 +506,8 @@ export default function Contact() {
                       style={{
                         marginTop: '12px',
                         fontFamily: 'var(--font-body), sans-serif',
-                        fontSize: '11px',
-                        color: 'rgba(244, 238, 229, 0.32)',
+                        fontSize: '12px',
+                        color: 'rgba(244, 238, 229, 0.58)',
                         textAlign: 'center',
                         lineHeight: 1.5,
                       }}

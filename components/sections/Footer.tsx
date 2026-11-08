@@ -58,25 +58,13 @@ export default function Footer() {
             alt="Verdorian Technologies"
             width={720}
             height={124}
-            style={{ height: '34px', width: 'auto', display: 'block' }}
+            style={{ height: '52px', width: 'auto', display: 'block' }}
           />
           <span
             style={{
               fontFamily: 'var(--font-body), sans-serif',
-              fontSize: '11px',
-              fontWeight: 600,
-              textTransform: 'uppercase',
-              letterSpacing: '0.22em',
-              color: 'var(--gold)',
-            }}
-          >
-            ai-native software
-          </span>
-          <span
-            style={{
-              fontFamily: 'var(--font-body), sans-serif',
               fontSize: '13px',
-              color: 'rgba(244, 238, 229, 0.42)',
+              color: 'rgba(244, 238, 229, 0.66)',
               lineHeight: 1.6,
               maxWidth: '280px',
             }}
@@ -86,7 +74,7 @@ export default function Footer() {
         </div>
 
         {/* Center: ruled link column */}
-        <nav aria-label="Footer navigation" className="footer-nav" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, auto)', columnGap: '40px' }}>
+        <nav aria-label="Footer navigation" className="footer-nav" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, auto)', columnGap: '40px', rowGap: 0, alignSelf: 'center' }}>
           {NAV_LINKS.map((link) => (
             <button
               key={link.id}
@@ -120,17 +108,17 @@ export default function Footer() {
           className="footer-legal"
           style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '8px', textAlign: 'right' }}
         >
-          <span style={{ fontFamily: 'var(--font-body), sans-serif', fontSize: '12px', color: 'rgba(244, 238, 229, 0.6)' }}>
+          <span style={{ fontFamily: 'var(--font-body), sans-serif', fontSize: '12px', color: 'rgba(244, 238, 229, 0.72)' }}>
             &copy; 2026 Verdorian Technologies LLC
           </span>
-          <a href="mailto:sm@verdorian.com" className="gold-link" style={{ fontFamily: 'var(--font-body), sans-serif', fontSize: '12px', color: 'rgba(244, 238, 229, 0.6)' }}>
+          <a href="mailto:sm@verdorian.com" className="gold-link" style={{ fontFamily: 'var(--font-body), sans-serif', fontSize: '12px', color: 'rgba(244, 238, 229, 0.72)' }}>
             sm@verdorian.com
           </a>
           <span style={{ display: 'flex', gap: '14px' }}>
-            <a href="/privacy" style={{ fontFamily: 'var(--font-body), sans-serif', fontSize: '12px', color: 'rgba(244, 238, 229, 0.6)', textDecoration: 'none' }}>
+            <a href="/privacy" style={{ fontFamily: 'var(--font-body), sans-serif', fontSize: '12px', color: 'rgba(244, 238, 229, 0.72)', textDecoration: 'none' }}>
               Privacy
             </a>
-            <a href="/terms" style={{ fontFamily: 'var(--font-body), sans-serif', fontSize: '12px', color: 'rgba(244, 238, 229, 0.6)', textDecoration: 'none' }}>
+            <a href="/terms" style={{ fontFamily: 'var(--font-body), sans-serif', fontSize: '12px', color: 'rgba(244, 238, 229, 0.72)', textDecoration: 'none' }}>
               Terms
             </a>
           </span>

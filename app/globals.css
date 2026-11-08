@@ -3,22 +3,24 @@
 /* ─── DESIGN SYSTEM: HERITAGE PROSPECTUS — warm ivory paper, hairline rules, gold leaf, ink (matches QRSafePro) ─── */
 :root {
   /* ── Paper / ink / rule scale ── */
-  --paper:        #0E0A0D;   /* plum-black canvas (brand) */
-  --paper-deep:   #160F13;   /* alt bands */
+  --paper:        #0B070B;   /* plum-black canvas (brand) */
+  --paper-deep:   #100A0F;   /* alt bands */
   --paper-bright: #FBF7F1;   /* brightest cream — text on dark */
-  --surface:      #1A1317;   /* raised plates */
-  --ink:          #F4EEE5;   /* brand cream — main text */
-  --ink-soft:     #C9BDC1;   /* body */
-  --ink-faint:    #9C8F95;   /* meta / captions */
-  --rule-strong:  rgba(244, 238, 229, 0.16);   /* standard hairline */
-  --rule:         rgba(244, 238, 229, 0.09);   /* soft divider */
-  --rule-faint:   rgba(244, 238, 229, 0.05);   /* chain lines / barely-there */
+  --surface:      #150F14;   /* raised plates */
+  --surface-2:    #1B1319;   /* cards, inputs */
+  --ink:          #F5EFE6;   /* brand cream — main text */
+  --ink-soft:     #CDC2C5;   /* body */
+  --ink-faint:    #A3969D;   /* meta / captions */
+  --rule-strong:  rgba(245, 239, 230, 0.14);   /* standard hairline */
+  --rule:         rgba(245, 239, 230, 0.08);   /* soft divider */
+  --rule-faint:   rgba(245, 239, 230, 0.045);   /* chain lines / barely-there */
 
   /* ── Gold + semantic ── */
-  --gold:        #C37080;   /* brand rose */
-  --gold-bright: #E3A3B0;
+  --gold:        #C98A91;   /* champagne rose (brand rose #C37080, lifted for legibility) */
+  --rose-text:   #D9A0A6;   /* eyebrows, small labels */
+  --gold-bright: #E9BDB8;
   --gold-pale:   rgba(195, 112, 128, 0.12);
-  --green-pass:  #7DB892;
+  --green-pass:  #8CC7A0;
   --red-fail:    #E58A7E;
 
   /* ── Typography (display = Cormorant Garamond, body = Geist) ── */
@@ -251,7 +253,6 @@ html {
   letter-spacing: 0.34em;
   color: var(--gold);
   display: inline-block;
-  text-indent: 0.34em;
 }
 
 /* "No. 01" chapter numeral */
@@ -615,8 +616,8 @@ html {
 
 /* MIDNIGHT FINALE — the contact band + footer. Separate from --ink, which is also text colour. */
 :root {
-  --midnight:      #120B10;
-  --midnight-deep: #0A0709;
+  --midnight:      #0F090E;
+  --midnight-deep: #080508;
 }
 .midnight-field {
   background:
@@ -1136,4 +1137,153 @@ p, li, button, a, label, input, textarea {
   .glass-card, .glass-mock { will-change: auto; }
   .glass-card:hover, .glass-mock:hover { transform: translateZ(0) !important; }
   .glass-card:hover .glass-topline { transform: scaleX(0) !important; }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   ULTRA-PREMIUM LAYER (2026-11-08) — champagne-rose refinement of the dark site.
+   Everything is scoped away from the light Grow Your Business page (.theme-classic),
+   which must stay exactly as it is.
+   ════════════════════════════════════════════════════════════════ */
+html:not(:has(.theme-classic))::before {           /* topo lines recede behind the headline, live at the edges */
+  opacity: 0.26;
+  -webkit-mask-image: radial-gradient(ellipse 60% 50% at 50% 34%, rgba(0, 0, 0, 0.32), #000 78%);
+          mask-image: radial-gradient(ellipse 60% 50% at 50% 34%, rgba(0, 0, 0, 0.32), #000 78%);
+}
+body:not(:has(.theme-classic)) {
+  &::before {                                       /* one quiet lamp, not a rose wash */
+    background:
+      radial-gradient(ellipse 46% 40% at 50% 30%, rgba(201, 138, 145, 0.08) 0%, transparent 70%),
+      radial-gradient(ellipse 120% 90% at 50% 40%, transparent 55%, rgba(4, 2, 4, 0.62) 100%);
+  }
+  &::after { z-index: -1; opacity: 0.05; }          /* grain under the type, not over it */
+
+  /* Primary: champagne metal with dark text (white on pink failed AA at ~2.8:1) */
+  .btn-blue {
+    overflow: hidden;
+    border: 0;
+    border-radius: 10px;
+    color: #1A0A10;
+    background: linear-gradient(180deg, #F3D5CE 0%, #E2B0AE 46%, #C98A91 100%);
+    background-size: 100% 100%;
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.55),
+      inset 0 -1px 0 rgba(98, 39, 53, 0.35),
+      0 0 0 1px rgba(98, 39, 53, 0.6),
+      0 10px 28px -10px rgba(201, 138, 145, 0.45),
+      0 1px 2px rgba(0, 0, 0, 0.5);
+  }
+  .btn-blue::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(105deg, transparent 35%, rgba(255, 255, 255, 0.5) 50%, transparent 65%);
+    transform: translateX(-120%);
+    transition: transform 0.9s var(--ease-expo);
+    pointer-events: none;
+  }
+  .btn-blue:hover {
+    background-position: 0 0;
+    transform: translateY(-1px);
+    filter: brightness(1.05);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.6),
+      inset 0 -1px 0 rgba(98, 39, 53, 0.35),
+      0 0 0 1px rgba(98, 39, 53, 0.6),
+      0 16px 34px -12px rgba(201, 138, 145, 0.55),
+      0 1px 2px rgba(0, 0, 0, 0.5);
+  }
+  .btn-blue:hover::after { transform: translateX(120%); }
+  .btn-blue:active { transform: none; filter: brightness(0.97); }
+  .btn-blue:disabled { opacity: 0.55; filter: saturate(0.6); cursor: wait; }
+
+  .btn-ghost, .btn-ghost-light {
+    border-radius: 10px;
+    color: var(--ink);
+    background: transparent;
+    border: 1px solid rgba(245, 239, 230, 0.22);
+    transition: border-color 0.3s var(--ease-prospectus), background 0.3s var(--ease-prospectus);
+  }
+  .btn-ghost:hover, .btn-ghost-light:hover {
+    color: var(--ink);
+    border-color: rgba(233, 189, 184, 0.6);
+    background: rgba(233, 189, 184, 0.06);
+  }
+
+  :focus-visible {
+    outline: 1px solid rgba(246, 223, 216, 0.9);
+    outline-offset: 3px;
+    box-shadow: 0 0 0 5px rgba(201, 138, 145, 0.22);
+  }
+
+  /* Accent words: static champagne metal (no endless shimmer) */
+  .gold-shimmer {
+    background: linear-gradient(172deg, #FBEDE6 0%, #EFC9C2 26%, #D9A0A6 50%, #F3D2CA 72%, #C98A91 100%);
+    background-size: 100% 100%;
+    -webkit-background-clip: text;
+            background-clip: text;
+    animation: none;
+  }
+
+  /* Eyebrows: quieter, with a hairline lead-in */
+  .eyebrow {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.28em;
+    color: var(--rose-text);
+  }
+  .eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 1px;
+    margin-right: 12px;
+    vertical-align: middle;
+    background: currentColor;
+    opacity: 0.5;
+  }
+
+  .nav-tab[aria-current='true'] { color: var(--ink); }
+
+  /* Cards: solid surface + fine metallic hairline edge; no frosted pink halo */
+  .glass-card {
+    -webkit-backdrop-filter: none;
+            backdrop-filter: none;
+    background: linear-gradient(180deg, rgba(245, 225, 230, 0.045), rgba(245, 225, 230, 0.015)), var(--surface-2);
+    border: 1px solid transparent;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.04) inset, 0 28px 56px -32px rgba(0, 0, 0, 0.75);
+  }
+  .glass-card::before {
+    opacity: 1;
+    padding: 1px;
+    background: linear-gradient(155deg, rgba(246, 223, 216, 0.26), rgba(245, 239, 230, 0.07) 38%, rgba(245, 239, 230, 0.04) 62%, rgba(201, 138, 145, 0.16));
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+            mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+            mask-composite: exclude;
+  }
+  .glass-card::after { background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 40%); }
+  .glass-card:hover {
+    border-color: transparent;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06) inset, 0 36px 70px -34px rgba(0, 0, 0, 0.85);
+  }
+  .glass-card:hover::before {
+    background: linear-gradient(155deg, rgba(246, 223, 216, 0.42), rgba(245, 239, 230, 0.1) 38%, rgba(245, 239, 230, 0.06) 62%, rgba(201, 138, 145, 0.26));
+  }
+
+  /* Section fields: faint burgundy depth instead of mauve fog bands */
+  .glass-stage, #trust.glass-stage {
+    --stage-a: rgba(126, 48, 66, 0.12);
+    --stage-b: rgba(126, 48, 66, 0.07);
+    --stage-c: rgba(98, 39, 53, 0.08);
+    --stage-base-top: #0F0A0E;
+    --stage-base-bottom: #0C080B;
+  }
+
+  .midnight-field {
+    background:
+      radial-gradient(ellipse 70% 40% at 50% 30%, rgba(126, 48, 66, 0.22) 0%, transparent 70%),
+      linear-gradient(180deg, var(--midnight) 0%, var(--midnight-deep) 100%);
+  }
+  .midnight-field::after { display: none; }        /* dot lattice read as a SaaS template */
 }

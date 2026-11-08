@@ -49,6 +49,9 @@ export default function Nav() {
         const el = document.getElementById(id)
         if (el && el.getBoundingClientRect().top <= refLine) current = id
       }
+      // Past the last tabbed section (signature, contact) no tab should stay lit
+      const after = document.getElementById('signature')
+      if (after && after.getBoundingClientRect().top <= refLine) current = ''
       setActiveSection(current)
       raf = false
     }
@@ -64,8 +67,17 @@ export default function Nav() {
   }, [])
 
   useEffect(() => {
+    const lenis = (window as unknown as { __lenis?: { stop: () => void; start: () => void } }).__lenis
     document.body.style.overflow = mobileOpen ? 'hidden' : ''
-    return () => { document.body.style.overflow = '' }
+    if (mobileOpen) lenis?.stop()
+    else lenis?.start()
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setMobileOpen(false) }
+    if (mobileOpen) window.addEventListener('keydown', onKey)
+    return () => {
+      document.body.style.overflow = ''
+      lenis?.start()
+      window.removeEventListener('keydown', onKey)
+    }
   }, [mobileOpen])
 
   const navigate = useCallback((id: string) => {
@@ -130,12 +142,22 @@ export default function Nav() {
             }}
           >
             <Image
-              src="/brand/verdorian-lockup-light.webp"
+              className="hidden sm:block"
+              src="/brand/verdorian-lockup-compact.webp"
               alt="Verdorian Technologies"
-              width={720}
+              width={717}
               height={124}
               preload
-              style={{ height: '30px', width: 'auto', display: 'block' }}
+              style={{ height: '32px', width: 'auto' }}
+            />
+            <Image
+              className="block sm:hidden"
+              src="/brand/verdorian-lockup-compact.webp"
+              alt="Verdorian Technologies"
+              width={717}
+              height={124}
+              preload
+              style={{ height: '26px', width: 'auto' }}
             />
           </button>
 
@@ -148,8 +170,8 @@ export default function Nav() {
               padding: '4px',
               borderRadius: '999px',
               background: 'rgba(255, 255, 255, 0.072)',
-              backdropFilter: 'blur(14px) saturate(1.6)',
-              WebkitBackdropFilter: 'blur(14px) saturate(1.6)',
+              backdropFilter: 'blur(14px) saturate(1.15)',
+              WebkitBackdropFilter: 'blur(14px) saturate(1.15)',
               border: '1px solid rgba(255, 255, 255, 0.096)',
               boxShadow: '0 1px 0 rgba(255, 255, 255, 0.112) inset, 0 6px 18px -12px rgba(0, 0, 0, 0.66)',
             }}
@@ -172,9 +194,9 @@ export default function Nav() {
                         position: 'absolute',
                         inset: 0,
                         borderRadius: '999px',
-                        background: 'linear-gradient(180deg, rgba(214, 138, 154, 0.18), rgba(195, 112, 128, 0.12))',
-                        border: '1px solid rgba(195, 112, 128, 0.24)',
-                        boxShadow: '0 1px 0 rgba(255, 255, 255, 0.096) inset, 0 4px 12px -6px rgba(195, 112, 128, 0.45)',
+                        background: 'rgba(245, 239, 230, 0.08)',
+                        border: '1px solid rgba(245, 239, 230, 0.14)',
+                        boxShadow: '0 1px 0 rgba(255,255,255,0.08) inset',
                         zIndex: 0,
                       }}
                       transition={{ type: 'spring', stiffness: 380, damping: 32 }}
@@ -198,7 +220,7 @@ export default function Nav() {
               style={{
                 background: 'transparent',
                 border: '1px solid var(--rule-strong)',
-                borderRadius: 'var(--r-sm)',
+                borderRadius: '14px',
                 cursor: 'pointer',
                 width: '44px',
                 height: '44px',
@@ -235,6 +257,7 @@ export default function Nav() {
             id="mobile-menu"
             role="dialog"
             aria-modal="true"
+            data-lenis-prevent
             aria-label="Mobile navigation menu"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -267,11 +290,11 @@ export default function Nav() {
                   cursor: 'pointer',
                   minHeight: '52px',
                   padding: '12px 40px',
-                  fontFamily: 'var(--font-display), serif',
-                  fontWeight: 600,
-                  fontSize: '28px',
-                  color: activeId === link.id ? 'var(--gold)' : 'var(--ink)',
-                  letterSpacing: '0.04em',
+                  fontFamily: 'var(--font-tech), system-ui, sans-serif',
+                  fontWeight: 400,
+                  fontSize: '20px',
+                  color: activeId === link.id ? 'var(--gold-bright)' : 'var(--ink)',
+                  letterSpacing: '0.08em',
                 }}
               >
                 {link.label}
